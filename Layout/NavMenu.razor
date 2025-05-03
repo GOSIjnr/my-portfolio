@@ -1,39 +1,23 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">MyPortfolio</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+﻿<nav class="top-nav">
+    <div class="nav-container">
+        <!-- Left: Logo and Project Name -->
+        <div class="nav-left">
+            <img src="favicon.png" alt="Logo" class="nav-logo" />
+            <span class="project-name">GOSIjnr</span>
+        </div>
+
+        <!-- Center: Nav Links -->
+        <div class="nav-center">
+            <NavLink class="nav-link" href="">About</NavLink>
+            <NavLink class="nav-link" href="weather">Skills</NavLink>
+            <NavLink class="nav-link" href="">Project</NavLink>
+            <NavLink class="nav-link" href="counter">Resume</NavLink>
+        </div>
+
+        <!-- Right: Contact Button -->
+        <div class="nav-right">
+            <a class="btn contact-btn" href="#contact">Contact Me</a>
+        </div>
     </div>
-</div>
+</nav>
 
-<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
-    <nav class="nav flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="weather">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
-            </NavLink>
-        </div>
-    </nav>
-</div>
-
-@code {
-    private bool collapseNavMenu = true;
-
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
-}

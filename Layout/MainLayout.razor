@@ -4,7 +4,7 @@
 
 <div class="page">
 	<main>
-		<NavMenu Brand="@_brandInfo" NavLinkItems="@_navLinkItems"/>
+		<NavMenu Brand="@_brandInfo" NavLinkItems="@_navLinkItems" ContactData="@_contactData" />
 
 		<article class="content px-4 mt-4">
 			@Body
@@ -22,9 +22,16 @@
 
 	private NavLinkItemData[] _navLinkItems = new NavLinkItemData[]
 	{
-new NavLinkItemData { Text = "About Me", Href = "/home", CssClass = "nav-link" },
-new NavLinkItemData { Text = "Skills", Href = "/counter", CssClass = "nav-link" },
-new NavLinkItemData { Text = "Projects", Href = "/weather", CssClass = "nav-link" },
-new NavLinkItemData { Text = "Resume", Href = "/myportfolio", CssClass = "nav-link" },
+new NavLinkItemData { Text = "About Me", Href = "/home", CssClass = "nav-text" },
+new NavLinkItemData { Text = "Skills", Href = "/counter", CssClass = "nav-text" },
+new NavLinkItemData { Text = "Projects", Href = "/weather", CssClass = "nav-text" },
+new NavLinkItemData { Text = "Resume", Href = "/myportfolio", CssClass = "nav-text" },
+	};
+
+	private NavLinkItemData _contactData = new()
+	{
+		Text = "Let's Connect",
+		Href = "/contact",
+		CssClass = "contact-btn"
 	};
 }

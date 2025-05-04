@@ -11,17 +11,13 @@
         <div class="nav-center">
             @foreach (var item in NavLinkItems)
             {
-                <NavLinkItem Text="@item.Text" Href="@item.Href" CssClass="nav-link" />
+                <NavLinkItem Text="@item.Text" Href="@item.Href" CssClass="@item.CssClass"/>
             }
         </div>
 
         <!-- Right: Contact Button -->
         <div class="nav-right">
-            <div class="contact-btn">
-                <NavLink class="nav-link" href="#contact">
-                    <span class="nav-text">Contact Me</span>
-                </NavLink>
-            </div>
+            <NavLinkItem Text="@ContactData.Text" Href="@ContactData.Href" CssClass="@ContactData.CssClass" />
         </div>
     </div>
 </nav>
@@ -29,4 +25,5 @@
 @code {
     [Parameter] public NavBrandData Brand { get; set; } = null!;
     [Parameter] public NavLinkItemData[] NavLinkItems { get; set; } = null!;
+    [Parameter] public NavLinkItemData ContactData { get; set; } = null!;
 }

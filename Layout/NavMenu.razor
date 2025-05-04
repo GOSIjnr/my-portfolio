@@ -8,16 +8,35 @@
 
         <!-- Center: Nav Links -->
         <div class="nav-center">
-            <NavLink class="nav-link" href="">About</NavLink>
-            <NavLink class="nav-link" href="weather">Skills</NavLink>
-            <NavLink class="nav-link" href="">Project</NavLink>
-            <NavLink class="nav-link" href="counter">Resume</NavLink>
+            <div class="nav-item">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span class="nav-text">About</span>
+                </NavLink>
+            </div>
+            <div class="nav-item">
+                <NavLink class="nav-link" href="weather" Match="NavLinkMatch.All">
+                    <span class="nav-text">Skills</span>
+                </NavLink>
+            </div>
+            <div class="nav-item">
+                <NavLink class="nav-link" href="counter" Match="NavLinkMatch.All">
+                    <span class="nav-text">Project</span>
+                </NavLink>
+            </div>
+            <div class="nav-item">
+                <NavLink class="nav-link" href="contact" Match="NavLinkMatch.All">
+                    <span class="nav-text">Resume</span>
+                </NavLink>
+            </div>
         </div>
 
         <!-- Right: Contact Button -->
         <div class="nav-right">
-            <a class="btn contact-btn" href="#contact">Contact Me</a>
+            <div class="contact-btn">
+                <NavLink class="nav-link" href="#contact">
+                    <span class="nav-text">Contact Me</span>
+                </NavLink>
+            </div>
         </div>
     </div>
 </nav>
-

@@ -1,20 +1,22 @@
 /* Container */
 .top-nav {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgb(0, 0, 0);
     padding: 0.75rem 1.5rem;
     position: sticky;
-    top: 0;
-    z-index: 10;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+    height: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    padding: 0.75rem 4rem;
 }
 
 /* Left: Logo + Name */
@@ -25,37 +27,41 @@
 }
 
 .nav-logo {
-    width: 32px;
-    height: 32px;
+    width: 1.5rem;
+    height: 1.5rem;
     object-fit: contain;
 }
 
 .project-name {
-    font-size: 1.25rem;
+    font: inherit;
+    font-size: 1.5rem;
     font-weight: bold;
-    color: white;
+    color: rgb(255, 255, 255);
 }
 
 /* Center: Nav Links */
 .nav-center {
     display: flex;
-    gap: 1.25rem;
-    justify-content: center;
+    gap: 3rem;
     flex: 1;
+    align-items: center;
+    justify-content: center;
 }
 
-.nav-link {
-    color: white;
+.nav-item {
+    color: rgb(131, 131, 131);
     text-decoration: none;
     font-size: 1rem;
     padding: 0.5rem 0.75rem;
     border-radius: 4px;
-    transition: background-color 0.2s;
+    transition: color 0.2s;
+    font-style: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.nav-link:hover,
-.nav-link.active {
-    background-color: rgba(255, 255, 255, 0.2);
+.nav-item:hover,
+.nav-center.active {
+    color: rgb(255, 255, 255);
 }
 
 /* Right: Contact Button */
@@ -67,7 +73,7 @@
 .contact-btn {
     font-size: 0.95rem;
     padding: 0.4rem 1rem;
-    border-radius: 20px;
+    border-radius: 0px;
     border: 1px solid white;
     background-color: transparent;
     color: white;

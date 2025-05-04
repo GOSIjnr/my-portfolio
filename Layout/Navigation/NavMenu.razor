@@ -1,33 +1,18 @@
 ﻿@using System.ComponentModel.DataAnnotations;
+@using MyPortfolio.Layout.Navigation;
 @using MyPortfolio.Models.Navigation;
 
 <nav class="top-nav">
     <div class="nav-container">
         <!-- Left: Logo and Project Name -->
-        <NavBrand Brand=@Brand />
+        <NavBrand Brand="@Brand" />
 
         <!-- Center: Nav Links -->
         <div class="nav-center">
-            <div class="nav-item">
-                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                    <span class="nav-text">About</span>
-                </NavLink>
-            </div>
-            <div class="nav-item">
-                <NavLink class="nav-link" href="weather" Match="NavLinkMatch.All">
-                    <span class="nav-text">Skills</span>
-                </NavLink>
-            </div>
-            <div class="nav-item">
-                <NavLink class="nav-link" href="counter" Match="NavLinkMatch.All">
-                    <span class="nav-text">Project</span>
-                </NavLink>
-            </div>
-            <div class="nav-item">
-                <NavLink class="nav-link" href="contact" Match="NavLinkMatch.All">
-                    <span class="nav-text">Resume</span>
-                </NavLink>
-            </div>
+            @foreach (var item in NavLinkItems)
+            {
+                <NavLinkItem Text="@item.Text" Href="@item.Href" CssClass="nav-link" />
+            }
         </div>
 
         <!-- Right: Contact Button -->
@@ -43,4 +28,5 @@
 
 @code {
     [Parameter] public NavBrandData Brand { get; set; } = null!;
+    [Parameter] public NavLinkItemData[] NavLinkItems { get; set; } = null!;
 }

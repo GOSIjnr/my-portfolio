@@ -1,0 +1,11 @@
+<div class="nav-item">
+	<NavLink class="@CssClass" href="@Href" Match="NavLinkMatch.All">
+		<span class="nav-text">@Text</span>
+	</NavLink>
+</div>
+
+@code {
+	[Parameter] public string Text { get; set; } = null!;
+	[Parameter] public string Href { get; set; } = null!;
+	[Parameter] public string CssClass { get; set; } = null!;
+}

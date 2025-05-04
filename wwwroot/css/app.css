@@ -1,9 +1,11 @@
 :root {
-    --primary-color: #000000;
-    --secondary-color: #ffffff;
-    --tertiary-color: #ff6600;
-    --primary-font: 'Montserrat', sans-serif;
-    --secondary-font: 'Open Sans', sans-serif;
+    --color-primary: #000000;
+    --color-primary-muted: #4b4b4b;
+    --color-background: #ffffff;
+    --color-accent: #ff6600;
+
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
 }
 
 html,

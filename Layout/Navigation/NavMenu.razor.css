@@ -21,26 +21,10 @@
 /* Center: Nav Links */
 .nav-center {
     display: flex;
-    gap: 3rem;
+    gap: 2.5rem;
     flex: 1;
     align-items: center;
     justify-content: center;
-}
-
-.nav-item {
-    color: rgb(131, 131, 131);
-    text-decoration: none;
-    font-size: 1rem;
-    padding: 0.5rem 0.75rem;
-    border-radius: 4px;
-    transition: color 0.2s;
-    font-style: bold;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.nav-item:hover,
-.nav-center.active {
-    color: rgb(255, 255, 255);
 }
 
 /* Right: Contact Button */

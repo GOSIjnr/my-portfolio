@@ -4,7 +4,7 @@
 
 <div class="page">
 	<main>
-		<NavMenu Brand=@_brandInfo />
+		<NavMenu Brand="@_brandInfo" NavLinkItems="@_navLinkItems"/>
 
 		<article class="content px-4 mt-4">
 			@Body
@@ -18,5 +18,13 @@
 		LogoPath = "Images/icon.svg",
 		AltText = "Logo",
 		ProjectName = "GOSIjnr",
+	};
+
+	private NavLinkItemData[] _navLinkItems = new NavLinkItemData[]
+	{
+new NavLinkItemData { Text = "About Me", Href = "/home", CssClass = "nav-link" },
+new NavLinkItemData { Text = "Skills", Href = "/counter", CssClass = "nav-link" },
+new NavLinkItemData { Text = "Projects", Href = "/weather", CssClass = "nav-link" },
+new NavLinkItemData { Text = "Resume", Href = "/myportfolio", CssClass = "nav-link" },
 	};
 }

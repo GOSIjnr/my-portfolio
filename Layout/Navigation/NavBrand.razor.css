@@ -1,0 +1,26 @@
+.nav-left {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.7rem;
+}
+
+.nav-logo {
+	width: 2rem;
+	height: 2rem;
+	object-fit: contain;
+}
+
+.project-name {
+	font: inherit;
+	font-size: 1.5rem;
+	font-weight: bold;
+	/* font-weight: 100; */
+	color: var(--secondary-color);
+	font-family: var(--primary-font);
+}
+
+@font-face {
+	font-family: 'FabricMDL2Icons';
+	src: url('fabric-icons.woff') format('woff');
+}

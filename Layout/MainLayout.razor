@@ -1,10 +1,22 @@
 ﻿@inherits LayoutComponentBase
+@using MyPortfolio.Layout.Navigation
+@using MyPortfolio.Models.Navigation
 
 <div class="page">
 	<main>
-		<NavMenu />
+		<NavMenu Brand=@_brandInfo />
+
 		<article class="content px-4 mt-4">
 			@Body
 		</article>
 	</main>
 </div>
+
+@code {
+	private NavBrandData _brandInfo = new()
+	{
+		LogoPath = "Images/icon.svg",
+		AltText = "Logo",
+		ProjectName = "GOSIjnr",
+	};
+}

@@ -1,10 +1,10 @@
-﻿<nav class="top-nav">
+﻿@using System.ComponentModel.DataAnnotations;
+@using MyPortfolio.Models.Navigation;
+
+<nav class="top-nav">
     <div class="nav-container">
         <!-- Left: Logo and Project Name -->
-        <div class="nav-left">
-            <img src="Images/icon.svg" alt="Logo" class="nav-logo" />
-            <span class="project-name">GOSIjnr</span>
-        </div>
+        <NavBrand Brand=@Brand />
 
         <!-- Center: Nav Links -->
         <div class="nav-center">
@@ -40,3 +40,7 @@
         </div>
     </div>
 </nav>
+
+@code {
+    [Parameter] public NavBrandData Brand { get; set; } = null!;
+}

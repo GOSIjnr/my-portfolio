@@ -1,8 +1,9 @@
 :root {
-    --color-primary: #000000;
-    --color-primary-muted: #4b4b4b;
-    --color-primary-overlay: #0000009d;
+    --color-primary: #0f0f0f;
+    --color-primary-muted: #6d6d6d;
+    --color-primary-overlay: #0f0f0fd3;
     --color-background: #ffffff;
+    --color-background-muted: #cccccc;
     --color-accent: #ff6600;
 
     --font-heading: 'Montserrat', sans-serif;

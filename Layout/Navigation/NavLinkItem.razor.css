@@ -14,21 +14,29 @@
 	color: var(--color-background);
 }
 
-.nav-button {
+.nav-button,
+.nav-button-accent {
+	width: 100%;
+	height: 40px;
+	/* Force identical height for both buttons */
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	text-align: center;
 	font-size: 0.95rem;
 	font-family: var(--font-heading);
 	font-weight: bolder;
 	padding: 0.7rem 2rem;
 	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.1s, color 0.1s;
+	box-sizing: border-box;
+}
+
+.nav-button {
 	border: 1px solid var(--color-background);
 	background-color: transparent;
 	color: var(--color-background);
-	transition: background-color 0.1s, color 0.1s;
-	cursor: pointer;
-	width: fit-content;
 }
 
 .nav-button:hover {
@@ -36,28 +44,59 @@
 	color: var(--color-primary);
 }
 
+.nav-button-accent {
+	background-color: var(--color-accent);
+	color: var(--color-background);
+}
+
+.nav-button-accent:hover {
+	background-color: var(--color-background);
+	color: var(--color-accent);
+}
+
 .nav-label {
+	width: 100%;
+	height: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	text-align: center;
 	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 @media (max-width: 920px) {
-	.nav-text {
-		justify-content: flex-start;
-		font-size: 0.85rem;
-		padding: 0.5rem 1rem;
+	.hero-title {
+		font-size: 2rem;
 	}
 
-	.nav-label {
-		font-size: 0.75rem;
-		text-align: center;
+	.intro-text {
+		font-size: 1rem;
+		padding: 0 1rem;
 	}
 
-	.nav-button {
+	.button-group {
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.hero-overlay {
+		padding: 1.5rem;
+	}
+
+	.button-wrapper>* {
 		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: stretch;
+	}
+
+	.nav-button,
+	.nav-button-accent {
+		width: 100%;
+		height: 40px;
+		display: flex;
 		padding: 0.5rem 1rem;
 		font-size: 0.85rem;
 		justify-content: center;

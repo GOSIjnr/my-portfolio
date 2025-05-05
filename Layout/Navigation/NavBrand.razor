@@ -1,10 +1,8 @@
-@using MyPortfolio.Models.Navigation
-
 <div class="nav-left">
 	<img src="@Brand.LogoPath" alt="@Brand.AltText" class="nav-logo" />
 	<span class="project-name">@Brand.ProjectName</span>
 </div>
 
 @code {
-	[Parameter] public NavBrandData Brand { get; set; } = null!;
+	[Parameter] public NavBrandData Brand { get; set; } = DefaultData.NavigationBrandInformation;
 }

@@ -1,8 +1,9 @@
+using MyPortfolio.Contracts;
 using MyPortfolio.Models.Navigation;
 
 namespace MyPortfolio.Models;
 
-public class MainLayoutData
+public class MainLayoutData : IPageData
 {
 	public NavBrandData BrandInfo { get; private set; } = new("Images/icon.svg", "GOSIjnr", "Logo");
 

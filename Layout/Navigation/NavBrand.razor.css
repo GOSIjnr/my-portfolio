@@ -16,4 +16,22 @@
 	font-weight: bold;
 	color: var(--color-background);
 	font-family: var(--font-heading);
+	white-space: nowrap;
+}
+
+@media (max-width: 920px) {
+	.nav-left {
+		gap: 0.5rem;
+		flex-direction: row;
+	}
+
+	.nav-logo {
+		width: 1.5rem;
+		height: 1.5rem;
+	}
+
+	.project-name {
+		font-size: 1.1rem;
+		text-align: center;
+	}
 }

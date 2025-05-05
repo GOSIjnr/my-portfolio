@@ -1,13 +1,13 @@
-﻿@using System.ComponentModel.DataAnnotations
+﻿@inject IJSRuntime Js
+@implements IDisposable
+@using System.ComponentModel.DataAnnotations
 @using MyPortfolio.Layout.Navigation
 @using MyPortfolio.Models.Navigation
 
 <nav class="top-nav">
     <div class="nav-container">
-        <!-- Brand -->
         <NavBrand Brand="@Brand" />
 
-        <!-- Desktop Center Nav -->
         <div class="nav-center">
             @foreach (var item in NavLinkItems)
             {
@@ -15,42 +15,47 @@
             }
         </div>
 
-        <!-- Desktop Right-side Contact -->
         <div class="nav-right">
             <NavLinkItem Text="@ContactData.Text" Href="@ContactData.Href" CssClass="@ContactData.CssClass" />
         </div>
 
-        <!-- Mobile Menu Toggle Button -->
         <button class="menu-toggle" @onclick="ToggleSidebar">☰</button>
     </div>
 </nav>
 
-<!-- Slide-In Sidebar (Mobile Only) -->
-<div class="mobile-sidebar @(isSidebarOpen ? "open" : "")">
-    <button class="close-btn" @onclick="ToggleSidebar">✕</button>
-
-    <div class="sidebar-links">
-        @foreach (var item in NavLinkItems)
-        {
-            <NavLinkItem Text="@item.Text" Href="@item.Href" CssClass="@item.CssClass" OnClickHandler="ToggleSidebar" />
-        }
-
-        <div class="sidebar-contact">
-            <NavLinkItem Text="@ContactData.Text" Href="@ContactData.Href" CssClass="@ContactData.CssClass" OnClickHandler="ToggleSidebar"/>
-        </div>
-    </div>
-</div>
-
-@if (isSidebarOpen)
-{
-    <div class="sidebar-overlay" @onclick="ToggleSidebar"></div>
-}
+<SideMenu IsOpened="@isSidebarOpen" OnClose="@ToggleSidebar" NavItems="NavLinkItems" Contact="ContactData" />
 
 @code {
-    [Parameter] public NavBrandData Brand { get; set; } = null!;
-    [Parameter] public NavLinkItemData[] NavLinkItems { get; set; } = null!;
-    [Parameter] public NavLinkItemData ContactData { get; set; } = null!;
+    [Parameter] public NavBrandData Brand { get; set; } = DefaultData.NavigationBrandInformation;
+    [Parameter] public NavLinkItemData[] NavLinkItems { get; set; } = DefaultData.MainNavigationLinks;
+    [Parameter] public NavLinkItemData ContactData { get; set; } = DefaultData.ContactNavigationItem;
+
+    private DotNetObjectReference<NavMenu>? dotNetRef;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            dotNetRef = DotNetObjectReference.Create(this);
+            await Js.InvokeVoidAsync("resizeNotifier.registerResizeCallback", dotNetRef);
+        }
+    }
+
+    [JSInvokable]
+    public void OnResize(int width)
+    {
+        if (width > 920 && isSidebarOpen)
+        {
+            isSidebarOpen = false;
+            StateHasChanged();
+        }
+    }
 
     private bool isSidebarOpen = false;
     private void ToggleSidebar() => isSidebarOpen = !isSidebarOpen;
+
+    public void Dispose()
+    {
+        dotNetRef?.Dispose();
+    }
 }

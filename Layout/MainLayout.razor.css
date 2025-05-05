@@ -1,7 +1,28 @@
-.page {
+/* .page {
     position: relative;
     display: flex;
     flex-direction: column;
+} */
+
+.nav-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.content {
+    width: 100%;
+    padding-top: 5rem;
+    /* or whatever height matches the nav bar */
+    /* position: static; */
+    z-index: 1;
+    /* lower than .top-nav */
+}
+
+.contentda {
+    z-index: 50;
 }
 
 main {

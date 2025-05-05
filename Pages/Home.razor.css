@@ -6,7 +6,7 @@
 	justify-content: center;
 	text-align: center;
 	overflow: hidden;
-	color:brown;
+	color: var(--color-accent);
 }
 
 .background-image {
@@ -17,7 +17,6 @@
 	height: 100%;
 	object-fit: cover;
 	z-index: 0;
-	overlay: rgba(0, 0, 0, 0.5);
 }
 
 .hero-overlay {

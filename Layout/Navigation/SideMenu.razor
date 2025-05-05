@@ -1,0 +1,27 @@
+@using MyPortfolio.Models.Navigation
+@using MyPortfolio.Layout.Navigation
+
+<div class="sidebar @(IsOpen ? "open" : "")">
+    <button class="close-btn" @onclick="CloseMenu">✕</button>
+    <nav class="sidebar-links">
+        @foreach (var item in NavItems)
+        {
+            <NavLinkItem Text="@item.Text" Href="@item.Href" CssClass="@item.CssClass" />
+        }
+
+        <div class="sidebar-contact">
+            <NavLinkItem Text="@Contact.Text" Href="@Contact.Href" CssClass="@Contact.CssClass" />
+        </div>
+    </nav>
+</div>
+
+<div class="overlay @(IsOpen ? "visible" : "")" @onclick="CloseMenu"></div>
+
+@code {
+    [Parameter] public bool IsOpen { get; set; } = false;
+    [Parameter] public EventCallback OnClose { get; set; }
+    [Parameter] public NavLinkItemData[] NavItems { get; set; } = null!;
+    [Parameter] public NavLinkItemData Contact { get; set; } = null!;
+
+    private Task CloseMenu() => OnClose.InvokeAsync();
+}

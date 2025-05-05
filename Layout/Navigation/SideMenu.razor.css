@@ -1,0 +1,58 @@
+/* Sidebar styles */
+.sidebar {
+	position: fixed;
+	top: 0;
+	left: -250px;
+	width: 250px;
+	height: 100%;
+	background-color: #111;
+	color: white;
+	transition: left 0.3s ease;
+	z-index: 1001;
+	padding: 2rem 1rem;
+	box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar.open {
+	left: 0;
+}
+
+.sidebar-links {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.sidebar-contact {
+	margin-top: 2rem;
+	border-top: 1px solid #333;
+	padding-top: 1rem;
+}
+
+.close-btn {
+	background: none;
+	border: none;
+	color: white;
+	font-size: 1.5rem;
+	cursor: pointer;
+	margin-bottom: 2rem;
+}
+
+/* Overlay */
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.6);
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s ease;
+	z-index: 1000;
+}
+
+.overlay.visible {
+	opacity: 1;
+	visibility: visible;
+}

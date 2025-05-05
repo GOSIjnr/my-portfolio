@@ -4,10 +4,10 @@
 
 <nav class="top-nav">
     <div class="nav-container">
-        <!-- Left: Logo and Project Name -->
+        <!-- Brand -->
         <NavBrand Brand="@Brand" />
 
-        <!-- Center: Nav Links -->
+        <!-- Desktop Center Nav -->
         <div class="nav-center">
             @foreach (var item in NavLinkItems)
             {
@@ -15,15 +15,42 @@
             }
         </div>
 
-        <!-- Right: Contact Button -->
+        <!-- Desktop Right-side Contact -->
         <div class="nav-right">
             <NavLinkItem Text="@ContactData.Text" Href="@ContactData.Href" CssClass="@ContactData.CssClass" />
         </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="menu-toggle" @onclick="ToggleSidebar">☰</button>
     </div>
 </nav>
+
+<!-- Slide-In Sidebar (Mobile Only) -->
+<div class="mobile-sidebar @(isSidebarOpen ? "open" : "")">
+    <button class="close-btn" @onclick="ToggleSidebar">✕</button>
+
+    <div class="sidebar-links">
+        @foreach (var item in NavLinkItems)
+        {
+            <NavLinkItem Text="@item.Text" Href="@item.Href" CssClass="@item.CssClass" OnClickHandler="ToggleSidebar" />
+        }
+
+        <div class="sidebar-contact">
+            <NavLinkItem Text="@ContactData.Text" Href="@ContactData.Href" CssClass="@ContactData.CssClass" OnClickHandler="ToggleSidebar"/>
+        </div>
+    </div>
+</div>
+
+@if (isSidebarOpen)
+{
+    <div class="sidebar-overlay" @onclick="ToggleSidebar"></div>
+}
 
 @code {
     [Parameter] public NavBrandData Brand { get; set; } = null!;
     [Parameter] public NavLinkItemData[] NavLinkItems { get; set; } = null!;
     [Parameter] public NavLinkItemData ContactData { get; set; } = null!;
+
+    private bool isSidebarOpen = false;
+    private void ToggleSidebar() => isSidebarOpen = !isSidebarOpen;
 }

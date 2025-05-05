@@ -1,68 +1,113 @@
-/* Container */
+/* Base Navigation */
 .top-nav {
-    /* background-color: transparent; */
-    background-color: rgb(0, 0, 0);
+    background-color: black;
     padding: 1rem 4rem;
     position: sticky;
-    /* box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.2); */
-    height: 6rem;
+    top: 0;
+    z-index: 100;
+    color: white;
     display: flex;
     align-items: center;
-    justify-content: space-between;
 }
 
 .nav-container {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    height: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
     width: 100%;
 }
 
-/* Center: Nav Links */
+/* Brand center/right nav (desktop) */
 .nav-center {
     display: flex;
-    gap: 2.5rem;
+    gap: 2rem;
     flex: 1;
-    align-items: center;
     justify-content: center;
 }
 
-/* Right: Contact Button */
 .nav-right {
     display: flex;
     align-items: center;
 }
 
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-    .top-nav {
-        /* background-color: transparent; */
-        background-color: rgb(0, 0, 0);
-        padding: 1rem 4rem;
-        position: sticky;
-        /* box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.2); */
-        height: 15rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+/* Mobile Menu Button */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: white;
+    margin-right: 1rem;
+}
+
+/* Sidebar - Mobile Only */
+.mobile-sidebar {
+    display: none;
+}
+
+@media (max-width: 920px) {
+    .menu-toggle {
+        display: block;
     }
 
-    .nav-container {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.75rem;
-    }
-
-    .nav-center {
-        display: flex;
-        gap: 2.5rem;
-        flex: 1;
-
-        flex-wrap: nowrap;
-    }
-
+    .nav-center,
     .nav-right {
-        justify-content: center;
+        display: none;
+    }
+
+    /* Slide-in Sidebar Styles */
+    .mobile-sidebar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 250px;
+        background-color: #111;
+        color: white;
+        padding: 1rem;
+        box-shadow: -2px 0 8px rgba(0, 0, 0, 0.5);
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 1001;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mobile-sidebar.open {
+        transform: translateX(0);
+    }
+
+    .sidebar-links {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .sidebar-contact {
+        margin-top: 1rem;
+        border-top: 1px solid #333;
+        padding-top: 1rem;
+    }
+
+    .close-btn {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        align-self: flex-end;
+        margin-bottom: 1rem;
+    }
+
+    /* Optional overlay */
+    .sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
     }
 }

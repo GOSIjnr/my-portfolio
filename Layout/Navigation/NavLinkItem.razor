@@ -1,4 +1,4 @@
-<div class="@CssClass">
+<div class="@CssClass" @onclick="HandleClick">
 	<NavLink class="nav-link" href="@Href" Match="NavLinkMatch.All">@Text</NavLink>
 </div>
 
@@ -6,4 +6,16 @@
 	[Parameter] public string Text { get; set; } = null!;
 	[Parameter] public string Href { get; set; } = null!;
 	[Parameter] public string CssClass { get; set; } = null!;
+
+	// Optional OnClick
+	[Parameter] public EventCallback OnClickHandler { get; set; }
+
+	private async Task HandleClick(MouseEventArgs e)
+	{
+		// Invoke OnClick only if someone passed it in
+		if (OnClickHandler.HasDelegate)
+		{
+			await OnClickHandler.InvokeAsync();
+		}
+	}
 }

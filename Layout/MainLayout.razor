@@ -1,35 +1,30 @@
 ﻿@inherits LayoutComponentBase
-@using MyPortfolio.Layout.Navigation
-@using MyPortfolio.Models.Navigation
-@using MyPortfolio.Models
+
+<PageTitle>My Portfolio</PageTitle>
 
 <div class="page">
 	<main>
-		<NavMenu Brand="@MainLayoutData.BrandInfo" NavLinkItems="@MainLayoutData.NavLinkItems"
-			ContactData="@MainLayoutData.ContactData" />
+		<div class="nav-bar">
+			<NavMenu Brand="@MainLayoutData.BrandInfo" NavLinkItems="@MainLayoutData.NavLinkItems"
+				ContactData="@MainLayoutData.ContactData" />
+		</div>
+
+		<section id="content">
+			<Home />
+		</section>
 
 		<article class="content">
 			<Counter />
-			<Home />
-			<Home />
-			<Home />
-			<Home />
-			<Home />
-			<Home />
-			<Home />
-			<Home />
-			<Home />
-			<Home />
-			<Home />
-			<Home />
-			<Home />
-			<Home />
-			<Home />
-			<Home />
-			<Home />
-			<Home />
-			<Home />
-			<Home />
+			<Counter />
+			<Counter />
+			<Counter />
+			<Counter />
+			<Counter />
+			<Counter />
+			<Counter />
+			<Counter />
+			<Counter />
+			<Counter />
 			<section id="home">
 				<Home />
 			</section>

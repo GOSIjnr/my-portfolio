@@ -1,37 +1,43 @@
 ﻿@inherits LayoutComponentBase
 @using MyPortfolio.Layout.Navigation
 @using MyPortfolio.Models.Navigation
+@using MyPortfolio.Models
 
 <div class="page">
 	<main>
-		<NavMenu Brand="@_brandInfo" NavLinkItems="@_navLinkItems" ContactData="@_contactData" />
+		<NavMenu Brand="@MainLayoutData.BrandInfo" NavLinkItems="@MainLayoutData.NavLinkItems"
+			ContactData="@MainLayoutData.ContactData" />
 
-		<article class="content px-4 mt-4">
+		<article class="content">
+			@Body
+			@Body
+			@Body
+			@Body
+			@Body
+			@Body
+			@Body
+			@Body
+			@Body
+			@Body
+			@Body
+			@Body
+			@Body
+			@Body
+			@Body
+			@Body
+			@Body
+			@Body
+			@Body
+			@Body
+			@Body
+			@Body
+			@Body
+			@Body
 			@Body
 		</article>
 	</main>
 </div>
 
 @code {
-	private NavBrandData _brandInfo = new()
-	{
-		LogoPath = "Images/icon.svg",
-		AltText = "Logo",
-		ProjectName = "GOSIjnr",
-	};
-
-	private NavLinkItemData[] _navLinkItems = new NavLinkItemData[]
-	{
-new NavLinkItemData { Text = "About Me", Href = "/home", CssClass = "nav-text" },
-new NavLinkItemData { Text = "Skills", Href = "/counter", CssClass = "nav-text" },
-new NavLinkItemData { Text = "Projects", Href = "/weather", CssClass = "nav-text" },
-new NavLinkItemData { Text = "Resume", Href = "/myportfolio", CssClass = "nav-text" },
-	};
-
-	private NavLinkItemData _contactData = new()
-	{
-		Text = "Let's Connect",
-		Href = "/contact",
-		CssClass = "contact-btn"
-	};
+	[Parameter] public MainLayoutData MainLayoutData { get; set; } = new();
 }

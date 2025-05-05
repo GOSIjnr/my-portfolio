@@ -13,7 +13,7 @@
 }
 
 /* button */
-.contact-btn {
+.nav-button {
 	font-size: 0.95rem;
 	font-family: var(--font-heading);
 	font-weight: bolder;
@@ -25,7 +25,7 @@
 	transition: background-color 0.1s, color 0.1s;
 }
 
-.contact-btn:hover {
+.nav-button:hover {
 	background-color: white;
 	color: black;
 }

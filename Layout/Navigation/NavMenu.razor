@@ -1,6 +1,6 @@
-﻿@using System.ComponentModel.DataAnnotations;
-@using MyPortfolio.Layout.Navigation;
-@using MyPortfolio.Models.Navigation;
+﻿@using System.ComponentModel.DataAnnotations
+@using MyPortfolio.Layout.Navigation
+@using MyPortfolio.Models.Navigation
 
 <nav class="top-nav">
     <div class="nav-container">
@@ -11,7 +11,7 @@
         <div class="nav-center">
             @foreach (var item in NavLinkItems)
             {
-                <NavLinkItem Text="@item.Text" Href="@item.Href" CssClass="@item.CssClass"/>
+                <NavLinkItem Text="@item.Text" Href="@item.Href" CssClass="@item.CssClass" />
             }
         </div>
 

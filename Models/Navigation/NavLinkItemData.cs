@@ -1,8 +1,8 @@
 namespace MyPortfolio.Models.Navigation;
 
-public class NavLinkItemData
+public class NavLinkItemData(string text, string href, string cssClass)
 {
-	public string Href { get; set; } = "";
-	public string Text { get; set; } = "";
-	public string CssClass { get; set; } = "";
+	public string Text { get; set; } = text;
+	public string Href { get; set; } = href;
+	public string CssClass { get; set; } = cssClass;
 }

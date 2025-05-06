@@ -1,8 +1,8 @@
 <div class="nav-left">
-	<img src="@Brand.LogoPath" alt="@Brand.AltText" class="nav-logo" />
-	<span class="project-name">@Brand.ProjectName</span>
+	<img src="@Brand.LogoImagePath" alt="@Brand.LogoAltText" class="nav-logo" />
+	<span class="project-name">@Brand.BrandDisplayName</span>
 </div>
 
 @code {
-	[Parameter] public NavBrandData Brand { get; set; } = DefaultData.NavigationBrandInformation;
+	[Parameter, EditorRequired] public NavBrandData Brand { get; set; } = new("icon.png", "Project", "Logo");
 }

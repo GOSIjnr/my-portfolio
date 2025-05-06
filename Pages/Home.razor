@@ -3,21 +3,24 @@
 
 	<div class="hero-overlay">
 		<div class="hero-content">
-			<h1 class="hero-title">Code. Design. Deploy. <span class="highlight">Play.</span></h1>
+			<h1 class="hero-title">@AppLayoutData.HomePageData.MainTitle<span
+					class="highlight">@AppLayoutData.HomePageData.HighlightedTitlePart</span></h1>
 			<p class="intro-text">
-				I’m Victor Awugosi, a developer blending game dev and full-stack web to craft digital experiences people
-				love to use.
+				@AppLayoutData.HomePageData.DescriptionBody
 			</p>
 
 			<div class="button-group">
 				<div class="button-wrapper">
-					<NavLinkItem Text="Let's Connect" Href="#gg" CssClass="nav-button-accent" />
+					<NavLinkItem DisplayText="@AppLayoutData.ContactNavigationLinkAccent.DisplayText"
+						TargetUrl="@AppLayoutData.ContactNavigationLinkAccent.GetFormattedTargetUrl(TargetUrlFormat.HashPrefix)"
+						CssClassName="@AppLayoutData.ContactNavigationLinkAccent.CssClassName" />
 				</div>
 				<div class="button-wrapper">
-					<NavLinkItem Text="Check My Projects" Href="#gg" CssClass="nav-button" />
+					<NavLinkItem DisplayText="@AppLayoutData.CheckProjectsNavigationLink.DisplayText"
+						TargetUrl="@AppLayoutData.CheckProjectsNavigationLink.GetFormattedTargetUrl(TargetUrlFormat.HashPrefix)"
+						CssClassName="@AppLayoutData.CheckProjectsNavigationLink.CssClassName" />
 				</div>
 			</div>
-
 		</div>
 	</div>
 </div>

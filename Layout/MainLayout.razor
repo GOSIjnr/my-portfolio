@@ -5,25 +5,34 @@
 <div class="page">
 	<main>
 		<div class="nav-bar">
-			<NavMenu Brand="@MainLayoutData.BrandInfo" NavLinkItems="@MainLayoutData.NavLinkItems"
-				ContactData="@MainLayoutData.ContactData" />
+			<NavMenu />
 		</div>
 
-		<section id="content">
+		<Home />
+
+		<section id="@AppLayoutData.NavigationLinkItems[0].GetFormattedTargetUrl(TargetUrlFormat.Plain)">
+			About Me
 			<Home />
 		</section>
 
-		<Home />
-		<Home />
-		<Home />
-		<Home />
+		<section id="@AppLayoutData.NavigationLinkItems[1].GetFormattedTargetUrl(TargetUrlFormat.Plain)">
+			Skills
+			<Home />
+		</section>
 
-		<section id="home">
+		<section id="@AppLayoutData.NavigationLinkItems[2].GetFormattedTargetUrl(TargetUrlFormat.Plain)">
+			Projects
+			<Home />
+		</section>
+
+		<section id="@AppLayoutData.NavigationLinkItems[3].GetFormattedTargetUrl(TargetUrlFormat.Plain)">
+			Resume
+			<Home />
+		</section>
+
+		<section id="@AppLayoutData.ContactNavigationLink.GetFormattedTargetUrl(TargetUrlFormat.Plain)">
+			Contact Me
 			<Home />
 		</section>
 	</main>
 </div>
-
-@code {
-	[Parameter] public MainLayoutData MainLayoutData { get; set; } = new();
-}

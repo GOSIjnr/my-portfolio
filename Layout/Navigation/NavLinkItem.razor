@@ -1,13 +1,14 @@
-<div class="@CssClass" @onclick="HandleClick">
-	<NavLink class="nav-link" href="@Href" Match="NavLinkMatch.All">
-		<span class="nav-label">@Text</span>
+<div class="@CssClassName" @onclick="HandleClick">
+	<NavLink class="nav-link" href="@TargetUrl" Match="NavLinkMatch.All">
+		<span class="nav-label">@DisplayText</span>
 	</NavLink>
 </div>
 
 @code {
-	[Parameter] public string Text { get; set; } = "Link";
-	[Parameter] public string Href { get; set; } = "Link";
-	[Parameter] public string CssClass { get; set; } = "nav-text";
+	[Parameter, EditorRequired] public string DisplayText { get; set; } = "link";
+	[Parameter, EditorRequired] public string TargetUrl { get; set; } = "link";
+	[Parameter, EditorRequired] public string CssClassName { get; set; } = "nav-text";
+
 	[Parameter] public EventCallback OnClickHandler { get; set; }
 
 	private async Task HandleClick(MouseEventArgs e)

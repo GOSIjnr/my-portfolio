@@ -1,8 +1,8 @@
 namespace MyPortfolio.Models.Navigation;
 
-public class NavBrandData(string logoPath, string projectName, string altText = "Project Logo")
+public class NavBrandData(string logoImagePath, string brandDisplayName, string logoAltText = "Project Logo")
 {
-	public string LogoPath { get; set; } = logoPath;
-	public string ProjectName { get; set; } = projectName;
-	public string AltText { get; set; } = altText;
+	public string LogoImagePath { get; set; } = logoImagePath;
+	public string BrandDisplayName { get; set; } = brandDisplayName;
+	public string LogoAltText { get; set; } = logoAltText;
 }

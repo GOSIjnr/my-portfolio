@@ -3,15 +3,18 @@
 
     <div class="sidebar-content">
         <div class="sidebar-links">
-            @foreach (var item in NavItems)
+            @foreach (NavLinkItemData item in AppLayoutData.NavigationLinkItems)
             {
-                <NavLinkItem Text="@item.Text" Href="@item.Href" CssClass="@item.CssClass" OnClickHandler="CloseMenu" />
+                <NavLinkItem DisplayText="@item.DisplayText"
+                    TargetUrl="@item.GetFormattedTargetUrl(TargetUrlFormat.HashPrefix)" CssClassName="@item.CssClassName"
+                    OnClickHandler="CloseMenu" />
             }
         </div>
 
         <div class="sidebar-contact">
-            <NavLinkItem Text="@Contact.Text" Href="@Contact.Href" CssClass="@Contact.CssClass"
-                OnClickHandler="CloseMenu" />
+            <NavLinkItem DisplayText="@AppLayoutData.ContactNavigationLink.DisplayText"
+                TargetUrl="@AppLayoutData.ContactNavigationLink.GetFormattedTargetUrl(TargetUrlFormat.HashPrefix)"
+                CssClassName="@AppLayoutData.ContactNavigationLink.CssClassName" OnClickHandler="CloseMenu" />
         </div>
     </div>
 </div>
@@ -22,10 +25,7 @@
 }
 
 @code {
-    [Parameter] public bool IsOpened { get; set; } = false;
+    [Parameter, EditorRequired] public bool IsOpened { get; set; } = false;
     [Parameter] public EventCallback OnClose { get; set; }
-    [Parameter] public NavLinkItemData[] NavItems { get; set; } = null!;
-    [Parameter] public NavLinkItemData Contact { get; set; } = null!;
-
-    private Task CloseMenu() => OnClose.InvokeAsync();
+    public Task CloseMenu() => OnClose.InvokeAsync();
 }

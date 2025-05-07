@@ -3,7 +3,7 @@
 
 <nav class="top-nav">
     <div class="nav-container">
-        <NavBrand Brand="@AppLayoutData.NavigationBrandData" />
+        <NavBrand Brand="@AppLayoutData.NavigationBrandInfo" />
 
         <div class="nav-center">
             @foreach (NavLinkItemData item in AppLayoutData.NavigationLinkItems)
@@ -26,6 +26,7 @@
 <SideMenu IsOpened="@isSidebarOpen" OnClose="@ToggleSidebar" />
 
 @code {
+    private NavigationBrandInfo GetNavigationBrandInfo = AppLayoutData.AboutMeSectionDescription;
     private DotNetObjectReference<NavMenu>? dotNetRef;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

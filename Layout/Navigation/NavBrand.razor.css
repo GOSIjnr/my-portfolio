@@ -1,37 +1,69 @@
-.nav-left {
+.nav__brand {
+	--navbrand-gap: 0.5rem;
+	--navbrand-padding: 0.1rem;
+	--navbrand-logo-size: 1rem;
+	--navbrand-font-size: 1rem;
+}
+
+.nav__brand {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	gap: 0.7rem;
+	gap: var(--navbrand-gap);
+	padding: var(--navbrand-padding);
+	background-color: var(--color-background);
 }
 
-.nav-logo {
-	width: 2rem;
-	height: 2rem;
+.nav__brand-logo {
+	width: var(--navbrand-logo-size);
+	height: var(--navbrand-logo-size);
 	object-fit: contain;
 }
 
-.project-name {
-	font-size: 1.5rem;
+.nav__brand-name {
+	font-size: var(--navbrand-font-size);
 	font-weight: bold;
-	color: var(--color-background);
-	font-family: var(--font-heading);
-	white-space: nowrap;
+	color: var(--color-background-main);
+	font-family: var(--font-family-heading);
 }
 
-@media (max-width: 920px) {
-	.nav-left {
-		gap: 0.5rem;
-		flex-direction: row;
+@media (min-width: 576px) {
+	.nav__brand {
+		--navbrand-gap: 0.7rem;
+		--navbrand-padding: 1rem;
+		--navbrand-logo-size: 1.4rem;
+		--navbrand-font-size: 1.2rem;
 	}
+}
 
-	.nav-logo {
-		width: 1.5rem;
-		height: 1.5rem;
+@media (min-width: 768px) {
+	.nav__brand {
+		--navbrand-padding: 1.2rem;
+		--navbrand-logo-size: 1.8rem;
+		--navbrand-font-size: 1.4rem;
 	}
+}
 
-	.project-name {
-		font-size: 1.1rem;
-		text-align: center;
+@media (min-width: 992px) {
+	.nav__brand {
+		--navbrand-padding: 1.5rem;
+		--navbrand-logo-size: 2.2rem;
+		--navbrand-font-size: 1.6rem;
+	}
+}
+
+@media (min-width: 1200px) {
+	.nav__brand {
+		--navbrand-padding: 1.8rem;
+		--navbrand-logo-size: 2.6rem;
+		--navbrand-font-size: 1.8rem;
+	}
+}
+
+@media (min-width: 1400px) {
+	.nav__brand {
+		--navbrand-padding: 2rem;
+		--navbrand-logo-size: 3rem;
+		--navbrand-font-size: 2rem;
 	}
 }

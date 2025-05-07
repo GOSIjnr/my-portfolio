@@ -3,18 +3,20 @@
 
     <div class="sidebar-content">
         <div class="sidebar-links">
-            @foreach (NavLinkItemData item in AppLayoutData.NavigationLinkItems)
+            @foreach (NavigationLinkItemInfo item in AppLayoutData.NavigationLinks)
             {
-                <NavLinkItem DisplayText="@item.DisplayText"
+                <NavLinkItem />
+                @* <NavLinkItem DisplayText="@item.DisplayText"
                     TargetUrl="@item.GetFormattedTargetUrl(TargetUrlFormat.HashPrefix)" CssClassName="@item.CssClassName"
-                    OnClickHandler="CloseMenu" />
+                    OnClickHandler="CloseMenu" /> *@
             }
         </div>
 
         <div class="sidebar-contact">
-            <NavLinkItem DisplayText="@AppLayoutData.ContactNavigationLink.DisplayText"
+            <NavLinkItem />
+            @* <NavLinkItem DisplayText="@AppLayoutData.ContactNavigationLink.DisplayText"
                 TargetUrl="@AppLayoutData.ContactNavigationLink.GetFormattedTargetUrl(TargetUrlFormat.HashPrefix)"
-                CssClassName="@AppLayoutData.ContactNavigationLink.CssClassName" OnClickHandler="CloseMenu" />
+                CssClassName="@AppLayoutData.ContactNavigationLink.CssClassName" OnClickHandler="CloseMenu" /> *@
         </div>
     </div>
 </div>

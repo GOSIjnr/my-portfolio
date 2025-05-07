@@ -1,15 +1,16 @@
 :root {
-    --color-primary: #0f0f0f;
+    --color-primary-main: #0f0f0f;
     --color-primary-muted: #a3a3a3;
     --color-primary-overlay: #0f0f0fd3;
 
-    --color-background: #ffffff;
+    --color-background-main: #ffffff;
     --color-background-muted: #cccccc;
-    --color-accent: #ff6600;
-    --color-accent: #ff3a0eff;
 
-    --font-heading: 'Montserrat', sans-serif;
-    --font-body: 'Open Sans', sans-serif;
+    --color-accent-main: #ff6600;
+    --color-accent-secondary: #ff3a0e;
+
+    --font-family-heading: 'Montserrat', sans-serif;
+    --font-family-body: 'Open Sans', sans-serif;
 }
 
 h1,

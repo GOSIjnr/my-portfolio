@@ -6,17 +6,20 @@
         <NavBrand Brand="@AppLayoutData.NavigationBrandInfo" />
 
         <div class="nav-center">
-            @foreach (NavLinkItemData item in AppLayoutData.NavigationLinkItems)
+            @foreach (NavigationLinkItemInfo item in AppLayoutData.NavigationLinks)
             {
-                <NavLinkItem DisplayText="@item.DisplayText"
-                    TargetUrl="@item.GetFormattedTargetUrl(TargetUrlFormat.HashPrefix)" CssClassName="@item.CssClassName" />
+                <NavLinkItem />
+
+                @* <NavLinkItem DisplayText="@item.DisplayText"
+                    TargetUrl="@item.GetFormattedTargetUrl(TargetUrlFormat.HashPrefix)" CssClassName="@item.CssClassName" /> *@
             }
         </div>
 
         <div class="nav-right">
-            <NavLinkItem DisplayText="@AppLayoutData.ContactNavigationLink.DisplayText"
+            <NavLinkItem />
+            @* <NavLinkItem DisplayText="@AppLayoutData.ContactNavigationLink.DisplayText"
                 TargetUrl="@AppLayoutData.ContactNavigationLink.GetFormattedTargetUrl(TargetUrlFormat.HashPrefix)"
-                CssClassName="@AppLayoutData.ContactNavigationLink.CssClassName" />
+                CssClassName="@AppLayoutData.ContactNavigationLink.CssClassName" /> *@
         </div>
 
         <button class="menu-toggle" @onclick="ToggleSidebar">☰</button>
@@ -26,7 +29,6 @@
 <SideMenu IsOpened="@isSidebarOpen" OnClose="@ToggleSidebar" />
 
 @code {
-    private NavigationBrandInfo GetNavigationBrandInfo = AppLayoutData.AboutMeSectionDescription;
     private DotNetObjectReference<NavMenu>? dotNetRef;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

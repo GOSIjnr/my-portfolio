@@ -1,12 +1,13 @@
 using MyPortfolio.Contracts;
 using MyPortfolio.Models.Home;
 using MyPortfolio.Models.Navigation;
+using MyPortfolio.Models.UI;
 
 namespace MyPortfolio.Models;
 
 public class AppLayoutData : IAppLayoutData
 {
-	private static readonly NavigationBrandInfo _navigationBrandInfo = new("Images/icon.svg", "GOSIjnr", "Logo");
+	private static readonly BrandInfo _brandInfo = new("Images/icon.svg", "GOSIjnr", "Logo");
 
 	private static readonly List<NavigationLinkItemInfo> _navigationLinks =
 	[
@@ -40,7 +41,7 @@ public class AppLayoutData : IAppLayoutData
 		new("YouTube", "Images/icon.svg", "https://youtube.com/yourchannel", "YouTube"),
 	];
 
-	public NavigationBrandInfo NavigationBrandInfo { get; } = _navigationBrandInfo;
+	public BrandInfo BrandInfo { get; } = _brandInfo;
 	public List<NavigationLinkItemInfo> NavigationLinks { get; } = _navigationLinks;
 	public NavigationLinkItemInfo ContactLink { get; } = _contactNavigationLink;
 	public NavigationLinkItemInfo ContactLinkAccent { get; } = _contactNavigationLinkAccent;

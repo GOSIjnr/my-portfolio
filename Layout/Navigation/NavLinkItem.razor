@@ -1,21 +1,24 @@
-<div class="@CssClassName" @onclick="HandleClick">
-	<NavLink class="nav-link" href="@TargetUrl" Match="NavLinkMatch.All">
-		<span class="nav-label">@DisplayText</span>
+<div class="nav-menu__item @CssClassName" @onclick="HandleNavMenuItemClickAsync">
+	<NavLink class="nav-menu__link" href="@TargetUrl" Match=" NavLinkMatch.All">
+		<span class="nav-menu__label">@DisplayText</span>
 	</NavLink>
 </div>
 
 @code {
-	[Parameter, EditorRequired] public string DisplayText { get; set; } = "link";
-	[Parameter, EditorRequired] public string TargetUrl { get; set; } = "link";
-	[Parameter, EditorRequired] public string CssClassName { get; set; } = "nav-text";
+	[Parameter, EditorRequired] public NavigationLinkItemInfo NavigationLinkInfo { get; set; } = new();
+	[Parameter] public EventCallback OnNavMenuItemClick { get; set; }
 
-	[Parameter] public EventCallback OnClickHandler { get; set; }
+	public string CssClassName => NavigationLinkInfo.CssClassName;
+	public string DisplayText => NavigationLinkInfo.DisplayText;
+	public string RawTargetUrl => NavigationLinkInfo.RawTargetUrl;
+	public string TargetUrl => NavigationUrlFormatter.GetFormattedSanitizedTargetUrl(RawTargetUrl,
+	TargetUrlFormat.HashPrefix);
 
-	private async Task HandleClick(MouseEventArgs e)
+	private async Task HandleNavMenuItemClickAsync(MouseEventArgs mouseEventArgs)
 	{
-		if (OnClickHandler.HasDelegate)
+		if (OnNavMenuItemClick.HasDelegate)
 		{
-			await OnClickHandler.InvokeAsync();
+			await OnNavMenuItemClick.InvokeAsync();
 		}
 	}
 }

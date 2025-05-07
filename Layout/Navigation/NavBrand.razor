@@ -1,8 +1,0 @@
-<div class="nav__brand">
-	<img class="nav__brand-logo" src="@Brand.LogoImagePath" alt="@Brand.LogoAltText" />
-	<span class="nav__brand-name">@Brand.BrandDisplayName</span>
-</div>
-
-@code {
-	[Parameter, EditorRequired] public NavigationBrandInfo Brand { get; set; } = new();
-}

@@ -1,0 +1,8 @@
+<div class="brand">
+	<img class="brand__logo" src="@BrandInfo.LogoImagePath" alt="@BrandInfo.LogoAltText" />
+	<span class="brand__name">@BrandInfo.BrandDisplayName</span>
+</div>
+
+@code {
+	[Parameter, EditorRequired] public BrandInfo BrandInfo { get; set; } = new();
+}

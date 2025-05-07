@@ -1,6 +1,6 @@
-namespace MyPortfolio.Models.Navigation;
+namespace MyPortfolio.Models.UI;
 
-public class NavigationBrandInfo(string logoImagePath, string brandDisplayName, string logoAltText)
+public class BrandInfo(string logoImagePath, string brandDisplayName, string logoAltText)
 {
 	private string _logoImagePath = logoImagePath ?? string.Empty;
 	private string _brandDisplayName = brandDisplayName ?? string.Empty;
@@ -24,5 +24,5 @@ public class NavigationBrandInfo(string logoImagePath, string brandDisplayName, 
 		set { _logoAltText = value ?? string.Empty; }
 	}
 
-	public NavigationBrandInfo() : this(string.Empty, "Lorem ipsum", string.Empty) { }
+	public BrandInfo() : this(string.Empty, "Lorem ipsum", string.Empty) { }
 }

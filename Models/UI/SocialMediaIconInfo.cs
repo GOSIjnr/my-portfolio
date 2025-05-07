@@ -1,4 +1,4 @@
-namespace MyPortfolio.Models;
+namespace MyPortfolio.Models.UI;
 
 public class SocialMediaIconInfo(string platformName, string iconImageUrl, string profilePageUrl, string iconAltText)
 {

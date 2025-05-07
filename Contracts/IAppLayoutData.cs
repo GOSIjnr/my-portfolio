@@ -1,4 +1,5 @@
 using MyPortfolio.Models;
+using MyPortfolio.Models.UI;
 using MyPortfolio.Models.Home;
 using MyPortfolio.Models.Navigation;
 
@@ -6,7 +7,7 @@ namespace MyPortfolio.Contracts;
 
 public interface IAppLayoutData
 {
-	NavigationBrandInfo NavigationBrandInfo { get; }
+	BrandInfo BrandInfo { get; }
 	List<NavigationLinkItemInfo> NavigationLinks { get; }
 	NavigationLinkItemInfo ContactLink { get; }
 	NavigationLinkItemInfo ContactLinkAccent { get; }

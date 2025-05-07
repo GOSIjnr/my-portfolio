@@ -14,7 +14,7 @@ public class NavigationLinkItemInfo(string displayText, string rawTargetUrl, str
 
 	public string RawTargetUrl
 	{
-		private get { return _rawTargetUrl; }
+		get { return _rawTargetUrl; }
 		set { _rawTargetUrl = value ?? string.Empty; }
 	}
 
@@ -23,4 +23,6 @@ public class NavigationLinkItemInfo(string displayText, string rawTargetUrl, str
 		get { return _cssClassName; }
 		set { _cssClassName = value ?? string.Empty; }
 	}
+
+	public NavigationLinkItemInfo() : this("Lorem ispum", string.Empty, string.Empty) { }
 }

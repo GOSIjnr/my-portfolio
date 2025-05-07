@@ -1,11 +1,11 @@
-.nav__brand {
+.brand {
 	--navbrand-gap: 0.5rem;
 	--navbrand-padding: 0.1rem;
 	--navbrand-logo-size: 1rem;
 	--navbrand-font-size: 1rem;
 }
 
-.nav__brand {
+.brand {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -14,13 +14,13 @@
 	background-color: var(--color-background);
 }
 
-.nav__brand-logo {
+.brand__logo {
 	width: var(--navbrand-logo-size);
 	height: var(--navbrand-logo-size);
 	object-fit: contain;
 }
 
-.nav__brand-name {
+.brand__name {
 	font-size: var(--navbrand-font-size);
 	font-weight: bold;
 	color: var(--color-background-main);
@@ -28,7 +28,7 @@
 }
 
 @media (min-width: 576px) {
-	.nav__brand {
+	.brand {
 		--navbrand-gap: 0.7rem;
 		--navbrand-padding: 1rem;
 		--navbrand-logo-size: 1.4rem;
@@ -37,7 +37,7 @@
 }
 
 @media (min-width: 768px) {
-	.nav__brand {
+	.brand {
 		--navbrand-padding: 1.2rem;
 		--navbrand-logo-size: 1.8rem;
 		--navbrand-font-size: 1.4rem;
@@ -45,7 +45,7 @@
 }
 
 @media (min-width: 992px) {
-	.nav__brand {
+	.brand {
 		--navbrand-padding: 1.5rem;
 		--navbrand-logo-size: 2.2rem;
 		--navbrand-font-size: 1.6rem;
@@ -53,7 +53,7 @@
 }
 
 @media (min-width: 1200px) {
-	.nav__brand {
+	.brand {
 		--navbrand-padding: 1.8rem;
 		--navbrand-logo-size: 2.6rem;
 		--navbrand-font-size: 1.8rem;
@@ -61,7 +61,7 @@
 }
 
 @media (min-width: 1400px) {
-	.nav__brand {
+	.brand {
 		--navbrand-padding: 2rem;
 		--navbrand-logo-size: 3rem;
 		--navbrand-font-size: 2rem;

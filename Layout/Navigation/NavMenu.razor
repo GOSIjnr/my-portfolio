@@ -8,15 +8,12 @@
         <div class="nav-center">
             @foreach (NavigationLinkItemInfo item in AppLayoutData.NavigationLinks)
             {
-                <NavLinkItem />
-
-                @* <NavLinkItem DisplayText="@item.DisplayText"
-                    TargetUrl="@item.GetFormattedTargetUrl(TargetUrlFormat.HashPrefix)" CssClassName="@item.CssClassName" /> *@
+                <NavLinkItem NavigationLinkInfo="item" />
             }
         </div>
 
         <div class="nav-right">
-            <NavLinkItem />
+            <NavLinkItem NavigationLinkInfo="@AppLayoutData.ContactLink"/>
             @* <NavLinkItem DisplayText="@AppLayoutData.ContactNavigationLink.DisplayText"
                 TargetUrl="@AppLayoutData.ContactNavigationLink.GetFormattedTargetUrl(TargetUrlFormat.HashPrefix)"
                 CssClassName="@AppLayoutData.ContactNavigationLink.CssClassName" /> *@

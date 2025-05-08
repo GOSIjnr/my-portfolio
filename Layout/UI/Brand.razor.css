@@ -1,27 +1,27 @@
 .brand {
-	--navbrand-gap: 0.5rem;
-	--navbrand-padding: 0.1rem;
-	--navbrand-logo-size: 1rem;
-	--navbrand-font-size: 1rem;
+	--brand-gap: 0.5rem;
+	--brand-padding: 0.1rem;
+	--brand-logo-size: 1rem;
+	--brand-font-size: 1rem;
 }
 
 .brand {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	gap: var(--navbrand-gap);
-	padding: var(--navbrand-padding);
+	gap: var(--brand-gap);
+	padding: var(--brand-padding);
 	background-color: var(--color-background);
 }
 
 .brand__logo {
-	width: var(--navbrand-logo-size);
-	height: var(--navbrand-logo-size);
+	width: var(--brand-logo-size);
+	height: var(--brand-logo-size);
 	object-fit: contain;
 }
 
 .brand__name {
-	font-size: var(--navbrand-font-size);
+	font-size: var(--brand-font-size);
 	font-weight: bold;
 	color: var(--color-background-main);
 	font-family: var(--font-family-heading);
@@ -29,41 +29,41 @@
 
 @media (min-width: 576px) {
 	.brand {
-		--navbrand-gap: 0.7rem;
-		--navbrand-padding: 1rem;
-		--navbrand-logo-size: 1.4rem;
-		--navbrand-font-size: 1.2rem;
+		--brand-gap: 0.7rem;
+		--brand-padding: 1rem;
+		--brand-logo-size: 1.4rem;
+		--brand-font-size: 1.2rem;
 	}
 }
 
 @media (min-width: 768px) {
 	.brand {
-		--navbrand-padding: 1.2rem;
-		--navbrand-logo-size: 1.8rem;
-		--navbrand-font-size: 1.4rem;
+		--brand-padding: 1.2rem;
+		--brand-logo-size: 1.8rem;
+		--brand-font-size: 1.4rem;
 	}
 }
 
 @media (min-width: 992px) {
 	.brand {
-		--navbrand-padding: 1.5rem;
-		--navbrand-logo-size: 2.2rem;
-		--navbrand-font-size: 1.6rem;
+		--brand-padding: 1.5rem;
+		--brand-logo-size: 2.2rem;
+		--brand-font-size: 1.6rem;
 	}
 }
 
 @media (min-width: 1200px) {
 	.brand {
-		--navbrand-padding: 1.8rem;
-		--navbrand-logo-size: 2.6rem;
-		--navbrand-font-size: 1.8rem;
+		--brand-padding: 1.8rem;
+		--brand-logo-size: 2.6rem;
+		--brand-font-size: 1.8rem;
 	}
 }
 
 @media (min-width: 1400px) {
 	.brand {
-		--navbrand-padding: 2rem;
-		--navbrand-logo-size: 3rem;
-		--navbrand-font-size: 2rem;
+		--brand-padding: 2rem;
+		--brand-logo-size: 3rem;
+		--brand-font-size: 2rem;
 	}
 }

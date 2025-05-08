@@ -1,18 +1,24 @@
-<div class="nav-menu__item @CssClassName" @onclick="HandleNavMenuItemClickAsync">
-	<NavLink class="nav-menu__link" href="@TargetUrl" Match=" NavLinkMatch.All">
-		<span class="nav-menu__label">@DisplayText</span>
+<div class="nav-item @CssModifier" @onclick="HandleNavMenuItemClickAsync">
+	<NavLink class="nav-item__link" href="@TargetUrl" Match="NavLinkMatch.All">
+		<span class="nav-item__label">@DisplayText</span>
 	</NavLink>
 </div>
 
 @code {
 	[Parameter, EditorRequired] public NavigationLinkItemInfo NavigationLinkInfo { get; set; } = new();
+	[Parameter] public TargetUrlFormat LinkType { get; set; } = TargetUrlFormat.HashPrefix;
 	[Parameter] public EventCallback OnNavMenuItemClick { get; set; }
 
-	public string CssClassName => NavigationLinkInfo.CssClassName;
 	public string DisplayText => NavigationLinkInfo.DisplayText;
 	public string RawTargetUrl => NavigationLinkInfo.RawTargetUrl;
-	public string TargetUrl => NavigationUrlFormatter.GetFormattedSanitizedTargetUrl(RawTargetUrl,
-	TargetUrlFormat.HashPrefix);
+	public string TargetUrl => NavigationUrlFormatter.GetFormattedSanitizedTargetUrl(RawTargetUrl, LinkType);
+
+	public string CssModifier => NavigationLinkInfo.CssClassName switch
+	{
+		"button" => "--button",
+		"accent" => "--button-accent",
+		_ => string.Empty,
+	};
 
 	private async Task HandleNavMenuItemClickAsync(MouseEventArgs mouseEventArgs)
 	{

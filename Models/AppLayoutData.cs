@@ -11,15 +11,15 @@ public class AppLayoutData : IAppLayoutData
 
 	private static readonly List<NavigationLinkItemInfo> _navigationLinks =
 	[
-		new("About Me", "aboutme", "nav-text"),
-		new("Skills", "skills", "nav-text"),
-		new("Projects", "projects", "nav-text"),
-		new("Resume", "resume", "nav-text"),
+		new("About Me", "aboutme", ""),
+		new("Skills", "skills", ""),
+		new("Projects", "projects", ""),
+		new("Resume", "resume", ""),
 	];
 
-	private static readonly NavigationLinkItemInfo _contactNavigationLink = new("Let's Connect", "contact", "nav-button");
-	private static readonly NavigationLinkItemInfo _contactNavigationLinkAccent = new("Let's Connect", "contact", "nav-button-accent");
-	private static readonly NavigationLinkItemInfo _projectsNavigationLink = new("Check My Works", "projects", "nav-button");
+	private static readonly NavigationLinkItemInfo _contactNavigationLink = new("Let's Connect", "contact", "button");
+	private static readonly NavigationLinkItemInfo _contactNavigationLinkAccent = new("Let's Connect", "contact", "button-accent");
+	private static readonly NavigationLinkItemInfo _projectsNavigationLink = new("Check My Works", "projects", "button");
 
 	private static readonly HomePageContentInfo _homePageContentInfo = new(
 		"Code. Design. Deploy. ",

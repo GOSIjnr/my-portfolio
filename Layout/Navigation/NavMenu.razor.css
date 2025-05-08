@@ -1,7 +1,6 @@
 .top-nav {
     position: relative;
-    background-color: black;
-    /* background-color: transparent; */
+    background-color: transparent;
     padding: 1rem 4rem;
 }
 

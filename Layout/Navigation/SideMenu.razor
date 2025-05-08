@@ -1,29 +1,25 @@
-<div class="mobile-sidebar @(IsOpened ? "open" : "")">
-    <button class="close-btn" @onclick="CloseMenu">✕</button>
+<div class="side-bar @(IsOpened ? "--open" : "")">
+    <button class="side-bar__close-btn" @onclick="CloseMenu">✕</button>
 
-    <div class="sidebar-content">
-        <div class="sidebar-links">
+    <div class="side-bar__content">
+        <div class="side-bar__links">
             @foreach (NavigationLinkItemInfo item in AppLayoutData.NavigationLinks)
             {
-                <NavLinkItem />
-                @* <NavLinkItem DisplayText="@item.DisplayText"
-                    TargetUrl="@item.GetFormattedTargetUrl(TargetUrlFormat.HashPrefix)" CssClassName="@item.CssClassName"
-                    OnClickHandler="CloseMenu" /> *@
+                <NavLinkItem NavigationLinkInfo="item" LinkType="@TargetUrlFormat.HashPrefix"
+                    OnNavMenuItemClick="CloseMenu" />
             }
         </div>
 
-        <div class="sidebar-contact">
-            <NavLinkItem />
-            @* <NavLinkItem DisplayText="@AppLayoutData.ContactNavigationLink.DisplayText"
-                TargetUrl="@AppLayoutData.ContactNavigationLink.GetFormattedTargetUrl(TargetUrlFormat.HashPrefix)"
-                CssClassName="@AppLayoutData.ContactNavigationLink.CssClassName" OnClickHandler="CloseMenu" /> *@
+        <div class="side-bar__contact">
+            <NavLinkItem NavigationLinkInfo="AppLayoutData.ContactLink" LinkType="@TargetUrlFormat.HashPrefix"
+                OnNavMenuItemClick="CloseMenu" />
         </div>
     </div>
 </div>
 
 @if (IsOpened)
 {
-    <div class="sidebar-overlay" @onclick="CloseMenu"></div>
+    <div class="side-bar__backdrop" @onclick="CloseMenu"></div>
 }
 
 @code {

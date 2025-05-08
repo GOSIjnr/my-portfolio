@@ -1,20 +1,19 @@
-@* <!-- Inside your component markup -->
 <div class="about-me-container" id="about">
     <div class="about-me-content">
         <div class="about-me-left">
-            <img src="@_profileImageUrl" alt="@_profileImageAlt" class="profile-img" />
+            <img src="@AppLayoutData.ProfileImageUrl" alt="@AppLayoutData.ProfileImageAltText" class="profile-img" />
             <div class="social-icons">
-                @foreach (var icon in _socialMediaIcons)
+                @foreach (var icon in AppLayoutData.SocialMediaIcons)
                 {
-                    <a href="@icon.ProfileUrl" target="_blank" rel="noopener noreferrer" title="@icon.Name">
-                        <img src="@icon.ImageUrl" alt="@icon.AltText" class="social-icon" />
+                    <a href="@icon.ProfilePageUrl" target="_blank" rel="noopener noreferrer" title="@icon.PlatformName">
+                        <img src="@icon.IconImageUrl" alt="@icon.IconAltText" class="social-icon" />
                     </a>
                 }
             </div>
         </div>
         <div class="about-me-right">
-            <h4>@_aboutMeTitle</h4>
-            <p>@_aboutMeDescription</p>
+            <h4>@AppLayoutData.AboutMeSectionTitle</h4>
+            <p>@AppLayoutData.AboutMeSectionDescription</p>
         </div>
     </div>
-</div> *@
+</div>

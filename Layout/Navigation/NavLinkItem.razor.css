@@ -1,132 +1,100 @@
-/* Base: nav-item with scoped variables (Mobile-First Approach) */
 .nav-item {
-	--navitem-padding: 0.5rem 1rem;
-	/* Smaller padding for mobile */
+	--navitem-padding: 0.6rem;
 	--navitem-font-size: 0.95rem;
-	/* Smaller font size for mobile */
-	--navitem-font-weight: bolder;
-	--navitem-color: var(--color-primary-muted);
-	--navitem-hover-color: var(--color-background-main);
-	--navitem-cursor: pointer;
 }
 
 .nav-item {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100%;
-	padding: var(--navitem-padding);
-	cursor: var(--navitem-cursor);
 	font-family: var(--font-family-heading);
 	font-size: var(--navitem-font-size);
-	font-weight: var(--navitem-font-weight);
-	color: var(--navitem-color);
-	transition: color 0.1s;
+	color: var(--color-primary-muted);
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+	transition: all 0.35s ease-out;
 }
 
-/* Hover & Active States */
 .nav-item:hover,
 .nav-item.active {
 	color: var(--navitem-hover-color);
 }
 
-/* Element: nav-item__label */
-.nav-item__label {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-/* Deep styling for NavLink */
 ::deep .nav-item__link {
-	width: 100%;
-	height: 100%;
+	width: inherit;
+	height: inherit;
 	text-decoration: none;
 	color: inherit;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-/* Modifier: --button */
+.nav-item__label {
+	padding: var(--navitem-padding);
+	font-weight: bolder;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	text-align: center;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	height: inherit;
+	width: inherit;
+	overflow: hidden;
+}
+
 .--button {
-	--navitem-color: var(--color-background-main);
-	--navitem-hover-color: var(--color-primary-main);
+	color: var(--color-background-main);
 	border: 1px solid var(--color-background-main);
-	background-color: transparent;
-	width: fit-content;
-	border-radius: 5px;
+	justify-content: center;
 }
 
-/* Modifier: --button :hover (inherits scoped vars) */
 .--button:hover {
+	color: var(--color-primary-main);
 	background-color: var(--color-background-main);
 }
 
-/* Modifier: --button-accent */
 .--button-accent {
-	--navitem-color: var(--color-background-main);
-	--navitem-hover-color: var(--color-accent-main);
+	color: var(--color-background-main);
 	background-color: var(--color-accent-main);
-	border-radius: 5px;
+	justify-content: center;
 }
 
-/* Modifier: --button-accent :hover */
 .--button-accent:hover {
+	color: var(--color-accent-main);
 	background-color: var(--color-background-main);
 }
 
-/* Media Queries */
-
-/* SM - 576px and up (Tablets and small screens) */
 @media (min-width: 576px) {
 	.nav-item {
-		--navitem-padding: 0.7rem 1.5rem;
-		/* Slightly larger padding */
-		--navitem-font-size: 1.05rem;
-		/* Slightly larger font size */
+		--navitem-padding: 0.7rem;
 	}
 }
 
-/* MD - 768px and up (Tablets and small desktops) */
 @media (min-width: 768px) {
 	.nav-item {
-		--navitem-padding: 1rem 2rem;
-		/* More padding */
-		--navitem-font-size: 1.15rem;
-		/* Larger font size */
+		--navitem-padding: 0.8rem;
 	}
 }
 
-/* LG - 992px and up (Larger tablets and small desktops) */
 @media (min-width: 992px) {
 	.nav-item {
-		--navitem-padding: 1.2rem 2.5rem;
-		/* Even more padding */
-		--navitem-font-size: 0.75rem;
-		/* Even larger font size */
+		--navitem-padding: 0.9rem;
+		--navitem-font-size: 1rem;
+	}
+
+	.nav-item__label {
+		justify-content: center;
 	}
 }
 
-/* XL - 1200px and up (Desktops) */
 @media (min-width: 1200px) {
 	.nav-item {
-		--navitem-padding: 1rem 3rem;
-		/* Desktop padding */
-		--navitem-font-size: 1rem;
-		/* Desktop font size */
+		--navitem-padding: 1rem;
 	}
 }
 
-/* XXL - 1400px and up (Large desktops) */
 @media (min-width: 1400px) {
 	.nav-item {
-		--navitem-padding: 1.6rem 3.5rem;
-		/* Largest padding */
-		--navitem-font-size: 1.45rem;
-		/* Largest font size */
+		--navitem-padding: 1.1rem;
 	}
 }

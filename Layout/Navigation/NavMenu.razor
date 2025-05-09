@@ -37,7 +37,7 @@
     [JSInvokable]
     public void OnResize(int width)
     {
-        if (width > 920 && isSidebarOpen)
+        if (width >= 992 && isSidebarOpen)
         {
             isSidebarOpen = false;
             StateHasChanged();

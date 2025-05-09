@@ -1,20 +1,25 @@
-﻿<div class="hero-section">
-	<img src="Images/backdrop.jpg" alt="Backdrop" class="background-image" />
+﻿<div class="hero">
+	<img class="hero__background" src="Images/backdrop.jpg" alt="Backdrop" />
 
-	<div class="hero-overlay">
-		<div class="hero-content">
-			<h1 class="hero-title">@AppLayoutData.HomePageContent.MainTitle<span
-					class="highlight">@AppLayoutData.HomePageContent.HighlightedTitlePart</span></h1>
-			<p class="intro-text">
+	<div class="hero__overlay">
+		<div class="hero__content">
+			<h1 class="hero__title">
+				@AppLayoutData.HomePageContent.MainTitle
+				<span class="hero__title --highlight">@AppLayoutData.HomePageContent.HighlightedTitlePart</span>
+			</h1>
+
+			<p class="hero__description">
 				@AppLayoutData.HomePageContent.DescriptionBody
 			</p>
 
-			<div class="button-group">
-				<div class="button-wrapper">
-					<NavLinkItem NavigationLinkInfo="@AppLayoutData.ContactLinkAccent" LinkType="@TargetUrlFormat.HashPrefix"/>
+			<div class="hero__buttons">
+				<div class="hero__button">
+					<NavLinkItem NavigationLinkInfo="@AppLayoutData.ContactLinkAccent"
+						LinkType="@TargetUrlFormat.HashPrefix" />
 				</div>
-				<div class="button-wrapper">
-					<NavLinkItem  NavigationLinkInfo="@AppLayoutData.ProjectsLink" LinkType="@TargetUrlFormat.HashPrefix"/>
+				<div class="hero__button">
+					<NavLinkItem NavigationLinkInfo="@AppLayoutData.ProjectsLink"
+						LinkType="@TargetUrlFormat.HashPrefix" />
 				</div>
 			</div>
 		</div>

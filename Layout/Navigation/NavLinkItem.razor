@@ -1,6 +1,6 @@
-<div class="nav-item @CssModifier" @onclick="HandleNavMenuItemClickAsync">
+<div class="nav-item" @onclick="HandleNavMenuItemClickAsync">
 	<NavLink class="nav-item__link" href="@TargetUrl" Match="NavLinkMatch.All">
-		<span class="nav-item__label">@DisplayText</span>
+		<span class="nav-item__label @CssModifier">@DisplayText</span>
 	</NavLink>
 </div>
 

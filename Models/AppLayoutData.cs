@@ -7,7 +7,7 @@ namespace MyPortfolio.Models;
 
 public class AppLayoutData : IAppLayoutData
 {
-	private static readonly BrandInfo _brandInfo = new("Images/icon.svg", "GOSIjnr", "Logo");
+	private static readonly BrandInfo _brandInfo = new("images/icon.svg", "GOSIjnr", "Logo");
 
 	private static readonly List<NavigationLinkItemInfo> _navigationLinks =
 	[
@@ -25,7 +25,7 @@ public class AppLayoutData : IAppLayoutData
 		"Code. Design. Deploy. ",
 		"Play.",
 		"I turn caffeine into code, pixels into purpose, and bugs into... features (sometimes).",
-		"Images/backdrop.jpg"
+		"images/backdrop.jpg"
 	);
 
 	private const string _profileImageUrl = "https://github.com/GOSIjnr.png";
@@ -35,10 +35,10 @@ public class AppLayoutData : IAppLayoutData
 
 	private static readonly List<SocialMediaIconInfo> _socialMediaIconList =
 	[
-		new("Twitter", "Images/icon.svg", "https://twitter.com/yourprofile", "Twitter"),
-		new("Facebook", "Images/icon.svg", "https://facebook.com/yourprofile", "Facebook"),
-		new("Discord", "Images/icon.svg", "https://discord.com/users/yourprofile", "Discord"),
-		new("YouTube", "Images/icon.svg", "https://youtube.com/yourchannel", "YouTube"),
+		new("Twitter", "images/icon.svg", "https://twitter.com/yourprofile", "Twitter"),
+		new("Facebook", "images/icon.svg", "https://facebook.com/yourprofile", "Facebook"),
+		new("Discord", "images/icon.svg", "https://discord.com/users/yourprofile", "Discord"),
+		new("YouTube", "images/icon.svg", "https://youtube.com/yourchannel", "YouTube"),
 	];
 
 	public BrandInfo BrandInfo { get; } = _brandInfo;

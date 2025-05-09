@@ -92,9 +92,3 @@
 		--navitem-padding: 1rem;
 	}
 }
-
-@media (min-width: 1400px) {
-	.nav-item {
-		--navitem-padding: 1.1rem;
-	}
-}

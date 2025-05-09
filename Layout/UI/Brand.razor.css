@@ -59,11 +59,3 @@
 		--brand-font-size: 1.8rem;
 	}
 }
-
-@media (min-width: 1400px) {
-	.brand {
-		--brand-padding: 2rem;
-		--brand-logo-size: 3rem;
-		--brand-font-size: 2rem;
-	}
-}

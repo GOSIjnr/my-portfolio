@@ -87,9 +87,3 @@
 		--sidebar-width: 15rem;
 	}
 }
-
-@media (min-width: 1400px) {
-	.side-bar {
-		--sidebar-width: 15rem;
-	}
-}

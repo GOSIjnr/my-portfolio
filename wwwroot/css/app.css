@@ -26,8 +26,8 @@ html,
 body {
     color: var(--color-background-main);
     background-color: var(--color-primary-main);
-    overflow-x: hidden;
     font-family: var(--font-family-body);
+    overflow-x: hidden;
 }
 
 #blazor-error-ui {

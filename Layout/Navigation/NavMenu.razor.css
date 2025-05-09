@@ -1,10 +1,15 @@
-.top-nav {
-    position: relative;
-    background-color: transparent;
-    padding: 1rem 2rem;
+.nav-bar {
+    --nav-bar-padding: 1rem 1.5rem;
+    --nav-bar-toggle-button-size: 1.2rem;
 }
 
-.nav-container {
+.nav-bar {
+    padding: var(--nav-bar-padding);
+    position: relative;
+    background-color: transparent;
+}
+
+.nav-bar__container {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -12,42 +17,63 @@
     width: 100%;
 }
 
-.nav-center {
-    display: flex;
-    gap: 2rem;
-    flex: 1;
-    justify-content: center;
-}
-
-.nav-right {
-    display: flex;
-    align-items: center;
-}
-
-.menu-toggle {
+.nav-bar__links,
+.nav-bar__contact-link {
     display: none;
+}
+
+.nav-bar__toggle {
+    color: var(--color-primary-main);
+    width: var(--nav-bar-toggle-button-size);
+    height: var(--nav-bar-toggle-button-size);
+    display: block;
     background: none;
     border: none;
-    font-size: 1.5rem;
-    color: var(--color-background);
     cursor: pointer;
+    object-fit: contain;
 }
 
-@media (max-width: 992px) {
-    .menu-toggle {
-        display: block;
+@media (min-width: 576px) {
+    .nav-bar {
+        --nav-bar-padding: 1rem 2rem;
+        --nav-bar-toggle-button-size: 1.4rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .nav-bar {
+        --nav-bar-padding: 1rem 2.5rem;
+        --nav-bar-toggle-button-size: 1.6rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .nav-bar__links {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: center;
     }
 
-    .nav-center,
-    .nav-right {
-        display: none;
+    .nav-bar__contact-link {
+        width: 250px;
+        display: flex;
+        align-items: center;
     }
 
-    .top-nav {
-        padding: 1rem 1.5rem;
-    }
-
-    .nav-container {
+    .nav-bar__container {
         justify-content: space-between;
+    }
+
+    .nav-bar__container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 100%;
+        flex: 1;
+    }
+
+    .nav-bar__toggle {
+        display: none;
     }
 }

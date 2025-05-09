@@ -68,7 +68,6 @@
 	color: #cccccc;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
 	.about-me-content {
 		flex-direction: column;

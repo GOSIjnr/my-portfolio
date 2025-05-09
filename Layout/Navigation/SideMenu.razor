@@ -1,17 +1,19 @@
 <div class="side-bar @(IsOpened ? "--open" : "")">
-    <button class="side-bar__close-btn" @onclick="CloseMenu">✕</button>
+    <img class="side-bar__close-btn" src="images/cross-small.svg" @onclick="CloseMenu" />
 
     <div class="side-bar__content">
         <div class="side-bar__links">
             @foreach (NavigationLinkItemInfo item in AppLayoutData.NavigationLinks)
             {
-                <NavLinkItem NavigationLinkInfo="item" LinkType="@TargetUrlFormat.HashPrefix"
-                    OnNavMenuItemClick="CloseMenu" />
+                <div class="side-bar__link">
+                    <NavLinkItem NavigationLinkInfo="item" LinkType="@TargetUrlFormat.HashPrefix"
+                        OnNavMenuItemClick="CloseMenu" />
+                </div>
             }
         </div>
 
         <div class="side-bar__contact">
-            <NavLinkItem NavigationLinkInfo="AppLayoutData.ContactLink" LinkType="@TargetUrlFormat.HashPrefix"
+            <NavLinkItem NavigationLinkInfo="AppLayoutData.ContactLinkAccent" LinkType="@TargetUrlFormat.HashPrefix"
                 OnNavMenuItemClick="CloseMenu" />
         </div>
     </div>
@@ -26,4 +28,5 @@
     [Parameter, EditorRequired] public bool IsOpened { get; set; } = false;
     [Parameter] public EventCallback OnClose { get; set; }
     public Task CloseMenu() => OnClose.InvokeAsync();
+
 }

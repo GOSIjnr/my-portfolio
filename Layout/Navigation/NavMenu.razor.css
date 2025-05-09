@@ -33,7 +33,7 @@
     cursor: pointer;
 }
 
-@media (max-width: 920px) {
+@media (max-width: 992px) {
     .menu-toggle {
         display: block;
     }

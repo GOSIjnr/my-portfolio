@@ -1,20 +1,7 @@
-.nav-bar {
+.page__nav-bar {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 10;
-}
-
-.content {
-    width: 100%;
-    padding-top: 5rem;
-    z-index: 1;
-}
-
-@media (width: 920px) {
-    .top-row ::deep a,
-    .top-row ::deep .btn-link {
-        margin-left: 0;
-    }
 }

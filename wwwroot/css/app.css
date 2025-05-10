@@ -1,13 +1,12 @@
 :root {
-    --color-primary-main: #0f0f0f;
+    --color-primary-main: #181818;
     --color-primary-muted: #a3a3a3;
-    --color-primary-overlay: #0f0f0fb2;
+    --color-primary-overlay: #181818b2;
 
     --color-background-main: #ffffff;
     --color-background-muted: #cccccc;
 
     --color-accent-main: #ff6600;
-    --color-accent-secondary: #ff3a0e;
 
     --font-family-heading: 'Montserrat', sans-serif;
     --font-family-body: 'Open Sans', sans-serif;
@@ -20,6 +19,7 @@ h4,
 h5,
 h6 {
     font-family: var(--font-family-heading);
+    color: var(--color-background-main);
 }
 
 html,

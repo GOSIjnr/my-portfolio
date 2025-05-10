@@ -76,7 +76,7 @@
 	.hero {
 		--hero-title-font-size: 3rem;
 		--hero-title-margin-bottom: 1.5rem;
-		--hero-description-font-size: 1.1rem;
+		--hero-description-font-size: 1.05rem;
 		--hero-description-margin-bottom: 2.7rem;
 	}
 }

@@ -1,19 +1,23 @@
-<div class="about-me-container" id="about">
-    <div class="about-me-content">
-        <div class="about-me-left">
-            <img src="@AppLayoutData.ProfileImageUrl" alt="@AppLayoutData.ProfileImageAltText" class="profile-img" />
-            <div class="social-icons">
+<div class="about-me">
+    <div class="about-me__content">
+        <div class="about-me__profile">
+            <img class="about-me__profile-img" src="@AppLayoutData.ProfileImageUrl"
+                alt="@AppLayoutData.ProfileImageAltText" />
+
+            <div class="about-me__social-icons">
                 @foreach (var icon in AppLayoutData.SocialMediaIcons)
                 {
-                    <a href="@icon.ProfilePageUrl" target="_blank" rel="noopener noreferrer" title="@icon.PlatformName">
-                        <img src="@icon.IconImageUrl" alt="@icon.IconAltText" class="social-icon" />
+                    <a class="about-me__social-link" href="@icon.ProfilePageUrl" target="_blank" rel="noopener noreferrer"
+                        title="@icon.PlatformName">
+                        <img class="about-me__social-icon" src="@icon.IconImageUrl" alt="@icon.IconAltText" />
                     </a>
                 }
             </div>
         </div>
-        <div class="about-me-right">
-            <h4>@AppLayoutData.AboutMeSectionTitle</h4>
-            <p>@AppLayoutData.AboutMeSectionDescription</p>
+
+        <div class="about-me__details">
+            <h3 class="about-me__title">@AppLayoutData.AboutMeSectionTitle</h3>
+            <p class="about-me__description">@AppLayoutData.AboutMeSectionDescription</p>
         </div>
     </div>
 </div>

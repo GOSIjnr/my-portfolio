@@ -30,15 +30,14 @@ public class AppLayoutData : IAppLayoutData
 
 	private const string _profileImageUrl = "https://github.com/GOSIjnr.png";
 	private const string _profileImageAltText = "Chinedu Victor Awugosi";
-	private const string _aboutMeSectionTitle = "Hi, I'm Chinedu Victor Awugosi — a developer who finds just as much joy in crafting intuitive user interfaces as in unraveling complex logic behind the scenes, and occasionally diving into game engines just for the thrill of it.";
-	private const string _aboutMeSectionDescription = "I've always loved creating things, especially the kind that live on a screen. What started as a curiosity turned into a full-blown passion for coding — and now, it's what I do every day. I enjoy figuring out how things work, whether that's a complex piece of back-end logic or the tiniest UI animation. Outside of development, I'm probably sketching out a game idea, exploring new tech, or just geeking out over clean, elegant code. This portfolio is a glimpse into the things I've built and the kind of work I love doing — thanks for stopping by.";
+	private const string _aboutMeSectionTitle = "Hi, I'm Chinedu Victor Awugosi — a developer passionate about creating seamless user experiences, solving complex problems, and occasionally exploring game engines for fun.";
+	private const string _aboutMeSectionDescription = "I'm passionate about creating digital experiences, from solving intricate technical challenges to crafting smooth, intuitive interfaces. What started as a curiosity has evolved into a passion of mine. Outside of development, I explore new technologies and brainstorm game ideas. This portfolio showcases the work I love and the projects I've built — thanks for visiting.";
 
 	private static readonly List<SocialMediaIconInfo> _socialMediaIconList =
 	[
-		new("Twitter", "images/icon.svg", "https://twitter.com/yourprofile", "Twitter"),
-		new("Facebook", "images/icon.svg", "https://facebook.com/yourprofile", "Facebook"),
-		new("Discord", "images/icon.svg", "https://discord.com/users/yourprofile", "Discord"),
-		new("YouTube", "images/icon.svg", "https://youtube.com/yourchannel", "YouTube"),
+		new("Github", "images/github.svg", "https://github.com/GOSIjnr", "Github"),
+		new("Discord", "images/discord.svg", "https://discord.com/users/GOSIjnr", "Discord"),
+		new("Twitter", "images/twitter.svg", "https://twitter.com/GOSIjnr", "Twitter"),
 	];
 
 	public BrandInfo BrandInfo { get; } = _brandInfo;

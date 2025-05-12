@@ -14,7 +14,10 @@
 }
 
 .about-me {
-	background-color: var(--color-primary-main);
+	background-color: var(--color-background-main);
+	/* White background */
+	color: var(--color-primary-main);
+	/* Black text */
 	padding: var(--section-padding);
 	min-height: 500px;
 	display: flex;
@@ -30,14 +33,16 @@
 	align-items: center;
 	justify-content: center;
 	height: 100%;
-	border-bottom: 1px solid white;
+	border-bottom: 1px solid var(--color-primary-muted);
+	/* Soft separator */
 	margin-bottom: 2rem;
 }
 
 .about-me__profile {
 	padding: var(--profile-padding);
-	background-color: #cccccc1c;
-	border: 1px solid white;
+	background-color: var(--color-primary-muted);
+	/* Subtle background */
+	border: 1px solid var(--color-primary-muted);
 	width: 200px;
 	display: flex;
 	align-items: center;
@@ -49,6 +54,8 @@
 	height: var(--profile-img-height);
 	background-color: white;
 	object-fit: cover;
+	border-radius: 8px;
+	/* Slight round edges for modern look */
 }
 
 .about-me__social-icons {
@@ -82,12 +89,15 @@
 	font-size: var(--title-font-size);
 	margin-bottom: var(--title-margin-bottom);
 	line-height: var(--title-line-height);
+	color: var(--color-primary-main);
+	/* Black text for title */
 }
 
 .about-me__description {
 	font-size: var(--desc-font-size);
 	line-height: var(--desc-line-height);
 	color: var(--color-primary-muted);
+	/* Muted gray for description */
 }
 
 @media (min-width: 576px) {

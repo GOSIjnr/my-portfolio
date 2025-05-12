@@ -1,0 +1,22 @@
+<div class="contact">
+	<h2 class="contact__title">Contact Me</h2>
+
+	<div class="contact__info">
+		<p class="contact__email">
+			Email: <a href="mailto:gosijnr7@yahoo.com" class="contact__link">gosijnr7@yahoo.com</a>
+		</p>
+		<div class="contact__social">
+			<p>Follow me:</p>
+			<ul class="contact__social-list">
+				@foreach (var social in AppLayoutData.SocialMediaIcons)
+				{
+					<li class="contact__social-item">
+						<a href="@social.ProfilePageUrl" class="contact__social-link" target="_blank">
+							<img src="@social.IconImageUrl" class="contact__social-icon" />
+						</a>
+					</li>
+				}
+			</ul>
+		</div>
+	</div>
+</div>

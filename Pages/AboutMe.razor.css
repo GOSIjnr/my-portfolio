@@ -47,6 +47,7 @@
 .about-me__profile-img {
 	width: var(--profile-img-width);
 	height: var(--profile-img-height);
+	background-color: white;
 	object-fit: cover;
 }
 

@@ -8,7 +8,7 @@
         <div class="nav-bar__links">
             @foreach (NavigationLinkItemInfo item in AppLayoutData.NavigationLinks)
             {
-                <NavLinkItem NavigationLinkInfo="item" />
+                <NavLinkItem NavigationLinkInfo="item" LinkType="TargetUrlFormat.SlashPrefix" />
             }
         </div>
 

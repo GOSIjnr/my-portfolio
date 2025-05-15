@@ -6,14 +6,14 @@
             @foreach (NavigationLinkItemInfo item in AppLayoutData.NavigationLinks)
             {
                 <div class="side-bar__link">
-                    <NavLinkItem NavigationLinkInfo="item" LinkType="@TargetUrlFormat.HashPrefix"
+                    <NavLinkItem NavigationLinkInfo="item" LinkType="@TargetUrlFormat.SlashPrefix"
                         OnNavMenuItemClick="CloseMenu" />
                 </div>
             }
         </div>
 
         <div class="side-bar__contact">
-            <NavLinkItem NavigationLinkInfo="AppLayoutData.ContactLinkAccent" LinkType="@TargetUrlFormat.HashPrefix"
+            <NavLinkItem NavigationLinkInfo="AppLayoutData.ContactLinkAccent" LinkType="@TargetUrlFormat.SlashPrefix"
                 OnNavMenuItemClick="CloseMenu" />
         </div>
     </div>

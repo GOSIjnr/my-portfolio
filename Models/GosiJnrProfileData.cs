@@ -5,9 +5,9 @@ using MyPortfolio.Models.UI;
 
 namespace MyPortfolio.Models;
 
-public class AppLayoutData : IAppLayoutData
+public class GosiJnrProfileData : IAppLayoutData
 {
-	private static readonly BrandInfo _brandInfo = new("images/icon.svg", "GOSIjnr", "Logo");
+	private static readonly BrandInfo _brandInfo = new("GOSI", "jnr.", "dasdadsasd");
 
 	private static readonly List<NavigationLinkItemInfo> _navigationLinks =
 	[

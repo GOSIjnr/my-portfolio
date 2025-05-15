@@ -1,8 +1,33 @@
-<div class="brand">
-	<img class="brand__logo" src="@BrandInfo.LogoImagePath" alt="@BrandInfo.LogoAltText" />
-	<span class="brand__name">@BrandInfo.BrandDisplayName</span>
+<div class="brand" @onclick="HandleBrandClickAsync">
+	<NavLink class="brand__link" href="@_targetUrl" Match="NavLinkMatch.All">
+		<span class="brand__name">@_displayText</span>
+		<span class="brand__name brand__name--highlighted">@_highlightedDisplayText</span>
+	</NavLink>
 </div>
 
 @code {
-	[Parameter, EditorRequired] public BrandInfo BrandInfo { get; set; } = new();
+	[Parameter, EditorRequired] public BrandInfo BrandInfo { get; set; }
+	[Parameter] public EventCallback OnBrandClick { get; set; }
+
+	private string _displayText => BrandInfo.BrandDisplayName;
+	private string _highlightedDisplayText => BrandInfo.BrandHighlightedDisplayName;
+	private string _rawTargetUrl => BrandInfo.BrandRawTargetUrl;
+	private string _targetUrl => NavigationUrlFormatter.GetFormattedSanitizedTargetUrl(_rawTargetUrl,
+	TargetUrlFormat.SlashPrefix);
+
+	protected override void OnParametersSet()
+	{
+		if (BrandInfo is null)
+		{
+			BrandInfo = new();
+		}
+	}
+
+	private async Task HandleBrandClickAsync(MouseEventArgs mouseEventArgs)
+	{
+		if (OnBrandClick.HasDelegate)
+		{
+			await OnBrandClick.InvokeAsync();
+		}
+	}
 }

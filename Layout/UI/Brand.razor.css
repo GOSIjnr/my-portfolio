@@ -1,57 +1,55 @@
 .brand {
-	--brand-gap: 0.5rem;
 	--brand-padding: 0.1rem;
-	--brand-logo-size: 1.2rem;
-	--brand-font-size: 1rem;
+	--brand-font-size: 1.35rem;
+	--brand-highlighted: var(--color-2-lighter);
 }
 
 .brand {
-	gap: var(--brand-gap);
 	padding: var(--brand-padding);
-	background-color: var(--color-background);
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
-.brand__logo {
-	width: var(--brand-logo-size);
-	height: var(--brand-logo-size);
-	object-fit: contain;
+::deep .brand__link {
+	width: inherit;
+	height: inherit;
+	text-decoration: none;
+	color: inherit;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .brand__name {
 	font-size: var(--brand-font-size);
-	color: var(--color-background-main);
-	font-family: var(--font-family-heading);
 	font-weight: bolder;
+}
+
+.brand__name--highlighted {
+	color: var(--brand-highlighted);
 }
 
 @media (min-width: 576px) {
 	.brand {
-		--brand-gap: 0.7rem;
-		--brand-logo-size: 1.4rem;
-		--brand-font-size: 1.2rem;
+		--brand-font-size: 1.6rem;
 	}
 }
 
 @media (min-width: 768px) {
 	.brand {
-		--brand-logo-size: 1.8rem;
-		--brand-font-size: 1.4rem;
+		--brand-font-size: 1.9rem;
 	}
 }
 
 @media (min-width: 992px) {
 	.brand {
-		--brand-logo-size: 2.2rem;
-		--brand-font-size: 1.6rem;
+		--brand-font-size: 2.15rem;
 	}
 }
 
 @media (min-width: 1200px) {
 	.brand {
-		--brand-logo-size: 2.6rem;
-		--brand-font-size: 1.8rem;
+		--brand-font-size: 2.4rem;
 	}
 }

@@ -25,6 +25,8 @@
 }
 
 @code {
+    [Inject] private IAppLayoutData AppLayoutData { get; set; } = null!;
+
     [Parameter, EditorRequired] public bool IsOpened { get; set; } = false;
     [Parameter] public EventCallback OnClose { get; set; }
     public Task CloseMenu() => OnClose.InvokeAsync();

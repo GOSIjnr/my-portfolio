@@ -25,6 +25,8 @@
 @code {
     private DotNetObjectReference<NavMenu>? dotNetRef;
 
+    [Inject] private IAppLayoutData AppLayoutData { get; set; } = null!;
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)

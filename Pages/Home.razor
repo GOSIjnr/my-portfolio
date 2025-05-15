@@ -32,6 +32,8 @@
 @code {
 	public HomePageContentInfo HomePageContentInfo { get; set; } = new();
 
+	[Inject] private IAppLayoutData AppLayoutData { get; set; } = null!;
+
 	protected override void OnInitialized()
 	{
 		HomePageContentInfo = AppLayoutData.HomePageContent;

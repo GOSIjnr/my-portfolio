@@ -1,34 +1,64 @@
-<div class="side-bar @(IsOpened ? "--open" : "")">
-    <img class="side-bar__close-btn" src="images/cross-small.svg" @onclick="CloseMenu" />
+<div class="side-bar">
+    <div class="side-bar__slider @(IsOpened ? "side-bar__slider--open" : "")">
+        <button type="button" class="side-bar__close-btn side-bar__close-btn--mask" title="Close menu"
+            @onclick="CloseMenu" />
 
-    <div class="side-bar__content">
-        <div class="side-bar__links">
-            @foreach (NavigationLinkItemInfo item in AppLayoutData.NavigationLinks)
-            {
-                <div class="side-bar__link">
-                    <NavLinkItem NavigationLinkInfo="item" LinkType="@TargetUrlFormat.SlashPrefix"
-                        OnNavMenuItemClick="CloseMenu" />
+        <div class="side-bar__content">
+            <div class="side-bar__links">
+                <div class="side-bar__logo">
+                    <Brand BrandInfo="AppLayoutData.BrandInfo" OnBrandClick="CloseMenu" />
                 </div>
-            }
-        </div>
 
-        <div class="side-bar__contact">
-            <NavLinkItem NavigationLinkInfo="AppLayoutData.ContactLinkAccent" LinkType="@TargetUrlFormat.SlashPrefix"
-                OnNavMenuItemClick="CloseMenu" />
+                @foreach (NavigationItem item in AppLayoutData.NavigationLinks)
+                {
+                    <div class="side-bar__link">
+                        <NavLinkItem NavigationLinkInfo="item" LinkType="@TargetUrlFormat.SlashPrefix"
+                            OnNavMenuItemClick="CloseMenu" />
+                    </div>
+                }
+            </div>
+
+            <div class="side-bar__contact">
+                <NavLinkItem NavigationLinkInfo="AppLayoutData.ContactLinkAccent"
+                    LinkType="@TargetUrlFormat.SlashPrefix" OnNavMenuItemClick="CloseMenu" />
+            </div>
         </div>
     </div>
+
+    @if (IsOpened)
+    {
+        <div class="side-bar__backdrop" @onclick="CloseMenu"></div>
+    }
 </div>
 
-@if (IsOpened)
-{
-    <div class="side-bar__backdrop" @onclick="CloseMenu"></div>
-}
-
 @code {
-    [Inject] private IAppLayoutData AppLayoutData { get; set; } = null!;
-
     [Parameter, EditorRequired] public bool IsOpened { get; set; } = false;
     [Parameter] public EventCallback OnClose { get; set; }
-    public Task CloseMenu() => OnClose.InvokeAsync();
 
+    [Inject] private IAppLayoutData AppLayoutData { get; set; } = null!;
+    [Inject] private IJSRuntime JS { get; set; } = null!;
+
+    private readonly string sidebarSelector = "side-bar";
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await ToggleScrollLock(IsOpened, sidebarSelector);
+    }
+
+    private async Task ToggleScrollLock(bool enabled, string targetSelector)
+    {
+        if (enabled)
+        {
+            await JS.InvokeVoidAsync("sidebarScrollLock.disableScroll", targetSelector);
+        }
+        else
+        {
+            await JS.InvokeVoidAsync("sidebarScrollLock.enableScroll");
+        }
+    }
+
+    public async Task CloseMenu()
+    {
+        await OnClose.InvokeAsync();
+    }
 }

@@ -7,9 +7,9 @@ namespace MyPortfolio.Models;
 
 public class GosiJnrProfileData : IAppLayoutData
 {
-	private static readonly BrandInfo _brandInfo = new("GOSI", "jnr.", "dasdadsasd");
+	private static readonly BrandInfo _brandInfo = new("GOSI", "jnr.", string.Empty);
 
-	private static readonly List<NavigationLinkItemInfo> _navigationLinks =
+	private static readonly List<NavigationItem> _navigationLinks =
 	[
 		new("About Me", "aboutme", ""),
 		new("Skills", "skills", ""),
@@ -17,9 +17,9 @@ public class GosiJnrProfileData : IAppLayoutData
 		new("Resume", "resume", ""),
 	];
 
-	private static readonly NavigationLinkItemInfo _contactNavigationLink = new("Let's Connect", "contact", "button");
-	private static readonly NavigationLinkItemInfo _contactNavigationLinkAccent = new("Let's Connect", "contact", "button-accent");
-	private static readonly NavigationLinkItemInfo _projectsNavigationLink = new("Check My Works", "projects", "button");
+	private static readonly NavigationItem _contactNavigationLink = new("Let's Connect", "contact", "button");
+	private static readonly NavigationItem _contactNavigationLinkAccent = new("Let's Connect", "contact", "button-accent");
+	private static readonly NavigationItem _projectsNavigationLink = new("Check My Works", "projects", "button");
 
 	private static readonly HomePageContentInfo _homePageContentInfo = new(
 		"Code. Design. Deploy. ",
@@ -41,10 +41,10 @@ public class GosiJnrProfileData : IAppLayoutData
 	];
 
 	public BrandInfo BrandInfo { get; } = _brandInfo;
-	public List<NavigationLinkItemInfo> NavigationLinks { get; } = _navigationLinks;
-	public NavigationLinkItemInfo ContactLink { get; } = _contactNavigationLink;
-	public NavigationLinkItemInfo ContactLinkAccent { get; } = _contactNavigationLinkAccent;
-	public NavigationLinkItemInfo ProjectsLink { get; } = _projectsNavigationLink;
+	public List<NavigationItem> NavigationLinks { get; } = _navigationLinks;
+	public NavigationItem ContactLink { get; } = _contactNavigationLink;
+	public NavigationItem ContactLinkAccent { get; } = _contactNavigationLinkAccent;
+	public NavigationItem ProjectsLink { get; } = _projectsNavigationLink;
 	public HomePageContentInfo HomePageContent { get; } = _homePageContentInfo;
 	public string ProfileImageUrl { get; } = _profileImageUrl;
 	public string ProfileImageAltText { get; } = _profileImageAltText;

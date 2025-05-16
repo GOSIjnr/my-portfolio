@@ -5,7 +5,7 @@
 </div>
 
 @code {
-	[Parameter, EditorRequired] public NavigationLinkItemInfo NavigationLinkInfo { get; set; } = new();
+	[Parameter, EditorRequired] public NavigationItem NavigationLinkInfo { get; set; } = new();
 	[Parameter] public TargetUrlFormat LinkType { get; set; } = TargetUrlFormat.HashPrefix;
 	[Parameter] public EventCallback OnNavMenuItemClick { get; set; }
 

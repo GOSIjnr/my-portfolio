@@ -6,7 +6,7 @@
 </div>
 
 @code {
-	[Parameter, EditorRequired] public BrandInfo BrandInfo { get; set; }
+	[Parameter, EditorRequired] public BrandInfo BrandInfo { get; set; } = null!;
 	[Parameter] public EventCallback OnBrandClick { get; set; }
 
 	private string _displayText => BrandInfo.BrandDisplayName;

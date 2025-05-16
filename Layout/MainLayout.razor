@@ -3,31 +3,13 @@
 <PageTitle>My Portfolio</PageTitle>
 
 <div class="page">
+	<nav class="page__nav-bar">
+		<NavMenu />
+	</nav>
+
 	<main>
 		<article class="content">
-			<ErrorBoundary>
-					<div class="page__nav-bar">
-						<NavMenu />
-					</div>
-
-					@Body
-			</ErrorBoundary>
+			@Body
 		</article>
 	</main>
 </div>
-
-@code {
-	public List<string> NavigationLinks { get; set; } = [];
-
-	[Inject] private IAppLayoutData AppLayoutData { get; set; } = null!;
-
-	protected override void OnInitialized()
-	{
-		foreach (NavigationLinkItemInfo link in AppLayoutData.NavigationLinks)
-		{
-			NavigationLinks.Add(NavigationUrlFormatter.GetFormattedSanitizedTargetUrl(link.RawTargetUrl));
-		}
-
-		NavigationLinks.Add(NavigationUrlFormatter.GetFormattedSanitizedTargetUrl(AppLayoutData.ContactLink.RawTargetUrl));
-	}
-}

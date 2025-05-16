@@ -1,7 +1,8 @@
 .brand {
 	--brand-padding: 0.1rem;
 	--brand-font-size: 1.35rem;
-	--brand-highlighted: var(--color-2-lighter);
+	--brand-highlighted-color-1: var(--color-2-lighter);
+	--brand-highlighted-color-2: var(--color-2-light);
 }
 
 .brand {
@@ -9,6 +10,11 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	transition: all 0.3s ease-out;
+}
+
+.brand:hover {
+	--brand-highlighted-color-1: var(--brand-highlighted-color-2);
 }
 
 ::deep .brand__link {
@@ -27,29 +33,29 @@
 }
 
 .brand__name--highlighted {
-	color: var(--brand-highlighted);
+	color: var(--brand-highlighted-color-1);
 }
 
 @media (min-width: 576px) {
 	.brand {
-		--brand-font-size: 1.6rem;
+		--brand-font-size: 1.45rem;
 	}
 }
 
 @media (min-width: 768px) {
 	.brand {
-		--brand-font-size: 1.9rem;
+		--brand-font-size: 1.55rem;
 	}
 }
 
 @media (min-width: 992px) {
 	.brand {
-		--brand-font-size: 2.15rem;
+		--brand-font-size: 1.65rem;
 	}
 }
 
 @media (min-width: 1200px) {
 	.brand {
-		--brand-font-size: 2.4rem;
+		--brand-font-size: 1.75rem;
 	}
 }

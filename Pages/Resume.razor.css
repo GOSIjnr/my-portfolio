@@ -43,7 +43,7 @@
 	font-size: 1rem;
 	text-transform: uppercase;
 	cursor: pointer;
-	transition: background-color 0.2s ease-in-out;
+	transition: background-color 0.3s ease-out;
 	flex: 1 1 auto;
 	min-width: 180px;
 	text-align: center;

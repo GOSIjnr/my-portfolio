@@ -6,7 +6,7 @@
         <Brand BrandInfo="@AppLayoutData.BrandInfo" />
 
         <div class="nav-bar__links">
-            @foreach (NavigationLinkItemInfo item in AppLayoutData.NavigationLinks)
+            @foreach (NavigationItem item in AppLayoutData.NavigationLinks)
             {
                 <NavLinkItem NavigationLinkInfo="item" LinkType="TargetUrlFormat.SlashPrefix" />
             }

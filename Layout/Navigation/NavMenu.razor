@@ -2,17 +2,17 @@
 
 <nav class="nav-bar">
     <div class="nav-bar__container">
-        <Brand BrandInfo="@AppLayoutData.BrandInfo" />
+        <Brand BrandInfo="@AppLayoutData.User.Brand" />
 
         <div class="nav-bar__links">
-            @foreach (NavigationItem item in AppLayoutData.NavigationLinks)
+            @foreach (NavigationItem item in AppLayoutData.Layout.NavigationLinks)
             {
                 <NavLinkItem NavigationLinkInfo="item" LinkType="TargetUrlFormat.SlashPrefix" />
             }
         </div>
 
         <div class="nav-bar__contact-link">
-            <NavLinkItem NavigationLinkInfo="@AppLayoutData.ContactLink" />
+            <NavLinkItem NavigationLinkInfo="@AppLayoutData.Layout.ContactMeLink" />
         </div>
 
         <button type="button" class="nav-bar__toggle-btn nav-bar__toggle-btn--mask" title="Close menu"
@@ -26,7 +26,7 @@
     private DotNetObjectReference<NavMenu>? dotNetRef;
 
     [Inject] private IJSRuntime Js { get; set; } = null!;
-    [Inject] private IAppLayoutData AppLayoutData { get; set; } = null!;
+    [Inject] private AppContent AppLayoutData { get; set; } = null!;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

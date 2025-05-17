@@ -1,3 +1,4 @@
+@page "/contact"
 <div class="contact">
 	<h2 class="contact__title">Contact Me</h2>
 
@@ -8,7 +9,7 @@
 		<div class="contact__social">
 			<p>Follow me:</p>
 			<ul class="contact__social-list">
-				@foreach (var social in AppLayoutData.SocialMediaIcons)
+				@foreach (var social in AppLayoutData.User.SocialLinks)
 				{
 					<li class="contact__social-item">
 						<a href="@social.ProfilePageUrl" class="contact__social-link" target="_blank">
@@ -22,5 +23,5 @@
 </div>
 
 @code {
-	[Inject] private IAppLayoutData AppLayoutData { get; set; } = null!;
+	[Inject] private AppContent AppLayoutData { get; set; } = null!;
 }

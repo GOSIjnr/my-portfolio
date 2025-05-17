@@ -6,10 +6,10 @@
         <div class="side-bar__content">
             <div class="side-bar__links">
                 <div class="side-bar__logo">
-                    <Brand BrandInfo="AppLayoutData.BrandInfo" OnBrandClick="CloseMenu" />
+                    <Brand BrandInfo="_brand" OnBrandClick="CloseMenu" />
                 </div>
 
-                @foreach (NavigationItem item in AppLayoutData.NavigationLinks)
+                @foreach (NavigationItem item in _navigationItems)
                 {
                     <div class="side-bar__link">
                         <NavLinkItem NavigationLinkInfo="item" LinkType="@TargetUrlFormat.SlashPrefix"
@@ -19,8 +19,8 @@
             </div>
 
             <div class="side-bar__contact">
-                <NavLinkItem NavigationLinkInfo="AppLayoutData.ContactLinkAccent"
-                    LinkType="@TargetUrlFormat.SlashPrefix" OnNavMenuItemClick="CloseMenu" />
+                <NavLinkItem NavigationLinkInfo="@_contactLink"
+                    LinkType="@TargetUrlFormat.SlashPrefix" OnNavMenuItemClick="@CloseMenu" />
             </div>
         </div>
     </div>
@@ -35,8 +35,12 @@
     [Parameter, EditorRequired] public bool IsOpened { get; set; } = false;
     [Parameter] public EventCallback OnClose { get; set; }
 
-    [Inject] private IAppLayoutData AppLayoutData { get; set; } = null!;
+    [Inject] private AppContent AppContent { get; set; } = null!;
     [Inject] private IJSRuntime JS { get; set; } = null!;
+
+    private BrandInfo _brand => AppContent.User.Brand;
+    private List<NavigationItem> _navigationItems => AppContent.Layout.NavigationLinks;
+    private NavigationItem _contactLink => AppContent.Layout.ContactMeLinkAccent;
 
     private readonly string _sidebarSelector = "side-bar";
 

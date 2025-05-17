@@ -1,5 +1,4 @@
-﻿@inject IJSRuntime Js
-@implements IDisposable
+﻿@implements IDisposable
 
 <nav class="nav-bar">
     <div class="nav-bar__container">
@@ -16,15 +15,17 @@
             <NavLinkItem NavigationLinkInfo="@AppLayoutData.ContactLink" />
         </div>
 
-        <img class="nav-bar__toggle" src="images/menu-burger.svg" @onclick="ToggleSidebar" />
+        <button type="button" class="nav-bar__toggle-btn nav-bar__toggle-btn--mask" title="Close menu"
+            @onclick="ToggleSidebar" />
     </div>
-</nav>
 
-<SideMenu IsOpened="@isSidebarOpen" OnClose="@ToggleSidebar" />
+    <SideMenu IsOpened="@isSidebarOpen" OnClose="@ToggleSidebar" />
+</nav>
 
 @code {
     private DotNetObjectReference<NavMenu>? dotNetRef;
 
+    [Inject] private IJSRuntime Js { get; set; } = null!;
     [Inject] private IAppLayoutData AppLayoutData { get; set; } = null!;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

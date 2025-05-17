@@ -1,6 +1,6 @@
 <div class="side-bar">
     <div class="side-bar__slider @(IsOpened ? "side-bar__slider--open" : "")">
-        <button type="button" class="side-bar__close-btn side-bar__close-btn--mask" title="Close menu"
+        <button class="side-bar__close-btn side-bar__close-btn--mask" type="button" title="Close menu"
             @onclick="CloseMenu" />
 
         <div class="side-bar__content">
@@ -38,11 +38,11 @@
     [Inject] private IAppLayoutData AppLayoutData { get; set; } = null!;
     [Inject] private IJSRuntime JS { get; set; } = null!;
 
-    private readonly string sidebarSelector = "side-bar";
+    private readonly string _sidebarSelector = "side-bar";
 
     protected override async Task OnParametersSetAsync()
     {
-        await ToggleScrollLock(IsOpened, sidebarSelector);
+        await ToggleScrollLock(IsOpened, _sidebarSelector);
     }
 
     private async Task ToggleScrollLock(bool enabled, string targetSelector)
@@ -50,11 +50,10 @@
         if (enabled)
         {
             await JS.InvokeVoidAsync("sidebarScrollLock.disableScroll", targetSelector);
+            return;
         }
-        else
-        {
-            await JS.InvokeVoidAsync("sidebarScrollLock.enableScroll");
-        }
+
+        await JS.InvokeVoidAsync("sidebarScrollLock.enableScroll");
     }
 
     public async Task CloseMenu()

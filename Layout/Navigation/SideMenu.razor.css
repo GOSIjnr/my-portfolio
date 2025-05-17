@@ -9,12 +9,16 @@
 	--sidebar-separator: var(--color-1-light);
 	--sidebar-close-btn-color-1: var(--color-2-lighter);
 	--sidebar-close-btn-color-2: var(--color-2-light);
+
+	--sidebar-close-image: url("images/close-button.svg");
 }
 
 .side-bar {
+	width: max-content;
 	position: fixed;
 	inset: 0;
 	z-index: 1000;
+	background-color: aqua;
 	pointer-events: none;
 }
 
@@ -57,8 +61,8 @@
 }
 
 .side-bar__close-btn--mask {
-	-webkit-mask-image: url("images/close-button.svg");
-	mask-image: url("images/close-button.svg");
+	-webkit-mask-image: var(--sidebar-close-image);
+	mask-image: var(--sidebar-close-image);
 	-webkit-mask-repeat: no-repeat;
 	mask-repeat: no-repeat;
 	-webkit-mask-size: contain;

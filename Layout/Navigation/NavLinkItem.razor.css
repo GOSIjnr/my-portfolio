@@ -1,12 +1,10 @@
 .nav-item {
 	--navitem-padding: 0.6rem;
-	--navitem-font-size: 0.9rem;
+	--navitem-font-size: 1rem;
 }
 
 .nav-item {
-	font-family: var(--font-family-heading);
 	font-size: var(--navitem-font-size);
-	color: var(--color-primary-muted);
 	width: 100%;
 	height: 100%;
 	cursor: pointer;
@@ -19,49 +17,63 @@
 }
 
 ::deep .nav-item__link {
-	width: inherit;
-	height: inherit;
-	text-decoration: none;
 	color: inherit;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 }
 
 .nav-item__label {
-	padding: var(--navitem-padding);
-	font-weight: bolder;
+	font-weight: bold;
 	display: flex;
-	align-items: center;
-	justify-content: center;
 	text-align: center;
 	white-space: nowrap;
 	text-overflow: ellipsis;
-	height: inherit;
-	width: inherit;
 	overflow: hidden;
 }
 
-.--button {
-	color: var(--color-background-main);
-	border: 1px solid var(--color-background-main);
+.nav-item__label--button {
+	padding: 0.5rem 1rem;
+	color: var(--color-1);
+	background-color: var(--color-2-lighter);
+	border-radius: 100px;
 	justify-content: center;
 }
 
-.--button:hover {
-	color: var(--color-primary-main);
-	background-color: var(--color-background-main);
+.nav-item__label--button:hover {
+	color: var(--color-2-lighter);
+	background-color: transparent;
+	border: 2px solid var(--color-2-lighter);
 }
 
-.--button-accent {
-	color: var(--color-background-main);
-	background-color: var(--color-accent-main);
+.nav-item__label--button-accent {
+	padding: 0.5rem 1rem;
+	color: var(--color-2);
 	justify-content: center;
+	border-radius: 100px;
+	border: 2px solid var(--color-2-lighter);
 }
 
-.--button-accent:hover {
+.nav-item__label--button-accent:hover {
 	color: var(--color-accent-main);
 	background-color: var(--color-background-main);
+}
+
+::deep .nav-item__link--underline {
+	position: relative;
+	color: var(--color-2-lighter);
+	width: 100%;
+	transition: background-color 0.3s, width 0.3s ease;
+}
+
+/* The underline */
+::deep .nav-item__link--underline::after {
+	content: "";
+	position: absolute;
+	bottom: -0.2rem;
+	width: 100%;
+	height: 2px;
+	background-color: var(--color-2-lighter);
+	/* underline color */
+	border-radius: 1px;
+	z-index: -1;
 }
 
 @media (min-width: 576px) {
@@ -79,7 +91,6 @@
 @media (min-width: 992px) {
 	.nav-item {
 		--navitem-padding: 0.9rem;
-		--navitem-font-size: 1rem;
 	}
 
 	.nav-item__label {

@@ -1,10 +1,13 @@
+using MyPortfolio.Helpers;
+
 namespace MyPortfolio.Models.Navigation;
 
-public class NavigationItem(string displayText, string rawTargetUrl, string cssClassName)
+public class NavigationItem(string displayText, string rawTargetUrl, NavigationItemCssType cssClassType, NavigationItemCssActiveType cssActiveClassType)
 {
 	private string _displayText = displayText ?? string.Empty;
 	private string _rawTargetUrl = rawTargetUrl ?? string.Empty;
-	private string _cssClassName = cssClassName ?? string.Empty;
+	private NavigationItemCssType _cssClassType = EnumValidator.ValidateOrDefault(cssClassType, NavigationItemCssType.Normal);
+	private NavigationItemCssActiveType _cssActiveClassType = EnumValidator.ValidateOrDefault(cssActiveClassType, NavigationItemCssActiveType.Normal);
 
 	public string DisplayText
 	{
@@ -18,11 +21,17 @@ public class NavigationItem(string displayText, string rawTargetUrl, string cssC
 		set => _rawTargetUrl = value ?? string.Empty;
 	}
 
-	public string CssClassName
+	public NavigationItemCssType CssClassType
 	{
-		get => _cssClassName;
-		set => _cssClassName = value ?? string.Empty;
+		get => _cssClassType;
+		set => _cssClassType = EnumValidator.ValidateOrDefault(cssClassType, NavigationItemCssType.Normal);
 	}
 
-	public NavigationItem() : this("Lorem ispum", string.Empty, string.Empty) { }
+	public NavigationItemCssActiveType CssActiveClassType
+	{
+		get => _cssActiveClassType;
+		set => _cssActiveClassType = EnumValidator.ValidateOrDefault(cssActiveClassType, NavigationItemCssActiveType.Normal);
+	}
+
+	public NavigationItem() : this("Lorem ispum", string.Empty, NavigationItemCssType.Normal, NavigationItemCssActiveType.Normal) { }
 }

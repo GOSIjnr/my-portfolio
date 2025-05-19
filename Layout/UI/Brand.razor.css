@@ -1,6 +1,6 @@
 .brand {
 	--brand-padding: 0.1rem;
-	--brand-font-size: 1.35rem;
+	--brand-font-size: 1rem;
 	--brand-highlighted-color-1: var(--color-2-lighter);
 	--brand-highlighted-color-2: var(--color-2-light);
 }
@@ -38,24 +38,24 @@
 
 @media (min-width: 576px) {
 	.brand {
-		--brand-font-size: 1.45rem;
+		--brand-font-size: 1.15rem;
 	}
 }
 
 @media (min-width: 768px) {
 	.brand {
-		--brand-font-size: 1.55rem;
+		--brand-font-size: 1.2rem;
 	}
 }
 
 @media (min-width: 992px) {
 	.brand {
-		--brand-font-size: 1.65rem;
+		--brand-font-size: 1.25rem;
 	}
 }
 
 @media (min-width: 1200px) {
 	.brand {
-		--brand-font-size: 1.75rem;
+		--brand-font-size: 1.3rem;
 	}
 }

@@ -17,11 +17,6 @@
                     </div>
                 }
             </div>
-
-            <div class="side-bar__contact">
-                <NavLinkItem NavigationLinkInfo="@_contactLink"
-                    LinkType="@TargetUrlFormat.SlashPrefix" OnNavMenuItemClick="@CloseMenu" />
-            </div>
         </div>
     </div>
 
@@ -40,7 +35,6 @@
 
     private BrandInfo _brand => AppContent.User.Brand;
     private List<NavigationItem> _navigationItems => AppContent.Layout.NavigationLinks;
-    private NavigationItem _contactLink => AppContent.Layout.ContactMeLinkAccent;
 
     private readonly string _sidebarSelector = "side-bar";
 

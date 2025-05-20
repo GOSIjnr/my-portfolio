@@ -8,7 +8,7 @@ public class PortfolioLayoutData : IAppLayoutData
 {
 	private static readonly List<NavigationItem> _navigationLinks =
 	[
-		new("Home", string.Empty, NavigationItemCssType.Rounded, NavigationItemCssActiveType.UnderLine),
+		new("Home", string.Empty, NavigationItemCssType.Normal, NavigationItemCssActiveType.UnderLine),
 		new("Services", "services", NavigationItemCssType.Normal, NavigationItemCssActiveType.UnderLine),
 		new("Resume", "resume", NavigationItemCssType.Normal, NavigationItemCssActiveType.UnderLine),
 		new("Projects", "projects", NavigationItemCssType.Normal, NavigationItemCssActiveType.UnderLine),

@@ -1,20 +1,17 @@
 .side-bar {
-	--sidebar-padding: 1.3rem;
+	--sidebar-padding: 1rem;
 	--sidebar-gap: 2rem;
 	--sidebar-close-btn-size: 1rem;
 	--sidebar-close-btn-padding: 0.4rem;
-
 	--sidebar-color: var(--color-1);
 	--sidebar-overlay-color: #000000;
 	--sidebar-separator: var(--color-1-light);
 	--sidebar-close-btn-color-1: var(--color-2-lighter);
 	--sidebar-close-btn-color-2: var(--color-2-light);
-
 	--sidebar-close-image: url("images/close-button.svg");
 }
 
 .side-bar {
-	width: max-content;
 	position: fixed;
 	inset: 0;
 	z-index: 1000;
@@ -109,28 +106,17 @@
 }
 
 @media (min-width: 576px) {
-	:root {
-		--sidebar-padding: 1rem;
-		--sidebar-gap: 1rem;
+	.side-bar {
+		--sidebar-gap: 2.2rem;
 		--sidebar-close-btn-size: 1.4rem;
 		--sidebar-close-btn-padding: 0.5rem;
 	}
 }
 
 @media (min-width: 768px) {
-	:root {
-		--sidebar-padding: 1.2rem;
-		--sidebar-gap: 1.2rem;
+	.side-bar {
+		--sidebar-gap: 2.6rem;
 		--sidebar-close-btn-size: 1.6rem;
 		--sidebar-close-btn-padding: 0.6rem;
-	}
-}
-
-@media (min-width: 992px) {
-	:root {
-		--sidebar-padding: 1.5rem;
-		--sidebar-gap: 1.5rem;
-		--sidebar-close-btn-size: 1.8rem;
-		--sidebar-close-btn-padding: 0.8rem;
 	}
 }

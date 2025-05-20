@@ -5,53 +5,54 @@
         <Brand BrandInfo="@AppLayoutData.User.Brand" />
 
         <div class="nav-bar__links">
-            @foreach (NavigationItem item in AppLayoutData.Layout.NavigationLinks)
+            @foreach (NavigationItem item in _navigationLinks)
             {
                 <NavLinkItem NavigationLinkInfo="item" LinkType="TargetUrlFormat.SlashPrefix" />
             }
-        </div>
 
-        <div class="nav-bar__contact-link">
-            <NavLinkItem NavigationLinkInfo="@AppLayoutData.Layout.ContactMeLink" />
+            <div class="nav-bar__contact-link">
+                <NavLinkItem NavigationLinkInfo="@AppLayoutData.Layout.ContactMeLink" />
+            </div>
         </div>
 
         <button type="button" class="nav-bar__toggle-btn nav-bar__toggle-btn--mask" title="Close menu"
             @onclick="ToggleSidebar" />
     </div>
 
-    <SideMenu IsOpened="@isSidebarOpen" OnClose="@ToggleSidebar" />
+    <SideMenu IsOpened="@_isSidebarOpen" OnClose="@ToggleSidebar" />
 </nav>
 
 @code {
-    private DotNetObjectReference<NavMenu>? dotNetRef;
-
     [Inject] private IJSRuntime Js { get; set; } = null!;
     [Inject] private AppContent AppLayoutData { get; set; } = null!;
+
+    [JSInvokable]
+    public void OnResize(int width)
+    {
+        if (width >= 992 && _isSidebarOpen)
+        {
+            _isSidebarOpen = false;
+            StateHasChanged();
+        }
+    }
+
+    private bool _isSidebarOpen = false;
+    private void ToggleSidebar() => _isSidebarOpen = !_isSidebarOpen;
+    private DotNetObjectReference<NavMenu>? _objectRefrence;
+
+    private List<NavigationItem> _navigationLinks => AppLayoutData.Layout.NavigationLinks;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            dotNetRef = DotNetObjectReference.Create(this);
-            await Js.InvokeVoidAsync("resizeNotifier.registerResizeCallback", dotNetRef);
+            _objectRefrence = DotNetObjectReference.Create(this);
+            await Js.InvokeVoidAsync("resizeNotifier.registerResizeCallback", _objectRefrence);
         }
     }
-
-    [JSInvokable]
-    public void OnResize(int width)
-    {
-        if (width >= 992 && isSidebarOpen)
-        {
-            isSidebarOpen = false;
-            StateHasChanged();
-        }
-    }
-
-    private bool isSidebarOpen = false;
-    private void ToggleSidebar() => isSidebarOpen = !isSidebarOpen;
 
     public void Dispose()
     {
-        dotNetRef?.Dispose();
+        _objectRefrence?.Dispose();
     }
 }

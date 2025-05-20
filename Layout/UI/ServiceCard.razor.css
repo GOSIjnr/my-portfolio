@@ -1,0 +1,72 @@
+.service-card {
+	background-color: #111118;
+	padding: 20px;
+	border-radius: 12px;
+	position: relative;
+	color: #d1fbe2;
+	font-family: 'Courier New', monospace;
+	border: 1px solid #222;
+	transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+	transform: translateY(-5px);
+}
+
+.service-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.service-number {
+	font-family: var(--font-1);
+	font-size: 1.5rem;
+	font-weight: 700;
+	color: transparent;
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: white;
+}
+
+.circle-button {
+	background-color: #6effc5;
+	border: none;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: all 0.3s ease;
+}
+
+.circle-button:hover {
+	background-color: #3cf6a1;
+}
+
+.arrow {
+	font-size: 1.2rem;
+	color: #111118;
+}
+
+.service-title {
+	font-size: 1.4rem;
+	font-weight: bold;
+	margin-top: 10px;
+	color: #aafcd9;
+}
+
+.service-description {
+	font-size: 0.9rem;
+	color: #aaa;
+	margin-top: 6px;
+	line-height: 1.5;
+}
+
+.underline {
+	margin-top: 15px;
+	height: 1px;
+	background-color: #333;
+	width: 100%;
+}

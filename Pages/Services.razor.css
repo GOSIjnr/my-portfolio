@@ -1,0 +1,28 @@
+body {
+	background-color: #0f0f17;
+	margin: 0;
+	padding: 0;
+	color: #fff;
+	font-family: 'Courier New', monospace;
+}
+
+.services-section {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 60px 20px;
+	text-align: center;
+}
+
+.section-title {
+	font-size: 2.5rem;
+	font-family: var(--font-1);
+	color: #6effc5;
+	margin-bottom: 40px;
+	letter-spacing: 1px;
+}
+
+.services-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	gap: 40px;
+}

@@ -1,0 +1,26 @@
+@inject NavigationManager NavManager
+
+<div class="service-card">
+	<div class="service-header">
+		<span class="service-number">@(ServiceNo.ToString("D2"))</span>
+		<button class="circle-button" @onclick="NavigateToForm">
+			<span class="arrow">&#8595;</span>
+		</button>
+	</div>
+	<h3 class="service-title">@ServiceName</h3>
+	<p class="service-description">@ServiceDescription</p>
+	<div class="underline"></div>
+</div>
+
+@code {
+	[Parameter] public int ServiceNo { get; set; }
+	[Parameter] public string ServiceName { get; set; } = string.Empty;
+	[Parameter] public string ServiceDescription { get; set; } = string.Empty;
+	[Parameter] public string FormPageUrl { get; set; } = "/apply";
+
+	void NavigateToForm()
+	{
+		var url = $"{FormPageUrl}?serviceNo={ServiceNo}";
+		NavManager.NavigateTo(url);
+	}
+}

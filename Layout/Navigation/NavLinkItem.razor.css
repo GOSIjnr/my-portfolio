@@ -1,16 +1,21 @@
 .nav-item {
-	--navitem-padding: 0.6rem;
-	--navitem-font-size: 0.9rem;
+	--navitem-padding: 0.5rem;
+	--navitem-font-size: 0.875rem;
+	--navitem-hover-color: var(--color-2-lighter);
+	--navitem-bg-accent: var(--color-2-lighter);
+	--navitem-color-main: var(--color-1);
+	--navitem-color-accent: var(--color-2-lighter);
+	--navitem-color-light: var(--color-2-light);
+	--navitem-color-lightest: var(--color-3-lighter);
+	--navitem-color-darkest: var(--color-3-darker);
 }
 
 .nav-item {
-	font-family: var(--font-family-heading);
 	font-size: var(--navitem-font-size);
-	color: var(--color-primary-muted);
-	width: 100%;
+	width: auto;
 	height: 100%;
 	cursor: pointer;
-	transition: all 0.35s ease-out;
+	transition: color 0.1s ease-out;
 }
 
 .nav-item:hover,
@@ -19,67 +24,81 @@
 }
 
 ::deep .nav-item__link {
-	width: inherit;
-	height: inherit;
-	text-decoration: none;
 	color: inherit;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+}
+
+::deep .nav-item__link--underline {
+	color: var(--navitem-color-accent);
+	display: inline-block;
+	position: relative;
+}
+
+::deep .nav-item__link--underline::after {
+	background-color: var(--navitem-color-accent);
+	position: absolute;
+	content: "";
+	bottom: -0.2rem;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	transition: transform 0.3s ease;
 }
 
 .nav-item__label {
-	padding: var(--navitem-padding);
-	font-weight: bolder;
+	font-weight: bold;
 	display: flex;
-	align-items: center;
-	justify-content: center;
 	text-align: center;
 	white-space: nowrap;
 	text-overflow: ellipsis;
-	height: inherit;
-	width: inherit;
 	overflow: hidden;
 }
 
-.--button {
-	color: var(--color-background-main);
-	border: 1px solid var(--color-background-main);
+.nav-item__label--button,
+.nav-item__label--button-accent {
+	padding: var(--navitem-padding);
 	justify-content: center;
+	border: 2px solid transparent;
+	transition: all 0.3s ease-out;
+	font-weight: bolder;
 }
 
-.--button:hover {
-	color: var(--color-primary-main);
-	background-color: var(--color-background-main);
+.nav-item__label--button {
+	background-color: var(--navitem-bg-accent);
+	color: var(--navitem-color-main);
 }
 
-.--button-accent {
-	color: var(--color-background-main);
-	background-color: var(--color-accent-main);
-	justify-content: center;
+.nav-item__label--button-accent {
+	border-color: var(--navitem-color-accent);
+	color: var(--navitem-color-accent);
+	background-color: transparent;
 }
 
-.--button-accent:hover {
-	color: var(--color-accent-main);
-	background-color: var(--color-background-main);
+.nav-item__label--button:hover {
+	background-color: var(--navitem-color-light);
+	border: 2px solid var(--navitem-color-light);
+}
+
+.nav-item__label--button-accent:hover {
+	color: var(--navitem-color-main);
+	background-color: var(--navitem-color-darkest);
+	border-color: transparent;
 }
 
 @media (min-width: 576px) {
 	.nav-item {
-		--navitem-padding: 0.7rem;
+		--navitem-font-size: 1.1rem;
 	}
 }
 
 @media (min-width: 768px) {
 	.nav-item {
-		--navitem-padding: 0.8rem;
+		--navitem-font-size: 1.2rem;
 	}
 }
 
 @media (min-width: 992px) {
 	.nav-item {
-		--navitem-padding: 0.9rem;
-		--navitem-font-size: 1rem;
+		--navitem-font-size: 1.1rem;
 	}
 
 	.nav-item__label {
@@ -89,6 +108,6 @@
 
 @media (min-width: 1200px) {
 	.nav-item {
-		--navitem-padding: 1rem;
+		--navitem-font-size: 0.875rem;
 	}
 }

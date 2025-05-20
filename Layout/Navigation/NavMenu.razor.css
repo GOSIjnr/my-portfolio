@@ -1,6 +1,11 @@
 .nav-bar {
-    --nav-bar-padding: 1rem 1.5rem;
-    --nav-bar-toggle-button-size: 1.2rem;
+    --nav-bar-padding: 1rem;
+    --nav-bar-toggle-btn-size: 1.2rem;
+    --nav-bar-toggle-icon-color: var(--color-2-lighter);
+    --nav-bar-toggle-icon-hover-color: var(--color-2-light);
+    --nav-links-gap: 2rem;
+    --nav-contact-width: 200px;
+    --nav-bar-toggle-btn-mask: url("images/menu-button.svg");
 }
 
 .nav-bar {
@@ -15,6 +20,7 @@
     justify-content: space-between;
     flex-wrap: wrap;
     width: 100%;
+    flex: 1;
 }
 
 .nav-bar__links,
@@ -22,58 +28,61 @@
     display: none;
 }
 
-.nav-bar__toggle {
-    color: var(--color-primary-main);
-    width: var(--nav-bar-toggle-button-size);
-    height: var(--nav-bar-toggle-button-size);
-    display: block;
-    background: none;
-    border: none;
+.nav-bar__toggle-btn {
+    width: var(--nav-bar-toggle-btn-size);
+    height: var(--nav-bar-toggle-btn-size);
     cursor: pointer;
-    object-fit: contain;
+    align-self: center;
+    border: none;
+    background: none;
+}
+
+.nav-bar__toggle-btn--mask {
+    -webkit-mask-image: var(--nav-bar-toggle-btn-mask);
+    mask-image: var(--nav-bar-toggle-btn-mask);
+    background-color: var(--nav-bar-toggle-icon-color);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+}
+
+.nav-bar__toggle-btn--mask:hover,
+.nav-bar__toggle-btn--mask:focus {
+    background-color: var(--nav-bar-toggle-icon-hover-color);
 }
 
 @media (min-width: 576px) {
     .nav-bar {
-        --nav-bar-padding: 1rem 2rem;
-        --nav-bar-toggle-button-size: 1.4rem;
+        --nav-bar-toggle-btn-size: 1.4rem;
     }
 }
 
 @media (min-width: 768px) {
     .nav-bar {
-        --nav-bar-padding: 1rem 2.5rem;
-        --nav-bar-toggle-button-size: 1.6rem;
+        --nav-bar-toggle-btn-size: 1.6rem;
     }
 }
 
 @media (min-width: 992px) {
     .nav-bar__links {
+        gap: var(--nav-links-gap);
         display: flex;
-        gap: 0.5rem;
         justify-content: center;
+        align-items: center;
     }
 
     .nav-bar__contact-link {
-        width: 200px;
+        width: var(--nav-contact-width);
         display: flex;
         align-items: center;
     }
 
-    .nav-bar__container {
-        justify-content: space-between;
-    }
-
-    .nav-bar__container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
+    ::deep .nav-bar__contact-link .nav-item {
         width: 100%;
-        flex: 1;
     }
 
-    .nav-bar__toggle {
+    .nav-bar__toggle-btn {
         display: none;
     }
 }

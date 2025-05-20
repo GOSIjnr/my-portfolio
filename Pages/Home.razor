@@ -1,7 +1,7 @@
 ﻿@page "/"
 
 <div class="hero">
-	<img class="hero__background" src="images/backdrop.jpg" alt="Backdrop" />
+	<div class="hero__background" />
 
 	<div class="hero__overlay">
 		<div class="hero__content">
@@ -16,12 +16,12 @@
 
 			<div class="hero__buttons">
 				<div class="hero__button">
-					<NavLinkItem NavigationLinkInfo="@AppLayoutData.ContactLinkAccent"
+					<NavLinkItem NavigationLinkInfo="@AppLayoutData.Layout.ContactMeLinkAccent"
 						LinkType="@TargetUrlFormat.HashPrefix" />
 				</div>
 
 				<div class="hero__button">
-					<NavLinkItem NavigationLinkInfo="@AppLayoutData.ProjectsLink"
+					<NavLinkItem NavigationLinkInfo="@AppLayoutData.Layout.CheckMyProjectsLink"
 						LinkType="@TargetUrlFormat.HashPrefix" />
 				</div>
 			</div>
@@ -32,8 +32,10 @@
 @code {
 	public HomePageContentInfo HomePageContentInfo { get; set; } = new();
 
+	[Inject] private AppContent AppLayoutData { get; set; } = null!;
+
 	protected override void OnInitialized()
 	{
-		HomePageContentInfo = AppLayoutData.HomePageContent;
+		HomePageContentInfo = AppLayoutData.Layout.HomePageContent;
 	}
 }

@@ -1,28 +1,28 @@
 namespace MyPortfolio.Models.UI;
 
-public class BrandInfo(string logoImagePath, string brandDisplayName, string logoAltText)
+public class BrandInfo(string brandDisplayName, string brandHighlightedDisplayName, string brandRawTargetUrl)
 {
-	private string _logoImagePath = logoImagePath ?? string.Empty;
-	private string _brandDisplayName = brandDisplayName ?? string.Empty;
-	private string _logoAltText = logoAltText ?? string.Empty;
-
-	public string LogoImagePath
-	{
-		get { return _logoImagePath; }
-		set { _logoImagePath = value ?? string.Empty; }
-	}
+	private string _brandDisplayName = brandDisplayName;
+	private string _brandHighlightedDisplayName = brandHighlightedDisplayName;
+	private string _brandRawTargetUrl = brandRawTargetUrl;
 
 	public string BrandDisplayName
 	{
-		get { return _brandDisplayName; }
-		set { _brandDisplayName = value ?? string.Empty; }
+		get => _brandDisplayName;
+		set => _brandDisplayName = value ?? string.Empty;
 	}
 
-	public string LogoAltText
+	public string BrandHighlightedDisplayName
 	{
-		get { return _logoAltText; }
-		set { _logoAltText = value ?? string.Empty; }
+		get => _brandHighlightedDisplayName;
+		set => _brandHighlightedDisplayName = value ?? string.Empty;
 	}
 
-	public BrandInfo() : this(string.Empty, "Lorem ipsum", string.Empty) { }
+	public string BrandRawTargetUrl
+	{
+		get => _brandRawTargetUrl;
+		set => _brandRawTargetUrl = value ?? string.Empty;
+	}
+
+	public BrandInfo() : this("Lorem ", "ipsum", string.Empty) { }
 }

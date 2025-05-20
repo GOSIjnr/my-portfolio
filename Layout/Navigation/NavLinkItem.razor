@@ -1,22 +1,30 @@
 <div class="nav-item" @onclick="HandleNavMenuItemClickAsync">
-	<NavLink class="nav-item__link" href="@TargetUrl" Match="NavLinkMatch.All">
-		<span class="nav-item__label @CssModifier">@DisplayText</span>
+	<NavLink class="nav-item__link" ActiveClass="@_cssActiveModifier" href="@_targetUrl" Match="NavLinkMatch.All">
+		<span class="nav-item__label @_cssModifier">@_displayText</span>
 	</NavLink>
 </div>
 
 @code {
-	[Parameter, EditorRequired] public NavigationLinkItemInfo NavigationLinkInfo { get; set; } = new();
+	[Parameter, EditorRequired] public NavigationItem NavigationLinkInfo { get; set; } = new();
 	[Parameter] public TargetUrlFormat LinkType { get; set; } = TargetUrlFormat.HashPrefix;
 	[Parameter] public EventCallback OnNavMenuItemClick { get; set; }
 
-	public string DisplayText => NavigationLinkInfo.DisplayText;
-	public string RawTargetUrl => NavigationLinkInfo.RawTargetUrl;
-	public string TargetUrl => NavigationUrlFormatter.GetFormattedSanitizedTargetUrl(RawTargetUrl, LinkType);
+	private string _displayText => NavigationLinkInfo.DisplayText;
+	private string _rawTargetUrl => NavigationLinkInfo.RawTargetUrl;
+	private string _targetUrl => NavigationUrlFormatter.GetFormattedSanitizedTargetUrl(_rawTargetUrl, LinkType);
 
-	public string CssModifier => NavigationLinkInfo.CssClassName switch
+	private string _cssModifier => NavigationLinkInfo.CssClassType switch
 	{
-		"button" => "--button",
-		"button-accent" => "--button-accent",
+		NavigationItemCssType.Normal => string.Empty,
+		NavigationItemCssType.Rounded => "nav-item__label--button",
+		NavigationItemCssType.RoundedInverted => "nav-item__label--button-accent",
+		_ => string.Empty,
+	};
+
+	private string _cssActiveModifier => NavigationLinkInfo.CssActiveClassType switch
+	{
+		NavigationItemCssActiveType.Normal => string.Empty,
+		NavigationItemCssActiveType.UnderLine => "nav-item__link--underline",
 		_ => string.Empty,
 	};
 

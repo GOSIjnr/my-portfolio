@@ -1,35 +1,38 @@
 .service-card {
-	background-color: #111118;
-	padding: 20px;
-	border-radius: 12px;
-	position: relative;
-	color: #d1fbe2;
-	font-family: 'Courier New', monospace;
-	border: 1px solid #222;
-	transition: transform 0.3s ease;
+	--service-card-padding: 2rem;
+	--service-card-border-color: var(--color-1-light);
+	--service-card-color: var(--color-3-lighter);
+}
+
+.service-card {
+	padding: var(--service-card-padding);
+	border-bottom: 2px solid var(--service-card-border-color);
+	color: var(--service-card-hover-color);
+
+	/* remove later */
+	/* position: relative; */
 }
 
 .service-card:hover {
-	transform: translateY(-5px);
+	--service-card-color: var(--color-2-lighter);
 }
 
-.service-header {
+.service-card__header {
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
+	justify-content: space-between;
 }
 
-.service-number {
-	font-family: var(--font-1);
-	font-size: 1.5rem;
-	font-weight: 700;
+.service-card__number {
+	font-size: 2rem;
+	font-weight: bold;
 	color: transparent;
 	-webkit-text-stroke-width: 1px;
-	-webkit-text-stroke-color: white;
+	-webkit-text-stroke-color: var(--service-card-color);
 }
 
-.circle-button {
-	background-color: #6effc5;
+.service-card__button {
+	background-color: var(--service-card-color);
 	border: none;
 	border-radius: 50%;
 	width: 40px;
@@ -41,32 +44,26 @@
 	transition: all 0.3s ease;
 }
 
-.circle-button:hover {
-	background-color: #3cf6a1;
+.service-card__button:hover {
+	box-shadow: 0 0 10px rgb(255, 0, 0);
 }
 
-.arrow {
+.service-card__arrow {
 	font-size: 1.2rem;
-	color: #111118;
 }
 
-.service-title {
-	font-size: 1.4rem;
+.service-card__title {
+	font-size: 2rem;
 	font-weight: bold;
-	margin-top: 10px;
-	color: #aafcd9;
+	font-family: var(--font-1);
+	text-align: left;
+	color: var(--service-card-color);
 }
 
-.service-description {
-	font-size: 0.9rem;
-	color: #aaa;
+.service-card__description {
+	font-size: 0.7rem;
 	margin-top: 6px;
 	line-height: 1.5;
-}
-
-.underline {
-	margin-top: 15px;
-	height: 1px;
-	background-color: #333;
-	width: 100%;
+	color: var(--color-3-darker);
+	text-align: left;
 }

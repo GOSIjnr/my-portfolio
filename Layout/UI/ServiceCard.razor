@@ -1,15 +1,14 @@
 @inject NavigationManager NavManager
 
 <div class="service-card">
-	<div class="service-header">
-		<span class="service-number">@(ServiceNo.ToString("D2"))</span>
-		<button class="circle-button" @onclick="NavigateToForm">
-			<span class="arrow">&#8595;</span>
+	<div class="service-card__header">
+		<span class="service-card__number">@(ServiceNo.ToString("D2"))</span>
+		<button class="service-card__button" @onclick="NavigateToForm">
+			<span class="service-card__arrow">&#8595;</span>
 		</button>
 	</div>
-	<h3 class="service-title">@ServiceName</h3>
-	<p class="service-description">@ServiceDescription</p>
-	<div class="underline"></div>
+	<h3 class="service-card__title">@ServiceName</h3>
+	<p class="service-card__description">@ServiceDescription</p>
 </div>
 
 @code {

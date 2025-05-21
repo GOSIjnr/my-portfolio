@@ -3,11 +3,11 @@
 <div class="about-me">
     <div class="about-me__content">
         <div class="about-me__profile">
-            <img class="about-me__profile-img" src="@AppLayoutData.User.ProfileImageUrl"
-                alt="@AppLayoutData.User.ProfileImageUrl" />
+            <img class="about-me__profile-img" src="@AppContent.User.ProfileImageUrl"
+                alt="@AppContent.User.ProfileImageUrl" />
 
             <div class="about-me__social-icons">
-                @foreach (var icon in AppLayoutData.User.SocialLinks)
+                @foreach (var icon in AppContent.User.SocialLinks)
                 {
                     <a class="about-me__social-link" href="@icon.ProfilePageUrl" target="_blank" rel="noopener noreferrer"
                         title="@icon.PlatformName">
@@ -18,12 +18,12 @@
         </div>
 
         <div class="about-me__details">
-            <h3 class="about-me__title">@AppLayoutData.User.AboutMeTitle</h3>
-            <p class="about-me__description">@AppLayoutData.User.AboutMeDescription</p>
+            <h3 class="about-me__title">@AppContent.User.AboutMeTitle</h3>
+            <p class="about-me__description">@AppContent.User.AboutMeDescription</p>
         </div>
     </div>
 </div>
 
 @code {
-    [Inject] private AppContent AppLayoutData { get; set; } = null!;
+    [Inject] private AppContent AppContent { get; set; } = null!;
 }

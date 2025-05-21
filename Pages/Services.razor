@@ -1,12 +1,10 @@
 @page "/services"
 
 <div class="services-section">
-	<h2 class="section-title">Our Services</h2>
-
 	<div class="services-grid">
-		@for (int i = 0; i < ServiceCards.Count; i++)
+		@for (int i = 0; i < _serviceCards.Count - 0; i++)
 		{
-			var service = ServiceCards[i];
+			var service = _serviceCards[i];
 
 			<ServiceCard ServiceNo="i + 1" ServiceName="@service.Name" ServiceDescription="@service.Description"
 				FormPageUrl="/contact" />
@@ -15,17 +13,7 @@
 </div>
 
 @code {
-	public class ServiceModel
-	{
-		public string Name { get; set; } = string.Empty;
-		public string Description { get; set; } = string.Empty;
-	}
+	[Inject] public AppContent AppContent { get; set; } = null!;
 
-	private List<ServiceModel> ServiceCards = new()
-{
-new ServiceModel { Name = "Web Development", Description = "Responsive and scalable web applications." },
-new ServiceModel { Name = "UI/UX Design", Description = "Intuitive design focused on user experience." },
-new ServiceModel { Name = "Logo Design", Description = "Creative identity crafted for your brand." },
-new ServiceModel { Name = "SEO", Description = "Maximize visibility and drive traffic organically." }
-};
+	private List<ServiceInfo> _serviceCards => AppContent.User.ServiceInfos;
 }

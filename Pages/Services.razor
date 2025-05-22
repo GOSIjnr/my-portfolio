@@ -1,13 +1,10 @@
 @page "/services"
 
-<div class="services-section">
+<div class="services">
 	<div class="services-grid">
-		@for (int i = 0; i < _serviceCards.Count - 0; i++)
+		@for (int i = 0; i < _serviceCards.Count; i++)
 		{
-			var service = _serviceCards[i];
-
-			<ServiceCard ServiceNo="i + 1" ServiceName="@service.Name" ServiceDescription="@service.Description"
-				FormPageUrl="/contact" />
+			<ServiceCard ServiceNo="i + 1" Service="@_serviceCards[i]" FormPageUrl="/contact"  />
 		}
 	</div>
 </div>

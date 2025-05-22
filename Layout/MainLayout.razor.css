@@ -1,28 +1,48 @@
 .page {
+    min-height: 100svh;
     display: flex;
     flex-direction: column;
-    min-height: 100svh;
+    margin: 0rem;
 }
 
 .page__nav-bar {
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 10;
-
-    background-color: blue;
+    position: static;
 }
 
 .page__content {
-    background-color: brown;
-}
-
-.page-content {
+    position: relative;
     flex: 1;
-    display: flex;
-    flex-direction: column;
+    overflow-y: auto;
     justify-content: center;
     align-items: center;
-    padding: 20px;
-    overflow-y: auto;
+}
+
+@media (min-width: 576px) {
+    .page {
+        margin: 0rem 1rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .page {
+        margin: 0rem 1rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .page {
+        margin: 0rem 2rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .page {
+        margin: 0rem 10rem;
+    }
+}
+
+@media (min-width: 1400px) {
+    .page {
+        margin: 0rem 12rem;
+    }
 }

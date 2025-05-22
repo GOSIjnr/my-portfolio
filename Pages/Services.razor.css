@@ -1,42 +1,36 @@
-.services-section {
-	padding: 1rem;
+.services {
+	--services-padding: 1rem;
+	--services-grid-gap: 40px;
+	--services-grid-columns: 1fr;
+	--services-grid-margin: 1rem 0rem;
+}
+
+.services {
+	padding: var(--services-padding);
 	text-align: center;
 	overflow: hidden;
-	/* Prevent section from affecting page scroll */
+	display: flex;
+	flex-direction: column;
+	flex: 1;
 }
 
 .services-grid {
+	margin: var(--services-grid-margin);
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-	gap: 40px;
+	gap: var(--services-grid-gap);
+	align-self: stretch;
 
-	max-height: 80vh;
-	overflow-y: auto;
-	padding-right: 10px;
-
-	scroll-behavior: smooth;
-
-	/* Firefox custom scroll */
-	scrollbar-color: #ff914d #1a1a1a;
-	scrollbar-width: thin;
+	grid-template-columns: var(--services-grid-columns);
 }
 
-/* WebKit Scrollbar Styling */
-.services-grid::-webkit-scrollbar {
-	width: 10px;
+@media (min-width: 768px) {
+	.services {
+		--services-grid-margin: 2rem 0rem;
+	}
 }
 
-.services-grid::-webkit-scrollbar-track {
-	background: #1a1a1a;
-	border-radius: 5px;
-}
-
-.services-grid::-webkit-scrollbar-thumb {
-	background-color: #ff914d;
-	border-radius: 5px;
-	border: 2px solid #1a1a1a;
-}
-
-.services-grid::-webkit-scrollbar-thumb:hover {
-	background-color: #ffa366;
+@media (min-width: 992px) {
+	.services {
+		--services-grid-columns: repeat(2, 1fr);
+	}
 }

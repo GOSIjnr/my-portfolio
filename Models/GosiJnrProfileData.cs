@@ -22,12 +22,12 @@ public class GosiJnrProfileData : IUserProfileData
 
 	private static readonly List<ServiceInfo> _serviceInfoList =
 	[
-		new("Web Development", "I specialize in creating robust, scalable web applications using the latest technologies and frameworks."),
-		new("Game Development", "I have experience in creating games using Unity and other game engines."),
-		new("UI/UX Design", "I design user interfaces that are intuitive, visually appealing, and easy to use."),
-		new("Project Management", "I manage projects from start to finish, ensuring that deadlines are met and that the project is delivered on time."),
-		new("Data Analysis", "I analyze data to identify trends and insights that can inform business decisions."),
-		new("Software Development", "I develop software applications using various programming languages and frameworks."),
+		new("Full-Stack Web Development", "I build scalable, performant web applications from front-end interfaces to back-end infrastructure using modern frameworks and tools."),
+		new("Game Development", "I design and develop engaging games using Godot, Unity and other engines, focusing on gameplay mechanics, UI, and cross-platform compatibility."),
+		new("Data Analysis & Visualization", "I analyze datasets to uncover insights, trends, and patterns, presenting them through clear visualizations and reports to support data-driven decisions."),
+		new("Front-End Development", "I create responsive, accessible, and user-focused interfaces using HTML, CSS, JavaScript, and modern front-end frameworks like Blazor"),
+		new("Back-End Development", "I develop secure, efficient APIs and server-side logic using technologies such as C# and databases like MySQL."),
+		new("Graphic Design & Digital Art", "I create digital illustrations, brand assets, and visual content for web, games, and print."),
 	];
 
 	public BrandInfo Brand => _brandInfo;

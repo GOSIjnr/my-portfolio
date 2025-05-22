@@ -2,7 +2,7 @@
 
 <nav class="nav-bar">
     <div class="nav-bar__container">
-        <Brand BrandInfo="@AppLayoutData.User.Brand" />
+        <Brand BrandInfo="@AppContent.User.Brand" />
 
         <div class="nav-bar__links">
             @foreach (NavigationItem item in _navigationLinks)
@@ -11,7 +11,7 @@
             }
 
             <div class="nav-bar__contact-link">
-                <NavLinkItem NavigationLinkInfo="@AppLayoutData.Layout.ContactMeLink" />
+                <NavLinkItem NavigationLinkInfo="@AppContent.Layout.ContactMeLink" />
             </div>
         </div>
 
@@ -24,7 +24,7 @@
 
 @code {
     [Inject] private IJSRuntime Js { get; set; } = null!;
-    [Inject] private AppContent AppLayoutData { get; set; } = null!;
+    [Inject] private AppContent AppContent { get; set; } = null!;
 
     [JSInvokable]
     public void OnResize(int width)
@@ -40,7 +40,7 @@
     private void ToggleSidebar() => _isSidebarOpen = !_isSidebarOpen;
     private DotNetObjectReference<NavMenu>? _objectRefrence;
 
-    private List<NavigationItem> _navigationLinks => AppLayoutData.Layout.NavigationLinks;
+    private List<NavigationItem> _navigationLinks => AppContent.Layout.NavigationLinks;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

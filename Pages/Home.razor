@@ -16,12 +16,12 @@
 
 			<div class="hero__buttons">
 				<div class="hero__button">
-					<NavLinkItem NavigationLinkInfo="@AppLayoutData.Layout.ContactMeLinkAccent"
+					<NavLinkItem NavigationLinkInfo="@AppContent.Layout.ContactMeLinkAccent"
 						LinkType="@TargetUrlFormat.HashPrefix" />
 				</div>
 
 				<div class="hero__button">
-					<NavLinkItem NavigationLinkInfo="@AppLayoutData.Layout.CheckMyProjectsLink"
+					<NavLinkItem NavigationLinkInfo="@AppContent.Layout.CheckMyProjectsLink"
 						LinkType="@TargetUrlFormat.HashPrefix" />
 				</div>
 			</div>
@@ -32,10 +32,10 @@
 @code {
 	public HomePageContentInfo HomePageContentInfo { get; set; } = new();
 
-	[Inject] private AppContent AppLayoutData { get; set; } = null!;
+	[Inject] private AppContent AppContent { get; set; } = null!;
 
 	protected override void OnInitialized()
 	{
-		HomePageContentInfo = AppLayoutData.Layout.HomePageContent;
+		HomePageContentInfo = AppContent.Layout.HomePageContent;
 	}
 }

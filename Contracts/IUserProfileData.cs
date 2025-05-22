@@ -1,4 +1,5 @@
 using MyPortfolio.Models.UI;
+using MyPortfolio.Models.Services;
 
 namespace MyPortfolio.Contracts;
 
@@ -9,4 +10,5 @@ public interface IUserProfileData
 	string AboutMeTitle { get; }
 	string AboutMeDescription { get; }
 	List<SocialMediaIconInfo> SocialLinks { get; }
+	List<ServiceInfo> ServiceInfos { get; }
 }

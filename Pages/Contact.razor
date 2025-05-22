@@ -1,4 +1,5 @@
 @page "/contact"
+
 <div class="contact">
 	<h2 class="contact__title">Contact Me</h2>
 
@@ -6,10 +7,11 @@
 		<p class="contact__email">
 			Email: <a href="mailto:gosijnr7@yahoo.com" class="contact__link">gosijnr7@yahoo.com</a>
 		</p>
+
 		<div class="contact__social">
 			<p>Follow me:</p>
 			<ul class="contact__social-list">
-				@foreach (var social in AppLayoutData.User.SocialLinks)
+				@foreach (var social in AppContent.User.SocialLinks)
 				{
 					<li class="contact__social-item">
 						<a href="@social.ProfilePageUrl" class="contact__social-link" target="_blank">
@@ -23,5 +25,22 @@
 </div>
 
 @code {
-	[Inject] private AppContent AppLayoutData { get; set; } = null!;
+	[Inject] private AppContent AppContent { get; set; } = null!;
+	[Inject] private SelectedServiceState SelectedServiceState { get; set; } = null!;
+
+	private ServiceInfo? _selectedService;
+
+	protected override void OnInitialized()
+	{
+		_selectedService = SelectedServiceState.ConsumeSelectedService();
+
+		if (_selectedService != null)
+		{
+			Console.WriteLine($"Selected service received: {_selectedService.Name}");
+		}
+		else
+		{
+			Console.WriteLine("No selected service received.");
+		}
+	}
 }

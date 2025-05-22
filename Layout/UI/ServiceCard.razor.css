@@ -98,7 +98,6 @@
 	flex-grow: 1;
 }
 
-/* Responsive variable overrides */
 @media (min-width: 576px) {
 	.service-card {
 		--service-card-title-size: 1.6rem;

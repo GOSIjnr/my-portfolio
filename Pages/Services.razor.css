@@ -14,7 +14,7 @@
 	flex: 1;
 }
 
-.services-grid {
+.services__grid {
 	margin: var(--services-grid-margin);
 	display: grid;
 	gap: var(--services-grid-gap);

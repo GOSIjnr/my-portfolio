@@ -14,16 +14,16 @@
 @code {
 	[Parameter, EditorRequired] public int ServiceNo { get; set; }
 	[Parameter, EditorRequired] public ServiceInfo Service { get; set; } = new();
-	[Parameter, EditorRequired] public string FormPageUrl { get; set; } = "/apply";
 
-	[Inject] public NavigationManager NavigationManager { get; set; } = null!;
+	[Inject] private NavigationManager NavigationManager { get; set; } = null!;
+	[Inject] private SelectedServiceState SelectedServiceState { get; set; } = null!;
 
 	private string _serviceName => Service.Name;
 	private string _serviceDescription => Service.Description;
 
 	void NavigateToForm()
 	{
-		var url = $"{FormPageUrl}";
-		NavigationManager.NavigateTo(url);
+		SelectedServiceState.SetSelectedService(Service);
+		NavigationManager.NavigateTo("/contact");
 	}
 }

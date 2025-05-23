@@ -1,28 +1,45 @@
 @page "/contact"
 
-<div class="contact">
-	<h2 class="contact__title">Contact Me</h2>
+<div class="contact-container">
+	<div class="contact-grid">
+		<div class="contact-form-box">
+			<h2 class="contact-title">Let's work together</h2>
+			<p class="contact-subtitle">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt sit illo esse commodi.
+			</p>
 
-	<div class="contact__info">
-		<p class="contact__email">
-			Email: <a href="mailto:gosijnr7@yahoo.com" class="contact__link">gosijnr7@yahoo.com</a>
-		</p>
+			<form class="contact-form">
+				<InputField Placeholder="First name" />
+				<InputField Placeholder="Last name" />
+				<InputField Placeholder="Email address" />
+				<InputField Placeholder="Phone number" />
 
-		<div class="contact__social">
-			<p>Follow me:</p>
-			<ul class="contact__social-list">
-				@foreach (var social in AppContent.User.SocialLinks)
-				{
-					<li class="contact__social-item">
-						<a href="@social.ProfilePageUrl" class="contact__social-link" target="_blank">
-							<img src="@social.IconImageUrl" class="contact__social-icon" />
-						</a>
-					</li>
-				}
-			</ul>
+				<div class="form-group">
+					<select class="select-service">
+						<option selected disabled>Select a service</option>
+						<option>Web Development</option>
+						<option>UI/UX Design</option>
+						<option>Logo Design</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<textarea class="message-box" placeholder="Type your message here."></textarea>
+				</div>
+
+				<button type="submit" class="submit-button">Send message</button>
+			</form>
+		</div>
+
+		<div class="contact-info">
+			<ContactOption Icon="📞" Title="Phone" Detail="(+40) 321 654 876" />
+			<ContactOption Icon="📧" Title="Email" Detail="youremail@email.com" />
+			<ContactOption Icon="📍" Title="Address" Detail="Code Corner, Tech Town 13579" />
 		</div>
 	</div>
 </div>
+
+
 
 @code {
 	[Inject] private AppContent AppContent { get; set; } = null!;

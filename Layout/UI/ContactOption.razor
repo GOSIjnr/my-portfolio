@@ -1,0 +1,13 @@
+<div class="contact-option">
+	<span class="contact-icon">@Icon</span>
+	<div>
+		<p class="contact-title">@Title</p>
+		<p class="contact-detail">@Detail</p>
+	</div>
+</div>
+
+@code {
+	[Parameter] public string Icon { get; set; }
+	[Parameter] public string Title { get; set; }
+	[Parameter] public string Detail { get; set; }
+}

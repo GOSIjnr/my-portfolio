@@ -8,27 +8,27 @@
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt sit illo esse commodi.
 			</p>
 
-			<form class="contact-form">
-				<InputField Placeholder="First name" />
-				<InputField Placeholder="Last name" />
-				<InputField Placeholder="Email address" />
-				<InputField Placeholder="Phone number" />
+			<EditForm Model="_formModel" OnValidSubmit="HandleValidSubmit">
+				<DataAnnotationsValidator />
+				<ValidationSummary />
 
-				<div class="form-group">
-					<select class="select-service">
-						<option selected disabled>Select a service</option>
-						<option>Web Development</option>
-						<option>UI/UX Design</option>
-						<option>Logo Design</option>
-					</select>
-				</div>
+				<InputText @bind-Value="_formModel.FirstName" class="input-field" placeholder="First name" />
+				<InputText @bind-Value="_formModel.LastName" class="input-field" placeholder="Last name" />
+				<InputText @bind-Value="_formModel.Email" class="input-field" placeholder="Email address" />
+				<InputText @bind-Value="_formModel.Phone" class="input-field" placeholder="Phone number" />
 
-				<div class="form-group">
-					<textarea class="message-box" placeholder="Type your message here."></textarea>
-				</div>
+				<select @bind="_formModel.Service" class="select-service">
+					<option disabled selected value="">Select a service</option>
+					<option>Web Development</option>
+					<option>UI/UX Design</option>
+					<option>Logo Design</option>
+				</select>
+
+				<InputTextArea @bind-Value="_formModel.Message" class="message-box"
+					placeholder="Type your message here." />
 
 				<button type="submit" class="submit-button">Send message</button>
-			</form>
+			</EditForm>
 		</div>
 
 		<div class="contact-info">
@@ -39,12 +39,11 @@
 	</div>
 </div>
 
-
-
 @code {
 	[Inject] private AppContent AppContent { get; set; } = null!;
 	[Inject] private SelectedServiceState SelectedServiceState { get; set; } = null!;
 
+	private ContactFormModel _formModel = new();
 	private ServiceInfo? _selectedService;
 
 	protected override void OnInitialized()
@@ -59,5 +58,10 @@
 		{
 			Console.WriteLine("No selected service received.");
 		}
+	}
+
+	private void HandleValidSubmit()
+	{
+		Console.WriteLine("Email sent successfully!");
 	}
 }

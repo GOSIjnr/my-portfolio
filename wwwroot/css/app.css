@@ -61,7 +61,7 @@ code,
 kbd,
 samp,
 pre {
-    font-family: var(--font-1);
+    font-family: var(--font-2);
     font-size: 1em;
 }
 
@@ -80,8 +80,9 @@ input,
 optgroup,
 select,
 textarea {
-    font-family: inherit;
-    font-size: 100%;
+	color: var(--color-3-lighter);
+    font-family: var(--font-2);
+    font-size: 0.875rem;
     line-height: 1.15;
     margin: 0;
 }

@@ -1,5 +1,4 @@
 .contact-container {
-	background-color: black;
 	color: white;
 	padding: 2rem;
 	max-width: 1200px;
@@ -22,7 +21,7 @@
 }
 
 .contact-form-box {
-	background-color: #111;
+	background-color: var(--color-1-light);
 	padding: 2rem;
 	border-radius: 10px;
 	flex: 1;
@@ -60,6 +59,19 @@ textarea {
 	border-radius: 5px;
 }
 
+::deep InputText {
+	padding: 0.75rem;
+	background-color: #111;
+	border: 1px solid #444;
+	color: white;
+	border-radius: 5px;
+}
+
+::deep InputText:focus {
+	border-color: orange;
+	outline: none;
+}
+
 input:focus,
 select:focus,
 textarea:focus {
@@ -80,7 +92,7 @@ textarea:focus {
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
-	transition: background 0.3s ease;
+	transition: all 0.3s ease;
 }
 
 .submit-button:hover {

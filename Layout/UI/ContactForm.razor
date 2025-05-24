@@ -1,0 +1,46 @@
+@using System.Text.Json
+
+<EditForm Model="_formModel" OnValidSubmit="HandleValidSubmit">
+	<DataAnnotationsValidator />
+	<ValidationSummary />
+
+	<h2 class="contact-title">Let's work together</h2>
+	<p class="contact-subtitle">
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt sit illo esse commodi.
+	</p>
+
+	<div class="form-group">
+		<InputText @bind-Value="_formModel.FirstName" class="input-field" placeholder="First name" />
+		<ValidationMessage For="@(() => _formModel.FirstName)" />
+
+		<InputText @bind-Value="_formModel.LastName" class="input-field" placeholder="Last name" />
+		<ValidationMessage For="@(() => _formModel.LastName)" />
+
+		<InputText @bind-Value="_formModel.Email" class="input-field" placeholder="Email address" />
+		<ValidationMessage For="@(() => _formModel.Email)" />
+
+		<InputText @bind-Value="_formModel.Phone" class="input-field" placeholder="Phone number" />
+		<ValidationMessage For="@(() => _formModel.Phone)" />
+
+		<select @bind="_formModel.Service" class="select-service">
+			<option disabled selected value="">Select a service</option>
+			<option>Web Development</option>
+			<option>UI/UX Design</option>
+			<option>Logo Design</option>
+		</select>
+
+		<InputTextArea @bind-Value="_formModel.Message" class="message-box" placeholder="Type your message here." />
+	</div>
+
+	<button type="submit" class="submit-button">Send message</button>
+</EditForm>
+
+@code {
+	private ContactFormModel _formModel = new();
+
+	private void HandleValidSubmit()
+	{
+		Console.WriteLine("Email sent successfully!");
+		Console.WriteLine(JsonSerializer.Serialize(_formModel));
+	}
+}

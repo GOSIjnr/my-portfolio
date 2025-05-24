@@ -1,9 +1,9 @@
-namespace MyPortfolio.Models.Services;
+namespace MyPortfolio.Models.Service;
 
 public class ServiceInfo(string name, string description)
 {
-	private string _name = name;
-	private string _description = description;
+	private string _name = name ?? string.Empty;
+	private string _description = description ?? string.Empty;
 
 	public string Name
 	{

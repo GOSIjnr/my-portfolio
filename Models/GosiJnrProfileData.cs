@@ -1,6 +1,6 @@
 using MyPortfolio.Contracts;
 using MyPortfolio.Models.UI;
-using MyPortfolio.Models.Services;
+using MyPortfolio.Models.Service;
 
 namespace MyPortfolio.Models;
 

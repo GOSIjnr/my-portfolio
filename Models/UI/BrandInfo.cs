@@ -2,9 +2,9 @@ namespace MyPortfolio.Models.UI;
 
 public class BrandInfo(string brandDisplayName, string brandHighlightedDisplayName, string brandRawTargetUrl)
 {
-	private string _brandDisplayName = brandDisplayName;
-	private string _brandHighlightedDisplayName = brandHighlightedDisplayName;
-	private string _brandRawTargetUrl = brandRawTargetUrl;
+	private string _brandDisplayName = brandDisplayName ?? string.Empty;
+	private string _brandHighlightedDisplayName = brandHighlightedDisplayName ?? string.Empty;
+	private string _brandRawTargetUrl = brandRawTargetUrl ?? string.Empty;
 
 	public string BrandDisplayName
 	{

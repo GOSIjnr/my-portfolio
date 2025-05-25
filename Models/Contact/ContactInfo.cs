@@ -24,5 +24,5 @@ public class ContactInfo(string iconUrl, string title, string detail)
 		set => _detail = value ?? string.Empty;
 	}
 
-	public ContactInfo() : this("default-icon.svg", "Lorem ispum", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque consequat, faucibus et, et.") { }
+	public ContactInfo() : this("images/web.svg", "Lorem ispum", "dolor sit amet") { }
 }

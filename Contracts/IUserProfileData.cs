@@ -1,5 +1,6 @@
 using MyPortfolio.Models.UI;
 using MyPortfolio.Models.Service;
+using MyPortfolio.Models.Contact;
 
 namespace MyPortfolio.Contracts;
 
@@ -11,4 +12,5 @@ public interface IUserProfileData
 	string AboutMeDescription { get; }
 	List<SocialMediaIconInfo> SocialLinks { get; }
 	List<ServiceInfo> ServiceInfos { get; }
+	List<ContactInfo> ContactInfos { get; }
 }

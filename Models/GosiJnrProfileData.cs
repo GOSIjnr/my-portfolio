@@ -1,6 +1,7 @@
 using MyPortfolio.Contracts;
 using MyPortfolio.Models.UI;
 using MyPortfolio.Models.Service;
+using MyPortfolio.Models.Contact;
 
 namespace MyPortfolio.Models;
 
@@ -30,10 +31,18 @@ public class GosiJnrProfileData : IUserProfileData
 		new("Graphic Design & Digital Art", "I create digital illustrations, brand assets, and visual content for web, games, and print."),
 	];
 
+	private static readonly List<ContactInfo> _contactInfoList =
+	[
+		new("https://api.iconify.design/material-symbols:perm-phone-msg-rounded.svg", "Phone", "+23470 396 024 96"),
+		new("https://api.iconify.design/material-symbols:mail-rounded.svg", "Email", "gosijnr7@yahoo.com"),
+		new("https://api.iconify.design/material-symbols:mail-rounded.svg", "Email (secondary)", "gosijnr7@gmail.com"),
+	];
+
 	public BrandInfo Brand => _brandInfo;
 	public string ProfileImageUrl => _profileImageUrl;
 	public string AboutMeTitle => _aboutMeSectionTitle;
 	public string AboutMeDescription => _aboutMeSectionDescription;
 	public List<SocialMediaIconInfo> SocialLinks => _socialMediaIconList;
 	public List<ServiceInfo> ServiceInfos => _serviceInfoList;
+	public List<ContactInfo> ContactInfos => _contactInfoList;
 }

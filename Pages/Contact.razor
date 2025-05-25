@@ -1,14 +1,15 @@
 @page "/contact"
 @using System.Text.Json
 
-<div class="contact-container">
-	<div class="contact-grid">
+<div class="contact">
+	<div class="contact__grid">
 		<ContactForm />
 
-		<div class="contact-info">
-			<ContactOption Icon="📞" Title="Phone" Detail="(+40) 321 654 876" />
-			<ContactOption Icon="📧" Title="Email" Detail="youremail@email.com" />
-			<ContactOption Icon="📍" Title="Address" Detail="Code Corner, Tech Town 13579" />
+		<div class="contact__info">
+			@foreach (ContactInfo info in AppContent.User.ContactInfos)
+			{
+				<ContactOption ContactInfo="@info" />
+			}
 		</div>
 	</div>
 </div>

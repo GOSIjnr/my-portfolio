@@ -1,13 +1,31 @@
-<div class="contact-option">
-	<span class="contact-icon">@Icon</span>
-	<div>
-		<p class="contact-title">@Title</p>
-		<p class="contact-detail">@Detail</p>
+<div class="contact">
+	<div class="contact__icon-holder">
+		<div class="contact__icon" id="@_contactIconId" />
+	</div>
+
+	<div class="contact__text">
+		<p class="contact__title">@_contactTitle</p>
+		<p class="contact__detail">@_contactDetail</p>
 	</div>
 </div>
 
 @code {
-	[Parameter] public string Icon { get; set; }
-	[Parameter] public string Title { get; set; }
-	[Parameter] public string Detail { get; set; }
+	[Parameter, EditorRequired] public ContactInfo ContactInfo { get; set; } = new();
+
+	[Inject] private IJSRuntime JS { get; set; } = null!;
+
+	private string _contactIconId = $"contact-icon-{Guid.NewGuid():N}";
+	private string _contactIconUrl => ContactInfo.IconUrl;
+	private string _contactTitle => ContactInfo.Title;
+	private string _contactDetail => ContactInfo.Detail;
+
+	private const string FallbackIcon = "images/web.svg";
+
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		if (firstRender)
+		{
+			await JS.InvokeVoidAsync("imageLoader.applyMaskWithFallback", _contactIconId,"--contact-icon-image", _contactIconUrl, FallbackIcon, true);
+		}
+	}
 }

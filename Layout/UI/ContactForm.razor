@@ -1,6 +1,6 @@
 @using System.Text.Json
 
-<div class="cotact-form">
+<div class="contact-form">
 	<EditForm class="contact-form__holder" Model="_formModel" OnValidSubmit="HandleValidSubmit" Enhance>
 		<DataAnnotationsValidator />
 
@@ -13,7 +13,7 @@
 
 		<div class="contact-form__fields">
 			<div class="contact-form__group">
-				<InputText @bind-Value="_formModel.FirstName" class="contact-form__input" placeholder="First name" />
+				<InputText class="contact-form__input" placeholder="First name" @bind-Value="_formModel.FirstName" />
 
 				<span class="contact-form__error">
 					<ValidationMessage For="@(() => _formModel.FirstName)" />
@@ -21,7 +21,7 @@
 			</div>
 
 			<div class="contact-form__group">
-				<InputText @bind-Value="_formModel.LastName" class="contact-form__input" placeholder="Last name" />
+				<InputText class="contact-form__input" placeholder="Last name" @bind-Value="_formModel.LastName" />
 
 				<span class="contact-form__error">
 					<ValidationMessage For="@(() => _formModel.LastName)" />
@@ -29,7 +29,7 @@
 			</div>
 
 			<div class="contact-form__group">
-				<InputText @bind-Value="_formModel.Email" class="contact-form__input" placeholder="Email address" />
+				<InputText class="contact-form__input" placeholder="Email address" @bind-Value="_formModel.Email" />
 
 				<span class="contact-form__error">
 					<ValidationMessage For="@(() => _formModel.Email)" />
@@ -37,7 +37,7 @@
 			</div>
 
 			<div class="contact-form__group">
-				<InputText @bind-Value="_formModel.Phone" class="contact-form__input" placeholder="Phone number" />
+				<InputText class="contact-form__input" placeholder="Phone number" @bind-Value="_formModel.Phone" />
 
 				<span class="contact-form__error">
 					<ValidationMessage For="@(() => _formModel.Phone)" />
@@ -45,19 +45,29 @@
 			</div>
 
 			<div class="contact-form__group">
-				<select @bind="_formModel.Service" class="contact-form__select">
-					<option disabled selected value="">Select a service</option>
+				<div class="custom-select-wrapper">
+					<select class="contact-form__select" @bind="_formModel.Service">
+						<option disabled selected value="">Select a service</option>
 
-					@foreach (string service in ServicesNames)
-					{
-						<option>@service</option>
-					}
-				</select>
+						@foreach (string service in ServicesNames)
+						{
+							<option>@service</option>
+						}
+					</select>
+				</div>
+
+				<span class="contact-form__error">
+					<ValidationMessage For="@(() => _formModel.Service)" />
+				</span>
 			</div>
 
 			<div class="contact-form__group">
-				<InputTextArea @bind-Value="_formModel.Message" class="contact-form__textarea"
-					placeholder="Type your message here." />
+				<InputTextArea class="contact-form__textarea" placeholder="Type your message here."
+					@bind-Value="_formModel.Message" />
+
+				<span class="contact-form__error">
+					<ValidationMessage For="@(() => _formModel.Message)" />
+				</span>
 			</div>
 		</div>
 
@@ -67,9 +77,7 @@
 
 @code {
 	[Parameter, EditorRequired] public List<string> ServicesNames { get; set; } = [];
-
-	[Parameter]
-	public string? SelectedService { get; set; }
+	[Parameter] public string SelectedService { get; set; } = "";
 
 	private ContactFormModel _formModel = new();
 
@@ -83,7 +91,6 @@
 
 	private void HandleValidSubmit()
 	{
-		Console.WriteLine("Email sent successfully!");
 		Console.WriteLine(JsonSerializer.Serialize(_formModel));
 	}
 }

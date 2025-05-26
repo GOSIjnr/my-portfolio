@@ -2,7 +2,7 @@
 	<div class="service-card__header">
 		<span class="service-card__number">@(ServiceNo.ToString("D2"))</span>
 
-		<button class="service-card__button" @onclick="NavigateToForm">
+		<button class="service-card__button" name="navigateButton" @onclick="NavigateToForm">
 			<span class="service-card__arrow">&#8594;</span>
 		</button>
 	</div>

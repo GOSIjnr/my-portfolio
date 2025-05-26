@@ -3,7 +3,7 @@
 
 <div class="contact">
 	<div class="contact__grid">
-		<ContactForm />
+		<ContactForm ServicesNames="@_serviceNames" SelectedService="@_selectedService?.Name" />
 
 		<div class="contact__info">
 			@foreach (ContactInfo info in AppContent.User.ContactInfos)
@@ -20,6 +20,7 @@
 
 	private ContactFormModel _formModel = new();
 	private ServiceInfo? _selectedService;
+	private List<string> _serviceNames = [];
 
 	protected override void OnInitialized()
 	{
@@ -33,6 +34,14 @@
 		{
 			Console.WriteLine("No selected service received.");
 		}
+
+		foreach(ServiceInfo serviceInfo in AppContent.User.ServiceInfos)
+		{
+			_serviceNames.Add(serviceInfo.Name);
+			Console.WriteLine($"Services received: {serviceInfo.Name}");
+		}
+
+		_serviceNames.Add("Others");
 	}
 
 	private void HandleValidSubmit()

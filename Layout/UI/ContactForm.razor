@@ -1,42 +1,85 @@
 @using System.Text.Json
 
-<EditForm Model="_formModel" OnValidSubmit="HandleValidSubmit">
-	<DataAnnotationsValidator />
-	<ValidationSummary />
+<div class="cotact-form">
+	<EditForm class="contact-form__holder" Model="_formModel" OnValidSubmit="HandleValidSubmit" Enhance>
+		<DataAnnotationsValidator />
 
-	<h2 class="contact-title">Let's work together</h2>
-	<p class="contact-subtitle">
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt sit illo esse commodi.
-	</p>
+		<h2 class="contact-form__title">Let's Collaborate</h2>
 
-	<div class="form-group">
-		<InputText @bind-Value="_formModel.FirstName" class="input-field" placeholder="First name" />
-		<ValidationMessage For="@(() => _formModel.FirstName)" />
+		<p class="contact-form__subtitle">
+			I'm excited to hear about your project and how we can create something amazing together. Whether you have
+			questions, ideas, or just want to say hello, feel free to reach out!
+		</p>
 
-		<InputText @bind-Value="_formModel.LastName" class="input-field" placeholder="Last name" />
-		<ValidationMessage For="@(() => _formModel.LastName)" />
+		<div class="contact-form__fields">
+			<div class="contact-form__group">
+				<InputText @bind-Value="_formModel.FirstName" class="contact-form__input" placeholder="First name" />
 
-		<InputText @bind-Value="_formModel.Email" class="input-field" placeholder="Email address" />
-		<ValidationMessage For="@(() => _formModel.Email)" />
+				<span class="contact-form__error">
+					<ValidationMessage For="@(() => _formModel.FirstName)" />
+				</span>
+			</div>
 
-		<InputText @bind-Value="_formModel.Phone" class="input-field" placeholder="Phone number" />
-		<ValidationMessage For="@(() => _formModel.Phone)" />
+			<div class="contact-form__group">
+				<InputText @bind-Value="_formModel.LastName" class="contact-form__input" placeholder="Last name" />
 
-		<select @bind="_formModel.Service" class="select-service">
-			<option disabled selected value="">Select a service</option>
-			<option>Web Development</option>
-			<option>UI/UX Design</option>
-			<option>Logo Design</option>
-		</select>
+				<span class="contact-form__error">
+					<ValidationMessage For="@(() => _formModel.LastName)" />
+				</span>
+			</div>
 
-		<InputTextArea @bind-Value="_formModel.Message" class="message-box" placeholder="Type your message here." />
-	</div>
+			<div class="contact-form__group">
+				<InputText @bind-Value="_formModel.Email" class="contact-form__input" placeholder="Email address" />
 
-	<button type="submit" class="submit-button">Send message</button>
-</EditForm>
+				<span class="contact-form__error">
+					<ValidationMessage For="@(() => _formModel.Email)" />
+				</span>
+			</div>
+
+			<div class="contact-form__group">
+				<InputText @bind-Value="_formModel.Phone" class="contact-form__input" placeholder="Phone number" />
+
+				<span class="contact-form__error">
+					<ValidationMessage For="@(() => _formModel.Phone)" />
+				</span>
+			</div>
+
+			<div class="contact-form__group">
+				<select @bind="_formModel.Service" class="contact-form__select">
+					<option disabled selected value="">Select a service</option>
+
+					@foreach (string service in ServicesNames)
+					{
+						<option>@service</option>
+					}
+				</select>
+			</div>
+
+			<div class="contact-form__group">
+				<InputTextArea @bind-Value="_formModel.Message" class="contact-form__textarea"
+					placeholder="Type your message here." />
+			</div>
+		</div>
+
+		<button type="submit" class="contact-form__submit">Send message</button>
+	</EditForm>
+</div>
 
 @code {
+	[Parameter, EditorRequired] public List<string> ServicesNames { get; set; } = [];
+
+	[Parameter]
+	public string? SelectedService { get; set; }
+
 	private ContactFormModel _formModel = new();
+
+	protected override void OnInitialized()
+	{
+		if (!string.IsNullOrEmpty(SelectedService))
+		{
+			_formModel.Service = SelectedService;
+		}
+	}
 
 	private void HandleValidSubmit()
 	{

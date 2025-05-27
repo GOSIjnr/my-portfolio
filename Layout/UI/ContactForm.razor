@@ -1,14 +1,13 @@
 @using System.Text.Json
+@using System.Timers
 
 <div class="contact-form">
 	<EditForm class="contact-form__holder" Model="_formModel" OnValidSubmit="HandleValidSubmit" Enhance>
 		<DataAnnotationsValidator />
-
 		<h2 class="contact-form__title">Let's Collaborate</h2>
-
 		<p class="contact-form__subtitle">
-			I'm excited to hear about your project and how we can create something amazing together. Whether you have
-			questions, ideas, or just want to say hello, feel free to reach out!
+			I'm excited to hear about your project and how we can create something amazing together.
+			Whether you have questions, ideas, or just want to say hello, feel free to reach out!
 		</p>
 
 		<div class="contact-form__fields">
@@ -28,21 +27,19 @@
 				<InputText class="contact-form__input" placeholder="Phone number" @bind-Value="_formModel.Phone" />
 			</div>
 
-			<!-- Service Selection as Searchable Card Radio Buttons -->
-			<div class="contact-form__group contact-form__group--full">
+			<div class="contact-form__group contact-form__group--full service-select-group">
 				<label class="contact-form__label" for="serviceSearch">Select a service</label>
 
-				<input id="serviceSearch" type="text" placeholder="Search services..." class="contact-form__search"
-					@bind="serviceSearch" @bind:event="oninput" />
+				<div class="service-search-wrapper">
+					<SearchInput @bind-Search="serviceSearch" Delay="400" Placeholder="Search services..."
+						OnClear="ClearSearch" Class="contact-form__search" />
+				</div>
 
-				<div class="contact-form__radio-group">
+				<div class="contact-form__radio-group service-cards-grid" role="radiogroup" aria-label="Services">
 					@foreach (var service in FilteredServices)
 					{
-						<label class="contact-form__radio-card">
-							<input type="radio" name="service" value="@service" @onchange="() => OnServiceSelected(service)"
-								checked="@(service == _formModel.Service)" />
-							<div class="contact-form__radio-content">@service</div>
-						</label>
+						<ServiceRadioCard Service="@service" Selected="(_formModel.Service == service)"
+							OnSelect="OnServiceSelected" />
 					}
 				</div>
 			</div>
@@ -62,21 +59,11 @@
 </div>
 
 @code {
-	[Parameter, EditorRequired] public List<string> ServicesNames { get; set; } = new();
-
+	[Parameter] public List<string> ServicesNames { get; set; } = new();
 	[Parameter] public string SelectedService { get; set; } = "";
 
 	private ContactFormModel _formModel = new();
-
 	private string serviceSearch = "";
-
-	protected override void OnInitialized()
-	{
-		if (!string.IsNullOrEmpty(SelectedService))
-		{
-			_formModel.Service = SelectedService;
-		}
-	}
 
 	private IEnumerable<string> FilteredServices =>
 	string.IsNullOrWhiteSpace(serviceSearch)
@@ -88,18 +75,18 @@
 		_formModel.Service = selectedService;
 	}
 
+	private void ClearSearch()
+	{
+		serviceSearch = "";
+	}
+	private void OnCardKeyDown(KeyboardEventArgs e, string service)
+	{
+		if (e.Key == "Enter" || e.Key == " ")
+			OnServiceSelected(service);
+	}
+
 	private void HandleValidSubmit()
 	{
 		Console.WriteLine(JsonSerializer.Serialize(_formModel));
-	}
-
-	public class ContactFormModel
-	{
-		public string FirstName { get; set; } = "";
-		public string LastName { get; set; } = "";
-		public string Email { get; set; } = "";
-		public string Phone { get; set; } = "";
-		public string Service { get; set; } = "";
-		public string Message { get; set; } = "";
 	}
 }

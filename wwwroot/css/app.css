@@ -1,6 +1,6 @@
 :root {
-    --font-1: "JetBrains Mono", monospace;
-    --font-2: "DM Sans", sans-serif;
+    --font-1: "JetBrains Mono", Consolas, "Liberation Mono", Menlo, monospace;
+    --font-2: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
 
     --color-1: #141416;
     --color-2: #ff6600;
@@ -80,7 +80,7 @@ input,
 optgroup,
 select,
 textarea {
-	color: var(--color-3-lighter);
+    color: var(--color-3-lighter);
     font-family: var(--font-2);
     font-size: 0.875rem;
     line-height: 1.15;

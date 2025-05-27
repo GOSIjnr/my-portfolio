@@ -1,0 +1,48 @@
+@using System.Timers
+<input type="text" class="@Class" value="@InputValue" placeholder="@Placeholder" @oninput="HandleInput" />
+
+@if (!string.IsNullOrEmpty(InputValue))
+{
+	<button type="button" class="btn-icon btn-clear" @onclick="ClearInput" aria-label="Clear search"></button>
+}
+
+@code {
+	[Parameter] public string Search { get; set; } = "";
+	[Parameter] public EventCallback<string> SearchChanged { get; set; }
+	[Parameter] public int Delay { get; set; } = 400;
+	[Parameter] public string? Placeholder { get; set; }
+	[Parameter] public string? Class { get; set; }
+	[Parameter] public EventCallback OnClear { get; set; }
+
+	private Timer? debounceTimer;
+	private string InputValue = "";
+
+	protected override void OnInitialized()
+	{
+		InputValue = Search;
+	}
+
+	private void HandleInput(ChangeEventArgs e)
+	{
+		InputValue = e.Value?.ToString() ?? "";
+
+		debounceTimer?.Stop();
+		debounceTimer?.Dispose();
+
+		debounceTimer = new Timer(Delay);
+		debounceTimer.Elapsed += async (_, _) =>
+		{
+			await InvokeAsync(() => SearchChanged.InvokeAsync(InputValue));
+			await InvokeAsync(StateHasChanged);
+		};
+		debounceTimer.AutoReset = false;
+		debounceTimer.Start();
+	}
+
+	private async Task ClearInput()
+	{
+		InputValue = "";
+		await SearchChanged.InvokeAsync("");
+		await OnClear.InvokeAsync();
+	}
+}

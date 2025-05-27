@@ -225,3 +225,131 @@
 	flex: 1;
 	text-align: center;
 }
+
+/* ==== Service Selection Vertical & Card Style ==== */
+
+::deep .service-select-group {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+::deep .contact-form__label {
+	font-weight: 700;
+	font-size: 1rem;
+	color: var(--color-3-lighter);
+}
+
+::deep .service-search-wrapper {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-bottom: 1rem;
+}
+
+::deep .contact-form__search {
+	flex-grow: 1;
+	padding: 0.5rem 1rem;
+	font-size: 0.875rem;
+	background-color: var(--color-1-light);
+	color: var(--color-3-lighter);
+	border: 1px solid var(--color-1-lighter);
+	border-radius: 6px;
+	transition: border-color 0.3s;
+}
+
+::deep .contact-form__search:focus {
+	outline: none;
+	border-color: var(--color-2);
+}
+
+::deep .btn-icon {
+	width: 32px;
+	height: 32px;
+	border: none;
+	background-color: var(--color-1-light);
+	cursor: pointer;
+	border-radius: 6px;
+	transition: background-color 0.3s;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+}
+
+::deep .btn-icon:hover {
+	background-color: var(--color-2-light);
+}
+
+/* Search button with magnifying glass SVG mask */
+::deep .btn-search {
+	-webkit-mask-image: url('data:image/svg+xml;utf8,<svg fill="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16a6.471 6.471 0 004.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zM10 14a4.5 4.5 0 110-9 4.5 4.5 0 010 9z"/></svg>');
+	mask-image: url('data:image/svg+xml;utf8,<svg fill="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16a6.471 6.471 0 004.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zM10 14a4.5 4.5 0 110-9 4.5 4.5 0 010 9z"/></svg>');
+	background-color: var(--color-2);
+}
+
+/* Clear button with X SVG mask */
+::deep .btn-clear {
+	-webkit-mask-image: url('data:image/svg+xml;utf8,<svg fill="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.3 5.71a1 1 0 00-1.42 0L12 10.59 7.11 5.7A1 1 0 105.7 7.11L10.59 12l-4.9 4.89a1 1 0 101.41 1.42L12 13.41l4.89 4.9a1 1 0 001.42-1.41L13.41 12l4.9-4.89a1 1 0 000-1.4z"/></svg>');
+	mask-image: url('data:image/svg+xml;utf8,<svg fill="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.3 5.71a1 1 0 00-1.42 0L12 10.59 7.11 5.7A1 1 0 105.7 7.11L10.59 12l-4.9 4.89a1 1 0 101.41 1.42L12 13.41l4.89 4.9a1 1 0 001.42-1.41L13.41 12l4.9-4.89a1 1 0 000-1.4z"/></svg>');
+	background-color: var(--color-3-lighter);
+}
+
+/* Grid for service cards: auto fit with min width and flexible wrapping */
+::deep .service-cards-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(140px, max-content));
+	gap: 1rem;
+}
+
+/* Individual card */
+::deep .contact-form__radio-card {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: var(--color-1-light);
+	border-radius: 8px;
+	padding: 0.5rem 1rem;
+	cursor: pointer;
+	color: var(--color-3-lighter);
+	box-shadow: 0 1px 3px rgb(0 0 0 / 0.05);
+	user-select: none;
+	transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+	min-width: 140px;
+}
+
+::deep .contact-form__radio-card:hover,
+::deep .contact-form__radio-card:focus {
+	background-color: var(--color-2-light);
+	outline: none;
+	box-shadow: 0 0 6px var(--color-2);
+}
+
+::deep .contact-form__radio-card input[type="radio"] {
+	display: none;
+}
+
+::deep .service-name {
+	font-size: 0.6rem;
+	font-weight: 600;
+	overflow-wrap: anywhere;
+}
+
+::deep .service-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 20px;
+	height: 20px;
+	color: var(--color-2);
+}
+
+::deep .contact-form__radio-card input[type="radio"]:checked+.service-name {
+	font-weight: 700;
+	color: var(--color-2);
+}
+
+::deep .contact-form__radio-card input[type="radio"]:checked~.service-icon {
+	color: var(--color-2);
+}

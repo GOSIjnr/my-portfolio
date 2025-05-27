@@ -1,5 +1,4 @@
 @page "/contact"
-@using System.Text.Json
 
 <div class="contact">
 	<div class="contact__grid">
@@ -18,35 +17,28 @@
 	[Inject] private AppContent AppContent { get; set; } = null!;
 	[Inject] private SelectedServiceState SelectedServiceState { get; set; } = null!;
 
-	private ContactFormModel _formModel = new();
 	private ServiceInfo? _selectedService;
 	private List<string> _serviceNames = [];
 
 	protected override void OnInitialized()
 	{
+		ConsumeSelectedService();
+		PopulateServicesOffered();
+	}
+
+	private void ConsumeSelectedService()
+	{
 		_selectedService = SelectedServiceState.ConsumeSelectedService();
+	}
 
-		if (_selectedService != null)
-		{
-			Console.WriteLine($"Selected service received: {_selectedService.Name}");
-		}
-		else
-		{
-			Console.WriteLine("No selected service received.");
-		}
+	private void PopulateServicesOffered()
+	{
 
-		foreach(ServiceInfo serviceInfo in AppContent.User.ServiceInfos)
+		foreach (ServiceInfo serviceInfo in AppContent.User.ServiceInfos)
 		{
 			_serviceNames.Add(serviceInfo.Name);
-			Console.WriteLine($"Services received: {serviceInfo.Name}");
 		}
 
 		_serviceNames.Add("Others");
-	}
-
-	private void HandleValidSubmit()
-	{
-		Console.WriteLine("Email sent successfully!");
-		Console.WriteLine(JsonSerializer.Serialize(_formModel));
 	}
 }

@@ -1,5 +1,9 @@
 .contact {
-	padding: 1rem;
+	--contact-page-padding: 1rem;
+}
+
+.contact {
+	padding: var(--contact-page-padding);
 	overflow-y: hidden;
 }
 
@@ -15,31 +19,13 @@
 	gap: 2rem;
 }
 
-.contact__info>* {
-	display: flex;
-	align-items: center;
-	gap: 1rem;
-}
-
-.contact__info-icon {
-	font-size: 1.5rem;
-	color: orange;
-}
-
-.contact__info-title {
-	margin: 0;
-	font-size: 1.1rem;
-	color: white;
-}
-
-.contact__info-detail {
-	margin: 0;
-	font-size: 0.95rem;
-	color: #ccc;
-}
-
-/* MEDIA QUERIES */
 @media (min-width: 768px) {
+	.contact {
+		--contact-page-padding: 2rem 1rem;
+	}
+}
+
+@media (min-width: 992px) {
 	.contact__grid {
 		flex-direction: row;
 		align-items: center;

@@ -33,7 +33,6 @@ public class GosiJnrProfileData : IUserProfileData
 
 	private static readonly List<ContactInfo> _contactInfoList =
 	[
-		new("https://api.iconify.design/solar/phone-calling-bold.svg", "Phone", "+23470 396 024 96"),
 		new("https://api.iconify.design/solar/letter-bold.svg", "Email", "gosijnr7@yahoo.com"),
 		new("https://api.iconify.design/solar/letter-bold.svg", "Email (secondary)", "gosijnr7@gmail.com"),
 	];

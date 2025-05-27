@@ -1,11 +1,11 @@
-<div class="contact">
-	<div class="contact__icon-holder">
-		<div class="contact__icon" id="@_contactIconId" />
+<div class="contact-option">
+	<div class="contact-option__icon-holder">
+		<div class="contact-option__icon" id="@_contactIconId" />
 	</div>
 
-	<div class="contact__text">
-		<p class="contact__title">@_contactTitle</p>
-		<p class="contact__detail">@_contactDetail</p>
+	<div class="contact-option__text">
+		<p class="contact-option__title">@_contactTitle</p>
+		<p class="contact-option__detail">@_contactDetail</p>
 	</div>
 </div>
 
@@ -14,7 +14,7 @@
 
 	[Inject] private IJSRuntime JS { get; set; } = null!;
 
-	private string _contactIconId = $"contact-icon-{Guid.NewGuid():N}";
+	private string _contactIconId = $"contact-option__icon-{Guid.NewGuid():N}";
 	private string _contactIconUrl => ContactInfo.IconUrl;
 	private string _contactTitle => ContactInfo.Title;
 	private string _contactDetail => ContactInfo.Detail;
@@ -25,7 +25,8 @@
 	{
 		if (firstRender)
 		{
-			await JS.InvokeVoidAsync("imageLoader.applyMaskWithFallback", _contactIconId,"--contact-icon-image", _contactIconUrl, FallbackIcon, true);
+			await JS.InvokeVoidAsync("imageLoader.applyMaskWithFallback", _contactIconId, "--contact-icon-image", _contactIconUrl,
+			FallbackIcon, true);
 		}
 	}
 }

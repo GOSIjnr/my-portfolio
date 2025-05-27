@@ -1,4 +1,4 @@
-.contact {
+.contact-option {
 	--contact-icon-size: 1.5rem;
 	--contact-icon-padding: 0.75rem;
 	--contact-icon-color: var(--contact-color-lighter);
@@ -8,7 +8,9 @@
 	--contact-color-lighter: var(--color-2-lighter);
 	--contact-color-darker: var(--color-3-darker);
 	--contact-font: var(--font-2);
+}
 
+.contact-option {
 	display: flex;
 	align-items: center;
 	gap: 1rem;
@@ -16,7 +18,7 @@
 	flex: 1;
 }
 
-.contact__icon-holder {
+.contact-option__icon-holder {
 	background-color: var(--contact-color-dark);
 	padding: var(--contact-icon-padding);
 	display: flex;
@@ -24,7 +26,7 @@
 	justify-content: center;
 }
 
-.contact__icon {
+.contact-option__icon {
 	width: var(--contact-icon-size);
 	height: var(--contact-icon-size);
 	background-color: var(--contact-icon-color);
@@ -33,7 +35,7 @@
 	flex-shrink: 0;
 }
 
-.contact__text {
+.contact-option__text {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -42,21 +44,21 @@
 	overflow: hidden;
 }
 
-.contact__title,
-.contact__detail {
+.contact-option__title,
+.contact-option__detail {
 	overflow-wrap: break-word;
 	word-break: break-word;
 	margin: 0;
 }
 
-.contact__title {
+.contact-option__title {
 	font-family: var(--contact-font);
 	color: var(--contact-color-darker);
 	line-height: 1.2;
 	font-size: 0.7rem;
 }
 
-.contact__detail {
+.contact-option__detail {
 	font-size: 0.875rem;
 	font-weight: bold;
 }

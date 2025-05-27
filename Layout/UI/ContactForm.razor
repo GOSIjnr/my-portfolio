@@ -14,61 +14,47 @@
 		<div class="contact-form__fields">
 			<div class="contact-form__group">
 				<InputText class="contact-form__input" placeholder="First name" @bind-Value="_formModel.FirstName" />
-
-				<span class="contact-form__error">
-					<ValidationMessage For="@(() => _formModel.FirstName)" />
-				</span>
 			</div>
 
 			<div class="contact-form__group">
 				<InputText class="contact-form__input" placeholder="Last name" @bind-Value="_formModel.LastName" />
-
-				<span class="contact-form__error">
-					<ValidationMessage For="@(() => _formModel.LastName)" />
-				</span>
 			</div>
 
 			<div class="contact-form__group">
 				<InputText class="contact-form__input" placeholder="Email address" @bind-Value="_formModel.Email" />
-
-				<span class="contact-form__error">
-					<ValidationMessage For="@(() => _formModel.Email)" />
-				</span>
 			</div>
 
 			<div class="contact-form__group">
 				<InputText class="contact-form__input" placeholder="Phone number" @bind-Value="_formModel.Phone" />
-
-				<span class="contact-form__error">
-					<ValidationMessage For="@(() => _formModel.Phone)" />
-				</span>
 			</div>
 
-			<div class="contact-form__group">
-				<div class="custom-select-wrapper">
-					<select class="contact-form__select" @bind="_formModel.Service">
-						<option disabled selected value="">Select a service</option>
+			<!-- Service Selection as Searchable Card Radio Buttons -->
+			<div class="contact-form__group contact-form__group--full">
+				<label class="contact-form__label" for="serviceSearch">Select a service</label>
 
-						@foreach (string service in ServicesNames)
-						{
-							<option>@service</option>
-						}
-					</select>
+				<input id="serviceSearch" type="text" placeholder="Search services..." class="contact-form__search"
+					@bind="serviceSearch" @bind:event="oninput" />
+
+				<div class="contact-form__radio-group">
+					@foreach (var service in FilteredServices)
+					{
+						<label class="contact-form__radio-card">
+							<input type="radio" name="service" value="@service" @onchange="() => OnServiceSelected(service)"
+								checked="@(service == _formModel.Service)" />
+							<div class="contact-form__radio-content">@service</div>
+						</label>
+					}
 				</div>
-
-				<span class="contact-form__error">
-					<ValidationMessage For="@(() => _formModel.Service)" />
-				</span>
 			</div>
 
-			<div class="contact-form__group">
+			<div class="contact-form__group contact-form__group--full">
 				<InputTextArea class="contact-form__textarea" placeholder="Type your message here."
 					@bind-Value="_formModel.Message" />
-
-				<span class="contact-form__error">
-					<ValidationMessage For="@(() => _formModel.Message)" />
-				</span>
 			</div>
+		</div>
+
+		<div class="contact-form__error-wrapper">
+			<ValidationSummary class="contact-form__error" />
 		</div>
 
 		<button type="submit" class="contact-form__submit">Send message</button>
@@ -76,10 +62,13 @@
 </div>
 
 @code {
-	[Parameter, EditorRequired] public List<string> ServicesNames { get; set; } = [];
+	[Parameter, EditorRequired] public List<string> ServicesNames { get; set; } = new();
+
 	[Parameter] public string SelectedService { get; set; } = "";
 
 	private ContactFormModel _formModel = new();
+
+	private string serviceSearch = "";
 
 	protected override void OnInitialized()
 	{
@@ -89,8 +78,28 @@
 		}
 	}
 
+	private IEnumerable<string> FilteredServices =>
+	string.IsNullOrWhiteSpace(serviceSearch)
+	? ServicesNames
+	: ServicesNames.Where(s => s.Contains(serviceSearch, StringComparison.OrdinalIgnoreCase));
+
+	private void OnServiceSelected(string selectedService)
+	{
+		_formModel.Service = selectedService;
+	}
+
 	private void HandleValidSubmit()
 	{
 		Console.WriteLine(JsonSerializer.Serialize(_formModel));
+	}
+
+	public class ContactFormModel
+	{
+		public string FirstName { get; set; } = "";
+		public string LastName { get; set; } = "";
+		public string Email { get; set; } = "";
+		public string Phone { get; set; } = "";
+		public string Service { get; set; } = "";
+		public string Message { get; set; } = "";
 	}
 }

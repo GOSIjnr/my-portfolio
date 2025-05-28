@@ -1,25 +1,8 @@
-<label class="service-radio__card" tabindex="0" role="radio" aria-checked="@Selected" @onclick="HandleClick"
-	@onkeydown="HandleKeyDown">
-
+<div class="service-radio__card @(Selected ? "service-radio__card--selected" : string.Empty)" tabindex="0" role="radio"
+	aria-checked="@Selected" @onclick="HandleClick">
 	<input type="radio" hidden name="service" value="@Service" checked="@Selected" />
-
-	<span class="service-radio__name">@Service</span>
-
-	<span class="service-radio__icon">
-		@if (Selected)
-		{
-			<svg viewBox="0 0 24 24" class="service-radio__icon--selected">
-				<path fill="currentColor" d="M20.285 6.707l-11.39 11.39-5.18-5.18 1.414-1.414 3.766 3.767 9.976-9.975z" />
-			</svg>
-		}
-		else
-		{
-			<svg viewBox="0 0 24 24">
-				<path fill="currentColor" d="M19 13H5v-2h14v2z" />
-			</svg>
-		}
-	</span>
-</label>
+	<span class="service-radio__card-name">@Service</span>
+</div>
 
 @code {
 	[Parameter] public string Service { get; set; } = "Lorem ipsum";
@@ -28,12 +11,7 @@
 
 	private async Task HandleClick()
 	{
-		await OnSelect.InvokeAsync(Service);
-	}
-
-	private async Task HandleKeyDown(KeyboardEventArgs e)
-	{
-		if (e.Key == "Enter" || e.Key == " ")
+		if (OnSelect.HasDelegate)
 		{
 			await OnSelect.InvokeAsync(Service);
 		}

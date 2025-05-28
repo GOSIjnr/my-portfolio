@@ -17,10 +17,7 @@
 
 	protected override void OnParametersSet()
 	{
-		if (BrandInfo is null)
-		{
-			BrandInfo = new();
-		}
+		BrandInfo ??= new();
 	}
 
 	private async Task HandleBrandClickAsync(MouseEventArgs mouseEventArgs)

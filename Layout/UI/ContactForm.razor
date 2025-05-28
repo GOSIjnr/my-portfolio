@@ -81,11 +81,6 @@
 		_formModel.Service = selectedService;
 	}
 
-	private void OnCardKeyDown(KeyboardEventArgs e, string service)
-	{
-		if (e.Key == "Enter" || e.Key == " ") OnServiceSelected(service);
-	}
-
 	private void HandleValidSubmit()
 	{
 		Console.WriteLine(JsonSerializer.Serialize(_formModel));

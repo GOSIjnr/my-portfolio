@@ -9,7 +9,6 @@
 	}
 </div>
 
-
 @code {
 	[Parameter] public string Search { get; set; } = string.Empty;
 	[Parameter] public EventCallback<string> SearchChanged { get; set; }
@@ -32,17 +31,24 @@
 		_debounceTimer?.Dispose();
 
 		_debounceTimer = new Timer(Delay);
-		_debounceTimer.Elapsed += async (_, _) =>
-		{
-			await InvokeAsync(async () =>
-	{
-			await SearchChanged.InvokeAsync(_inputValue);
-			StateHasChanged();
-		});
-		};
-
+		_debounceTimer.Elapsed += OnDebounceElapsed;
 		_debounceTimer.AutoReset = false;
 		_debounceTimer.Start();
+	}
+
+	private async Task CallSearchChanged()
+	{
+		if (SearchChanged.HasDelegate)
+		{
+			await SearchChanged.InvokeAsync(_inputValue);
+		}
+
+		StateHasChanged();
+	}
+
+	private void OnDebounceElapsed(object? sender, ElapsedEventArgs e)
+	{
+		_ = InvokeAsync(CallSearchChanged);
 	}
 
 	private async void ClearInput()
@@ -51,7 +57,6 @@
 		_debounceTimer?.Stop();
 		_debounceTimer?.Dispose();
 
-		await SearchChanged.InvokeAsync(_inputValue);
-		StateHasChanged();
+		await CallSearchChanged();
 	}
 }

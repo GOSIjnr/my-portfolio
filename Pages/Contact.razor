@@ -4,7 +4,7 @@
 	<div class="contact__grid">
 		<ContactForm ServicesNames="@_serviceNames" SelectedService="@_selectedService?.Name" />
 
-		<div class="contact__info">
+		<div class="contact__info-grid">
 			@foreach (ContactInfo info in _contactInfos)
 			{
 				<ContactOption ContactInfo="@info" />

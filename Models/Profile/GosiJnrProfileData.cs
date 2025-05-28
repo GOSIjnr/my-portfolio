@@ -4,7 +4,7 @@ using MyPortfolio.Models.Service;
 using MyPortfolio.Models.Contact;
 using MyPortfolio.Helpers.Contact;
 
-namespace MyPortfolio.Models;
+namespace MyPortfolio.Models.Profile;
 
 public class GosiJnrProfileData : IUserProfileData
 {

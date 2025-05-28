@@ -1,6 +1,6 @@
 using MyPortfolio.Contracts;
 
-namespace MyPortfolio.Models;
+namespace MyPortfolio.Models.Profile;
 
 public class AppContent
 {

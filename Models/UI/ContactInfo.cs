@@ -1,7 +1,7 @@
 using MyPortfolio.Helpers;
 using MyPortfolio.Helpers.Contact;
 
-namespace MyPortfolio.Models.Contact;
+namespace MyPortfolio.Models.UI;
 
 public class ContactInfo(string iconUrl, string title, string detail, string link, ContactType type = ContactType.Text)
 {

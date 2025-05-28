@@ -1,5 +1,3 @@
-@using System.Text.Json
-
 <div class="contact-form">
 	<EditForm Model="_formModel" OnValidSubmit="HandleValidSubmit" Enhance>
 		<DataAnnotationsValidator />
@@ -62,6 +60,8 @@
 	[Parameter] public List<string> ServicesNames { get; set; } = new();
 	[Parameter] public string SelectedService { get; set; } = "";
 
+	[Inject] private NavigationManager NavigationManager { get; set; } = null!;
+
 	private ContactFormModel _formModel = new();
 	private string serviceSearch = "";
 
@@ -84,5 +84,9 @@
 	private void HandleValidSubmit()
 	{
 		Console.WriteLine(JsonSerializer.Serialize(_formModel));
+
+		// first send the data with async and when failed or successfull redirect to home page
+		// then notfice of success or failure
+		NavigationManager.NavigateTo("/");
 	}
 }

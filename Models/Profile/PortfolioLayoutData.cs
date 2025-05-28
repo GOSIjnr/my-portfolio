@@ -2,7 +2,7 @@ using MyPortfolio.Contracts;
 using MyPortfolio.Models.Home;
 using MyPortfolio.Models.Navigation;
 
-namespace MyPortfolio.Models;
+namespace MyPortfolio.Models.Profile;
 
 public class PortfolioLayoutData : IAppLayoutData
 {

@@ -14,7 +14,7 @@
 	--contact-error-bg: bisque;
 	--contact-error-color: rgb(214, 63, 63);
 	--contact-submit-bg: var(--color-2-lighter);
-	--contact-submit-hover-bg: var(--color-2);
+	--contact-submit-hover-bg: var(--color-2-light);
 	--contact-submit-color: var(--color-1);
 	--contact-submit-hover-color: var(--color-3-lighter);
 	--contact-submit-font-family: var(--font-1);

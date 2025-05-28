@@ -1,28 +1,42 @@
-.contact-form__radio-card {
+.service-radio__card {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 0.75rem 1rem;
-	border: 1px solid var(--color-1-light);
-	border-radius: 0.5rem;
-	background-color: white;
+	padding: 0.1rem 0.5rem;
+	/* border: 5px solid var(--color-1-light);	 */
+	/* border-radius: 0.5rem; */
+	background-color: var(--color-1-lighter);
 	cursor: pointer;
 	transition: border-color 0.3s, background-color 0.3s;
+
+	--selected {
+		border-color: var(--color-2);
+	}
 }
 
-.contact-form__radio-card:hover,
-.contact-form__radio-card[aria-checked="true"] {
+.service-radio__card:hover,
+.service-radio__card[aria-checked="true"] {
 	border-color: var(--color-2);
-	background-color: var(--color-2-lightest);
+	background-color: var(--color-2-darker);
 }
 
-.service-name {
-	font-size: 1rem;
+/* .service-radio__card--selected
+{
+	border-color: var(--color-2);
+} */
+
+.service-radio__name {
+	font-size: 0.75rem;
 	color: var(--color-3-darker);
 }
 
-.service-icon svg {
-	width: 20px;
-	height: 20px;
+.service-radio__icon svg {
+	width: 10px;
+	height: 10px;
+	border-left: 1px solid var(--color-1-darker);
+	color: var(--color-2);
+}
+
+.service-radio__icon--selected {
 	color: var(--color-2);
 }

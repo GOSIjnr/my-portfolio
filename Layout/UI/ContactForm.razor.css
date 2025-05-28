@@ -1,22 +1,39 @@
 .contact-form {
-	background-color: var(--color-1-light);
-	padding: 2rem;
+	--contact-bg: var(--color-1-light);
+	--contact-title-color: var(--color-2-lighter);
+	--contact-subtitle-color: var(--color-3-darker);
+	--contact-label-color: var(--color-3-lighter);
+	--contact-input-bg: var(--color-1);
+	--contact-input-border: var(--color-1-lighter);
+	--contact-input-focus: var(--color-2-lighter);
+	--contact-input-text: var(--color-3-lighter);
+	--contact-input-autofill-text: var(--color-3-darker);
+	--contact-font-family: var(--font-2);
+	--contact-scroll-thumb: var(--color-2-lighter);
+	--contact-scroll-track: var(--color-1-light);
+	--contact-error-bg: bisque;
+	--contact-error-color: rgb(214, 63, 63);
+	--contact-submit-bg: var(--color-2-lighter);
+	--contact-submit-hover-bg: var(--color-2);
+	--contact-submit-color: var(--color-1);
+	--contact-submit-hover-color: var(--color-3-lighter);
+	--contact-submit-font-family: var(--font-1);
 }
 
-.contact-form__holder {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
+.contact-form {
+	background-color: var(--contact-bg);
+	padding: 1.5rem;
 }
 
 .contact-form__title {
-	color: var(--color-2-lighter);
+	color: var(--contact-title-color);
 	font-size: 1.8rem;
 	font-weight: bolder;
+	margin-top: 0;
 }
 
 .contact-form__subtitle {
-	color: var(--color-3-darker);
+	color: var(--contact-subtitle-color);
 	font-size: 0.75rem;
 	font-weight: lighter;
 	margin-bottom: 1.5rem;
@@ -24,7 +41,7 @@
 
 .contact-form__fields {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 	gap: 1rem;
 	margin-bottom: 1.5rem;
 }
@@ -37,319 +54,120 @@
 	grid-column: 1 / -1;
 }
 
-/* Input and TextArea styling */
+.contact-form__service-group {
+	flex-direction: column;
+}
+
 ::deep .contact-form__input,
 ::deep .contact-form__textarea {
-	background-color: var(--color-1);
-	border: 1px solid var(--color-1-lighter);
+	background-color: var(--contact-input-bg);
+	border: 1px solid var(--contact-input-border);
+	color: var(--contact-input-text);
 	padding: 0.65rem 1rem;
 	font-size: 0.875rem;
 	width: 100%;
-	transition: all 0.2s ease-out;
-	color: var(--color-3-lighter);
+	transition: border-color 0.2s ease-out;
 }
 
 ::deep .contact-form__input:focus,
 ::deep .contact-form__textarea:focus {
+	border-color: var(--contact-input-focus);
 	outline: none;
-	border-color: var(--color-2-lighter);
+}
+
+::deep .contact-form__input:-webkit-autofill,
+::deep .contact-form__textarea:-webkit-autofill {
+	-webkit-text-fill-color: var(--contact-input-autofill-text);
+	caret-color: var(--contact-input-autofill-text);
+	font-family: var(--contact-font-family);
+	transition: all 9999s ease-in-out 0s;
 }
 
 ::deep .contact-form__textarea {
+	margin-top: 0.5rem;
+	overflow-x: hidden;
 	min-height: 150px;
 	resize: vertical;
 	scrollbar-width: thin;
-	scrollbar-color: var(--color-2-lighter) var(--color-1-light);
+	scrollbar-color: var(--contact-scroll-thumb) var(--contact-scroll-track);
 }
 
-::deep .contact-form__textarea::-webkit-scrollbar {
+::deep .contact-form__textarea::-webkit-scrollbar,
+::deep .contact-form__radio-group::-webkit-scrollbar {
 	width: 8px;
 }
 
-::deep .contact-form__textarea::-webkit-scrollbar-track {
-	background: var(--color-1-light);
-	border-radius: 4px;
+::deep .contact-form__textarea::-webkit-scrollbar-track,
+::deep .contact-form__radio-group::-webkit-scrollbar-track {
+	background: var(--contact-scroll-track);
 }
 
-::deep .contact-form__textarea::-webkit-scrollbar-thumb {
-	background-color: var(--color-2-lighter);
+::deep .contact-form__textarea::-webkit-scrollbar-thumb,
+::deep .contact-form__radio-group::-webkit-scrollbar-thumb {
+	background-color: var(--contact-scroll-thumb);
 	border-radius: 4px;
 	border: 2px solid transparent;
 	background-clip: content-box;
 }
 
-::deep .contact-form__textarea::-webkit-scrollbar-thumb:hover {
-	background-color: var(--color-2);
+::deep .contact-form__textarea::-webkit-scrollbar-thumb:hover,
+::deep .contact-form__radio-group::-webkit-scrollbar-thumb:hover {
+	background-color: var(--contact-scroll-thumb);
 }
 
-/* Custom Dropdown Styling */
-::deep .custom-dropdown {
-	position: relative;
-	width: 100%;
-	background-color: var(--color-1);
-	color: var(--color-3-lighter);
-	border: 1px solid var(--color-1-lighter);
-	padding: 0.65rem 1rem;
-	cursor: pointer;
-	font-family: var(--font-2);
-	font-size: 0.875rem;
+.contact-form__service-label {
+	color: var(--contact-label-color);
+	font-weight: 700;
+	font-size: 0.8rem;
+	margin-top: 1rem;
+	display: block;
 }
 
-.selected-option {
-	pointer-events: none;
-	color: var(--color-3-darker);
+.contact-form__service-search-wrapper {
+	margin-top: 0.25rem;
 }
 
-.dropdown-options {
-	font-size: 0.7rem;
-	position: absolute;
-	top: 100%;
-	left: 0;
-	right: 0;
-	background-color: var(--color-1);
-	border: 1px solid var(--color-1-lighter);
-	z-index: 1000;
+.contact-form__radio-group {
+	margin-top: 0.25rem;
+	background-color: var(--contact-input-bg);
+	display: flex;
+	flex-wrap: wrap;
+	overflow-y: auto;
+	gap: 0.75rem;
+	height: 100px;
+	align-items: flex-start;
+	padding: 0.5rem;
+	scrollbar-width: thin;
+	scrollbar-color: var(--contact-scroll-thumb) var(--contact-scroll-track);
+	border: 1px solid var(--contact-input-border);
 }
 
-.dropdown-option {
-	background-color: var(--color-1);
-	padding: 0.65rem 1rem;
-	color: var(--color-3-lighter);
-	transition: all 0.2s;
-}
-
-.dropdown-option:hover {
-	background-color: var(--color-2-lighter);
-	color: var(--color-1);
-}
-
-/* Validation & Button */
 .contact-form__error-wrapper {
-	background-color: bisque;
+	background-color: var(--contact-error-bg);
 	margin-bottom: 1.5rem;
 }
 
 ::deep .contact-form__error {
 	margin-bottom: 0;
 	font-size: 0.6rem;
-	color: rgb(214, 63, 63);
+	color: var(--contact-error-color);
 	padding: 1rem 1rem 1rem 2rem;
 }
 
 .contact-form__submit {
-	background-color: var(--color-2-lighter);
-	color: var(--color-1);
+	background-color: var(--contact-submit-bg);
+	color: var(--contact-submit-color);
 	font-weight: 900;
 	font-size: 0.875rem;
-	font-family: var(--font-1);
+	font-family: var(--contact-submit-font-family);
 	padding: 0.75rem;
 	border: none;
 	cursor: pointer;
-	transition: all 0.3s ease-out;
+	transition: background-color 0.3s ease-out, color 0.3s ease-out;
 	width: 100%;
 }
 
 .contact-form__submit:hover {
-	background-color: var(--color-2);
-	color: var(--color-3-lighter);
-}
-
-/* ==== Service Selection Searchable Card Radio Buttons ==== */
-
-::deep .contact-form__label {
-	color: var(--color-3-lighter);
-	font-weight: 600;
-	margin-bottom: 0.25rem;
-	display: block;
-}
-
-::deep .contact-form__search {
-	width: 100%;
-	padding: 0.5rem 1rem;
-	font-size: 0.875rem;
-	background-color: var(--color-1-light);
-	color: var(--color-3-lighter);
-	border: 1px solid var(--color-1-lighter);
-	margin-bottom: 0.75rem;
-	border-radius: 4px;
-	transition: border-color 0.3s;
-}
-
-::deep .contact-form__search:focus {
-	outline: none;
-	border-color: var(--color-2);
-}
-
-::deep .contact-form__radio-group {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-	gap: 1rem;
-	max-height: 280px;
-	overflow-y: auto;
-	padding-right: 0.5rem;
-}
-
-::deep .contact-form__radio-card {
-	background-color: var(--color-1-light);
-	border: 2px solid transparent;
-	border-radius: 8px;
-	padding: 1rem;
-	cursor: pointer;
-	color: var(--color-3-lighter);
-	user-select: none;
-	display: flex;
-	align-items: center;
-	transition: border-color 0.3s, background-color 0.3s;
-}
-
-::deep .contact-form__radio-card:hover {
-	border-color: var(--color-2-light);
-}
-
-::deep .contact-form__radio-card input[type="radio"] {
-	display: none;
-}
-
-::deep .contact-form__radio-card input[type="radio"]:checked+.contact-form__radio-content {
-	background-color: var(--color-2);
-	color: var(--color-1);
-	font-weight: 700;
-	padding: 0.5rem 1rem;
-	border-radius: 6px;
-	width: 100%;
-	text-align: center;
-	border: none;
-}
-
-::deep .contact-form__radio-content {
-	flex: 1;
-	text-align: center;
-}
-
-/* ==== Service Selection Vertical & Card Style ==== */
-
-::deep .service-select-group {
-	display: flex;
-	flex-direction: column;
-	gap: 0.5rem;
-}
-
-::deep .contact-form__label {
-	font-weight: 700;
-	font-size: 1rem;
-	color: var(--color-3-lighter);
-}
-
-::deep .service-search-wrapper {
-	position: relative;
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
-	margin-bottom: 1rem;
-}
-
-::deep .contact-form__search {
-	flex-grow: 1;
-	padding: 0.5rem 1rem;
-	font-size: 0.875rem;
-	background-color: var(--color-1-light);
-	color: var(--color-3-lighter);
-	border: 1px solid var(--color-1-lighter);
-	border-radius: 6px;
-	transition: border-color 0.3s;
-}
-
-::deep .contact-form__search:focus {
-	outline: none;
-	border-color: var(--color-2);
-}
-
-::deep .btn-icon {
-	width: 32px;
-	height: 32px;
-	border: none;
-	background-color: var(--color-1-light);
-	cursor: pointer;
-	border-radius: 6px;
-	transition: background-color 0.3s;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 0;
-}
-
-::deep .btn-icon:hover {
-	background-color: var(--color-2-light);
-}
-
-/* Search button with magnifying glass SVG mask */
-::deep .btn-search {
-	-webkit-mask-image: url('data:image/svg+xml;utf8,<svg fill="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16a6.471 6.471 0 004.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zM10 14a4.5 4.5 0 110-9 4.5 4.5 0 010 9z"/></svg>');
-	mask-image: url('data:image/svg+xml;utf8,<svg fill="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16a6.471 6.471 0 004.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zM10 14a4.5 4.5 0 110-9 4.5 4.5 0 010 9z"/></svg>');
-	background-color: var(--color-2);
-}
-
-/* Clear button with X SVG mask */
-::deep .btn-clear {
-	-webkit-mask-image: url('data:image/svg+xml;utf8,<svg fill="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.3 5.71a1 1 0 00-1.42 0L12 10.59 7.11 5.7A1 1 0 105.7 7.11L10.59 12l-4.9 4.89a1 1 0 101.41 1.42L12 13.41l4.89 4.9a1 1 0 001.42-1.41L13.41 12l4.9-4.89a1 1 0 000-1.4z"/></svg>');
-	mask-image: url('data:image/svg+xml;utf8,<svg fill="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.3 5.71a1 1 0 00-1.42 0L12 10.59 7.11 5.7A1 1 0 105.7 7.11L10.59 12l-4.9 4.89a1 1 0 101.41 1.42L12 13.41l4.89 4.9a1 1 0 001.42-1.41L13.41 12l4.9-4.89a1 1 0 000-1.4z"/></svg>');
-	background-color: var(--color-3-lighter);
-}
-
-/* Grid for service cards: auto fit with min width and flexible wrapping */
-::deep .service-cards-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(140px, max-content));
-	gap: 1rem;
-}
-
-/* Individual card */
-::deep .contact-form__radio-card {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	background-color: var(--color-1-light);
-	border-radius: 8px;
-	padding: 0.5rem 1rem;
-	cursor: pointer;
-	color: var(--color-3-lighter);
-	box-shadow: 0 1px 3px rgb(0 0 0 / 0.05);
-	user-select: none;
-	transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
-	min-width: 140px;
-}
-
-::deep .contact-form__radio-card:hover,
-::deep .contact-form__radio-card:focus {
-	background-color: var(--color-2-light);
-	outline: none;
-	box-shadow: 0 0 6px var(--color-2);
-}
-
-::deep .contact-form__radio-card input[type="radio"] {
-	display: none;
-}
-
-::deep .service-name {
-	font-size: 0.6rem;
-	font-weight: 600;
-	overflow-wrap: anywhere;
-}
-
-::deep .service-icon {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 20px;
-	height: 20px;
-	color: var(--color-2);
-}
-
-::deep .contact-form__radio-card input[type="radio"]:checked+.service-name {
-	font-weight: 700;
-	color: var(--color-2);
-}
-
-::deep .contact-form__radio-card input[type="radio"]:checked~.service-icon {
-	color: var(--color-2);
+	background-color: var(--contact-submit-hover-bg);
+	color: var(--contact-submit-hover-color);
 }

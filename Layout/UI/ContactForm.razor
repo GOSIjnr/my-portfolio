@@ -1,10 +1,11 @@
 @using System.Text.Json
-@using System.Timers
 
 <div class="contact-form">
-	<EditForm class="contact-form__holder" Model="_formModel" OnValidSubmit="HandleValidSubmit" Enhance>
+	<EditForm Model="_formModel" OnValidSubmit="HandleValidSubmit" Enhance>
 		<DataAnnotationsValidator />
+
 		<h2 class="contact-form__title">Let's Collaborate</h2>
+
 		<p class="contact-form__subtitle">
 			I'm excited to hear about your project and how we can create something amazing together.
 			Whether you have questions, ideas, or just want to say hello, feel free to reach out!
@@ -27,15 +28,15 @@
 				<InputText class="contact-form__input" placeholder="Phone number" @bind-Value="_formModel.Phone" />
 			</div>
 
-			<div class="contact-form__group contact-form__group--full service-select-group">
-				<label class="contact-form__label" for="serviceSearch">Select a service</label>
+			<div class="contact-form__group contact-form__group--full contact-form__service-group">
+				<label class="contact-form__service-label" for="serviceSearch">Select a service</label>
 
-				<div class="service-search-wrapper">
+				<div class="contact-form__service-search-wrapper">
 					<SearchInput @bind-Search="serviceSearch" Delay="400" Placeholder="Search services..."
 						OnClear="ClearSearch" Class="contact-form__search" />
 				</div>
 
-				<div class="contact-form__radio-group service-cards-grid" role="radiogroup" aria-label="Services">
+				<div class="contact-form__radio-group" role="radiogroup" aria-label="Services">
 					@foreach (var service in FilteredServices)
 					{
 						<ServiceRadioCard Service="@service" Selected="(_formModel.Service == service)"
@@ -64,6 +65,14 @@
 
 	private ContactFormModel _formModel = new();
 	private string serviceSearch = "";
+
+	protected override void OnInitialized()
+	{
+		if (!string.IsNullOrWhiteSpace(SelectedService))
+		{
+			_formModel.Service = SelectedService;
+		}
+	}
 
 	private IEnumerable<string> FilteredServices =>
 	string.IsNullOrWhiteSpace(serviceSearch)

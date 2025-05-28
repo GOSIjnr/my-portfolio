@@ -1,11 +1,14 @@
-<label class="contact-form__radio-card" tabindex="0" role="radio" aria-checked="@(Selected)" @onclick="HandleClick"
+<label class="service-radio__card" tabindex="0" role="radio" aria-checked="@Selected" @onclick="HandleClick"
 	@onkeydown="HandleKeyDown">
+
 	<input type="radio" hidden name="service" value="@Service" checked="@Selected" />
-	<span class="service-name">@Service</span>
-	<span class="service-icon">
+
+	<span class="service-radio__name">@Service</span>
+
+	<span class="service-radio__icon">
 		@if (Selected)
 		{
-			<svg viewBox="0 0 24 24">
+			<svg viewBox="0 0 24 24" class="service-radio__icon--selected">
 				<path fill="currentColor" d="M20.285 6.707l-11.39 11.39-5.18-5.18 1.414-1.414 3.766 3.767 9.976-9.975z" />
 			</svg>
 		}
@@ -19,8 +22,8 @@
 </label>
 
 @code {
-	[Parameter] public string Service { get; set; } = string.Empty;
-	[Parameter] public bool Selected { get; set; }
+	[Parameter] public string Service { get; set; } = "Lorem ipsum";
+	[Parameter] public bool Selected { get; set; } = false;
 	[Parameter] public EventCallback<string> OnSelect { get; set; }
 
 	private async Task HandleClick()

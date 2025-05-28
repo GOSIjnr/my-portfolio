@@ -1,9 +1,8 @@
 .contact-option {
-	--contact-icon-size: 1.5rem;
-	--contact-icon-padding: 0.75rem;
+	--contact-icon-size: 1.1rem;
+	--contact-icon-padding: 0.6rem;
 	--contact-icon-color: var(--contact-color-lighter);
 	--contact-icon-image: url("images/web.svg");
-
 	--contact-color-dark: var(--color-1-dark);
 	--contact-color-lighter: var(--color-2-lighter);
 	--contact-color-darker: var(--color-3-darker);
@@ -55,10 +54,18 @@
 	font-family: var(--contact-font);
 	color: var(--contact-color-darker);
 	line-height: 1.2;
-	font-size: 0.7rem;
+	font-size: 0.65rem;
 }
 
 .contact-option__detail {
-	font-size: 0.875rem;
+	font-size: 0.8rem;
 	font-weight: bold;
+}
+
+.contact-option__detail a {
+	color: inherit;
+}
+
+.contact-option__detail a:hover {
+	color: var(--contact-color-lighter);
 }

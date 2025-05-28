@@ -5,7 +5,7 @@
 		<ContactForm ServicesNames="@_serviceNames" SelectedService="@_selectedService?.Name" />
 
 		<div class="contact__info">
-			@foreach (ContactInfo info in AppContent.User.ContactInfos)
+			@foreach (ContactInfo info in _contactInfos)
 			{
 				<ContactOption ContactInfo="@info" />
 			}
@@ -19,11 +19,13 @@
 
 	private ServiceInfo? _selectedService;
 	private List<string> _serviceNames = [];
+	private List<ContactInfo> _contactInfos = new List<ContactInfo>();
 
 	protected override void OnInitialized()
 	{
 		ConsumeSelectedService();
 		PopulateServicesOffered();
+		PopulateContactInfos();
 	}
 
 	private void ConsumeSelectedService()
@@ -40,5 +42,11 @@
 		}
 
 		_serviceNames.Add("Others");
+	}
+
+	private void PopulateContactInfos()
+	{
+		_contactInfos.AddRange(AppContent.User.ContactInfos);
+		_contactInfos.AddRange(AppContent.User.SocialLinks);
 	}
 }

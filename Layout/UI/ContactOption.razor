@@ -5,7 +5,24 @@
 
 	<div class="contact-option__text">
 		<p class="contact-option__title">@_contactTitle</p>
-		<p class="contact-option__detail">@_contactDetail</p>
+
+		<p class="contact-option__detail">
+			@switch (ContactInfo.Type)
+			{
+				case ContactType.Email:
+					<a href="mailto:@ContactInfo.Link">@ContactInfo.Detail</a>
+					break;
+				case ContactType.Phone:
+					<a href="tel:@ContactInfo.Link">@ContactInfo.Detail</a>
+					break;
+				case ContactType.Link:
+					<a href="@ContactInfo.Link" target="_blank" rel="noopener noreferrer">@ContactInfo.Detail</a>
+					break;
+				default:
+					@ContactInfo.Detail
+					break;
+			}
+		</p>
 	</div>
 </div>
 

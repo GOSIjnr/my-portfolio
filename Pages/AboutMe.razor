@@ -9,9 +9,9 @@
             <div class="about-me__social-icons">
                 @foreach (var icon in AppContent.User.SocialLinks)
                 {
-                    <a class="about-me__social-link" href="@icon.ProfilePageUrl" target="_blank" rel="noopener noreferrer"
-                        title="@icon.PlatformName">
-                        <img class="about-me__social-icon" src="@icon.IconImageUrl" alt="@icon.IconAltText" />
+                    <a class="about-me__social-link" href="@icon.Detail" target="_blank" rel="noopener noreferrer"
+                        title="@icon.Title">
+                        <img class="about-me__social-icon" src="@icon.Title" alt="@icon.Title" />
                     </a>
                 }
             </div>

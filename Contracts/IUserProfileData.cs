@@ -10,7 +10,7 @@ public interface IUserProfileData
 	string ProfileImageUrl { get; }
 	string AboutMeTitle { get; }
 	string AboutMeDescription { get; }
-	List<SocialMediaIconInfo> SocialLinks { get; }
+	List<ContactInfo> SocialLinks { get; }
 	List<ServiceInfo> ServiceInfos { get; }
 	List<ContactInfo> ContactInfos { get; }
 }

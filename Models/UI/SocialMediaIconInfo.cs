@@ -9,26 +9,26 @@ public class SocialMediaIconInfo(string platformName, string iconImageUrl, strin
 
 	public string PlatformName
 	{
-		get { return _platformName; }
-		set { _platformName = value ?? string.Empty; }
+		get => _platformName;
+		set => _platformName = value ?? string.Empty;
 	}
 
 	public string IconImageUrl
 	{
-		get { return _iconImageUrl; }
-		set { _iconImageUrl = value ?? string.Empty; }
+		get => _iconImageUrl;
+		set => _iconImageUrl = value ?? string.Empty;
 	}
 
 	public string ProfilePageUrl
 	{
-		get { return _profilePageUrl; }
-		set { _profilePageUrl = value ?? string.Empty; }
+		get => _profilePageUrl;
+		set => _profilePageUrl = value ?? string.Empty;
 	}
 
 	public string IconAltText
 	{
-		get { return _iconAltText; }
-		set { _iconAltText = value ?? string.Empty; }
+		get => _iconAltText;
+		set => _iconAltText = value ?? string.Empty;
 	}
 
 	public SocialMediaIconInfo() : this("Lorem ispum", string.Empty, string.Empty, string.Empty) { }

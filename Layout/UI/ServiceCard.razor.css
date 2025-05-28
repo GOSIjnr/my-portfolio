@@ -2,15 +2,18 @@
 	--service-card-border-color: var(--color-1-light);
 	--service-card-main-color: var(--color-3-lighter);
 	--service-card-hover-color: var(--color-2-lighter);
-	--service-card-color: var(--service-card-main-color);
+	--service-card-text-color: var(--color-3-darker);
+	--service-card-arrow-main-color: var(--color-1-darker);
+	--service-card-arrow-accent-color: var(--color-3-lighter);
+	--service-card-button-hover-bg: var(--color-2-light);
+	--service-card-button-hover-color: var(--service-card-arrow-main-color);
+	--service-card-padding: 1rem;
+	--service-card-button-size: 40px;
 	--service-card-number-size: 2rem;
 	--service-card-title-size: 1.5rem;
 	--service-card-description-size: 0.7rem;
 	--service-card-arrow-size: 1.5rem;
-	--service-card-button-hover-bg: var(--color-2-light);
-	--service-card-button-hover-color: var(--color-3-lighter);
-	--service-card-padding: 1rem;
-	--service-card-button-size: 40px;
+	--service-card-color: var(--service-card-main-color);
 }
 
 .service-card {
@@ -26,6 +29,7 @@
 
 .service-card:hover {
 	--service-card-color: var(--service-card-hover-color);
+	--service-card-button-hover-color: var(--service-card-arrow-accent-color);
 }
 
 .service-card__header {
@@ -54,12 +58,12 @@
 	justify-content: center;
 	align-items: center;
 	transition: all 0.3s ease;
+	color: var(--service-card-button-hover-color);
 }
 
 .service-card__button:hover,
 .service-card__button:focus {
 	background-color: var(--service-card-button-hover-bg);
-	color: var(--service-card-button-hover-color);
 }
 
 .service-card__arrow {
@@ -92,7 +96,7 @@
 .service-card__description {
 	font-size: var(--service-card-description-size);
 	line-height: 1.5;
-	color: var(--color-3-darker);
+	color: var(--service-card-text-color);
 	text-align: left;
 	word-break: break-word;
 	flex-grow: 1;

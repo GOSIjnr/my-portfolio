@@ -56,6 +56,9 @@
 
     public async Task CloseMenu()
     {
-        await OnClose.InvokeAsync();
+        if (OnClose.HasDelegate)
+        {
+            await OnClose.InvokeAsync();
+        }
     }
 }

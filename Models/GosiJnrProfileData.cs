@@ -1,6 +1,8 @@
 using MyPortfolio.Contracts;
 using MyPortfolio.Models.UI;
-using MyPortfolio.Models.Services;
+using MyPortfolio.Models.Service;
+using MyPortfolio.Models.Contact;
+using MyPortfolio.Helpers.Contact;
 
 namespace MyPortfolio.Models;
 
@@ -13,11 +15,11 @@ public class GosiJnrProfileData : IUserProfileData
 
 	private const string _aboutMeSectionDescription = "I'm passionate about creating digital experiences, from solving intricate technical challenges to crafting smooth, intuitive interfaces. What started as a curiosity has evolved into a passion of mine. Outside of development, I explore new technologies and brainstorm game ideas. This portfolio showcases the work I love and the projects I've built — thanks for visiting.";
 
-	private static readonly List<SocialMediaIconInfo> _socialMediaIconList =
+	private static readonly List<ContactInfo> _socialMediaIconList =
 	[
-		new("Github", "images/github.svg", "https://github.com/GOSIjnr", "Github"),
-		new("Discord", "images/discord.svg", "https://discord.com/users/GOSIjnr", "Discord"),
-		new("Twitter", "images/twitter.svg", "https://twitter.com/GOSIjnr", "Twitter"),
+		new("https://api.iconify.design/simple-icons/github.svg", "Github", "GOSIjnr", "https://github.com/GOSIjnr", ContactType.Link),
+		new("https://api.iconify.design/simple-icons/discord.svg", "Discord", "GOSIjnr", "https://discord.com/users/GOSIjnr", ContactType.Link),
+		new("https://api.iconify.design/simple-icons/x.svg", "X", "@GOSIjnr", "https://twitter.com/GOSIjnr", ContactType.Link),
 	];
 
 	private static readonly List<ServiceInfo> _serviceInfoList =
@@ -30,10 +32,17 @@ public class GosiJnrProfileData : IUserProfileData
 		new("Graphic Design & Digital Art", "I create digital illustrations, brand assets, and visual content for web, games, and print."),
 	];
 
+	private static readonly List<ContactInfo> _contactInfoList =
+	[
+		new("https://api.iconify.design/solar/letter-bold.svg", "Email", "gosijnr7@yahoo.com", "gosijnr7@yahoo.com", ContactType.Email),
+		new("https://api.iconify.design/solar/letter-bold.svg", "Email (secondary)", "gosijnr7@gmail.com", "gosijnr7@gmail.com",ContactType.Email),
+	];
+
 	public BrandInfo Brand => _brandInfo;
 	public string ProfileImageUrl => _profileImageUrl;
 	public string AboutMeTitle => _aboutMeSectionTitle;
 	public string AboutMeDescription => _aboutMeSectionDescription;
-	public List<SocialMediaIconInfo> SocialLinks => _socialMediaIconList;
+	public List<ContactInfo> SocialLinks => _socialMediaIconList;
 	public List<ServiceInfo> ServiceInfos => _serviceInfoList;
+	public List<ContactInfo> ContactInfos => _contactInfoList;
 }

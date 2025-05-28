@@ -19,7 +19,6 @@
 	display: grid;
 	gap: var(--services-grid-gap);
 	align-self: stretch;
-
 	grid-template-columns: var(--services-grid-columns);
 }
 

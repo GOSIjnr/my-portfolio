@@ -1,7 +1,7 @@
 .side-bar {
 	--sidebar-padding: 1rem;
 	--sidebar-gap: 2rem;
-	--sidebar-close-btn-size: 1rem;
+	--sidebar-close-btn-size: 1.2rem;
 	--sidebar-close-btn-padding: 0.4rem;
 	--sidebar-color: var(--color-1);
 	--sidebar-overlay-color: #000000;

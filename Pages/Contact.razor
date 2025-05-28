@@ -1,25 +1,14 @@
 @page "/contact"
 
 <div class="contact">
-	<h2 class="contact__title">Contact Me</h2>
+	<div class="contact__grid">
+		<ContactForm ServicesNames="@_serviceNames" SelectedService="@_selectedService?.Name" />
 
-	<div class="contact__info">
-		<p class="contact__email">
-			Email: <a href="mailto:gosijnr7@yahoo.com" class="contact__link">gosijnr7@yahoo.com</a>
-		</p>
-
-		<div class="contact__social">
-			<p>Follow me:</p>
-			<ul class="contact__social-list">
-				@foreach (var social in AppContent.User.SocialLinks)
-				{
-					<li class="contact__social-item">
-						<a href="@social.ProfilePageUrl" class="contact__social-link" target="_blank">
-							<img src="@social.IconImageUrl" class="contact__social-icon" />
-						</a>
-					</li>
-				}
-			</ul>
+		<div class="contact__info">
+			@foreach (ContactInfo info in _contactInfos)
+			{
+				<ContactOption ContactInfo="@info" />
+			}
 		</div>
 	</div>
 </div>
@@ -29,18 +18,35 @@
 	[Inject] private SelectedServiceState SelectedServiceState { get; set; } = null!;
 
 	private ServiceInfo? _selectedService;
+	private List<string> _serviceNames = [];
+	private List<ContactInfo> _contactInfos = new List<ContactInfo>();
 
 	protected override void OnInitialized()
 	{
-		_selectedService = SelectedServiceState.ConsumeSelectedService();
+		ConsumeSelectedService();
+		PopulateServicesOffered();
+		PopulateContactInfos();
+	}
 
-		if (_selectedService != null)
+	private void ConsumeSelectedService()
+	{
+		_selectedService = SelectedServiceState.ConsumeSelectedService();
+	}
+
+	private void PopulateServicesOffered()
+	{
+
+		foreach (ServiceInfo serviceInfo in AppContent.User.ServiceInfos)
 		{
-			Console.WriteLine($"Selected service received: {_selectedService.Name}");
+			_serviceNames.Add(serviceInfo.Name);
 		}
-		else
-		{
-			Console.WriteLine("No selected service received.");
-		}
+
+		_serviceNames.Add("Others");
+	}
+
+	private void PopulateContactInfos()
+	{
+		_contactInfos.AddRange(AppContent.User.ContactInfos);
+		_contactInfos.AddRange(AppContent.User.SocialLinks);
 	}
 }

@@ -1,4 +1,4 @@
-using MyPortfolio.Models.Services;
+using MyPortfolio.Models.Service;
 
 namespace MyPortfolio.Services.State;
 

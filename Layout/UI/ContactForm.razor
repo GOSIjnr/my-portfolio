@@ -1,0 +1,88 @@
+@using System.Text.Json
+
+<div class="contact-form">
+	<EditForm Model="_formModel" OnValidSubmit="HandleValidSubmit" Enhance>
+		<DataAnnotationsValidator />
+
+		<h2 class="contact-form__title">Let's Collaborate</h2>
+
+		<p class="contact-form__subtitle">
+			I'm excited to hear about your project and how we can create something amazing together.
+			Whether you have questions, ideas, or just want to say hello, feel free to reach out!
+		</p>
+
+		<div class="contact-form__fields">
+			<div class="contact-form__group">
+				<InputText class="contact-form__input" placeholder="First name" @bind-Value="_formModel.FirstName" />
+			</div>
+
+			<div class="contact-form__group">
+				<InputText class="contact-form__input" placeholder="Last name" @bind-Value="_formModel.LastName" />
+			</div>
+
+			<div class="contact-form__group">
+				<InputText class="contact-form__input" placeholder="Email address" @bind-Value="_formModel.Email" />
+			</div>
+
+			<div class="contact-form__group">
+				<InputText class="contact-form__input" placeholder="Phone number" @bind-Value="_formModel.Phone" />
+			</div>
+
+			<div class="contact-form__group contact-form__group--full contact-form__service-group">
+				<label class="contact-form__service-label" for="serviceSearch">Select a service</label>
+
+				<div class="contact-form__service-search-wrapper">
+					<SearchInput @bind-Search="serviceSearch" Delay="400" Placeholder="Search services..."/>
+				</div>
+
+				<div class="contact-form__radio-group" role="radiogroup" aria-label="Services">
+					@foreach (var service in FilteredServices)
+					{
+						<ServiceRadioCard Service="@service" Selected="(_formModel.Service == service)"
+							OnSelect="OnServiceSelected" />
+					}
+				</div>
+			</div>
+
+			<div class="contact-form__group contact-form__group--full">
+				<InputTextArea class="contact-form__textarea" placeholder="Type your message here."
+					@bind-Value="_formModel.Message" />
+			</div>
+		</div>
+
+		<div class="contact-form__error-wrapper">
+			<ValidationSummary class="contact-form__error" />
+		</div>
+
+		<button type="submit" class="contact-form__submit">Send message</button>
+	</EditForm>
+</div>
+
+@code {
+	[Parameter] public List<string> ServicesNames { get; set; } = new();
+	[Parameter] public string SelectedService { get; set; } = "";
+
+	private ContactFormModel _formModel = new();
+	private string serviceSearch = "";
+
+	private IEnumerable<string> FilteredServices => string.IsNullOrWhiteSpace(serviceSearch) ? ServicesNames :
+	ServicesNames.Where(s => s.Contains(serviceSearch, StringComparison.OrdinalIgnoreCase));
+
+	protected override void OnInitialized()
+	{
+		if (!string.IsNullOrWhiteSpace(SelectedService))
+		{
+			_formModel.Service = SelectedService;
+		}
+	}
+
+	private void OnServiceSelected(string selectedService)
+	{
+		_formModel.Service = selectedService;
+	}
+
+	private void HandleValidSubmit()
+	{
+		Console.WriteLine(JsonSerializer.Serialize(_formModel));
+	}
+}

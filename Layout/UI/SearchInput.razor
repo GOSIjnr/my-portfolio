@@ -1,0 +1,62 @@
+@using System.Timers
+
+<div class="search-input">
+	<input class="search-input__field" type="text" value="@_inputValue" placeholder="@Placeholder"
+		@oninput="HandleInput" />
+	@if (!string.IsNullOrEmpty(_inputValue))
+	{
+		<button class="search-input__clear-button" type="button" @onclick="ClearInput" aria-label="Clear search" />
+	}
+</div>
+
+@code {
+	[Parameter] public string Search { get; set; } = string.Empty;
+	[Parameter] public EventCallback<string> SearchChanged { get; set; }
+	[Parameter] public int Delay { get; set; } = 400;
+	[Parameter] public string Placeholder { get; set; } = "Lorem ipsum";
+
+	private Timer? _debounceTimer;
+	private string _inputValue = string.Empty;
+
+	protected override void OnParametersSet()
+	{
+		_inputValue = Search;
+	}
+
+	private void HandleInput(ChangeEventArgs e)
+	{
+		_inputValue = e.Value?.ToString() ?? string.Empty;
+
+		_debounceTimer?.Stop();
+		_debounceTimer?.Dispose();
+
+		_debounceTimer = new Timer(Delay);
+		_debounceTimer.Elapsed += OnDebounceElapsed;
+		_debounceTimer.AutoReset = false;
+		_debounceTimer.Start();
+	}
+
+	private async Task CallSearchChanged()
+	{
+		if (SearchChanged.HasDelegate)
+		{
+			await SearchChanged.InvokeAsync(_inputValue);
+		}
+
+		StateHasChanged();
+	}
+
+	private void OnDebounceElapsed(object? sender, ElapsedEventArgs e)
+	{
+		_ = InvokeAsync(CallSearchChanged);
+	}
+
+	private async void ClearInput()
+	{
+		_inputValue = string.Empty;
+		_debounceTimer?.Stop();
+		_debounceTimer?.Dispose();
+
+		await CallSearchChanged();
+	}
+}

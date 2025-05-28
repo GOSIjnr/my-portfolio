@@ -1,32 +1,53 @@
-/* Search input */
-.contact-form__search {
-	width: 100%;
-	padding: 0.65rem 1rem;
-	font-size: 0.875rem;
-	background-color: var(--color-1);
-	color: var(--color-3-lighter);
-	border: 1px solid var(--color-1-lighter);
-	transition: border-color 0.3s;
+.search-input {
+	--search-font-size: 0.875rem;
+	--search-color-input: var(--color-1);
+	--search-color-text: var(--color-3-lighter);
+	--search-border-color: var(--color-1-lighter);
+	--search-border-color-focus: var(--color-2-lighter);
+	--search-button-bg: var(--color-1-light);
+	--search-button-icon-color: var(--color-3-lighter);
+	--search-button-icon: url("images/close-button-circle.svg");
 }
 
-.contact-form__search:focus {
-	border-color: var(--color-2-lighter);
+.search-input {
+	position: relative;
+	width: 100%;
+}
+
+.search-input__field {
+	width: 100%;
+	padding: 0.65rem 2.5rem 0.65rem 1rem;
+	font-size: var(--search-font-size);
+	background-color: var(--search-color-input);
+	color: var(--search-color-text);
+	border: 1px solid var(--search-border-color);
+	transition: border-color 0.3s;
+	box-sizing: border-box;
+}
+
+.search-input__field:focus {
+	border-color: var(--search-border-color-focus);
 	outline: none;
 }
 
-.btn-clear {
-	width: 32px;
-	height: 32px;
+.search-input__clear-button {
+	position: absolute;
+	top: 50%;
+	right: 0.5rem;
+	transform: translateY(-50%);
+	width: 1.5rem;
+	height: 1.5rem;
 	border: none;
-	background-color: var(--color-1-light);
+	background-color: var(--search-button-bg);
 	cursor: pointer;
 	border-radius: 6px;
-	transition: background-color 0.3s;
-	display: inline-flex;
+	transition: all 0.3s ease-in;
+	display: flex;
 	align-items: center;
 	justify-content: center;
-
-	mask-image: url('data:image/svg+xml;utf8,<svg fill="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.3 5.71a1 1 0 00-1.42 0L12 10.59 7.11 5.7A1 1 0 105.7 7.11L10.59 12l-4.9 4.89a1 1 0 101.41 1.42L12 13.41l4.89 4.9a1 1 0 001.42-1.41L13.41 12l4.9-4.89a1 1 0 000-1.4z"/></svg>');
-	-webkit-mask-image: url('data:image/svg+xml;utf8,<svg fill="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.3 5.71a1 1 0 00-1.42 0L12 10.59 7.11 5.7A1 1 0 105.7 7.11L10.59 12l-4.9 4.89a1 1 0 101.41 1.42L12 13.41l4.89 4.9a1 1 0 001.42-1.41L13.41 12l4.9-4.89a1 1 0 000-1.4z"/></svg>');
-	background-color: var(--color-3-lighter);
+	font-size: 1.25rem;
+	line-height: 1;
+	mask-image: var(--search-button-icon);
+	-webkit-mask-image: var(--search-button-icon);
+	background-color: var(--search-button-icon-color);
 }

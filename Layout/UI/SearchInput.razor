@@ -1,48 +1,57 @@
 @using System.Timers
-<input type="text" class="@Class" value="@InputValue" placeholder="@Placeholder" @oninput="HandleInput" />
 
-@if (!string.IsNullOrEmpty(InputValue))
-{
-	<button type="button" class="btn-icon btn-clear" @onclick="ClearInput" aria-label="Clear search"></button>
-}
+<div class="search-input">
+	<input class="search-input__field" type="text" value="@_inputValue" placeholder="@Placeholder"
+		@oninput="HandleInput" />
+	@if (!string.IsNullOrEmpty(_inputValue))
+	{
+		<button class="search-input__clear-button" type="button" @onclick="ClearInput" aria-label="Clear search" />
+	}
+</div>
+
 
 @code {
-	[Parameter] public string Search { get; set; } = "";
+	[Parameter] public string Search { get; set; } = string.Empty;
 	[Parameter] public EventCallback<string> SearchChanged { get; set; }
 	[Parameter] public int Delay { get; set; } = 400;
-	[Parameter] public string? Placeholder { get; set; }
-	[Parameter] public string? Class { get; set; }
-	[Parameter] public EventCallback OnClear { get; set; }
+	[Parameter] public string Placeholder { get; set; } = "Lorem ipsum";
 
-	private Timer? debounceTimer;
-	private string InputValue = "";
+	private Timer? _debounceTimer;
+	private string _inputValue = string.Empty;
 
-	protected override void OnInitialized()
+	protected override void OnParametersSet()
 	{
-		InputValue = Search;
+		_inputValue = Search;
 	}
 
 	private void HandleInput(ChangeEventArgs e)
 	{
-		InputValue = e.Value?.ToString() ?? "";
+		_inputValue = e.Value?.ToString() ?? string.Empty;
 
-		debounceTimer?.Stop();
-		debounceTimer?.Dispose();
+		_debounceTimer?.Stop();
+		_debounceTimer?.Dispose();
 
-		debounceTimer = new Timer(Delay);
-		debounceTimer.Elapsed += async (_, _) =>
+		_debounceTimer = new Timer(Delay);
+		_debounceTimer.Elapsed += async (_, _) =>
 		{
-			await InvokeAsync(() => SearchChanged.InvokeAsync(InputValue));
-			await InvokeAsync(StateHasChanged);
+			await InvokeAsync(async () =>
+	{
+			await SearchChanged.InvokeAsync(_inputValue);
+			StateHasChanged();
+		});
 		};
-		debounceTimer.AutoReset = false;
-		debounceTimer.Start();
+
+		_debounceTimer.AutoReset = false;
+		_debounceTimer.Start();
 	}
 
-	private async Task ClearInput()
+	private async void ClearInput()
 	{
-		InputValue = "";
-		await SearchChanged.InvokeAsync("");
-		await OnClear.InvokeAsync();
+		_inputValue = string.Empty;
+		_debounceTimer?.Stop();
+		_debounceTimer?.Dispose();
+
+		await SearchChanged.InvokeAsync(_inputValue);
+		StateHasChanged();
 	}
 }

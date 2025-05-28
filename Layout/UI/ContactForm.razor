@@ -32,8 +32,7 @@
 				<label class="contact-form__service-label" for="serviceSearch">Select a service</label>
 
 				<div class="contact-form__service-search-wrapper">
-					<SearchInput @bind-Search="serviceSearch" Delay="400" Placeholder="Search services..."
-						OnClear="ClearSearch" Class="contact-form__search" />
+					<SearchInput @bind-Search="serviceSearch" Delay="400" Placeholder="Search services..."/>
 				</div>
 
 				<div class="contact-form__radio-group" role="radiogroup" aria-label="Services">
@@ -66,6 +65,9 @@
 	private ContactFormModel _formModel = new();
 	private string serviceSearch = "";
 
+	private IEnumerable<string> FilteredServices => string.IsNullOrWhiteSpace(serviceSearch) ? ServicesNames :
+	ServicesNames.Where(s => s.Contains(serviceSearch, StringComparison.OrdinalIgnoreCase));
+
 	protected override void OnInitialized()
 	{
 		if (!string.IsNullOrWhiteSpace(SelectedService))
@@ -74,24 +76,14 @@
 		}
 	}
 
-	private IEnumerable<string> FilteredServices =>
-	string.IsNullOrWhiteSpace(serviceSearch)
-	? ServicesNames
-	: ServicesNames.Where(s => s.Contains(serviceSearch, StringComparison.OrdinalIgnoreCase));
-
 	private void OnServiceSelected(string selectedService)
 	{
 		_formModel.Service = selectedService;
 	}
 
-	private void ClearSearch()
-	{
-		serviceSearch = "";
-	}
 	private void OnCardKeyDown(KeyboardEventArgs e, string service)
 	{
-		if (e.Key == "Enter" || e.Key == " ")
-			OnServiceSelected(service);
+		if (e.Key == "Enter" || e.Key == " ") OnServiceSelected(service);
 	}
 
 	private void HandleValidSubmit()

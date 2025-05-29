@@ -1,0 +1,23 @@
+@code {
+    [Parameter] public string? Title { get; set; }
+    [Parameter] public string? Description { get; set; }
+    [Parameter] public string? Technologies { get; set; }
+    [Parameter] public string? ImageUrl { get; set; }
+    [Parameter] public string? LiveUrl { get; set; }
+    [Parameter] public string? GithubUrl { get; set; }
+}
+
+<div class="project-card">
+    <div class="project-info">
+        <h2>@Title</h2>
+        <p>@Description</p>
+        <p class="tech">@Technologies</p>
+        <div class="buttons">
+            <a href="@LiveUrl" target="_blank">🔗</a>
+            <a href="@GithubUrl" target="_blank">GitHub</a>
+        </div>
+    </div>
+    <div class="project-image">
+        <img src="@ImageUrl" alt="@Title" />
+    </div>
+</div>

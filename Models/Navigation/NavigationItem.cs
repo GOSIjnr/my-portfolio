@@ -1,4 +1,4 @@
-using MyPortfolio.Helpers;
+using MyPortfolio.Helpers.Utilities;
 
 namespace MyPortfolio.Models.Navigation;
 

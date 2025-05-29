@@ -9,13 +9,13 @@
 		<p class="contact-option__detail">
 			@switch (ContactInfo.Type)
 			{
-				case ContactType.Email:
+				case LinkType.Email:
 					<a href="mailto:@ContactInfo.Link">@ContactInfo.Detail</a>
 					break;
-				case ContactType.Phone:
+				case LinkType.Phone:
 					<a href="tel:@ContactInfo.Link">@ContactInfo.Detail</a>
 					break;
-				case ContactType.Link:
+				case LinkType.Link:
 					<a href="@ContactInfo.Link" target="_blank" rel="noopener noreferrer">@ContactInfo.Detail</a>
 					break;
 				default:
@@ -27,7 +27,7 @@
 </div>
 
 @code {
-	[Parameter, EditorRequired] public ContactInfo ContactInfo { get; set; } = new();
+	[Parameter, EditorRequired] public LinkInfo ContactInfo { get; set; } = new();
 
 	[Inject] private IJSRuntime JS { get; set; } = null!;
 

@@ -5,7 +5,7 @@
 		<ContactForm ServicesNames="@_serviceNames" SelectedService="@_selectedService?.Name" />
 
 		<div class="contact__info-grid">
-			@foreach (ContactInfo info in _contactInfos)
+			@foreach (LinkInfo info in _contactInfos)
 			{
 				<ContactOption ContactInfo="@info" />
 			}
@@ -19,7 +19,7 @@
 
 	private ServiceInfo? _selectedService;
 	private List<string> _serviceNames = [];
-	private List<ContactInfo> _contactInfos = new List<ContactInfo>();
+	private List<LinkInfo> _contactInfos = [];
 
 	protected override void OnInitialized()
 	{

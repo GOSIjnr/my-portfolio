@@ -1,15 +1,15 @@
-using MyPortfolio.Helpers;
-using MyPortfolio.Helpers.Contact;
+using MyPortfolio.Helpers.Utilities;
+using MyPortfolio.Helpers.Navigation;
 
-namespace MyPortfolio.Models.UI;
+namespace MyPortfolio.Models.Navigation;
 
-public class ContactInfo(string iconUrl, string title, string detail, string link, ContactType type = ContactType.Text)
+public class LinkInfo(string iconUrl, string title, string detail, string link, LinkType type = LinkType.Text)
 {
 	private string _iconUrl = iconUrl ?? string.Empty;
 	private string _title = title ?? string.Empty;
 	private string _detail = detail ?? string.Empty;
 	private string _link = link ?? string.Empty;
-	private ContactType _type = EnumValidator.ValidateOrDefault(type, ContactType.Text);
+	private LinkType _type = EnumValidator.ValidateOrDefault(type, LinkType.Text);
 
 	public string IconUrl
 	{
@@ -35,11 +35,11 @@ public class ContactInfo(string iconUrl, string title, string detail, string lin
 		set => _link = value ?? string.Empty;
 	}
 
-	public ContactType Type
+	public LinkType Type
 	{
 		get => _type;
-		set => _type = EnumValidator.ValidateOrDefault(value, ContactType.Text);
+		set => _type = EnumValidator.ValidateOrDefault(value, LinkType.Text);
 	}
 
-	public ContactInfo() : this("images/web.svg", "Lorem ispum", "dolor sit amet", string.Empty, ContactType.Text) { }
+	public LinkInfo() : this("images/web.svg", "Lorem ispum", "dolor sit amet", string.Empty, LinkType.Text) { }
 }

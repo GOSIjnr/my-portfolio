@@ -1,4 +1,4 @@
-namespace MyPortfolio.Helpers;
+namespace MyPortfolio.Helpers.Utilities;
 
 public static class EnumValidator
 {

@@ -1,22 +1,20 @@
 @page "/projects"
 
 <section class="projects-section">
-    <ProjectCard Title="Frontend Project" Description="Lorem ipsum dolor sit amet..."
-        Technologies="HTML5, CSS3, JavaScript" ImageUrl="images/icon.svg" LiveUrl="https://example.com"
-        GithubUrl="https://github.com/yourrepo" />
+    @if (_projectInfoDetails.Count > 0)
+    {
+        <ProjectCard @bind-ProjectNo="_projectNo" ProjectInfo="_projectInfoDetails[_projectNo]"
+            TotalProjects="_projectInfoDetails.Count" />
+    }
+    else
+    {
+        <p>Loading projects...</p>
+    }
 </section>
 
 @code {
     [Inject] private AppContent AppContent { get; set; } = null!;
 
     private List<ProjectInfo> _projectInfoDetails => AppContent.User.ProjectInfos;
-
-    protected override void OnInitialized()
-    {
-        foreach (var info in _projectInfoDetails)
-        {
-            string json = JsonSerializer.Serialize(info);
-            Console.WriteLine(json);
-        }
-    }
+    private int _projectNo = 0;
 }

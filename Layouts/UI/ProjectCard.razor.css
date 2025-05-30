@@ -20,7 +20,7 @@ body {
 
 .project-card {
 	display: flex;
-	flex-direction: column;
+	flex-direction: column-reverse;
 	background: #111;
 	border-radius: 1rem;
 	padding: 1rem;
@@ -34,6 +34,11 @@ body {
 
 .tech {
 	color: limegreen;
+	margin-bottom: 1rem;
+}
+
+.buttons {
+	margin-bottom: 1rem;
 }
 
 .buttons a {
@@ -57,7 +62,38 @@ body {
 	margin-top: 1rem;
 }
 
-/* Tablet and up */
+.navigation-buttons {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 1rem;
+}
+
+.navigation-buttons button {
+	background: transparent;
+	color: var(--text-color);
+	border: 1px solid var(--primary-color);
+	padding: 0.5rem 1rem;
+	border-radius: 0.5rem;
+	cursor: pointer;
+	transition: background 0.3s;
+}
+
+.navigation-buttons button:hover:enabled {
+	background-color: var(--primary-color);
+	color: black;
+}
+
+.navigation-buttons button:disabled {
+	opacity: 0.3;
+	cursor: not-allowed;
+}
+
+.index-indicator {
+	color: var(--text-color);
+	font-size: 0.9rem;
+}
+
 @media (min-width: 768px) {
 	.project-card {
 		flex-direction: row;

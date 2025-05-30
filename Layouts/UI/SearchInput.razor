@@ -9,9 +9,10 @@
 
 @code {
 	[Parameter] public string Search { get; set; } = string.Empty;
-	[Parameter] public EventCallback<string> SearchChanged { get; set; }
 	[Parameter] public int Delay { get; set; } = 400;
 	[Parameter] public string Placeholder { get; set; } = "Lorem ipsum";
+	
+	[Parameter] public EventCallback<string> SearchChanged { get; set; }
 
 	private Timer? _debounceTimer;
 	private string _inputValue = string.Empty;

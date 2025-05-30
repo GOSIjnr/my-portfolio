@@ -7,6 +7,7 @@
 @code {
 	[Parameter] public string Service { get; set; } = "Lorem ipsum";
 	[Parameter] public bool Selected { get; set; } = false;
+	
 	[Parameter] public EventCallback<string> OnSelect { get; set; }
 
 	private async Task HandleClick()

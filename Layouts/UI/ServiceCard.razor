@@ -12,7 +12,7 @@
 </div>
 
 @code {
-	[Parameter, EditorRequired] public int ServiceNo { get; set; }
+	[Parameter, EditorRequired] public int ServiceNo { get; set; } = 0;
 	[Parameter, EditorRequired] public ServiceInfo Service { get; set; } = new();
 
 	[Inject] private NavigationManager NavigationManager { get; set; } = null!;

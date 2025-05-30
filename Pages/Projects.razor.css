@@ -1,111 +1,19 @@
-.projects-section {
-	--primary-color: orange;
-	--background-color: black;
-	--text-color: white;
+.projects {
+	--projects-page-padding: 1rem;
 }
 
-body {
-	margin: 0;
-	background-color: var(--background-color);
-	color: var(--text-color);
-	font-family: 'Segoe UI', sans-serif;
+.projects {
+	padding: var(--projects-page-padding);
 }
 
-.projects-section {
-	padding: 1rem;
-	display: flex;
-	flex-direction: column;
-	gap: 2rem;
-}
-
-.project-card {
-	display: flex;
-	flex-direction: column-reverse;
-	background: #111;
-	border-radius: 1rem;
-	padding: 1rem;
-	box-shadow: 0 0 10px rgba(255, 165, 0, 0.2);
-}
-
-.project-info h2 {
-	font-size: 1.5rem;
-	color: var(--primary-color);
-}
-
-.tech {
-	color: limegreen;
-	margin-bottom: 1rem;
-}
-
-.buttons {
-	margin-bottom: 1rem;
-}
-
-.buttons a {
-	margin-right: 1rem;
-	color: var(--text-color);
-	text-decoration: none;
-	border: 1px solid var(--primary-color);
-	padding: 0.5rem 1rem;
-	border-radius: 0.5rem;
-	transition: background 0.3s;
-}
-
-.buttons a:hover {
-	background: var(--primary-color);
-	color: black;
-}
-
-.project-image img {
-	width: 100%;
-	border-radius: 1rem;
-	margin-top: 1rem;
-}
-
-.navigation-buttons {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	margin-top: 1rem;
-}
-
-.navigation-buttons button {
-	background: transparent;
-	color: var(--text-color);
-	border: 1px solid var(--primary-color);
-	padding: 0.5rem 1rem;
-	border-radius: 0.5rem;
-	cursor: pointer;
-	transition: background 0.3s;
-}
-
-.navigation-buttons button:hover:enabled {
-	background-color: var(--primary-color);
-	color: black;
-}
-
-.navigation-buttons button:disabled {
-	opacity: 0.3;
-	cursor: not-allowed;
-}
-
-.index-indicator {
-	color: var(--text-color);
-	font-size: 0.9rem;
+.projects__no-content {
+	margin-top: 50px;
+	font-size: 0.875rem;
+	text-align: center;
 }
 
 @media (min-width: 768px) {
-	.project-card {
-		flex-direction: row;
-		align-items: center;
-	}
-
-	.project-info {
-		flex: 1;
-		padding-right: 2rem;
-	}
-
-	.project-image {
-		flex: 1;
+	.projects {
+		--projects-page-padding: 2rem 1rem;
 	}
 }

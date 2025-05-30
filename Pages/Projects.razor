@@ -1,6 +1,6 @@
 @page "/projects"
 
-<section class="projects-section">
+<div class="projects">
     @if (_projectInfoDetails.Count > 0)
     {
         <ProjectCard @bind-ProjectNo="_projectNo" ProjectInfo="_projectInfoDetails[_projectNo]"
@@ -8,9 +8,11 @@
     }
     else
     {
-        <p>Loading projects...</p>
+        <p class="projects__no-content">
+            There are no projects to display at the moment. <br>Please check back soon.
+        </p>
     }
-</section>
+</div>
 
 @code {
     [Inject] private AppContent AppContent { get; set; } = null!;

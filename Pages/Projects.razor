@@ -3,7 +3,7 @@
 <div class="projects">
     @if (_projectInfoDetails.Count > 0)
     {
-        <ProjectCard @bind-ProjectNo="_projectNo" ProjectInfo="_projectInfoDetails[_projectNo]"
+        <ProjectCard @bind-ProjectNo="_projectIndex" ProjectInfo="_projectInfoDetails[_projectIndex]"
             TotalProjects="_projectInfoDetails.Count" />
     }
     else
@@ -18,5 +18,5 @@
     [Inject] private AppContent AppContent { get; set; } = null!;
 
     private List<ProjectInfo> _projectInfoDetails => AppContent.User.ProjectInfos;
-    private int _projectNo = 0;
+    private int _projectIndex = 0;
 }

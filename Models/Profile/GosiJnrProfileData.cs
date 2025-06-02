@@ -43,7 +43,7 @@ public class GosiJnrProfileData : IUserProfileData
 	[
 		new(
 			"Esut Brain Train App",
-			"ESUT Brain Trainer is a mobile app designed to improve cognitive skills through fun, interactive quizzes and games. Built as a final year project at ESUT (Enugu State University of Science and Technology), the app features logic, math, memory, and vocabulary challenges to help users train their brain and track progress over time.",
+			"A mobile app with logic, math, memory, and vocabulary games to boost cognitive skills. Built as a final-year project at ESUT.",
 			["Godot", "GDScript"],
 			"images/icon.svg",
 			new("https://api.iconify.design/simple-icons/github.svg", "GitHub", "Esut Brain Trainer", "https://github.com/GOSIjnr/esut-brain-trainer/releases", LinkType.Link),
@@ -53,7 +53,7 @@ public class GosiJnrProfileData : IUserProfileData
 		),
 		new(
 			"User Management API",
-			"The User Management API is a RESTful API built with ASP.NET Core, designed to manage user data. It provides endpoints for creating, reading, updating, and deleting user records. The API is structured with a clean separation of concerns, utilizing middleware for cross-cutting concerns and a service layer for business logic.",
+			"A RESTful API for managing user data with CRUD operations, built using ASP.NET Core and clean architecture principles.",
 			["C#", "ASP.NET Core"],
 			"images/icon.svg",
 			null,
@@ -63,7 +63,7 @@ public class GosiJnrProfileData : IUserProfileData
 		),
 		new(
 			"Expense Tracker API",
-			"Expense Tracker API is a simple and efficient API for managing personal expenses. It supports categorization, transaction tracking, and reporting, helping users monitor their spending. Built with C#, ASP.NET Core, and MySQL, it's reliable and easy to integrate with finance apps.",
+			"An ASP.NET Core API for tracking expenses, with support for categories, transactions, and spending reports.",
 			["C#", "ASP.NET Core", "My SQL"],
 			"images/icon.svg",
 			null,

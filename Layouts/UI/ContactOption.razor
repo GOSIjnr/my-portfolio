@@ -31,7 +31,8 @@
 
 	[Inject] private IJSRuntime JS { get; set; } = null!;
 
-	private string _contactIconId = $"contact-option__icon-{Guid.NewGuid():N}";
+	private string _contactIconId = $"contact-option__icon--{Guid.NewGuid():N}";
+
 	private string _contactIconUrl => ContactInfo.IconUrl;
 	private string _contactTitle => ContactInfo.Title;
 	private string _contactDetail => ContactInfo.Detail;
@@ -42,8 +43,14 @@
 	{
 		if (firstRender)
 		{
-			await JS.InvokeVoidAsync("imageLoader.applyMaskWithFallback", _contactIconId, "--contact-icon-image", _contactIconUrl,
-			FallbackIcon, true);
+			await JS.InvokeVoidAsync("imageLoader.applyCssImageWithFallback", new ImageLoaderOptions
+			{
+				ElementId = _contactIconId,
+				CssProperty = "--contact-icon-image",
+				ImageUrl = _contactIconUrl,
+				FallbackUrl = FallbackIcon,
+				UseVariable = true
+			});
 		}
 	}
 }

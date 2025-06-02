@@ -66,8 +66,9 @@
 	height: 470px;
 	display: block;
 	object-fit: cover;
+	background-repeat: no-repeat;
 	/* placeholder */
-	background-color: rgb(34, 36, 39);
+	/* background-color: rgb(34, 36, 39); */
 }
 
 .project-card__nav {

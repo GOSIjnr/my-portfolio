@@ -2,25 +2,27 @@
     <div class="project-card__info">
         <div class="project-card__number">@((ProjectNo + 1).ToString("D2"))</div>
 
-        <h2 class="project-card__title">@ProjectInfo.Title</h2>
-        <p class="project-card__description">@ProjectInfo.Description</p>
-        <p class="project-card__tech">@string.Join(", ", ProjectInfo.Technologies)</p>
+        <h2 class="project-card__title">@_title</h2>
+        <p class="project-card__description">@_description</p>
+        <p class="project-card__tech">@string.Join(", ", _technologies)</p>
 
         <div class="project-card__buttons">
-            @if (ProjectInfo.LiveLink is not null)
+            @if (_liveLink is not null)
             {
-                <a class="project-card__button" href="@ProjectInfo.LiveLink.Link" target="_blank">Live</a>
+                <a class="project-card__button" href="@_liveLink.Link" target="_blank" rel="noopener noreferrer">Live</a>
             }
 
-            @foreach (LinkInfo link in ProjectInfo.OtherLinks)
+            @foreach (var link in _otherLinks)
             {
-                <a class="project-card__button" href="@link.Link" target="_blank">@link.Title</a>
+                <a class="project-card__button" href="@link.Link" target="_blank" rel="noopener noreferrer">
+                    @link.Title
+                </a>
             }
         </div>
     </div>
 
     <div class="project-card__media">
-        <img class="project-card__image" src="@ProjectInfo.ImageUrl" alt="@ProjectInfo.Title" />
+        <img class="project-card__image" id="@_projectImageId" alt="@_title" />
 
         <div class="project-card__nav">
             <button @onclick="Previous" disabled="@IsFirst" class="project-card__nav-button">
@@ -33,7 +35,6 @@
     </div>
 </div>
 
-
 @code {
     [Parameter] public int ProjectNo { get; set; }
     [Parameter] public EventCallback<int> ProjectNoChanged { get; set; }
@@ -41,8 +42,34 @@
     [Parameter, EditorRequired] public ProjectInfo ProjectInfo { get; set; } = new();
     [Parameter] public int TotalProjects { get; set; }
 
+    [Inject] private IJSRuntime JS { get; set; } = null!;
+
+    private string _projectImageId = $"project-card__image--{Guid.NewGuid():N}";
+
+    private string _title => ProjectInfo.Title;
+    private string _description => ProjectInfo.Description;
+    private List<string> _technologies => ProjectInfo.Technologies ?? new();
+    private string _imageUrl => ProjectInfo.ImageUrl;
+    private LinkInfo? _liveLink => ProjectInfo.LiveLink;
+    private List<LinkInfo> _otherLinks => ProjectInfo.OtherLinks ?? new();
+
     private bool IsFirst => ProjectNo == 0;
     private bool IsLast => ProjectNo == TotalProjects - 1;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("imageLoader.applyImgSrcWithFallback", new ImageLoaderOptions
+            {
+                ElementId = _projectImageId,
+                CssProperty = "backgroundImage",
+                ImageUrl = _imageUrl,
+                FallbackUrl = "images/no-image.svg",
+                UseVariable = false
+            });
+        }
+    }
 
     private async Task Previous()
     {

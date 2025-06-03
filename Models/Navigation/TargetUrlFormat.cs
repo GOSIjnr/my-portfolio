@@ -4,5 +4,4 @@ public enum TargetUrlFormat
 {
     Plain,
     HashPrefix,
-    SlashPrefix,
 }

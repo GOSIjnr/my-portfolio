@@ -13,7 +13,6 @@ public static class NavigationUrlFormatter
         {
             TargetUrlFormat.Plain => sanitizedUrl,
             TargetUrlFormat.HashPrefix => $"#{sanitizedUrl}",
-            TargetUrlFormat.SlashPrefix => $"/{sanitizedUrl}",
             _ => sanitizedUrl,
         };
     }

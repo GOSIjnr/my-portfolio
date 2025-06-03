@@ -7,14 +7,14 @@
 
 @code {
 	[Parameter, EditorRequired] public BrandInfo BrandInfo { get; set; } = new();
-	
+
 	[Parameter] public EventCallback OnBrandClick { get; set; }
 
 	private string _displayText => BrandInfo.BrandDisplayName;
 	private string _highlightedDisplayText => BrandInfo.BrandHighlightedDisplayName;
 	private string _rawTargetUrl => BrandInfo.BrandRawTargetUrl;
 	private string _targetUrl => NavigationUrlFormatter.GetFormattedSanitizedTargetUrl(_rawTargetUrl,
-	TargetUrlFormat.SlashPrefix);
+	TargetUrlFormat.Plain);
 
 	protected override void OnParametersSet()
 	{

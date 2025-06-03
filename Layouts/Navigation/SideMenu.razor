@@ -12,7 +12,7 @@
                 @foreach (NavigationItem item in _navigationItems)
                 {
                     <div class="side-bar__link">
-                        <NavLinkItem NavigationLinkInfo="item" LinkType="@TargetUrlFormat.SlashPrefix"
+                        <NavLinkItem NavigationLinkInfo="item" LinkType="@TargetUrlFormat.Plain"
                             OnNavMenuItemClick="CloseMenu" />
                     </div>
                 }
@@ -28,7 +28,7 @@
 
 @code {
     [Parameter, EditorRequired] public bool IsOpened { get; set; } = false;
-    
+
     [Parameter] public EventCallback OnClose { get; set; }
 
     [Inject] private AppContent AppContent { get; set; } = null!;

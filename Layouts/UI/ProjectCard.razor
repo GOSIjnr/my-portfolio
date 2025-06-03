@@ -12,7 +12,7 @@
                 <a class="project-card__button" href="@_liveLink.Link" target="_blank" rel="noopener noreferrer">Live</a>
             }
 
-            @foreach (var link in _otherLinks)
+            @foreach (LinkInfo link in _otherLinks)
             {
                 <a class="project-card__button" href="@link.Link" target="_blank" rel="noopener noreferrer">
                     @link.Title
@@ -56,10 +56,14 @@
     private bool IsFirst => ProjectNo == 0;
     private bool IsLast => ProjectNo == TotalProjects - 1;
 
+    private string? _lastImageUrl;
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender)
+        if (_imageUrl != _lastImageUrl)
         {
+            _lastImageUrl = _imageUrl;
+
             await JS.InvokeVoidAsync("imageLoader.applyImgSrcWithFallback", new ImageLoaderOptions
             {
                 ElementId = _projectImageId,

@@ -45,7 +45,7 @@ public class GosiJnrProfileData : IUserProfileData
 			"Esut Brain Train App",
 			"A mobile app with logic, math, memory, and vocabulary games to boost cognitive skills. Built as a final-year project at ESUT.",
 			["Godot", "GDScript"],
-			"change later",
+			"images/esut-brain-trainer.png",
 			new("https://api.iconify.design/simple-icons/github.svg", "GitHub", "Esut Brain Trainer", "https://github.com/GOSIjnr/esut-brain-trainer/releases", LinkType.Link),
 			[
 				new("https://api.iconify.design/simple-icons/github.svg", "GitHub", "Esut Brain Trainer", "https://github.com/GOSIjnr/esut-brain-trainer"),
@@ -55,7 +55,7 @@ public class GosiJnrProfileData : IUserProfileData
 			"User Management API",
 			"A RESTful API for managing user data with CRUD operations, built using ASP.NET Core and clean architecture principles.",
 			["C#", "ASP.NET Core"],
-			"change later",
+			"nothing.svg",
 			null,
 			[
 				new("https://api.iconify.design/simple-icons/github.svg", "GitHub", "User Management API", "https://github.com/GOSIjnr/user-management-api", LinkType.Link),
@@ -65,7 +65,7 @@ public class GosiJnrProfileData : IUserProfileData
 			"Expense Tracker API",
 			"An ASP.NET Core API for tracking expenses, with support for categories, transactions, and spending reports.",
 			["C#", "ASP.NET Core", "My SQL"],
-			"change later",
+			"nothing.svg",
 			null,
 			[
 				new("https://api.iconify.design/simple-icons/github.svg", "GitHub", "Expense Tracker API", "https://github.com/GOSIjnr/expense-tracker-api", LinkType.Link),

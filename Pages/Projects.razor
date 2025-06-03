@@ -18,5 +18,6 @@
     [Inject] private AppContent AppContent { get; set; } = null!;
 
     private List<ProjectInfo> _projectInfoDetails => AppContent.User.ProjectInfos;
+
     private int _projectIndex = 0;
 }

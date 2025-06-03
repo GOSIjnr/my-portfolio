@@ -9,7 +9,11 @@
         <div class="project-card__buttons">
             @if (_liveLink is not null)
             {
-                <a class="project-card__button" href="@_liveLink.Link" target="_blank" rel="noopener noreferrer">Live</a>
+                <a class="project-card__button" href="@_liveLink.Link" target="_blank" rel="noopener noreferrer">
+                    Launch
+                </a>
+
+                <div class="project-card__live-button-divider" />
             }
 
             @foreach (LinkInfo link in _otherLinks)
@@ -36,15 +40,16 @@
 </div>
 
 @code {
-    [Parameter] public int ProjectNo { get; set; }
-    [Parameter] public EventCallback<int> ProjectNoChanged { get; set; }
-
     [Parameter, EditorRequired] public ProjectInfo ProjectInfo { get; set; } = new();
+    [Parameter] public int ProjectNo { get; set; }
     [Parameter] public int TotalProjects { get; set; }
+
+    [Parameter] public EventCallback<int> ProjectNoChanged { get; set; }
 
     [Inject] private IJSRuntime JS { get; set; } = null!;
 
     private string _projectImageId = $"project-card__image--{Guid.NewGuid():N}";
+    private string? _lastImageUrl;
 
     private string _title => ProjectInfo.Title;
     private string _description => ProjectInfo.Description;
@@ -52,11 +57,8 @@
     private string _imageUrl => ProjectInfo.ImageUrl;
     private LinkInfo? _liveLink => ProjectInfo.LiveLink;
     private List<LinkInfo> _otherLinks => ProjectInfo.OtherLinks ?? new();
-
     private bool IsFirst => ProjectNo == 0;
     private bool IsLast => ProjectNo == TotalProjects - 1;
-
-    private string? _lastImageUrl;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -67,7 +69,6 @@
             await JS.InvokeVoidAsync("imageLoader.applyImgSrcWithFallback", new ImageLoaderOptions
             {
                 ElementId = _projectImageId,
-                CssProperty = "backgroundImage",
                 ImageUrl = _imageUrl,
                 FallbackUrl = "images/no-image.svg",
                 UseVariable = false

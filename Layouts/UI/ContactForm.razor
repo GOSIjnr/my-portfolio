@@ -30,7 +30,7 @@
 				<label class="contact-form__service-label" for="serviceSearch">Select a service</label>
 
 				<div class="contact-form__service-search-wrapper">
-					<SearchInput @bind-Search="serviceSearch" Delay="400" Placeholder="Search services..."/>
+					<SearchInput @bind-Search="serviceSearch" Delay="400" Placeholder="Search services..." />
 				</div>
 
 				<div class="contact-form__radio-group" role="radiogroup" aria-label="Services">
@@ -66,7 +66,10 @@
 	private string serviceSearch = "";
 
 	private IEnumerable<string> FilteredServices => string.IsNullOrWhiteSpace(serviceSearch) ? ServicesNames :
-	ServicesNames.Where(s => s.Contains(serviceSearch, StringComparison.OrdinalIgnoreCase));
+	ServicesNames.Select(s => new { Name = s, Score = Fuzz.PartialRatio(serviceSearch.ToLower(), s.ToLower()) })
+	.Where(x => x.Score > 60)
+	.OrderByDescending(x => x.Score)
+	.Select(x => x.Name);
 
 	protected override void OnInitialized()
 	{

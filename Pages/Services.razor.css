@@ -2,7 +2,7 @@
 	--services-padding: 1rem;
 	--services-grid-gap: 40px;
 	--services-grid-columns: 1fr;
-	--services-grid-margin: 1rem 0rem;
+	--services-grid-margin: 1rem 0rem 12.5rem 0rem;
 }
 
 .services {
@@ -24,7 +24,7 @@
 
 @media (min-width: 768px) {
 	.services {
-		--services-grid-margin: 2rem 0rem;
+		--services-grid-margin: 2rem 0rem 12.5rem 0rem;
 	}
 }
 

@@ -20,6 +20,8 @@
     --color-3-lighter: #ffffff;
     --color-3-dark: #e0e0e0;
     --color-3-darker: #cccccc;
+
+    color-scheme: only dark;
 }
 
 html,

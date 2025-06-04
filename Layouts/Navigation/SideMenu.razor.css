@@ -34,7 +34,7 @@
 	right: 0;
 	width: 75%;
 	max-width: 400px;
-	height: 100svh;
+	height: 100dvh;
 	padding: var(--sidebar-padding);
 	transform: translateX(100%);
 	transition: transform 0.2s ease-out;

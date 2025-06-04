@@ -179,4 +179,8 @@
 		padding: 0;
 		gap: 1rem;
 	}
+
+	.project-card__image {
+		height: 350px;
+	}
 }

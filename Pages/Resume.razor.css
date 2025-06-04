@@ -1,85 +1,105 @@
-/* Base layout */
-.resume {
-	/* padding: 2rem 1rem; */
-}
-
-.resume__card {
-	border: 1px solid var(--color-background-muted);
-	background-color: var(--color-background-main);
-	padding: 2rem;
-	/* max-width: 600px; */
-	margin: 0 auto;
-	/* box-shadow: 0 0 4px rgba(0, 0, 0, 0.05); */
-}
-
-/* Title and description */
-.resume__title {
-	font-family: var(--font-family-heading);
-	font-size: 1.75rem;
-	margin-bottom: 1rem;
-	color: var(--color-primary-main);
-}
-
-.resume__description {
-	font-size: 1rem;
-	margin-bottom: 2rem;
-	color: var(--color-primary-muted);
-}
-
-/* Button layout */
-.resume__actions {
+/* Layout container */
+.resume-container {
 	display: flex;
-	flex-wrap: wrap;
-	gap: 1rem;
-	justify-content: flex-start;
+	height: 100vh;
+	background-color: black;
+	color: white;
+}
+
+/* Left sidebar navigation */
+.nav-panel {
+	width: 220px;
+	padding: 1rem;
+	background-color: #111;
+}
+
+/* Navigation buttons */
+.nav-button {
+	width: 100%;
+	margin-bottom: 1rem;
+	padding: 1rem;
+	border: none;
+	border-radius: 5px;
+	background-color: #333;
+	color: white;
+	cursor: pointer;
+	transition: background-color 0.2s ease;
+}
+
+.nav-button:hover {
+	background-color: #444;
+}
+
+.nav-button.active {
+	background-color: orange;
+	color: black;
+}
+
+/* Resume download buttons */
+.resume__actions {
+	margin-top: 2rem;
 }
 
 .resume__button {
-	padding: 0.75rem 1.5rem;
-	border: 1px solid var(--color-primary-main);
-	background-color: var(--color-primary-main);
-	color: var(--color-background-main);
-	font-family: var(--font-family-body);
-	font-size: 1rem;
-	text-transform: uppercase;
+	width: 100%;
+	margin-bottom: 0.5rem;
+	padding: 0.75rem;
+	border: none;
+	border-radius: 5px;
+	background-color: orange;
+	color: black;
+	font-weight: bold;
 	cursor: pointer;
-	transition: background-color 0.2s ease-out;
-	flex: 1 1 auto;
-	min-width: 180px;
-	text-align: center;
-}
-
-.resume__button:hover {
-	background-color: var(--color-primary-overlay);
+	transition: background-color 0.2s ease;
 }
 
 .resume__button--secondary {
 	background-color: transparent;
-	color: var(--color-primary-main);
-	border: 1px solid var(--color-primary-main);
+	color: orange;
+	border: 2px solid orange;
+}
+
+.resume__button:hover {
+	background-color: #ffa500dd;
 }
 
 .resume__button--secondary:hover {
-	background-color: var(--color-primary-overlay);
-	color: var(--color-background-main);
+	background-color: orange;
+	color: black;
 }
 
-/* Media query for smaller screens */
-@media (max-width: 480px) {
-	.resume__card {
-		padding: 1.5rem;
+/* Divider line */
+.divider {
+	border: 1px solid #444;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+
+/* Right content area */
+.content-area {
+	flex: 1;
+	padding: 2rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+	.resume-container {
+		flex-direction: column;
 	}
 
-	.resume__title {
-		font-size: 1.5rem;
-	}
-
-	.resume__description {
-		font-size: 0.95rem;
-	}
-
-	.resume__button {
+	.nav-panel {
 		width: 100%;
-		flex: none;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+	}
+
+	.nav-button {
+		width: 48%;
+		margin-bottom: 0.5rem;
+	}
+
+	.content-area {
+		padding: 1rem;
 	}
 }

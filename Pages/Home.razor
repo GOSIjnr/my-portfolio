@@ -1,4 +1,5 @@
-﻿@page "/"
+﻿@inject IJSRuntime JS
+@page "/"
 
 <div class="hero">
 	<div class="hero__background" />
@@ -25,6 +26,14 @@
 						LinkType="@TargetUrlFormat.HashPrefix" />
 				</div>
 			</div>
+
+			<!-- Resume Actions -->
+			<div class="resume__actions">
+				<button class="resume__button" @onclick="DownloadResume">Download Resume (DOCX)</button>
+				<button class="resume__button resume__button--secondary" @onclick="PreviewResume">
+					Preview Resume (PDF Style)
+				</button>
+			</div>
 		</div>
 	</div>
 </div>
@@ -37,5 +46,21 @@
 	protected override void OnInitialized()
 	{
 		HomePageContentInfo = AppContent.Layout.HomePageContent;
+	}
+
+
+	private string docxFileId = "1NdPAG_6jcNHaFta0fJK6lT5TlNLzEMgQ";
+	private string previewFileId = "1NdPAG_6jcNHaFta0fJK6lT5TlNLzEMgQ";
+
+	private async Task DownloadResume()
+	{
+		string url = $"https://drive.google.com/uc?export=download&id={docxFileId}";
+		await JS.InvokeVoidAsync("downloadFile", url);
+	}
+
+	private async Task PreviewResume()
+	{
+		string previewUrl = $"https://drive.google.com/file/d/{previewFileId}/preview";
+		await JS.InvokeVoidAsync("openFileInNewTab", previewUrl);
 	}
 }

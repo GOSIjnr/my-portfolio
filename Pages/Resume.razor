@@ -1,34 +1,68 @@
 @inject IJSRuntime JS
 @page "/resume"
 
-<div class="resume">
-	<div class="resume__card">
-		<h2 class="resume__title">My Resume</h2>
-		<p class="resume__description">
-			You can download or preview my resume using either of the buttons below.
-		</p>
+<div class="resume-container">
 
-		<div class="resume__actions">
-			<button class="resume__button" @onclick="DownloadResume">Download Resume (DOCX)</button>
-			<button class="resume__button resume__button--secondary" @onclick="PreviewResume">Preview Resume (PDF
-				Style)</button>
-		</div>
-	</div>
+    <!-- Left Navigation -->
+    <div class="nav-panel">
+        @for (int i = 0; i < Sections.Length; i++)
+        {
+            var section = Sections[i]; <!-- fix to prevent closure issue -->
+            <button class="nav-button @(CurrentSection == section ? "active" : "")"
+                    @onclick="@(() => SelectSection(section))">
+                @(section)
+            </button>
+        }
+
+        <hr class="divider" />
+
+        <!-- Resume Actions -->
+        <div class="resume__actions">
+            <button class="resume__button" @onclick="DownloadResume">Download Resume (DOCX)</button>
+            <button class="resume__button resume__button--secondary" @onclick="PreviewResume">
+                Preview Resume (PDF Style)
+            </button>
+        </div>
+    </div>
+
+    <!-- Right Content Area -->
+    <div class="content-area">
+        @RenderActiveSection()
+    </div>
+
 </div>
 
 @code {
-	private string docxFileId = "1NdPAG_6jcNHaFta0fJK6lT5TlNLzEMgQ";
-	private string previewFileId = "1NdPAG_6jcNHaFta0fJK6lT5TlNLzEMgQ";
+    private string CurrentSection = "Experience";
 
-	private async Task DownloadResume()
-	{
-		string url = $"https://drive.google.com/uc?export=download&id={docxFileId}";
-		await JS.InvokeVoidAsync("downloadFile", url);
-	}
+    private readonly string[] Sections = new[] { "Experience", "Education", "Skills", "About Me" };
 
-	private async Task PreviewResume()
-	{
-		string previewUrl = $"https://drive.google.com/file/d/{previewFileId}/preview";
-		await JS.InvokeVoidAsync("openFileInNewTab", previewUrl);
-	}
+    private void SelectSection(string section)
+    {
+        CurrentSection = section;
+    }
+
+    private RenderFragment RenderActiveSection() => CurrentSection switch
+    {
+        "Experience" => @<p>Experience content placeholder.</p>,
+        "Education" => @<p>Education content placeholder.</p>,
+        "Skills" => @<p>Skills content placeholder.</p>,
+        "About Me" => @<p>About Me content placeholder.</p>,
+        _ => @<p>Section not found.</p>
+    };
+
+    private string docxFileId = "1NdPAG_6jcNHaFta0fJK6lT5TlNLzEMgQ";
+    private string previewFileId = "1NdPAG_6jcNHaFta0fJK6lT5TlNLzEMgQ";
+
+    private async Task DownloadResume()
+    {
+        string url = $"https://drive.google.com/uc?export=download&id={docxFileId}";
+        await JS.InvokeVoidAsync("downloadFile", url);
+    }
+
+    private async Task PreviewResume()
+    {
+        string previewUrl = $"https://drive.google.com/file/d/{previewFileId}/preview";
+        await JS.InvokeVoidAsync("openFileInNewTab", previewUrl);
+    }
 }

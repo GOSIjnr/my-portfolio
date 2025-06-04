@@ -3,7 +3,7 @@
 	--service-card-main-color: var(--color-3-lighter);
 	--service-card-hover-color: var(--color-2-lighter);
 	--service-card-text-color: var(--color-3-darker);
-	--service-card-arrow-main-color: var(--color-1-darker);
+	--service-card-arrow-main-color: var(--color-1);
 	--service-card-arrow-accent-color: var(--color-3-lighter);
 	--service-card-button-hover-bg: var(--color-2-light);
 	--service-card-button-hover-color: var(--service-card-arrow-main-color);
@@ -14,6 +14,8 @@
 	--service-card-description-size: 0.7rem;
 	--service-card-arrow-size: 1.5rem;
 	--service-card-color: var(--service-card-main-color);
+	--service-card-arrow-image: url("images/arrow-right-linear.svg");
+	--service-card-arrow-image-size: 20px;
 }
 
 .service-card {
@@ -58,7 +60,6 @@
 	justify-content: center;
 	align-items: center;
 	transition: all 0.3s ease;
-	color: var(--service-card-button-hover-color);
 }
 
 .service-card__button:hover,
@@ -67,19 +68,20 @@
 }
 
 .service-card__arrow {
+	-webkit-mask: var(--service-card-arrow-image) no-repeat center / contain;
+	mask: var(--service-card-arrow-image) no-repeat center / contain;
+	background-color: var(--service-card-button-hover-color);
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 100%;
-	height: 100%;
-	font-size: var(--service-card-arrow-size);
-	font-weight: normal;
-	font-family: 'Courier New', Courier, monospace;
+	width: var(--service-card-arrow-image-size);
+	height: var(--service-card-arrow-image-size);
 	transform: rotate(45deg);
 	transition: transform 0.3s ease-out;
 }
 
 .service-card__button:hover .service-card__arrow {
+	background-color: var(--color-3-lighter);
 	transform: rotate(0deg);
 }
 

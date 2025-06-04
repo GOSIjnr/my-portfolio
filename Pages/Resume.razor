@@ -15,14 +15,6 @@
         }
 
         <hr class="divider" />
-
-        <!-- Resume Actions -->
-        <div class="resume__actions">
-            <button class="resume__button" @onclick="DownloadResume">Download Resume (DOCX)</button>
-            <button class="resume__button resume__button--secondary" @onclick="PreviewResume">
-                Preview Resume (PDF Style)
-            </button>
-        </div>
     </div>
 
     <!-- Right Content Area -->
@@ -50,19 +42,4 @@
         "About Me" => @<p>About Me content placeholder.</p>,
         _ => @<p>Section not found.</p>
     };
-
-    private string docxFileId = "1NdPAG_6jcNHaFta0fJK6lT5TlNLzEMgQ";
-    private string previewFileId = "1NdPAG_6jcNHaFta0fJK6lT5TlNLzEMgQ";
-
-    private async Task DownloadResume()
-    {
-        string url = $"https://drive.google.com/uc?export=download&id={docxFileId}";
-        await JS.InvokeVoidAsync("downloadFile", url);
-    }
-
-    private async Task PreviewResume()
-    {
-        string previewUrl = $"https://drive.google.com/file/d/{previewFileId}/preview";
-        await JS.InvokeVoidAsync("openFileInNewTab", previewUrl);
-    }
 }

@@ -16,7 +16,7 @@
 .project-card {
 	display: flex;
 	flex-direction: column-reverse;
-	gap: 1rem;
+	gap: 3rem;
 }
 
 .project-card__info {
@@ -26,13 +26,13 @@
 .project-card__number {
 	-webkit-text-stroke: 1px var(--color-tertiary-lighter);
 	font-weight: bolder;
-	font-size: 3.5rem;
+	font-size: 2.5rem;
 	color: transparent;
 }
 
 .project-card__title {
-	margin: 1rem 0 1.5rem;
-	font-size: 2.25rem;
+	margin: 1rem 0 1.15rem;
+	font-size: 1.65rem;
 	font-weight: bolder;
 	font-family: var(--font-secondary);
 }
@@ -47,7 +47,7 @@
 .project-card__tech {
 	margin-bottom: 1rem;
 	padding-bottom: 1rem;
-	font-size: 0.875rem;
+	font-size: 0.785rem;
 	color: var(--color-secondary-lighter);
 	border-bottom: 2px solid var(--color-primary-lighter);
 }
@@ -162,7 +162,6 @@
 	.project-card {
 		flex-direction: row;
 		align-items: center;
-		gap: 2rem;
 	}
 
 	.project-card__media {

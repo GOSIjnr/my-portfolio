@@ -5,30 +5,28 @@
         <h2 class="resume__title">Why hire me?</h2>
         <p class="resume__subtitle">Browse through the areas below to learn more about my skills and experience.</p>
 
-        @for (int i = 0; i < Sections.Length; i++)
-        {
-            string? section = Sections[i];
+        <div class="resume__nav-button-wrapper">
+            @for (int i = 0; i < Sections.Length; i++)
+            {
+                string? section = Sections[i];
 
-            <button class="resume__nav-button @(CurrentSection == section ? "resume__nav-button--active" : "")"
+                <button class="resume__nav-button @(CurrentSection == section ? "resume__nav-button--active" : "")"
                     @onclick="@(() => SelectSection(section))">
-                @(section)
-            </button>
-        }
-
-        <hr class="resume__divider" />
+                    @(section)
+                </button>
+            }
+        </div>
     </div>
 
-    <!-- Right Content Area -->
     <div class="resume__content">
         @RenderActiveSection()
     </div>
-
 </div>
 
 @code {
     private string CurrentSection = "About Me";
 
-    private readonly string[] Sections = ["About Me", "Experience", "Skills", "Testimonials", "Certifications", "Contact"];
+    private readonly string[] Sections = ["About Me", "Experience", "Skills"];
 
     private void SelectSection(string section)
     {
@@ -38,9 +36,9 @@
     private RenderFragment RenderActiveSection() => CurrentSection switch
     {
         "Experience" => @<p>Experience content placeholder.</p>,
-        "Education" => @<p>Education content placeholder.</p>,
-        "Skills" => @<p>Skills content placeholder.</p>,
-        "About Me" => @<p>About Me content placeholder.</p>,
-        _ => @<p>Section not found.</p>
-    };
+"Education" => @<p>Education content placeholder.</p>,
+"Skills" => @<p>Skills content placeholder.</p>,
+"About Me" => @<p>About Me content placeholder.</p>,
+_ => @<p>Section not found.</p>
+};
 }

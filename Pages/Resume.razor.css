@@ -1,113 +1,111 @@
 .resume {
+	--resume-padding: 1rem;
+	--resume-gap: 2rem;
+	--resume-title-font-size: 2rem;
+	--resume-title-weight: 700;
+	--resume-subtitle-font-size: 0.8rem;
+	--resume-subtitle-weight: 300;
+
+	--resume-nav-button-padding: 0.65rem 1rem;
+	--resume-nav-button-font-size: 0.75rem;
+	--resume-nav-button-font-weight: 200;
+
+	--resume-color-primary: var(--color-1-light);
+	--resume-color-hover: var(--color-1-lighter);
+	--resume-color-active: var(--color-2-lighter);
+	--resume-color-text: var(--color-3-lighter);
+	--resume-color-subtext: var(--color-3-darker);
+	--resume-font-family: var(--font-1);
+}
+
+.resume {
 	display: flex;
-
-	/* remove later */
-	background-color: indigo;
+	flex-direction: column;
+	padding: var(--resume-padding);
+	gap: var(--resume-gap);
 }
 
-/* Left sidebar navigation */
-.resume__nav {
-	width: 220px;
-	padding: 1rem;
-	background-color: #111;
-}
-
-/* Title and subtitle */
 .resume__title {
-	margin-bottom: 0.5rem;
+	margin-bottom: 1.5rem;
+	font-size: var(--resume-title-font-size);
+	font-weight: var(--resume-title-weight);
+	text-align: center;
+	padding: 0 0.45rem;
 }
 
 .resume__subtitle {
-	margin-bottom: 1rem;
+	font-size: var(--resume-subtitle-font-size);
+	color: var(--resume-color-subtext);
+	font-weight: var(--resume-subtitle-weight);
+	margin-bottom: 2rem;
+	text-align: center;
+	padding: 0 0.45rem;
 }
 
-/* Navigation buttons */
+.resume__nav-button-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 1.3rem;
+	margin-bottom: 2rem;
+	max-height: 200px;
+	overflow: auto;
+	padding: 0 0.45rem;
+	scrollbar-width: thin;
+	scrollbar-color: var(--resume-color-active) transparent;
+}
+
+.resume__nav-button-wrapper::-webkit-scrollbar {
+	width: 6px;
+}
+
+.resume__nav-button-wrapper::-webkit-scrollbar-track {
+	background: transparent;
+	border-radius: 4px;
+}
+
+.resume__nav-button-wrapper::-webkit-scrollbar-thumb {
+	background-color: var(--resume-color-active);
+	border-radius: 4px;
+}
+
+.resume__nav-button-wrapper::-webkit-scrollbar-thumb:hover {
+	background-color: var(--resume-color-hover);
+}
+
 .resume__nav-button {
-	width: 100%;
-	margin-bottom: 1rem;
-	padding: 1rem;
+	font-family: var(--resume-font-family);
+	padding: var(--resume-nav-button-padding);
 	border: none;
-	border-radius: 5px;
-	background-color: #333;
-	color: white;
+	font-weight: var(--resume-nav-button-font-weight);
+	font-size: var(--resume-nav-button-font-size);
+	background-color: var(--resume-color-primary);
+	color: var(--resume-color-text);
 	cursor: pointer;
 	transition: background-color 0.2s ease;
 }
 
 .resume__nav-button:hover {
-	background-color: #444;
+	background-color: var(--resume-color-hover);
 }
 
 .resume__nav-button--active {
-	background-color: orange;
-	color: black;
+	background-color: var(--resume-color-active);
+	color: var(--resume-color-text);
+	font-weight: 700;
 }
 
-/* Resume download actions */
-.resume__actions {
-	margin-top: 2rem;
-}
-
-.resume__button {
-	width: 100%;
-	margin-bottom: 0.5rem;
-	padding: 0.75rem;
-	border: none;
-	border-radius: 5px;
-	background-color: orange;
-	color: black;
-	font-weight: bold;
-	cursor: pointer;
-	transition: background-color 0.2s ease;
-}
-
-.resume__button--secondary {
-	background-color: transparent;
-	color: orange;
-	border: 2px solid orange;
-}
-
-.resume__button:hover {
-	background-color: #ffa500dd;
-}
-
-.resume__button--secondary:hover {
-	background-color: orange;
-	color: black;
-}
-
-/* Divider line */
-.resume__divider {
-	border: 1px solid #444;
-	margin-top: 1rem;
-	margin-bottom: 1rem;
-}
-
-/* Right content area */
-.resume__content {
-	flex: 1;
-	padding: 2rem;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
+@media (min-width: 768px) {
 	.resume {
-		flex-direction: column;
+		flex-direction: row;
+		padding: 2rem 1rem;
 	}
 
 	.resume__nav {
-		width: 100%;
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
+		width: 300px;
 	}
 
-	.resume__nav-button {
-		width: 48%;
-		margin-bottom: 0.5rem;
-	}
-
-	.resume__content {
-		padding: 1rem;
+	.resume__title,
+	.resume__subtitle {
+		text-align: left;
 	}
 }

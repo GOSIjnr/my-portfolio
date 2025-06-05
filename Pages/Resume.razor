@@ -1,33 +1,34 @@
-@inject IJSRuntime JS
 @page "/resume"
 
-<div class="resume-container">
+<div class="resume">
+    <div class="resume__nav">
+        <h2 class="resume__title">Why hire me?</h2>
+        <p class="resume__subtitle">Browse through the areas below to learn more about my skills and experience.</p>
 
-    <!-- Left Navigation -->
-    <div class="nav-panel">
         @for (int i = 0; i < Sections.Length; i++)
         {
-            var section = Sections[i]; <!-- fix to prevent closure issue -->
-            <button class="nav-button @(CurrentSection == section ? "active" : "")"
+            string? section = Sections[i];
+
+            <button class="resume__nav-button @(CurrentSection == section ? "resume__nav-button--active" : "")"
                     @onclick="@(() => SelectSection(section))">
                 @(section)
             </button>
         }
 
-        <hr class="divider" />
+        <hr class="resume__divider" />
     </div>
 
     <!-- Right Content Area -->
-    <div class="content-area">
+    <div class="resume__content">
         @RenderActiveSection()
     </div>
 
 </div>
 
 @code {
-    private string CurrentSection = "Experience";
+    private string CurrentSection = "About Me";
 
-    private readonly string[] Sections = new[] { "Experience", "Education", "Skills", "About Me" };
+    private readonly string[] Sections = ["About Me", "Experience", "Skills", "Testimonials", "Certifications", "Contact"];
 
     private void SelectSection(string section)
     {

@@ -1,3 +1,4 @@
+using MyPortfolio.Models.Contact;
 using MyPortfolio.Models.Home;
 using MyPortfolio.Models.Navigation;
 
@@ -10,4 +11,5 @@ public interface IAppLayoutData
 	NavigationItem ContactMeLinkAccent { get; }
 	NavigationItem CheckMyProjectsLink { get; }
 	HomePageContentInfo HomePageContent { get; }
+	ContactFormLayout ContactFormContent { get; }
 }

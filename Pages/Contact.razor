@@ -2,7 +2,7 @@
 
 <div class="contact">
 	<div class="contact__grid">
-		<ContactForm ServicesNames="@_serviceNames" SelectedService="@_selectedService?.Name" />
+		<ContactForm ContactFormLayout="@_contactFormLayoutData" ServicesNames="@_serviceNames" SelectedService="@_selectedService?.Name" />
 
 		<div class="contact__info-grid">
 			@foreach (LinkInfo info in _contactInfos)
@@ -16,6 +16,8 @@
 @code {
 	[Inject] private AppContent AppContent { get; set; } = null!;
 	[Inject] private SelectedServiceState SelectedServiceState { get; set; } = null!;
+
+	private ContactFormLayout _contactFormLayoutData => AppContent.Layout.ContactFormContent;
 
 	private ServiceInfo? _selectedService;
 	private List<string> _serviceNames = [];

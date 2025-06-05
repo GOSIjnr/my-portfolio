@@ -1,4 +1,5 @@
 using MyPortfolio.Contracts;
+using MyPortfolio.Models.Contact;
 using MyPortfolio.Models.Home;
 using MyPortfolio.Models.Navigation;
 
@@ -26,9 +27,12 @@ public class PortfolioLayoutData : IAppLayoutData
 		"images/backdrop.jpg"
 	);
 
+	private static readonly ContactFormLayout _contactFormContent = new("Let's Collaborate", "I'm excited to hear about your project and how we can create something amazing together. Whether you have questions, ideas, or just want to say hello, feel free to reach out!");
+
 	public List<NavigationItem> NavigationLinks => _navigationLinks;
 	public NavigationItem ContactMeLink => _contactNavigationLink;
 	public NavigationItem ContactMeLinkAccent => _contactNavigationLinkAccent;
 	public NavigationItem CheckMyProjectsLink => _projectsNavigationLink;
 	public HomePageContentInfo HomePageContent => _homePageContentInfo;
+	public ContactFormLayout ContactFormContent => _contactFormContent;
 }

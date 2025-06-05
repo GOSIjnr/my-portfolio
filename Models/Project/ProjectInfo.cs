@@ -6,7 +6,7 @@ public class ProjectInfo(string title, string description, List<string> technolo
 {
 	private string _title = title ?? string.Empty;
 	private string _description = description ?? string.Empty;
-	private List<string> _technologies = technologies ?? ["Lorem ispum"];
+	private List<string> _technologies = technologies ?? [];
 	private string _imageUrl = imageUrl ?? string.Empty;
 	private LinkInfo? _liveLink = liveLink;
 	private List<LinkInfo> _otherLinks = otherLinks ?? [];

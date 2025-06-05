@@ -1,20 +1,28 @@
-/* Layout container */
-.resume-container {
+.resume {
 	display: flex;
-	height: 100vh;
-	background-color: black;
-	color: white;
+
+	/* remove later */
+	background-color: indigo;
 }
 
 /* Left sidebar navigation */
-.nav-panel {
+.resume__nav {
 	width: 220px;
 	padding: 1rem;
 	background-color: #111;
 }
 
+/* Title and subtitle */
+.resume__title {
+	margin-bottom: 0.5rem;
+}
+
+.resume__subtitle {
+	margin-bottom: 1rem;
+}
+
 /* Navigation buttons */
-.nav-button {
+.resume__nav-button {
 	width: 100%;
 	margin-bottom: 1rem;
 	padding: 1rem;
@@ -26,16 +34,16 @@
 	transition: background-color 0.2s ease;
 }
 
-.nav-button:hover {
+.resume__nav-button:hover {
 	background-color: #444;
 }
 
-.nav-button.active {
+.resume__nav-button--active {
 	background-color: orange;
 	color: black;
 }
 
-/* Resume download buttons */
+/* Resume download actions */
 .resume__actions {
 	margin-top: 2rem;
 }
@@ -69,37 +77,37 @@
 }
 
 /* Divider line */
-.divider {
+.resume__divider {
 	border: 1px solid #444;
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 }
 
 /* Right content area */
-.content-area {
+.resume__content {
 	flex: 1;
 	padding: 2rem;
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
-	.resume-container {
+	.resume {
 		flex-direction: column;
 	}
 
-	.nav-panel {
+	.resume__nav {
 		width: 100%;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
 	}
 
-	.nav-button {
+	.resume__nav-button {
 		width: 48%;
 		margin-bottom: 0.5rem;
 	}
 
-	.content-area {
+	.resume__content {
 		padding: 1rem;
 	}
 }

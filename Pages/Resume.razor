@@ -2,17 +2,17 @@
 
 <div class="resume">
     <div class="resume__nav">
-        <h2 class="resume__title">Why hire me?</h2>
-        <p class="resume__subtitle">Browse through the areas below to learn more about my skills and experience.</p>
+        <h2 class="resume__title">@_resumeHeader.Title</h2>
+        <p class="resume__subtitle">@_resumeHeader.Subtitle</p>
 
         <div class="resume__nav-button-wrapper">
-            @for (int i = 0; i < Sections.Length; i++)
+            @for (int i = 0; i < _resumeSections.Count; i++)
             {
-                string? section = Sections[i];
+                ResumeTabItemLayoutData? section = _resumeSections[i];
 
-                <button class="resume__nav-button @(CurrentSection == section ? "resume__nav-button--active" : "")"
-                    @onclick="@(() => SelectSection(section))">
-                    @(section)
+                <button class="resume__nav-button @(CurrentSection == section.Key ? "resume__nav-button--active" : "")"
+                    @onclick="@(() => SelectSection(section.Key))">
+                    @(section.Label)
                 </button>
             }
         </div>
@@ -24,9 +24,12 @@
 </div>
 
 @code {
-    private string CurrentSection = "About Me";
+    [Inject] private AppContent AppContent { get; set; } = null!;
 
-    private readonly string[] Sections = ["About Me", "Experience", "Skills"];
+    private ResumeHeaderLayoutData _resumeHeader => AppContent.Layout.ResumeHeaderLayoutData;
+    private List<ResumeTabItemLayoutData> _resumeSections => AppContent.Layout.ResumeTabItemLayoutData;
+
+    private string CurrentSection = "AboutMe";
 
     private void SelectSection(string section)
     {
@@ -35,10 +38,9 @@
 
     private RenderFragment RenderActiveSection() => CurrentSection switch
     {
-        "Experience" => @<p>Experience content placeholder.</p>,
-"Education" => @<p>Education content placeholder.</p>,
-"Skills" => @<p>Skills content placeholder.</p>,
-"About Me" => @<p>About Me content placeholder.</p>,
+        "About Me" => @<p>About Me content placeholder.</p>,
+"Experience" => @<p>Experience content placeholder.</p>,
+"Skills" =>@<p>Skills content placeholder.</p>,
 _ => @<p>Section not found.</p>
 };
 }

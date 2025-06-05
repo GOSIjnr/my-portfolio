@@ -1,6 +1,7 @@
 using MyPortfolio.Models.Contact;
 using MyPortfolio.Models.Home;
 using MyPortfolio.Models.Navigation;
+using MyPortfolio.Models.Resume;
 
 namespace MyPortfolio.Contracts;
 
@@ -12,4 +13,6 @@ public interface IAppLayoutData
 	NavigationItem CheckMyProjectsLink { get; }
 	HomePageContentInfo HomePageContent { get; }
 	ContactFormLayout ContactFormContent { get; }
+	ResumeHeaderLayoutData ResumeHeaderLayoutData { get; }
+	List<ResumeTabItemLayoutData> ResumeTabItemLayoutData { get; }
 }

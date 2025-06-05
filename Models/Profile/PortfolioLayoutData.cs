@@ -2,6 +2,7 @@ using MyPortfolio.Contracts;
 using MyPortfolio.Models.Contact;
 using MyPortfolio.Models.Home;
 using MyPortfolio.Models.Navigation;
+using MyPortfolio.Models.Resume;
 
 namespace MyPortfolio.Models.Profile;
 
@@ -29,10 +30,27 @@ public class PortfolioLayoutData : IAppLayoutData
 
 	private static readonly ContactFormLayout _contactFormContent = new("Let's Collaborate", "I'm excited to hear about your project and how we can create something amazing together. Whether you have questions, ideas, or just want to say hello, feel free to reach out!");
 
+	public static readonly ResumeHeaderLayoutData _resumeHeaderLayoutData = new("Why hire me?", "Browse through the areas below to learn more about my skills and experience.");
+
+	public static readonly List<ResumeTabItemLayoutData> _resumeTabItemLayoutData =
+	[
+		new("About Me"),
+		new("Experience"),
+		new("Skills"),
+		new(),
+		new(),
+		new(),
+		new(),
+		new(),
+		new(),
+	];
+
 	public List<NavigationItem> NavigationLinks => _navigationLinks;
 	public NavigationItem ContactMeLink => _contactNavigationLink;
 	public NavigationItem ContactMeLinkAccent => _contactNavigationLinkAccent;
 	public NavigationItem CheckMyProjectsLink => _projectsNavigationLink;
 	public HomePageContentInfo HomePageContent => _homePageContentInfo;
 	public ContactFormLayout ContactFormContent => _contactFormContent;
+	public ResumeHeaderLayoutData ResumeHeaderLayoutData => _resumeHeaderLayoutData;
+	public List<ResumeTabItemLayoutData> ResumeTabItemLayoutData => _resumeTabItemLayoutData;
 }

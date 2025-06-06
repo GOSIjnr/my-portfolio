@@ -37,12 +37,6 @@ public class PortfolioLayoutData : IAppLayoutData
 		new("About Me"),
 		new("Experience"),
 		new("Skills"),
-		new(),
-		new(),
-		new(),
-		new(),
-		new(),
-		new(),
 	];
 
 	public List<NavigationItem> NavigationLinks => _navigationLinks;

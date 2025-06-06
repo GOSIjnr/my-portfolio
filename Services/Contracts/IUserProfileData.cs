@@ -1,9 +1,9 @@
-using MyPortfolio.Models.UI;
 using MyPortfolio.Models.Service;
 using MyPortfolio.Models.Navigation;
 using MyPortfolio.Models.Project;
+using MyPortfolio.Models.Common;
 
-namespace MyPortfolio.Contracts;
+namespace MyPortfolio.Services.Contracts;
 
 public interface IUserProfileData
 {

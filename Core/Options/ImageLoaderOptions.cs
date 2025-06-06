@@ -1,4 +1,4 @@
-namespace MyPortfolio.Helpers.Utilities;
+namespace MyPortfolio.Core.Options;
 
 public class ImageLoaderOptions
 {

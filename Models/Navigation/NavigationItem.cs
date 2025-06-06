@@ -1,4 +1,5 @@
-using MyPortfolio.Helpers.Utilities;
+using MyPortfolio.Core.Enum;
+using MyPortfolio.Core.Utilities;
 
 namespace MyPortfolio.Models.Navigation;
 

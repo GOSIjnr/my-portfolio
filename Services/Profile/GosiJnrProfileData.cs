@@ -1,11 +1,11 @@
-using MyPortfolio.Contracts;
-using MyPortfolio.Models.UI;
 using MyPortfolio.Models.Service;
 using MyPortfolio.Models.Project;
-using MyPortfolio.Helpers.Navigation;
 using MyPortfolio.Models.Navigation;
+using MyPortfolio.Services.Contracts;
+using MyPortfolio.Models.Common;
+using MyPortfolio.Core.Enum;
 
-namespace MyPortfolio.Models.Profile;
+namespace MyPortfolio.Services.Profile;
 
 public class GosiJnrProfileData : IUserProfileData
 {

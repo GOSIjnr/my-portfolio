@@ -1,6 +1,6 @@
-using MyPortfolio.Contracts;
+using MyPortfolio.Services.Contracts;
 
-namespace MyPortfolio.Models.Profile;
+namespace MyPortfolio.Models.App;
 
 public class AppContent
 {

@@ -1,21 +1,22 @@
-using MyPortfolio.Contracts;
+using MyPortfolio.Core.Enum;
 using MyPortfolio.Models.Contact;
 using MyPortfolio.Models.Home;
 using MyPortfolio.Models.Navigation;
 using MyPortfolio.Models.Resume;
+using MyPortfolio.Services.Contracts;
 
-namespace MyPortfolio.Models.Profile;
+namespace MyPortfolio.Services.Profile;
 
 public class PortfolioLayoutData : IAppLayoutData
 {
 	private static readonly List<NavigationItem> _navigationLinks =
 	[
 		new("Home", string.Empty, NavigationItemCssType.Normal, NavigationItemCssActiveType.UnderLine),
-		new("Services", "services", NavigationItemCssType.Normal, NavigationItemCssActiveType.UnderLine),
-		new("Resume", "resume", NavigationItemCssType.Normal, NavigationItemCssActiveType.UnderLine),
-		new("Projects", "projects", NavigationItemCssType.Normal, NavigationItemCssActiveType.UnderLine),
-		new("Contact", "contact", NavigationItemCssType.Normal, NavigationItemCssActiveType.UnderLine),
-	];
+			new("Services", "services", NavigationItemCssType.Normal, NavigationItemCssActiveType.UnderLine),
+			new("Resume", "resume", NavigationItemCssType.Normal, NavigationItemCssActiveType.UnderLine),
+			new("Projects", "projects", NavigationItemCssType.Normal, NavigationItemCssActiveType.UnderLine),
+			new("Contact", "contact", NavigationItemCssType.Normal, NavigationItemCssActiveType.UnderLine),
+		];
 
 	private static readonly NavigationItem _contactNavigationLink = new("Let's Connect", "contact", NavigationItemCssType.Rounded, NavigationItemCssActiveType.Normal);
 	private static readonly NavigationItem _contactNavigationLinkAccent = new("Let's Connect", "contact", NavigationItemCssType.RoundedInverted, NavigationItemCssActiveType.Normal);

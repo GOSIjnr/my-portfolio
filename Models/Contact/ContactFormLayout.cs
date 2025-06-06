@@ -17,5 +17,5 @@ public class ContactFormLayout(string heading, string subHeading)
 		set => _subHeading = value ?? string.Empty;
 	}
 
-	public ContactFormLayout() : this("Lorem ispum", "dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.") { }
+	public ContactFormLayout() : this("Lorem ispum", "Lorem ispum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.") { }
 }

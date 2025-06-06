@@ -1,4 +1,4 @@
-namespace MyPortfolio.Models.UI;
+namespace MyPortfolio.Models.Common;
 
 public class BrandInfo(string brandDisplayName, string brandHighlightedDisplayName, string brandRawTargetUrl)
 {

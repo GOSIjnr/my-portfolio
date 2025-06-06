@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MyPortfolio;
-using MyPortfolio.Models.Profile;
-using MyPortfolio.Services.State;
+using MyPortfolio.Models.App;
+using MyPortfolio.Services.Profile;
+using MyPortfolio.Services.StateManagement;
 
 WebAssemblyHostBuilder builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");

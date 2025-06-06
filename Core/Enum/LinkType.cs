@@ -1,4 +1,4 @@
-namespace MyPortfolio.Helpers.Navigation;
+namespace MyPortfolio.Core.Enum;
 
 public enum LinkType
 {

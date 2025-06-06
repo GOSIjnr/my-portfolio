@@ -1,4 +1,4 @@
-namespace MyPortfolio.Models.Navigation;
+namespace MyPortfolio.Core.Enum;
 
 public enum NavigationItemCssType
 {

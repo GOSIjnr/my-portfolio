@@ -3,7 +3,7 @@ using MyPortfolio.Models.Home;
 using MyPortfolio.Models.Navigation;
 using MyPortfolio.Models.Resume;
 
-namespace MyPortfolio.Contracts;
+namespace MyPortfolio.Services.Contracts;
 
 public interface IAppLayoutData
 {

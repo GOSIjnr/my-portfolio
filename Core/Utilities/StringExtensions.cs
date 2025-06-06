@@ -1,32 +1,43 @@
 using System.Text;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
-namespace MyPortfolio.Helpers.Utilities;
+namespace MyPortfolio.Core.Utilities;
 
-public static class StringExtensions
+public static partial class StringExtensions
 {
+	[GeneratedRegex(@"[^a-zA-Z0-9\s]")]
+	private static partial Regex MyRegex();
+	
 	public static string ToPascalCase(this string input)
 	{
 		if (string.IsNullOrWhiteSpace(input)) return string.Empty;
 
-		string[] words = input.Split([' ', '\t', '\r', '\n'], StringSplitOptions.RemoveEmptyEntries);
+		string cleanedInput = MyRegex().Replace(input, "");
+
+		string[] words = cleanedInput.Split([' ', '\t', '\r', '\n'], StringSplitOptions.RemoveEmptyEntries);
 		StringBuilder result = new();
 
 		foreach (string word in words)
 		{
-			string trimmed = word.Trim();
-
-			if (trimmed.Length > 0)
+			if (word.Length > 0)
 			{
-				result.Append(char.ToUpper(trimmed[0], CultureInfo.InvariantCulture));
+				result.Append(char.ToUpper(word[0], CultureInfo.InvariantCulture));
 
-				if (trimmed.Length > 1)
+				if (word.Length > 1)
 				{
-					result.Append(trimmed[1..].ToLower(CultureInfo.InvariantCulture));
+					result.Append(word[1..].ToLower(CultureInfo.InvariantCulture));
 				}
 			}
 		}
 
 		return result.ToString();
+	}
+
+	public static string RemoveEmptySpaces(this string input)
+	{
+		if (string.IsNullOrWhiteSpace(input)) return string.Empty;
+
+		return new string(input.Where(c => !char.IsWhiteSpace(c)).ToArray());
 	}
 }

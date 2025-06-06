@@ -1,4 +1,4 @@
-using MyPortfolio.Helpers.Utilities;
+using MyPortfolio.Core.Utilities;
 
 namespace MyPortfolio.Models.Resume;
 

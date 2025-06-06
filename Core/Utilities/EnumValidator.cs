@@ -1,9 +1,9 @@
-namespace MyPortfolio.Helpers.Utilities;
+namespace MyPortfolio.Core.Utilities;
 
 public static class EnumValidator
 {
-	public static TEnum ValidateOrDefault<TEnum>(TEnum value, TEnum fallback) where TEnum : struct, Enum
+	public static TEnum ValidateOrDefault<TEnum>(TEnum value, TEnum fallback) where TEnum : struct, System.Enum
 	{
-		return Enum.IsDefined(value) ? value : fallback;
+		return System.Enum.IsDefined(value) ? value : fallback;
 	}
 }

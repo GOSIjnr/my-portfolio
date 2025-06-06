@@ -1,0 +1,7 @@
+# User-specific files
+.vscode/
+.qodo
+
+# Build results
+bin/
+obj/

@@ -1,0 +1,66 @@
+﻿@inject IJSRuntime JS
+@page "/"
+
+<div class="hero">
+	<div class="hero__background" />
+
+	<div class="hero__overlay">
+		<div class="hero__content">
+			<h1 class="hero__title">
+				@HomePageContentInfo.MainTitle
+				<span class="hero__title --highlight">@HomePageContentInfo.HighlightedTitlePart</span>
+			</h1>
+
+			<p class="hero__description">
+				@HomePageContentInfo.DescriptionBody
+			</p>
+
+			<div class="hero__buttons">
+				<div class="hero__button">
+					<NavLinkItem NavigationLinkInfo="@AppContent.Layout.ContactMeLinkAccent"
+						LinkType="@TargetUrlFormat.HashPrefix" />
+				</div>
+
+				<div class="hero__button">
+					<NavLinkItem NavigationLinkInfo="@AppContent.Layout.CheckMyProjectsLink"
+						LinkType="@TargetUrlFormat.HashPrefix" />
+				</div>
+			</div>
+
+			<!-- Resume Actions -->
+			<div class="resume__actions">
+				<button class="resume__button" @onclick="DownloadResume">Download Resume (DOCX)</button>
+				<button class="resume__button resume__button--secondary" @onclick="PreviewResume">
+					Preview Resume (PDF Style)
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+@code {
+	public HomePageContentInfo HomePageContentInfo { get; set; } = new();
+
+	[Inject] private AppContent AppContent { get; set; } = null!;
+
+	protected override void OnInitialized()
+	{
+		HomePageContentInfo = AppContent.Layout.HomePageContent;
+	}
+
+
+	private string docxFileId = "1NdPAG_6jcNHaFta0fJK6lT5TlNLzEMgQ";
+	private string previewFileId = "1NdPAG_6jcNHaFta0fJK6lT5TlNLzEMgQ";
+
+	private async Task DownloadResume()
+	{
+		string url = $"https://drive.google.com/uc?export=download&id={docxFileId}";
+		await JS.InvokeVoidAsync("downloadFile", url);
+	}
+
+	private async Task PreviewResume()
+	{
+		string previewUrl = $"https://drive.google.com/file/d/{previewFileId}/preview";
+		await JS.InvokeVoidAsync("openFileInNewTab", previewUrl);
+	}
+}

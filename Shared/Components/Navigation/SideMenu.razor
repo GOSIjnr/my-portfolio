@@ -1,0 +1,65 @@
+<div class="side-bar">
+    <div class="side-bar__slider @(IsOpened ? "side-bar__slider--open" : "")">
+        <button class="side-bar__close-btn side-bar__close-btn--mask" type="button" title="Close menu"
+            @onclick="CloseMenu" />
+
+        <div class="side-bar__content">
+            <div class="side-bar__links">
+                <div class="side-bar__logo">
+                    <Brand BrandInfo="_brand" OnBrandClick="CloseMenu" />
+                </div>
+
+                @foreach (NavigationItem item in _navigationItems)
+                {
+                    <div class="side-bar__link">
+                        <NavLinkItem NavigationLinkInfo="item" LinkType="@TargetUrlFormat.Plain"
+                            OnNavMenuItemClick="CloseMenu" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    @if (IsOpened)
+    {
+        <div class="side-bar__backdrop" @onclick="CloseMenu"></div>
+    }
+</div>
+
+@code {
+    [Parameter, EditorRequired] public bool IsOpened { get; set; } = false;
+
+    [Parameter] public EventCallback OnClose { get; set; }
+
+    [Inject] private AppContent AppContent { get; set; } = null!;
+    [Inject] private IJSRuntime JS { get; set; } = null!;
+
+    private BrandInfo _brand => AppContent.User.Brand;
+    private List<NavigationItem> _navigationItems => AppContent.Layout.NavigationLinks;
+
+    private readonly string _sidebarSelector = "side-bar";
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await ToggleScrollLock(IsOpened, _sidebarSelector);
+    }
+
+    private async Task ToggleScrollLock(bool enabled, string targetSelector)
+    {
+        if (enabled)
+        {
+            await JS.InvokeVoidAsync("sidebarScrollLock.disableScroll", targetSelector);
+            return;
+        }
+
+        await JS.InvokeVoidAsync("sidebarScrollLock.enableScroll");
+    }
+
+    public async Task CloseMenu()
+    {
+        if (OnClose.HasDelegate)
+        {
+            await OnClose.InvokeAsync();
+        }
+    }
+}

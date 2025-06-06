@@ -1,0 +1,114 @@
+.nav-item {
+	--navitem-padding: 0.5rem;
+	--navitem-font-size: 0.875rem;
+	--navitem-hover-color: var(--color-2-lighter);
+	--navitem-bg-accent: var(--color-2-lighter);
+	--navitem-color-main: var(--color-1);
+	--navitem-color-accent: var(--color-2-lighter);
+	--navitem-color-light: var(--color-2-light);
+	--navitem-color-lightest: var(--color-3-lighter);
+	--navitem-color-darkest: var(--color-3-darker);
+}
+
+.nav-item {
+	font-size: var(--navitem-font-size);
+	width: auto;
+	height: 100%;
+	cursor: pointer;
+	transition: color 0.1s ease-out;
+}
+
+.nav-item:hover,
+.nav-item.active {
+	color: var(--navitem-hover-color);
+}
+
+::deep .nav-item__link {
+	color: inherit;
+}
+
+::deep .nav-item__link--underline {
+	color: var(--navitem-color-accent);
+	display: inline-block;
+	position: relative;
+}
+
+::deep .nav-item__link--underline::after {
+	background-color: var(--navitem-color-accent);
+	position: absolute;
+	content: "";
+	bottom: -0.2rem;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	transition: transform 0.3s ease;
+}
+
+.nav-item__label {
+	font-weight: bold;
+	display: flex;
+	text-align: center;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.nav-item__label--button,
+.nav-item__label--button-accent {
+	padding: var(--navitem-padding);
+	justify-content: center;
+	border: 2px solid transparent;
+	transition: all 0.3s ease-out;
+	font-weight: bolder;
+}
+
+.nav-item__label--button {
+	background-color: var(--navitem-bg-accent);
+	color: var(--navitem-color-main);
+}
+
+.nav-item__label--button-accent {
+	border-color: var(--navitem-color-accent);
+	color: var(--navitem-color-accent);
+	background-color: transparent;
+}
+
+.nav-item__label--button:hover {
+	color: var(--navitem-color-lightest);
+	background-color: var(--navitem-color-light);
+	border: 2px solid var(--navitem-color-light);
+}
+
+.nav-item__label--button-accent:hover {
+	color: var(--navitem-color-main);
+	background-color: var(--navitem-color-darkest);
+	border-color: transparent;
+}
+
+@media (min-width: 576px) {
+	.nav-item {
+		--navitem-font-size: 1.1rem;
+	}
+}
+
+@media (min-width: 768px) {
+	.nav-item {
+		--navitem-font-size: 1.2rem;
+	}
+}
+
+@media (min-width: 992px) {
+	.nav-item {
+		--navitem-font-size: 1.1rem;
+	}
+
+	.nav-item__label {
+		justify-content: center;
+	}
+}
+
+@media (min-width: 1200px) {
+	.nav-item {
+		--navitem-font-size: 0.875rem;
+	}
+}

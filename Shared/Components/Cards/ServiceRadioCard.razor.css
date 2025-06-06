@@ -1,0 +1,46 @@
+.service-radio__card {
+	--radio-padding: 0.2rem 1rem;
+	--radio-border-radius: 500px;
+	--radio-border-color: var(--color-1-lighter);
+	--radio-bg-color: transparent;
+	--radio-border-hover-color: var(--color-2-lighter);
+	--radio-bg-selected-color: var(--color-2-lighter);
+	--radio-text-color: var(--color-3-darker);
+	--radio-text-selected-color: var(--color-1);
+	--radio-font-size: 0.65rem;
+	--radio-font-weight: lighter;
+	--radio-font-weight-selected: 800;
+}
+
+.service-radio__card {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: var(--radio-padding);
+	border: 1px solid var(--radio-border-color);
+	border-radius: var(--radio-border-radius);
+	background-color: var(--radio-bg-color);
+	cursor: pointer;
+	transition: all 0.3s ease-out;
+}
+
+.service-radio__card--selected {
+	border-color: var(--radio-border-hover-color);
+	background-color: var(--radio-bg-selected-color);
+}
+
+.service-radio__card--selected .service-radio__card-name {
+	color: var(--radio-text-selected-color);
+	font-weight: var(--radio-font-weight-selected);
+}
+
+.service-radio__card:hover,
+.service-radio__card[aria-checked="true"] {
+	border-color: var(--radio-border-hover-color);
+}
+
+.service-radio__card-name {
+	font-size: var(--radio-font-size);
+	color: var(--radio-text-color);
+	font-weight: var(--radio-font-weight);
+}

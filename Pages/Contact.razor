@@ -1,0 +1,54 @@
+@page "/contact"
+
+<div class="contact">
+	<div class="contact__grid">
+		<ContactForm ContactFormLayout="@_contactFormLayoutData" ServicesNames="@_serviceNames" SelectedService="@_selectedService?.Name" />
+
+		<div class="contact__info-grid">
+			@foreach (LinkInfo info in _contactInfos)
+			{
+				<ContactOption ContactInfo="@info" />
+			}
+		</div>
+	</div>
+</div>
+
+@code {
+	[Inject] private AppContent AppContent { get; set; } = null!;
+	[Inject] private SelectedServiceState SelectedServiceState { get; set; } = null!;
+
+	private ContactFormLayout _contactFormLayoutData => AppContent.Layout.ContactFormContent;
+
+	private ServiceInfo? _selectedService;
+	private List<string> _serviceNames = [];
+	private List<LinkInfo> _contactInfos = [];
+
+	protected override void OnInitialized()
+	{
+		ConsumeSelectedService();
+		PopulateServicesOffered();
+		PopulateContactInfos();
+	}
+
+	private void ConsumeSelectedService()
+	{
+		_selectedService = SelectedServiceState.ConsumeSelectedService();
+	}
+
+	private void PopulateServicesOffered()
+	{
+
+		foreach (ServiceInfo serviceInfo in AppContent.User.ServiceInfos)
+		{
+			_serviceNames.Add(serviceInfo.Name);
+		}
+
+		_serviceNames.Add("Others");
+	}
+
+	private void PopulateContactInfos()
+	{
+		_contactInfos.AddRange(AppContent.User.ContactInfos);
+		_contactInfos.AddRange(AppContent.User.SocialLinks);
+	}
+}

@@ -1,0 +1,71 @@
+.contact-option {
+	--contact-icon-size: 1.1rem;
+	--contact-icon-padding: 0.6rem;
+	--contact-icon-color: var(--contact-color-lighter);
+	--contact-icon-image: url("images/web.svg");
+	--contact-color-dark: var(--color-1-dark);
+	--contact-color-lighter: var(--color-2-lighter);
+	--contact-color-darker: var(--color-3-darker);
+	--contact-font: var(--font-2);
+}
+
+.contact-option {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	width: 280px;
+	flex: 1;
+}
+
+.contact-option__icon-holder {
+	background-color: var(--contact-color-dark);
+	padding: var(--contact-icon-padding);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.contact-option__icon {
+	width: var(--contact-icon-size);
+	height: var(--contact-icon-size);
+	background-color: var(--contact-icon-color);
+	-webkit-mask: var(--contact-icon-image) no-repeat center / contain;
+	mask: var(--contact-icon-image) no-repeat center / contain;
+	flex-shrink: 0;
+}
+
+.contact-option__text {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	flex: 1;
+	min-width: 0;
+	overflow: hidden;
+}
+
+.contact-option__title,
+.contact-option__detail {
+	overflow-wrap: break-word;
+	word-break: break-word;
+	margin: 0;
+}
+
+.contact-option__title {
+	font-family: var(--contact-font);
+	color: var(--contact-color-darker);
+	line-height: 1.2;
+	font-size: 0.65rem;
+}
+
+.contact-option__detail {
+	font-size: 0.8rem;
+	font-weight: bold;
+}
+
+.contact-option__detail a {
+	color: inherit;
+}
+
+.contact-option__detail a:hover {
+	color: var(--contact-color-lighter);
+}

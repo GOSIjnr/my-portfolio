@@ -1,5 +1,4 @@
 @page "/resume"
-@using MyPortfolio.Models.Resume
 
 <div class="resume">
     <div class="resume__nav">
@@ -9,9 +8,9 @@
         <div class="resume__nav-button-wrapper">
             @for (int i = 0; i < _resumeSections.Count; i++)
             {
-                ResumeTabItemLayoutData? section = _resumeSections[i];
+                ResumeTabItemLayoutData section = _resumeSections[i];
 
-                <button class="resume__nav-button @(CurrentSection == section.Key ? "resume__nav-button--active" : "")"
+                <button class="resume__nav-button @(_currentSection == section.Key ? "resume__nav-button--active" : "")"
                     @onclick="@(() => SelectSection(section.Key))">
                     @(section.Label)
                 </button>
@@ -28,20 +27,31 @@
     [Inject] private AppContent AppContent { get; set; } = null!;
 
     private ResumeHeaderLayoutData _resumeHeader => AppContent.Layout.ResumeHeaderLayoutData;
-    private List<ResumeTabItemLayoutData> _resumeSections => AppContent.Layout.ResumeTabItemLayoutData;
+    private List<ResumeTabItemLayoutData> _resumeSections => AppContent.Layout.ResumeTabItemLayoutData.Where(x => x is not
+    null).ToList();
 
-    private string CurrentSection = "AboutMe";
+    private string _currentSection = "AboutMe";
 
     private void SelectSection(string section)
     {
-        CurrentSection = section;
+        _currentSection = section;
     }
 
-    private RenderFragment RenderActiveSection() => CurrentSection switch
+    private RenderFragment RenderActiveSection()
     {
-        "AboutMe" => @<p>About Me content placeholder.</p>,
-"Experience" => @<p>Experience content placeholder.</p>,
-"Skills" =>@<p>Skills content placeholder.</p>,
-_ => @<p>Section not found.</p>
-};
+        switch (_currentSection)
+        {
+            case "AboutMe":
+                return @<p>About Me content placeholder.</p>;
+
+            case "Experience":
+                return @<p>Experience content placeholder.</p>;
+
+            case "Skills":
+                return @<p>Skills content placeholder.</p>;
+
+            default:
+                return @<p>Section not found.</p>;
+        }
+    }
 }

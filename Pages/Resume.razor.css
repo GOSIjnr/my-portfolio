@@ -106,6 +106,7 @@
 
 	.resume__nav {
 		width: 300px;
+		flex-shrink: 0;
 	}
 
 	.resume__title,

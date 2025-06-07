@@ -13,8 +13,8 @@
 	--resume-color-primary: var(--color-1-light);
 	--resume-color-hover: var(--color-1-lighter);
 	--resume-color-active: var(--color-2-lighter);
-	--resume-color-text: var(--color-3-lighter);
-	--resume-color-subtext: var(--color-3-darker);
+	--resume-color-text: var(--color-3-lightest);
+	--resume-color-subtext: var(--color-3-dark);
 	--resume-font-family: var(--font-1);
 }
 

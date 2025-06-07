@@ -1,11 +1,11 @@
 .service-radio__card {
 	--radio-padding: 0.2rem 1rem;
 	--radio-border-radius: 500px;
-	--radio-border-color: var(--color-1-lighter);
 	--radio-bg-color: transparent;
-	--radio-border-hover-color: var(--color-2-lighter);
+	--radio-border-color: var(--color-1-lighter);
+	--radio-border-hover-color: var(--color-3-dark);
 	--radio-bg-selected-color: var(--color-2-lighter);
-	--radio-text-color: var(--color-3-darker);
+	--radio-text-color: var(--color-3-light);
 	--radio-text-selected-color: var(--color-1);
 	--radio-font-size: 0.65rem;
 	--radio-font-weight: lighter;
@@ -24,19 +24,23 @@
 	transition: all 0.3s ease-out;
 }
 
-.service-radio__card--selected {
+.service-radio__card:hover,
+.service-radio__card[aria-checked="true"] {
 	border-color: var(--radio-border-hover-color);
+}
+
+.service-radio__card--selected {
+	border-color: var(--radio-bg-selected-color);
 	background-color: var(--radio-bg-selected-color);
+}
+
+.service-radio__card--selected:hover {
+	border-color: var(--radio-bg-selected-color);
 }
 
 .service-radio__card--selected .service-radio__card-name {
 	color: var(--radio-text-selected-color);
 	font-weight: var(--radio-font-weight-selected);
-}
-
-.service-radio__card:hover,
-.service-radio__card[aria-checked="true"] {
-	border-color: var(--radio-border-hover-color);
 }
 
 .service-radio__card-name {

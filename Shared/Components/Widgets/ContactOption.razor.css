@@ -5,7 +5,7 @@
 	--contact-icon-image: url("images/web.svg");
 	--contact-color-dark: var(--color-1-dark);
 	--contact-color-lighter: var(--color-2-lighter);
-	--contact-color-darker: var(--color-3-darker);
+	--contact-color-darker: var(--color-3-dark);
 	--contact-font: var(--font-2);
 }
 

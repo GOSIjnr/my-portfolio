@@ -1,11 +1,11 @@
 .service-card {
 	--service-card-border-color: var(--color-1-light);
-	--service-card-main-color: var(--color-3-lighter);
+	--service-card-main-color: var(--color-3-lightest);
 	--service-card-hover-color: var(--color-2-lighter);
-	--service-card-text-color: var(--color-3-darker);
+	--service-card-text-color: var(--color-3-dark);
 	--service-card-arrow-main-color: var(--color-1);
-	--service-card-arrow-accent-color: var(--color-3-lighter);
-	--service-card-button-hover-bg: var(--color-2-light);
+	--service-card-arrow-accent-color: var(--color-3-lightest);
+	--service-card-button-hover-bg: var(--color-2-lightest);
 	--service-card-button-hover-color: var(--service-card-arrow-main-color);
 	--service-card-padding: 1rem;
 	--service-card-button-size: 40px;

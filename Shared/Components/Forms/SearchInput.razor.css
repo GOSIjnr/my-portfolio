@@ -1,11 +1,11 @@
 .search-input {
 	--search-font-size: 0.875rem;
 	--search-color-input: var(--color-1);
-	--search-color-text: var(--color-3-lighter);
+	--search-color-text: var(--color-3-lightest);
 	--search-border-color: var(--color-1-lighter);
 	--search-border-color-focus: var(--color-2-lighter);
 	--search-button-bg: var(--color-1-light);
-	--search-button-icon-color: var(--color-3-lighter);
+	--search-button-icon-color: var(--color-3);
 	--search-button-icon: url("images/close-button-circle.svg");
 }
 

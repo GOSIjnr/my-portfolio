@@ -1,13 +1,20 @@
 .nav-item {
 	--navitem-padding: 0.5rem;
 	--navitem-font-size: 0.875rem;
-	--navitem-hover-color: var(--color-2-lighter);
-	--navitem-bg-accent: var(--color-2-lighter);
-	--navitem-color-main: var(--color-1);
-	--navitem-color-accent: var(--color-2-lighter);
-	--navitem-color-light: var(--color-2-light);
-	--navitem-color-lightest: var(--color-3-lighter);
-	--navitem-color-darkest: var(--color-3-darker);
+
+	--navitem-label-bg-accent: var(--color-2-lighter);
+	--navitem-label-color-main: var(--color-1);
+	--navitem-label-color-accent: var(--color-2-lighter);
+	--navitem-label-color-light: var(--color-2-light);
+	--navitem-label-color-lightest: var(--color-3-lightest);
+	--navitem-label-color-darkest: var(--color-3-dark);
+
+	--navitem-link-underline-color: var(--color-2-lighter);
+
+	--navitem-label-button-accent-bg: var(--color-1-lighter);
+	--navitem-label-button-accent-color: var(--color-2-lighter);
+	--navitem-label-button-accent-hover-color: var(--color-2-lightest);
+	--navitem-label-button-accent-hover-bg: var(--color-3-darker);
 }
 
 .nav-item {
@@ -20,7 +27,7 @@
 
 .nav-item:hover,
 .nav-item.active {
-	color: var(--navitem-hover-color);
+	color: var(--navitem-label-color-accent);
 }
 
 ::deep .nav-item__link {
@@ -28,13 +35,13 @@
 }
 
 ::deep .nav-item__link--underline {
-	color: var(--navitem-color-accent);
+	color: var(--navitem-label-color-accent);
 	display: inline-block;
 	position: relative;
 }
 
 ::deep .nav-item__link--underline::after {
-	background-color: var(--navitem-color-accent);
+	background-color: var(--navitem-link-underline-color);
 	position: absolute;
 	content: "";
 	bottom: -0.2rem;
@@ -57,32 +64,28 @@
 .nav-item__label--button-accent {
 	padding: var(--navitem-padding);
 	justify-content: center;
-	border: 2px solid transparent;
 	transition: all 0.3s ease-out;
 	font-weight: bolder;
 }
 
 .nav-item__label--button {
-	background-color: var(--navitem-bg-accent);
-	color: var(--navitem-color-main);
+	background-color: var(--navitem-label-bg-accent);
+	color: var(--navitem-label-color-main);
 }
 
 .nav-item__label--button-accent {
-	border-color: var(--navitem-color-accent);
-	color: var(--navitem-color-accent);
-	background-color: transparent;
+	background-color: var(--navitem-label-button-accent-bg);
+	color: var(--navitem-label-button-accent-color);
 }
 
 .nav-item__label--button:hover {
-	color: var(--navitem-color-lightest);
-	background-color: var(--navitem-color-light);
-	border: 2px solid var(--navitem-color-light);
+	color: var(--navitem-label-color-lightest);
+	background-color: var(--navitem-label-color-light);
 }
 
 .nav-item__label--button-accent:hover {
-	color: var(--navitem-color-main);
-	background-color: var(--navitem-color-darkest);
-	border-color: transparent;
+	color: var(--navitem-label-button-accent-hover-color);
+	background-color: var(--navitem-label-button-accent-hover-bg);
 }
 
 @media (min-width: 576px) {

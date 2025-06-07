@@ -1,13 +1,13 @@
 .contact-form {
 	--contact-bg: var(--color-1-light);
 	--contact-title-color: var(--color-2-lighter);
-	--contact-subtitle-color: var(--color-3-darker);
+	--contact-subtitle-color: var(--color-3-lighter);
 	--contact-label-color: var(--color-3-lighter);
 	--contact-input-bg: var(--color-1);
 	--contact-input-border: var(--color-1-lighter);
 	--contact-input-focus: var(--color-2-lighter);
-	--contact-input-text: var(--color-3-lighter);
-	--contact-input-autofill-text: var(--color-3-darker);
+	--contact-input-text: var(--color-3-lightest);
+	--contact-input-autofill-text: var(--color-3-dark);
 	--contact-font-family: var(--font-2);
 	--contact-scroll-thumb: var(--color-2-lighter);
 	--contact-scroll-track: var(--color-1-light);
@@ -16,7 +16,7 @@
 	--contact-submit-bg: var(--color-2-lighter);
 	--contact-submit-hover-bg: var(--color-2-light);
 	--contact-submit-color: var(--color-1);
-	--contact-submit-hover-color: var(--color-3-lighter);
+	--contact-submit-hover-color: var(--color-3-lightest);
 	--contact-submit-font-family: var(--font-1);
 }
 

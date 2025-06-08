@@ -1,4 +1,8 @@
-/* .about-me {} */
+.about-me {
+	--subtitle-color: var(--color-3-dark);
+	--item-color: var(--color-3-dark);
+	--item-highlight-color: var(--color-3-lightest);
+}
 
 .about-me__title,
 .about-me__subtitle {
@@ -14,7 +18,7 @@
 .about-me__subtitle {
 	font-size: 0.785rem;
 	font-weight: 300;
-	color: var(--color-3-dark);
+	color: var(--subtitle-color);
 }
 
 .about-me__items {
@@ -28,11 +32,11 @@
 	font-size: 0.785rem;
 	text-align: center;
 	margin: 0.25rem 0;
-	color: var(--color-3-dark);
+	color: var(--item-color);
 }
 
 .about-me__item-value {
-	color: var(--color-3-lightest)
+	color: var(--item-highlight-color)
 }
 
 @media (min-width: 768px) {

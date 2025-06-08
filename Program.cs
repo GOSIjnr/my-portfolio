@@ -5,7 +5,7 @@ using MyPortfolio.Models.App;
 using MyPortfolio.Services.Profile;
 using MyPortfolio.Services.StateManagement;
 
-WebAssemblyHostBuilder builder = WebAssemblyHostBuilder.CreateDefault(args);
+var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 

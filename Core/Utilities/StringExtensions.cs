@@ -8,7 +8,7 @@ public static partial class StringExtensions
 {
 	[GeneratedRegex(@"[^a-zA-Z0-9\s]")]
 	private static partial Regex MyRegex();
-	
+
 	public static string ToPascalCase(this string input)
 	{
 		if (string.IsNullOrWhiteSpace(input)) return string.Empty;
@@ -38,6 +38,6 @@ public static partial class StringExtensions
 	{
 		if (string.IsNullOrWhiteSpace(input)) return string.Empty;
 
-		return new string(input.Where(c => !char.IsWhiteSpace(c)).ToArray());
+		return new string([.. input.Where(c => !char.IsWhiteSpace(c))]);
 	}
 }

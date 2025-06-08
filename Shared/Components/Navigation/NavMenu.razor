@@ -2,7 +2,7 @@
 
 <nav class="nav-bar">
     <div class="nav-bar__container">
-        <Brand BrandInfo="@AppContent.User.Brand" />
+        <Brand BrandInfo="@_brand" />
 
         <div class="nav-bar__links">
             @foreach (NavigationItem item in _navigationLinks)
@@ -11,7 +11,7 @@
             }
 
             <div class="nav-bar__contact-link">
-                <NavLinkItem NavigationLinkInfo="@AppContent.Layout.ContactMeLink" />
+                <NavLinkItem NavigationLinkInfo="@_contactMeLink" />
             </div>
         </div>
 
@@ -23,8 +23,8 @@
 </nav>
 
 @code {
-    [Inject] private IJSRuntime Js { get; set; } = null!;
-    [Inject] private AppContent AppContent { get; set; } = null!;
+    [Inject] private IJSRuntime? Js { get; set; }
+    [Inject] private AppContent? AppContent { get; set; }
 
     [JSInvokable]
     public void OnResize(int width)
@@ -40,11 +40,13 @@
     private void ToggleSidebar() => _isSidebarOpen = !_isSidebarOpen;
     private DotNetObjectReference<NavMenu>? _objectRefrence;
 
-    private List<NavigationItem> _navigationLinks => AppContent.Layout.NavigationLinks;
+    private BrandInfo _brand => AppContent?.User?.Brand ?? new();
+    private NavigationItem _contactMeLink => AppContent?.Layout?.ContactMeLink ?? new();
+    private List<NavigationItem> _navigationLinks => AppContent?.Layout?.NavigationLinks ?? [];
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender)
+        if (firstRender && Js is not null)
         {
             _objectRefrence = DotNetObjectReference.Create(this);
             await Js.InvokeVoidAsync("resizeNotifier.registerResizeCallback", _objectRefrence);

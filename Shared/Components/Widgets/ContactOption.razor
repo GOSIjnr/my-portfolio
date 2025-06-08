@@ -29,7 +29,7 @@
 @code {
 	[Parameter, EditorRequired] public LinkInfo ContactInfo { get; set; } = new();
 
-	[Inject] private IJSRuntime JS { get; set; } = null!;
+	[Inject] private IJSRuntime? JS { get; set; }
 
 	private string _contactIconId = $"contact-option__icon--{Guid.NewGuid():N}";
 
@@ -41,7 +41,7 @@
 
 	protected override async Task OnAfterRenderAsync(bool firstRender)
 	{
-		if (firstRender)
+		if (firstRender && JS is not null)
 		{
 			await JS.InvokeVoidAsync("imageLoader.applyCssImageWithFallback", new ImageLoaderOptions
 			{

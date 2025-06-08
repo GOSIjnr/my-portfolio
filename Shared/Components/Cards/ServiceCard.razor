@@ -15,15 +15,15 @@
 	[Parameter, EditorRequired] public int ServiceNo { get; set; } = 0;
 	[Parameter, EditorRequired] public ServiceInfo Service { get; set; } = new();
 
-	[Inject] private NavigationManager NavigationManager { get; set; } = null!;
-	[Inject] private SelectedServiceState SelectedServiceState { get; set; } = null!;
+	[Inject] private NavigationManager? NavigationManager { get; set; }
+	[Inject] private SelectedServiceState? SelectedServiceState { get; set; }
 
 	private string _serviceName => Service.Name;
 	private string _serviceDescription => Service.Description;
 
 	void NavigateToForm()
 	{
-		SelectedServiceState.SetSelectedService(Service);
-		NavigationManager.NavigateTo("contact");
+		SelectedServiceState?.SetSelectedService(Service);
+		NavigationManager?.NavigateTo("contact");
 	}
 }

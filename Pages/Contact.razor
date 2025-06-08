@@ -2,7 +2,8 @@
 
 <div class="contact">
 	<div class="contact__grid">
-		<ContactForm ContactFormLayout="@_contactFormLayoutData" ServicesNames="@_serviceNames" SelectedService="@_selectedService?.Name" />
+		<ContactForm ContactFormLayout="@_contactFormLayoutData" ServicesNames="@_serviceNames"
+			SelectedService="@_selectedService?.Name" />
 
 		<div class="contact__info-grid">
 			@foreach (LinkInfo info in _contactInfos)
@@ -14,10 +15,10 @@
 </div>
 
 @code {
-	[Inject] private AppContent AppContent { get; set; } = null!;
-	[Inject] private SelectedServiceState SelectedServiceState { get; set; } = null!;
+	[Inject] private AppContent? AppContent { get; set; }
+	[Inject] private SelectedServiceState? SelectedServiceState { get; set; }
 
-	private ContactFormLayout _contactFormLayoutData => AppContent.Layout.ContactFormContent;
+	private ContactFormLayout _contactFormLayoutData => AppContent?.Layout?.ContactFormContent ?? new();
 
 	private ServiceInfo? _selectedService;
 	private List<string> _serviceNames = [];
@@ -32,11 +33,12 @@
 
 	private void ConsumeSelectedService()
 	{
-		_selectedService = SelectedServiceState.ConsumeSelectedService();
+		_selectedService = SelectedServiceState?.ConsumeSelectedService();
 	}
 
 	private void PopulateServicesOffered()
 	{
+		if (AppContent?.User is null) return;
 
 		foreach (ServiceInfo serviceInfo in AppContent.User.ServiceInfos)
 		{
@@ -48,6 +50,8 @@
 
 	private void PopulateContactInfos()
 	{
+		if (AppContent?.User is null) return;
+
 		_contactInfos.AddRange(AppContent.User.ContactInfos);
 		_contactInfos.AddRange(AppContent.User.SocialLinks);
 	}

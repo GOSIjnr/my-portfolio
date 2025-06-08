@@ -31,11 +31,11 @@
 
     [Parameter] public EventCallback OnClose { get; set; }
 
-    [Inject] private AppContent AppContent { get; set; } = null!;
-    [Inject] private IJSRuntime JS { get; set; } = null!;
+    [Inject] private AppContent? AppContent { get; set; }
+    [Inject] private IJSRuntime? JS { get; set; }
 
-    private BrandInfo _brand => AppContent.User.Brand;
-    private List<NavigationItem> _navigationItems => AppContent.Layout.NavigationLinks;
+    private BrandInfo _brand => AppContent?.User?.Brand ?? new();
+    private List<NavigationItem> _navigationItems => AppContent?.Layout?.NavigationLinks ?? [];
 
     private readonly string _sidebarSelector = "side-bar";
 
@@ -46,6 +46,8 @@
 
     private async Task ToggleScrollLock(bool enabled, string targetSelector)
     {
+        if (JS is null) return;
+
         if (enabled)
         {
             await JS.InvokeVoidAsync("sidebarScrollLock.disableScroll", targetSelector);

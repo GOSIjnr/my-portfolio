@@ -15,9 +15,9 @@
 </div>
 
 @code {
-    [Inject] private AppContent AppContent { get; set; } = null!;
+    [Inject] private AppContent? AppContent { get; set; }
 
-    private List<ProjectInfo> _projectInfoDetails => AppContent.User.ProjectInfos;
+    private List<ProjectInfo> _projectInfoDetails => AppContent?.User?.ProjectInfos ?? new();
 
     private int _projectIndex = 0;
 }

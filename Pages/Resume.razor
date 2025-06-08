@@ -24,11 +24,11 @@
 </div>
 
 @code {
-    [Inject] private AppContent AppContent { get; set; } = null!;
+    [Inject] private AppContent? AppContent { get; set; }
 
-    private ResumeHeaderLayoutData _resumeHeader => AppContent.Layout.ResumeHeaderLayoutData;
-    private List<ResumeTabItemLayoutData> _resumeSections => AppContent.Layout.ResumeTabItemLayoutData.Where(x => x is not
-    null).Append(new()).ToList();
+    private ResumeHeaderLayoutData _resumeHeader => AppContent?.Layout?.ResumeHeaderLayoutData ?? new();
+    private List<ResumeTabItemLayoutData> _resumeSections => AppContent?.Layout?.ResumeTabItemLayoutData.Where(x => x is not
+    null).Append(new()).ToList() ?? [];
 
     private string _currentSection = "AboutMe";
 

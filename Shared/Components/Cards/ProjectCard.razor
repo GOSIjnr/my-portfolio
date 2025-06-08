@@ -46,7 +46,7 @@
 
     [Parameter] public EventCallback<int> ProjectNoChanged { get; set; }
 
-    [Inject] private IJSRuntime JS { get; set; } = null!;
+    [Inject] private IJSRuntime? JS { get; set; }
 
     private string _projectImageId = $"project-card__image--{Guid.NewGuid():N}";
     private string? _lastImageUrl;
@@ -62,7 +62,7 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (_imageUrl != _lastImageUrl)
+        if (_imageUrl != _lastImageUrl && JS is not null)
         {
             _lastImageUrl = _imageUrl;
 

@@ -10,7 +10,7 @@
 </div>
 
 @code {
-	[Inject] private AppContent AppContent { get; set; } = null!;
+	[Inject] private AppContent? AppContent { get; set; }
 
-	private List<ServiceInfo> _serviceCards => AppContent.User.ServiceInfos;
+	private List<ServiceInfo> _serviceCards => AppContent?.User?.ServiceInfos ?? [];
 }

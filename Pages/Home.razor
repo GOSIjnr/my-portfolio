@@ -1,5 +1,4 @@
-﻿@inject IJSRuntime JS
-@page "/"
+﻿@page "/"
 
 <div class="hero">
 	<div class="hero__background" />
@@ -7,22 +6,22 @@
 	<div class="hero__overlay">
 		<div class="hero__content">
 			<h1 class="hero__title">
-				@HomePageContentInfo.MainTitle
-				<span class="hero__title --highlight">@HomePageContentInfo.HighlightedTitlePart</span>
+				@_homePageContentInfo.MainTitle
+				<span class="hero__title --highlight">@_homePageContentInfo.HighlightedTitlePart</span>
 			</h1>
 
 			<p class="hero__description">
-				@HomePageContentInfo.DescriptionBody
+				@_homePageContentInfo.DescriptionBody
 			</p>
 
 			<div class="hero__buttons">
 				<div class="hero__button">
-					<NavLinkItem NavigationLinkInfo="@AppContent.Layout.ContactMeLinkAccent"
+					<NavLinkItem NavigationLinkInfo="@(AppContent?.Layout?.ContactMeLinkAccent ?? new())"
 						LinkType="@TargetUrlFormat.HashPrefix" />
 				</div>
 
 				<div class="hero__button">
-					<NavLinkItem NavigationLinkInfo="@AppContent.Layout.CheckMyProjectsLink"
+					<NavLinkItem NavigationLinkInfo="@(AppContent?.Layout?.CheckMyProjectsLink ?? new())"
 						LinkType="@TargetUrlFormat.HashPrefix" />
 				</div>
 			</div>
@@ -39,28 +38,28 @@
 </div>
 
 @code {
-	public HomePageContentInfo HomePageContentInfo { get; set; } = new();
 
-	[Inject] private AppContent AppContent { get; set; } = null!;
+	[Inject] private IJSRuntime? Js { get; set; }
+	[Inject] private AppContent? AppContent { get; set; }
 
-	protected override void OnInitialized()
-	{
-		HomePageContentInfo = AppContent.Layout.HomePageContent;
-	}
-
+	private HomePageContentInfo _homePageContentInfo => AppContent?.Layout?.HomePageContent ?? new();
 
 	private string docxFileId = "1NdPAG_6jcNHaFta0fJK6lT5TlNLzEMgQ";
 	private string previewFileId = "1NdPAG_6jcNHaFta0fJK6lT5TlNLzEMgQ";
 
 	private async Task DownloadResume()
 	{
+		if (Js is null) return;
+
 		string url = $"https://drive.google.com/uc?export=download&id={docxFileId}";
-		await JS.InvokeVoidAsync("downloadFile", url);
+		await Js.InvokeVoidAsync("downloadFile", url);
 	}
 
 	private async Task PreviewResume()
 	{
+		if (Js is null) return;
+
 		string previewUrl = $"https://drive.google.com/file/d/{previewFileId}/preview";
-		await JS.InvokeVoidAsync("openFileInNewTab", previewUrl);
+		await Js.InvokeVoidAsync("openFileInNewTab", previewUrl);
 	}
 }

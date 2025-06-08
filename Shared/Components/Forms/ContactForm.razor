@@ -57,13 +57,13 @@
 	[Parameter] public List<string> ServicesNames { get; set; } = new();
 	[Parameter] public string SelectedService { get; set; } = "";
 
-	[Inject] private NavigationManager NavigationManager { get; set; } = null!;
+	[Inject] private NavigationManager? NavigationManager { get; set; }
 
 	private ContactFormModel _formModel = new();
 	private string serviceSearch = "";
 
 	private IEnumerable<string> FilteredServices => string.IsNullOrWhiteSpace(serviceSearch) ? ServicesNames :
-	ServicesNames.Select(s => new { Name = s, Score = Fuzz.PartialRatio(serviceSearch.ToLower(), s.ToLower()) })
+	ServicesNames.Select(s => new { Name = s, Score = Fuzz.PartialRatio(serviceSearch.ToLower().RemoveEmptySpaces(), s.ToLower().RemoveEmptySpaces()) })
 	.Where(x => x.Score > 60)
 	.OrderByDescending(x => x.Score)
 	.Select(x => x.Name);
@@ -87,6 +87,6 @@
 
 		// first send the data with async and when failed or successfull redirect to home page
 		// then notfice of success or failure
-		NavigationManager.NavigateTo(string.Empty);
+		NavigationManager?.NavigateTo(string.Empty);
 	}
 }

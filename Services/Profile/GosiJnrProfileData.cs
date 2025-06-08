@@ -12,10 +12,6 @@ public class GosiJnrProfileData : IUserProfileData
 	private static readonly BrandInfo _brandInfo = new("GOSI", "jnr.", string.Empty);
 	private const string _profileImageUrl = "https://github.com/GOSIjnr.png";
 
-	private const string _aboutMeSectionTitle = "Hi, I'm Chinedu Victor Awugosi — a developer passionate about creating seamless user experiences, solving complex problems, and occasionally exploring game engines for fun.";
-
-	private const string _aboutMeSectionDescription = "I'm passionate about creating digital experiences, from solving intricate technical challenges to crafting smooth, intuitive interfaces. What started as a curiosity has evolved into a passion of mine. Outside of development, I explore new technologies and brainstorm game ideas. This portfolio showcases the work I love and the projects I've built — thanks for visiting.";
-
 	private static readonly List<LinkInfo> _socialMediaIconList =
 	[
 		new("https://api.iconify.design/simple-icons/github.svg", "Github", "GOSIjnr", "https://github.com/GOSIjnr", LinkType.Link),
@@ -73,12 +69,24 @@ public class GosiJnrProfileData : IUserProfileData
 		),
 	];
 
+	private static readonly AboutMeInfo _aboutMeInfo = new(
+		"Hi, I’m Chinedu Victor Awugosi (alias: GOSIjnr), a developer who enjoys building smooth, intuitive digital experiences and solving technical challenges. I work across the stack, explore new tech, and occasionally dive into game engines for fun.",
+		new() {
+			{ "Name", "Awugosi Victor" },
+			{ "Experience", "3+ years" },
+			{ "Nationality", "Nigerian" },
+			{ "Email", "gosijnr7@yahoo.com" },
+			{ "Language", "English" },
+			{ "Hobbies", "Coding, gaming, and watching anime" },
+			{ "Open To", "Freelance or full-time opportunities" },
+		}
+	);
+
 	public BrandInfo Brand => _brandInfo;
 	public string ProfileImageUrl => _profileImageUrl;
-	public string AboutMeTitle => _aboutMeSectionTitle;
-	public string AboutMeDescription => _aboutMeSectionDescription;
 	public List<LinkInfo> SocialLinks => _socialMediaIconList;
 	public List<ServiceInfo> ServiceInfos => _serviceInfoList;
 	public List<LinkInfo> ContactInfos => _contactInfoList;
 	public List<ProjectInfo> ProjectInfos => _projectInfoList;
+	public AboutMeInfo AboutMeInfo => _aboutMeInfo;
 }

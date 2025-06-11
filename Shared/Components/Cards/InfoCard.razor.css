@@ -26,3 +26,11 @@
 	margin: 0;
 	flex: 0;
 }
+
+.info-card__footer li {
+	color: var(--color-3-dark);
+}
+
+.info-card__footer li::marker {
+	color: var(--color-2-lighter);
+}

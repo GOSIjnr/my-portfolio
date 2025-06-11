@@ -1,0 +1,11 @@
+<div class="info-card">
+    <p class="info-card__header">@Header</p>
+    <h3 class="info-card__body">@Body</h3>
+    <ul class="info-card__footer"><li>@Footer</li></ul>
+</div>
+
+@code {
+	[EditorRequired, Parameter] public string Header { get; set; } = string.Empty;
+	[EditorRequired, Parameter] public string Body { get; set; } = string.Empty;
+	[EditorRequired, Parameter] public string Footer { get; set; } = string.Empty;
+}

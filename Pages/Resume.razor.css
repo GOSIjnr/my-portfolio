@@ -47,7 +47,7 @@
 	flex-direction: column;
 	gap: 1.3rem;
 	margin-bottom: 2rem;
-	max-height: 200px;
+	max-height: 250px;
 	overflow: auto;
 	padding: 0 0.45rem;
 	scrollbar-width: thin;
@@ -96,6 +96,10 @@
 
 .resume__nav-button--active:hover {
 	background-color: var(--resume-color-active);
+}
+
+.resume__content {
+	width: 100%;
 }
 
 @media (min-width: 768px) {

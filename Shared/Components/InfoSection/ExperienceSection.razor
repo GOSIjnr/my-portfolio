@@ -1,7 +1,21 @@
-<div class="resume-section">
-	<h3>Experience</h3>
-	<ul>
-		<li>Software Engineer at XYZ Corp (2020 - 2024)</li>
-		<li>Frontend Developer at ABC Ltd (2018 - 2020)</li>
-	</ul>
+<div class="experience-section">
+    <h2 class="experience-section__heading">My experience</h2>
+    <p class="experience-section__description">@_description</p>
+
+    <div class="experience-section__grid">
+        <InfoCard Header="2022 - Present" Body="Full Stack Developer" Footer="Tech Solutions Inc." />
+        <InfoCard Header="Summer 2021" Body="Front-End Developer Intern" Footer="Web Design Studio" />
+        <InfoCard Header="2020 - 2021" Body="Freelance Web Developer" Footer="E-commerce Startup" />
+        <InfoCard Header="2019 - 2020" Body="Teaching Assistant" Footer="Tech Academy" />
+        <InfoCard Header="2022 - Present" Body="Full Stack Developer" Footer="Tech Solutions Inc." />
+        <InfoCard Header="Summer 2021" Body="Front-End Developer Intern" Footer="Web Design Studio" />
+        <InfoCard Header="2020 - 2021" Body="Freelance Web Developer" Footer="E-commerce Startup" />
+        <InfoCard Header="2019 - 2020" Body="Teaching Assistant" Footer="Tech Academy" />
+    </div>
 </div>
+
+@code {
+    [Inject] private AppContent? AppContent { get; set; }
+
+    private string _description => AppContent?.Layout?.ExperienceSectionBody ?? string.Empty;
+}

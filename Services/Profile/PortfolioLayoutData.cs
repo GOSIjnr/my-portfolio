@@ -36,9 +36,12 @@ public class PortfolioLayoutData : IAppLayoutData
 	public static readonly List<ResumeTabItemLayoutData> _resumeTabItemLayoutData =
 	[
 		new("About Me"),
+		new("Education"),
 		new("Experience"),
 		new("Skills"),
 	];
+
+	public static readonly string _experienceSubTitle = "My journey has been shaped by a variety of experiences—some planned, some unexpected—all of which have helped me grow into who I am today. Each role has left its mark, teaching me something new about myself and the world around me.";
 
 	public List<NavigationItem> NavigationLinks => _navigationLinks;
 	public NavigationItem ContactMeLink => _contactNavigationLink;
@@ -48,4 +51,5 @@ public class PortfolioLayoutData : IAppLayoutData
 	public ContactFormLayout ContactFormContent => _contactFormContent;
 	public ResumeHeaderLayoutData ResumeHeaderLayoutData => _resumeHeaderLayoutData;
 	public List<ResumeTabItemLayoutData> ResumeTabItemLayoutData => _resumeTabItemLayoutData;
+	public string ExperienceSectionBody => _experienceSubTitle;
 }

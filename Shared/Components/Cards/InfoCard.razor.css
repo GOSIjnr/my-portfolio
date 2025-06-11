@@ -1,0 +1,28 @@
+.info-card {
+	background-color: var(--color-1-light);
+	padding: 1.25rem;
+	display: flex;
+	flex-direction: column;
+	height: 140px;
+}
+
+.info-card__header {
+	color: var(--color-2-lighter);
+	font-size: 0.75rem;
+	margin-bottom: 0;
+	flex: 0;
+}
+
+.info-card__body {
+	margin-top: 0.4rem;
+	font-size: 0.95rem;
+	font-weight: 600;
+	flex: 1;
+	font-family: var(--font-2);
+}
+
+.info-card__footer {
+	font-size: 0.75rem;
+	margin: 0;
+	flex: 0;
+}

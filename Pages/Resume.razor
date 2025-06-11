@@ -28,7 +28,7 @@
 
     private ResumeHeaderLayoutData _resumeHeader => AppContent?.Layout?.ResumeHeaderLayoutData ?? new();
     private List<ResumeTabItemLayoutData> _resumeSections => AppContent?.Layout?.ResumeTabItemLayoutData.Where(x => x is not
-    null).Append(new()).ToList() ?? [];
+    null).ToList() ?? [];
 
     private string _currentSection = "AboutMe";
 
@@ -43,6 +43,9 @@
         {
             case "AboutMe":
                 return @<AboutMeSection />;
+
+            case "Education":
+                return @<UnknownSection />;
 
             case "Experience":
                 return @<ExperienceSection />;

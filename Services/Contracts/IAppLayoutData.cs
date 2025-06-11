@@ -15,4 +15,5 @@ public interface IAppLayoutData
 	ContactFormLayout ContactFormContent { get; }
 	ResumeHeaderLayoutData ResumeHeaderLayoutData { get; }
 	List<ResumeTabItemLayoutData> ResumeTabItemLayoutData { get; }
+	string ExperienceSectionBody { get; }
 }

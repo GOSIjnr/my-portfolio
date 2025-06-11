@@ -70,7 +70,7 @@ public class GosiJnrProfileData : IUserProfileData
 	];
 
 	private static readonly AboutMeInfo _aboutMeInfo = new(
-		"Hi, I’m Chinedu Victor Awugosi (alias: GOSIjnr), a developer who enjoys building smooth, intuitive digital experiences and solving technical challenges. I work across the stack, explore new tech, and occasionally dive into game engines for fun.",
+		"Hi, I'm Chinedu Victor Awugosi (alias: GOSIjnr), a developer who enjoys building smooth, intuitive digital experiences and solving technical challenges. I work across the stack, explore new tech, and occasionally dive into game engines for fun.",
 		new() {
 			{ "Name", "Awugosi Victor" },
 			{ "Experience", "3+ years" },
@@ -78,7 +78,6 @@ public class GosiJnrProfileData : IUserProfileData
 			{ "Email", "gosijnr7@yahoo.com" },
 			{ "Language", "English" },
 			{ "Hobbies", "Coding, gaming, and watching anime" },
-			{ "Open To", "Freelance or full-time opportunities" },
 		}
 	);
 

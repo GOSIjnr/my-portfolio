@@ -1,11 +1,47 @@
-<div class="info-card">
-    <p class="info-card__header">@Header</p>
-    <h3 class="info-card__body">@Body</h3>
-    <ul class="info-card__footer"><li>@Footer</li></ul>
+<div class="info-card @(isExpanded ? "info-card--expanded" : "")">
+	<p class="info-card__header @(isExpanded ? "info-card__header--expanded" : "")">@_header</p>
+
+	<h3
+		class="info-card__body @(isLongText ? "info-card__body--clamped" : "") @(isExpanded ? "info-card__body--expanded" : "")">
+		@_body
+	</h3>
+
+	@if (isLongText)
+	{
+		<button class="info-card__read-more" @onclick="HandleReadMore">
+			@(isExpanded ? "Show Less" : "Read More")
+		</button>
+	}
+
+	<ul class="info-card__footer">
+		<li class="info-card__footer-item">@_footer</li>
+	</ul>
 </div>
 
 @code {
-	[EditorRequired, Parameter] public string Header { get; set; } = string.Empty;
-	[EditorRequired, Parameter] public string Body { get; set; } = string.Empty;
-	[EditorRequired, Parameter] public string Footer { get; set; } = string.Empty;
+	[EditorRequired, Parameter] public InfoCardModel InfoCardData { get; set; } = new();
+	[Parameter] public EventCallback OnReadMoreClicked { get; set; }
+
+	[Parameter] public bool IsExpanded { get; set; } // ✅ NEW
+
+	private string _header => InfoCardData.Header;
+	private string _body => InfoCardData.Body;
+	private string _footer => InfoCardData.Footer;
+
+	private bool isExpanded;
+
+	private bool isLongText => _body?.Length > 50;
+
+	protected override void OnParametersSet()
+	{
+		isExpanded = IsExpanded; // ✅ Sync IsExpanded to internal state
+	}
+
+	private async Task HandleReadMore()
+	{
+		if (OnReadMoreClicked.HasDelegate)
+			await OnReadMoreClicked.InvokeAsync();
+		else
+			isExpanded = !isExpanded;
+	}
 }

@@ -3,19 +3,39 @@
     <p class="experience-section__description">@_description</p>
 
     <div class="experience-section__grid">
-        <InfoCard Header="2022 - Present" Body="Full Stack Developer" Footer="Tech Solutions Inc." />
-        <InfoCard Header="Summer 2021" Body="Front-End Developer Intern" Footer="Web Design Studio" />
-        <InfoCard Header="2020 - 2021" Body="Freelance Web Developer" Footer="E-commerce Startup" />
-        <InfoCard Header="2019 - 2020" Body="Teaching Assistant" Footer="Tech Academy" />
-        <InfoCard Header="2022 - Present" Body="Full Stack Developer" Footer="Tech Solutions Inc." />
-        <InfoCard Header="Summer 2021" Body="Front-End Developer Intern" Footer="Web Design Studio" />
-        <InfoCard Header="2020 - 2021" Body="Freelance Web Developer" Footer="E-commerce Startup" />
-        <InfoCard Header="2019 - 2020" Body="Teaching Assistant" Footer="Tech Academy" />
+        @foreach (InfoCardModel cardData in _adaptedExperienceCards)
+        {
+            <InfoCard InfoCardData="@cardData" OnReadMoreClicked="@(() => ShowModal(cardData))" />
+        }
     </div>
 </div>
+
+<Modal IsVisible="@showModal" IsVisibleChanged="@(value => showModal = value)">
+    @if (selectedCard is not null)
+    {
+        <InfoCard InfoCardData="@selectedCard" IsExpanded="true" /> @* ✅ Always expanded in the modal *@
+    }
+</Modal>
+
 
 @code {
     [Inject] private AppContent? AppContent { get; set; }
 
+    private List<InfoCardModel> _adaptedExperienceCards = [];
+    private InfoCardModel? selectedCard = null;
+    private bool showModal = false;
+
     private string _description => AppContent?.Layout?.ExperienceSectionBody ?? string.Empty;
+    private List<InfoEventBase> _experienceCards => AppContent?.User?.ExperienceEvents ?? [];
+
+    protected override void OnParametersSet()
+    {
+        _adaptedExperienceCards = InfoCardAdapterResolver.AdaptList(_experienceCards);
+    }
+
+    private void ShowModal(InfoCardModel card)
+    {
+        selectedCard = card;
+        showModal = true;
+    }
 }

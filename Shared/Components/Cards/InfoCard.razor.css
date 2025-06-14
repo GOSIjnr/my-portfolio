@@ -1,36 +1,75 @@
 .info-card {
 	background-color: var(--color-1-light);
-	padding: 1.25rem;
+	padding: 0.65rem 1rem;
 	display: flex;
 	flex-direction: column;
-	height: 140px;
+	height: 120px;
+}
+
+.info-card--expanded {
+	height: auto;
 }
 
 .info-card__header {
 	color: var(--color-2-lighter);
 	font-size: 0.75rem;
 	margin-bottom: 0;
-	flex: 0;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.info-card__header--expanded {
+	white-space: normal;
+	word-wrap: break-word;
 }
 
 .info-card__body {
-	margin-top: 0.4rem;
 	font-size: 0.95rem;
 	font-weight: 600;
-	flex: 1;
 	font-family: var(--font-2);
+	margin-top: 0.65rem;
+	flex: 1;
+}
+
+.info-card__body--clamped {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.info-card__body--expanded {
+	overflow: visible;
+	word-wrap: break-word;
+	white-space: normal;
+}
+
+.info-card__read-more {
+	color: var(--color-3-light);
+	background: none;
+	border: none;
+	font-size: 0.75rem;
+	cursor: pointer;
+	padding: 0.25rem 0.5rem;
+	text-decoration: underline;
+	align-self: flex-start;
 }
 
 .info-card__footer {
 	font-size: 0.75rem;
 	margin: 0;
 	flex: 0;
+	padding-left: 1rem;
 }
 
-.info-card__footer li {
+.info-card__footer-item {
 	color: var(--color-3-dark);
+	/* overflow hides the marker */
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
-.info-card__footer li::marker {
+.info-card__footer-item::marker {
 	color: var(--color-2-lighter);
 }

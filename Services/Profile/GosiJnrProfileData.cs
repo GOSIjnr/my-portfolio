@@ -4,6 +4,7 @@ using MyPortfolio.Models.Navigation;
 using MyPortfolio.Services.Contracts;
 using MyPortfolio.Models.Common;
 using MyPortfolio.Core.Enum;
+using MyPortfolio.Models.InfoCard;
 
 namespace MyPortfolio.Services.Profile;
 
@@ -81,6 +82,21 @@ public class GosiJnrProfileData : IUserProfileData
 		}
 	);
 
+	private static readonly List<InfoEventBase> _experienceEvents =
+	[
+		new DoubleDateEvent(),
+		new SingleDateEvent(),
+		new SingleDateEvent(),
+		new DoubleDateEvent(),
+		new SingleDateEvent(),
+		new DoubleDateEvent(),
+		new DoubleDateEvent(),
+		new SingleDateEvent(),
+		new DoubleDateEvent(new(2023, 08, 1), new(2023, 10, 1), "Network Operating Centre (Intern)", "InterConnect Clearing House Nigeria Limited"),
+
+		new DoubleDateEvent(new(2023, 08, 1), new(2023, 10, 1), "Network Operating Centre (Intern)dsadasdasdasdadsadadadasdasdadadadasd", "InterConnect Clearing House Nigeria Limiteddsdasdasdasdasdadssadasdadasdadasdas"),
+	];
+
 	public BrandInfo Brand => _brandInfo;
 	public string ProfileImageUrl => _profileImageUrl;
 	public List<LinkInfo> SocialLinks => _socialMediaIconList;
@@ -88,4 +104,5 @@ public class GosiJnrProfileData : IUserProfileData
 	public List<LinkInfo> ContactInfos => _contactInfoList;
 	public List<ProjectInfo> ProjectInfos => _projectInfoList;
 	public AboutMeInfo AboutMeInfo => _aboutMeInfo;
+	public List<InfoEventBase> ExperienceEvents => _experienceEvents;
 }

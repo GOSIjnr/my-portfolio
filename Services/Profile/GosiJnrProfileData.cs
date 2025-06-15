@@ -71,7 +71,7 @@ public class GosiJnrProfileData : IUserProfileData
 	];
 
 	private static readonly AboutMeInfo _aboutMeInfo = new(
-		"Hi, I'm Chinedu Victor Awugosi (alias: GOSIjnr), a developer who enjoys building smooth, intuitive digital experiences and solving technical challenges. I work across the stack, explore new tech, and occasionally dive into game engines for fun.",
+		"Hi, I'm Chinedu Victor Awugosi, a developer who enjoys building smooth, intuitive digital experiences and solving technical challenges. I work across the stack, explore new tech, and occasionally dive into game engines for fun.",
 		new() {
 			{ "Name", "Awugosi Victor" },
 			{ "Experience", "3+ years" },
@@ -84,17 +84,7 @@ public class GosiJnrProfileData : IUserProfileData
 
 	private static readonly List<InfoEventBase> _experienceEvents =
 	[
-		new DoubleDateEvent(),
-		new SingleDateEvent(),
-		new SingleDateEvent(),
-		new DoubleDateEvent(),
-		new SingleDateEvent(),
-		new DoubleDateEvent(),
-		new DoubleDateEvent(),
-		new SingleDateEvent(),
 		new DoubleDateEvent(new(2023, 08, 1), new(2023, 10, 1), "Network Operating Centre (Intern)", "InterConnect Clearing House Nigeria Limited"),
-
-		new DoubleDateEvent(new(2023, 08, 1), new(2023, 10, 1), "Network Operating Centre (Intern)dsadasdasdasdadsadadadasdasdadadadasd", "InterConnect Clearing House Nigeria Limiteddsdasdasdasdasdadssadasdadasdadasdas"),
 	];
 
 	public BrandInfo Brand => _brandInfo;

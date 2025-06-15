@@ -13,7 +13,7 @@
 <Modal IsVisible="@showModal" IsVisibleChanged="@(value => showModal = value)">
     @if (selectedCard is not null)
     {
-        <InfoCard InfoCardData="@selectedCard" IsExpanded="true" /> @* ✅ Always expanded in the modal *@
+        <InfoCard InfoCardData="@selectedCard" ForceExpanded="true" />
     }
 </Modal>
 

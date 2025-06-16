@@ -28,7 +28,6 @@
 
 @code {
     [Parameter, EditorRequired] public bool IsOpened { get; set; } = false;
-
     [Parameter] public EventCallback OnClose { get; set; }
 
     [Inject] private AppContent? AppContent { get; set; }
@@ -37,24 +36,25 @@
     private BrandInfo _brand => AppContent?.User?.Brand ?? new();
     private List<NavigationItem> _navigationItems => AppContent?.Layout?.NavigationLinks ?? [];
 
-    private readonly string _sidebarSelector = "side-bar";
+    private readonly string _sidebarId = $"sidebar-{Guid.NewGuid():N}";
 
     protected override async Task OnParametersSetAsync()
     {
-        await ToggleScrollLock(IsOpened, _sidebarSelector);
+        await ToggleScrollLock(IsOpened, _sidebarId);
     }
 
-    private async Task ToggleScrollLock(bool enabled, string targetSelector)
+    private async Task ToggleScrollLock(bool enabled, string targetId)
     {
         if (JS is null) return;
 
         if (enabled)
         {
-            await JS.InvokeVoidAsync("sidebarScrollLock.disableScroll", targetSelector);
-            return;
+            await JS.InvokeVoidAsync("scrollLocker.disableScroll", targetId);
         }
-
-        await JS.InvokeVoidAsync("sidebarScrollLock.enableScroll");
+        else
+        {
+            await JS.InvokeVoidAsync("scrollLocker.enableScroll");
+        }
     }
 
     public async Task CloseMenu()

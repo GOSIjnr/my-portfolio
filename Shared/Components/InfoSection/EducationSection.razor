@@ -1,9 +1,9 @@
-<div class="experience-section">
-    <h2 class="experience-section__heading">My experience</h2>
-    <p class="experience-section__description">@_description</p>
+<div class="education-section">
+    <h2 class="education-section__heading">My Education</h2>
+    <p class="education-section__description">@_description</p>
 
-    <div class="experience-section__grid">
-        @foreach (InfoCardModel cardData in _adaptedExperienceCards)
+    <div class="education-section__grid">
+        @foreach (InfoCardModel cardData in _adaptedEducationCards)
         {
             <InfoCard InfoCardData="@cardData" OnReadMoreClicked="@(() => ShowModal(cardData))" />
         }
@@ -20,16 +20,16 @@
 @code {
     [Inject] private AppContent? AppContent { get; set; }
 
-    private List<InfoCardModel> _adaptedExperienceCards = [];
+    private List<InfoCardModel> _adaptedEducationCards = [];
     private InfoCardModel? selectedCard = null;
     private bool showModal = false;
 
-    private string _description => AppContent?.Layout?.ExperienceSectionBody ?? string.Empty;
-    private List<InfoEventBase> _experienceCards => AppContent?.User?.ExperienceEvents ?? [];
+    private string _description => AppContent?.Layout?.EducationSectionBody ?? string.Empty;
+    private List<InfoEventBase> _educationCards => AppContent?.User?.EducationEvents ?? [];
 
     protected override void OnParametersSet()
     {
-        _adaptedExperienceCards = InfoCardAdapterResolver.AdaptList(_experienceCards);
+        _adaptedEducationCards = InfoCardAdapterResolver.AdaptList(_educationCards);
     }
 
     private void ShowModal(InfoCardModel card)

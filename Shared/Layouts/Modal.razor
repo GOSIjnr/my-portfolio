@@ -1,8 +1,9 @@
 @if (IsVisible)
 {
-	<div class="modal" @onclick="Close">
+	<div class="modal" id="@_modalId" @onclick="Close">
 		<div class="modal__content" @onclick:stopPropagation="true">
 			<button class="modal__close-btn modal__close-btn--mask" type="button" title="Close menu" @onclick="Close" />
+
 			@ChildContent
 		</div>
 	</div>
@@ -12,6 +13,27 @@
 	[Parameter] public bool IsVisible { get; set; }
 	[Parameter] public EventCallback<bool> IsVisibleChanged { get; set; }
 	[Parameter] public RenderFragment? ChildContent { get; set; }
+
+	[Inject] private IJSRuntime JS { get; set; } = default!;
+
+	private readonly string _modalId = $"modal-{Guid.NewGuid():N}";
+
+	protected override async Task OnParametersSetAsync()
+	{
+		await ToggleScrollLock(IsVisible, _modalId);
+	}
+
+	private async Task ToggleScrollLock(bool enabled, string targetId)
+	{
+		if (enabled)
+		{
+			await JS.InvokeVoidAsync("scrollLocker.disableScroll", targetId);
+		}
+		else
+		{
+			await JS.InvokeVoidAsync("scrollLocker.enableScroll");
+		}
+	}
 
 	private async Task Close()
 	{

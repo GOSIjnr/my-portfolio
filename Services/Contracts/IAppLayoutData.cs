@@ -16,4 +16,5 @@ public interface IAppLayoutData
 	ResumeHeaderLayoutData ResumeHeaderLayoutData { get; }
 	List<ResumeTabItemLayoutData> ResumeTabItemLayoutData { get; }
 	string ExperienceSectionBody { get; }
+	string EducationSectionBody { get; }
 }

@@ -84,7 +84,14 @@ public class GosiJnrProfileData : IUserProfileData
 
 	private static readonly List<InfoEventBase> _experienceEvents =
 	[
-		new DoubleDateEvent(new(2023, 08, 1), new(2023, 10, 1), "Network Operating Centre (Intern)", "InterConnect Clearing House Nigeria Limited"),
+		new DoubleDateEvent(new(2023, 8, 1), new(2023, 10, 1), "Network Operating Centre (Intern)", "InterConnect Clearing House Nigeria Limited"),
+	];
+
+	private static readonly List<InfoEventBase> _educationEvents =
+	[
+		new DoubleDateEvent(new(2019, 12, 10), new(2024, 10, 10), "Bachelor of Engineering, Computer Engineering", "Enugu State University of Science and Technology"),
+		new SingleDateEvent(new(2025, 2, 17), "Microsoft Power BI Data Analyst", "Microsoft Corporation"),
+		new SingleDateEvent(new(2025, 4, 25), "UI / UX Design", "California Institute of the Art"),
 	];
 
 	public BrandInfo Brand => _brandInfo;
@@ -95,4 +102,5 @@ public class GosiJnrProfileData : IUserProfileData
 	public List<ProjectInfo> ProjectInfos => _projectInfoList;
 	public AboutMeInfo AboutMeInfo => _aboutMeInfo;
 	public List<InfoEventBase> ExperienceEvents => _experienceEvents;
+	public List<InfoEventBase> EducationEvents => _educationEvents;
 }

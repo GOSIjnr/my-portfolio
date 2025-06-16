@@ -1,69 +1,64 @@
-window.sidebarScrollLock = {
-	_scrollY: null,
-	_preventScroll: null,
+window.scrollLocker = (function () {
+	let _scrollY = null;
+	let _preventScroll = null;
+	let _targetElement = null;
+	const _listenerOptions = { passive: false };
 
-	disableScroll: function (sidebarSelector) {
-		const sidebar = document.querySelector(sidebarSelector);
-
-		this._preventScroll = function (e) {
-			if (sidebar && sidebar.contains(e.target)) {
-				return; // allow scroll inside sidebar
-			}
-			e.preventDefault();
-		};
-
-		// Capture scroll position only once
-		if (this._scrollY === null) {
-			this._scrollY = window.pageYOffset || window.scrollY || 0;
+	function preventScroll(e) {
+		if (_targetElement && _targetElement.contains(e.target)) {
+			return; // Allow scroll inside target element
 		}
-
-		// Fix body position offset by scrollY
-		document.body.style.position = 'fixed';
-		document.body.style.top = `-${this._scrollY}px`;
-		document.body.style.left = '0';
-		document.body.style.right = '0';
-		document.body.style.width = '100%';
-		document.body.dataset.scrollY = this._scrollY;
-
-		document.addEventListener('wheel', this._preventScroll, { passive: false });
-		document.addEventListener('touchmove', this._preventScroll, { passive: false });
-	},
-
-	enableScroll: function () {
-		if (this._scrollY === null) return; // nothing to restore
-
-		// Remove fixed styles
-		document.body.style.position = '';
-		document.body.style.top = '';
-		document.body.style.left = '';
-		document.body.style.right = '';
-		document.body.style.width = '';
-		document.body.removeAttribute('data-scroll-y');
-
-		if (this._preventScroll) {
-			document.removeEventListener('wheel', this._preventScroll, { passive: false });
-			document.removeEventListener('touchmove', this._preventScroll, { passive: false });
-			this._preventScroll = null;
-		}
-
-		// Restore scroll position exactly to stored _scrollY
-		const scrollY = this._scrollY;
-		this._scrollY = null; // reset for next time
-
-		// Timeout to allow browser to reflow
-		setTimeout(() => {
-			// Temporarily disable smooth scroll via inline style
-			document.documentElement.style.scrollBehavior = 'auto';
-			document.body.style.scrollBehavior = 'auto';
-
-			window.scrollTo({ top: scrollY, left: 0 });
-
-			// Restore original scroll behavior after scrolling
-			setTimeout(() => {
-				document.documentElement.style.scrollBehavior = '';
-				document.body.style.scrollBehavior = '';
-			}, 50);
-		}, 10);
-
+		e.preventDefault();
 	}
-};
+
+	return {
+		disableScroll: function (selector) {
+			if (_scrollY !== null) return; // already locked
+
+			_targetElement = document.getElementById(selector);
+
+			_scrollY = window.pageYOffset || window.scrollY || 0;
+
+			document.body.style.position = 'fixed';
+			document.body.style.top = `-${_scrollY}px`;
+			document.body.style.left = '0';
+			document.body.style.right = '0';
+			document.body.style.width = '100%';
+
+			_preventScroll = preventScroll;
+
+			document.addEventListener('wheel', _preventScroll, _listenerOptions);
+			document.addEventListener('touchmove', _preventScroll, _listenerOptions);
+		},
+
+		enableScroll: function () {
+			if (_scrollY === null) return; // nothing to restore
+
+			document.body.style.position = '';
+			document.body.style.top = '';
+			document.body.style.left = '';
+			document.body.style.right = '';
+			document.body.style.width = '';
+
+			document.removeEventListener('wheel', _preventScroll, _listenerOptions);
+			document.removeEventListener('touchmove', _preventScroll, _listenerOptions);
+
+			const scrollY = _scrollY;
+			_scrollY = null;
+			_targetElement = null;
+			_preventScroll = null;
+
+			setTimeout(() => {
+				document.documentElement.style.scrollBehavior = 'auto';
+				document.body.style.scrollBehavior = 'auto';
+
+				window.scrollTo({ top: scrollY, left: 0 });
+
+				setTimeout(() => {
+					document.documentElement.style.scrollBehavior = '';
+					document.body.style.scrollBehavior = '';
+				}, 50);
+			}, 10);
+		}
+	};
+})();

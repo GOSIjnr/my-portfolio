@@ -43,6 +43,8 @@ public class PortfolioLayoutData : IAppLayoutData
 
 	public static readonly string _experienceSubTitle = "My journey has been shaped by a variety of experiences—some planned, some unexpected—all of which have helped me grow into who I am today. Each role has left its mark, teaching me something new about myself and the world around me.";
 
+	public static readonly string _educationSubTitle = "Education has been the foundation of my growth, providing me with the tools to think critically, solve problems, and explore new ideas. Every step along the way has opened new doors, fueling my curiosity and shaping the way I approach the world.";
+
 	public List<NavigationItem> NavigationLinks => _navigationLinks;
 	public NavigationItem ContactMeLink => _contactNavigationLink;
 	public NavigationItem ContactMeLinkAccent => _contactNavigationLinkAccent;
@@ -52,4 +54,5 @@ public class PortfolioLayoutData : IAppLayoutData
 	public ResumeHeaderLayoutData ResumeHeaderLayoutData => _resumeHeaderLayoutData;
 	public List<ResumeTabItemLayoutData> ResumeTabItemLayoutData => _resumeTabItemLayoutData;
 	public string ExperienceSectionBody => _experienceSubTitle;
+	public string EducationSectionBody => _educationSubTitle;
 }

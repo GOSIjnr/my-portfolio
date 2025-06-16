@@ -1,0 +1,48 @@
+/* SkillBox styles */
+
+.skill-box {
+	--skill-icon-size: 3rem;
+	--skill-icon-image: url("images/web.svg");
+	--skill-bg-color: var(--color-1-light);
+	--skill-hover-color: var(--color-1-light);
+	--skill-font: var(--font-2);
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--skill-bg-color);
+	aspect-ratio: 1 / 1;
+	/* keeps it square */
+	width: 100%;
+	/* fill the grid cell */
+	cursor: pointer;
+	transition: all 0.3s ease-in;
+}
+
+.skill-box:hover .skill-box__icon {
+	background-color: var(--color-2-lighter);
+}
+
+.skill-box:hover .skill-box__label {
+	opacity: 1;
+}
+
+.skill-box__icon {
+	width: var(--skill-icon-size);
+	height: var(--skill-icon-size);
+	background-color: white;
+	-webkit-mask: var(--skill-icon-image) no-repeat center / contain;
+	mask: var(--skill-icon-image) no-repeat center / contain;
+	margin-bottom: 0.5rem;
+	transition: all 0.3s ease-in;
+}
+
+.skill-box__label {
+	color: white;
+	font-family: var(--skill-font);
+	font-size: 0.75rem;
+	text-align: center;
+	opacity: 0;
+	transition: all 0.3s ease-in;
+}

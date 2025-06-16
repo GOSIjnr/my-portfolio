@@ -1,0 +1,29 @@
+<div class="skill-box" id="@_elementId">
+	<div class="skill-box__icon"></div>
+	<div class="skill-box__label">@SkillName</div>
+</div>
+
+@code {
+	[Parameter] public string SkillName { get; set; } = "Skill";
+	[Parameter] public string ImageUrl { get; set; } = string.Empty;
+	[Parameter] public string FallbackUrl { get; set; } = "images/web.svg";
+
+	[Inject] private IJSRuntime JS { get; set; } = default!;
+
+	private string _elementId = $"skill_{Guid.NewGuid():N}";
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		if (firstRender)
+		{
+			JS.InvokeVoidAsync("imageLoader.applyCssImageWithFallback", new
+			{
+				elementId = _elementId,
+				cssProperty = "--skill-icon-image",
+				imageUrl = ImageUrl,
+				fallbackUrl = FallbackUrl,
+				useVariable = true
+			});
+		}
+	}
+}

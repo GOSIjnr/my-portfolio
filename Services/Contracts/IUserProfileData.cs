@@ -17,4 +17,5 @@ public interface IUserProfileData
 	AboutMeInfo AboutMeInfo { get; }
 	List<InfoEventBase> ExperienceEvents { get; }
 	List<InfoEventBase> EducationEvents { get; }
+	List<SkillInfo> SkillInfos { get; }
 }

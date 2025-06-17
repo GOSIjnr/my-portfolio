@@ -1,11 +1,11 @@
 <div class="skill-section">
-	<h2 class="skill-section__heading">My skills</h2>
+	<h2 class="skill-section__heading">My Skills</h2>
 	<p class="skill-section__description">@_description</p>
 
 	<div class="skill-section__grid">
-		@foreach (var skill in _skills)
+		@foreach (SkillInfo skill in _skills)
 		{
-			<SkillBox SkillName="@skill.Name" ImageUrl="@skill.ImageUrl" />
+			<SkillBox SkillInfo="@skill" />
 		}
 	</div>
 </div>
@@ -14,48 +14,7 @@
 	[Inject] private AppContent? AppContent { get; set; }
 	[Inject] private IJSRuntime JS { get; set; } = default!;
 
-	private List<InfoCardModel> _adaptedExperienceCards = [];
-	private InfoCardModel? selectedCard = null;
-	private bool showModal = false;
-
 	private string _description => AppContent?.Layout?.ExperienceSectionBody ?? string.Empty;
 	private List<InfoEventBase> _experienceCards => AppContent?.User?.ExperienceEvents ?? [];
-
-	private readonly List<SkillModel> _skills = new()
-{
-new SkillModel("Blazor", "images/blazor.svg"),
-new SkillModel("ASP.NET Core", "images/aspnet.svg"),
-new SkillModel("JavaScript", "images/javascript.svg"),
-new SkillModel("CSS / Bootstrap", "images/css.svg"),
-new SkillModel("SQL", "images/sql.svg"),
-new SkillModel("C#", "images/csharp.svg"),
-new SkillModel("GDScript", "images/godot.svg"),
-new SkillModel("Godot", "images/godot.svg"),
-new SkillModel("Unreal", "images/unreal.svg"),
-};
-
-	protected override void OnParametersSet()
-	{
-		_adaptedExperienceCards = InfoCardAdapterResolver.AdaptList(_experienceCards);
-	}
-
-	private void ShowModal(InfoCardModel card)
-	{
-		selectedCard = card;
-		showModal = true;
-	}
-
-	private class SkillModel
-	{
-		public string Name { get; }
-		public string ImageUrl { get; }
-		public string FallbackUrl { get; }
-
-		public SkillModel(string name, string imageUrl, string fallbackUrl = "images/web.svg")
-		{
-			Name = name;
-			ImageUrl = imageUrl;
-			FallbackUrl = fallbackUrl;
-		}
-	}
+	private List<SkillInfo> _skills => AppContent?.User?.SkillInfos ?? [];
 }

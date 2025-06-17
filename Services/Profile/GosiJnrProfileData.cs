@@ -18,6 +18,7 @@ public class GosiJnrProfileData : IUserProfileData
 		new("https://api.iconify.design/simple-icons/github.svg", "Github", "GOSIjnr", "https://github.com/GOSIjnr", LinkType.Link),
 		new("https://api.iconify.design/simple-icons/discord.svg", "Discord", "GOSIjnr", "https://discord.com/users/GOSIjnr", LinkType.Link),
 		new("https://api.iconify.design/simple-icons/x.svg", "X", "@GOSIjnr", "https://twitter.com/GOSIjnr", LinkType.Link),
+		new("https://api.iconify.design/cib/linkedin.svg", "Linkden", "Chinedu Awugosi", "https://www.linkedin.com/in/victor-awugosi/", LinkType.Link),
 	];
 
 	private static readonly List<ServiceInfo> _serviceInfoList =
@@ -94,6 +95,24 @@ public class GosiJnrProfileData : IUserProfileData
 		new SingleDateEvent(new(2025, 4, 25), "UI / UX Design", "California Institute of the Art"),
 	];
 
+	private static readonly List<SkillInfo> _skillInfos =
+	[
+		new("Blazor", "https://api.iconify.design/simple-icons/blazor.svg"),
+		new(".NET", "https://api.iconify.design/simple-icons/dotnet.svg"),
+		new("Entity Framework", "https://api.iconify.design/devicon-plain/entityframeworkcore.svg"),
+		new("Unity", "https://api.iconify.design/simple-icons/unity.svg"),
+		new("Godot", "https://api.iconify.design/simple-icons/godotengine.svg"),
+		new("C#", "https://api.iconify.design/mdi/language-csharp.svg"),
+		new("Python", "https://api.iconify.design/simple-icons/python.svg"),
+		new("JavaScript", "https://api.iconify.design/simple-icons/javascript.svg"),
+		new("HTML5", "https://api.iconify.design/simple-icons/html5.svg"),
+		new("CSS", "https://api.iconify.design/simple-icons/css.svg"),
+		new("MySQL", "https://api.iconify.design/simple-icons/mysql.svg"),
+		new("Postman", "https://api.iconify.design/simple-icons/postman.svg"),
+		new("Github", "https://api.iconify.design/simple-icons/github.svg"),
+		new("Figma", "https://api.iconify.design/solar/figma-bold-duotone.svg"),
+	];
+
 	public BrandInfo Brand => _brandInfo;
 	public string ProfileImageUrl => _profileImageUrl;
 	public List<LinkInfo> SocialLinks => _socialMediaIconList;
@@ -103,4 +122,5 @@ public class GosiJnrProfileData : IUserProfileData
 	public AboutMeInfo AboutMeInfo => _aboutMeInfo;
 	public List<InfoEventBase> ExperienceEvents => _experienceEvents;
 	public List<InfoEventBase> EducationEvents => _educationEvents;
+	public List<SkillInfo> SkillInfos => _skillInfos;
 }

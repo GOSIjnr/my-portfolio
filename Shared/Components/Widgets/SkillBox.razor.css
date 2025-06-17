@@ -16,7 +16,7 @@
 	width: 100%;
 	cursor: pointer;
 	transition: all 0.3s ease-in;
-	padding: 1.75rem;
+	padding: 2rem;
 }
 
 .skill-box:hover .skill-box__icon {

@@ -1,41 +1,40 @@
 ﻿@page "/"
 
-<div class="hero">
-	<div class="hero__background" />
+<div class="home">
+	<div class="home__container">
+		<div class="home__photo">
+			<img src="images/no-image.svg" alt="Luke Coleman photo" class="home__photo-img" />
+		</div>
 
-	<div class="hero__overlay">
-		<div class="hero__content">
-			<h1 class="hero__title">
-				@_homePageContentInfo.MainTitle
-				<span class="hero__title --highlight">@_homePageContentInfo.HighlightedTitlePart</span>
-			</h1>
+		<div class="home__intro">
+			<span class="home__role">Digital Binary Warrior</span>
 
-			<p class="hero__description">
-				@_homePageContentInfo.DescriptionBody
+			<h1 class="home__greeting">Hello I'm <br><span class="home__name">Luke Coleman</span></h1>
+
+			<p class="home__description">
+				I excel at crafting elegant digital experiences and I am proficient in
+				various programming languages and technologies.
 			</p>
 
-			<div class="hero__buttons">
-				<div class="hero__button">
-					<NavLinkItem NavigationLinkInfo="@(AppContent?.Layout?.ContactMeLinkAccent ?? new())"
-						LinkType="@TargetUrlFormat.HashPrefix" />
-				</div>
+			<a class="home__cta" href="/cv.pdf" download>Download CV</a>
 
-				<div class="hero__button">
-					<NavLinkItem NavigationLinkInfo="@(AppContent?.Layout?.CheckMyProjectsLink ?? new())"
-						LinkType="@TargetUrlFormat.HashPrefix" />
-				</div>
-			</div>
-
-			<!-- Resume Actions -->
-			<div class="resume__actions">
-				<button class="resume__button" @onclick="DownloadResume">Download Resume (DOCX)</button>
-				<button class="resume__button resume__button--secondary" @onclick="PreviewResume">
-					Preview Resume (PDF Style)
-				</button>
+			<div class="home__socials">
+				<a href="#" class="home__social"><i class="icon-question"></i></a>
+				<a href="#" class="home__social"><i class="icon-linkedin"></i></a>
+				<a href="#" class="home__social"><i class="icon-youtube"></i></a>
+				<a href="#" class="home__social"><i class="icon-twitter"></i></a>
 			</div>
 		</div>
 	</div>
+
+	<div class="home__stats">
+		<div class="home__stat"><span class="home__stat-number">12</span> Years of experience</div>
+		<div class="home__stat"><span class="home__stat-number">26</span> Projects completed</div>
+		<div class="home__stat"><span class="home__stat-number">8</span> Technologies mastered</div>
+		<div class="home__stat"><span class="home__stat-number">500</span> Code commits</div>
+	</div>
 </div>
+
 
 @code {
 

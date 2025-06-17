@@ -32,14 +32,16 @@ echo Deploying from: %source_branch%
 echo Deploying to:   %target_branch% (as a single commit)
 pause
 
-:: Create commit directly from the source branch tree without checking it out
-for /f %%t in ('git rev-parse %source_branch%^{tree}') do set tree=%%t
+:: Reference the HEAD commit’s tree safely, works with unusual branch names
+for /f %%t in ('git rev-parse "refs/heads/%source_branch%^{tree}"') do set tree=%%t
+
+:: Create a commit with the specified message and tree
 set commit_message=Deploy: snapshot from %source_branch%
-for /f %%c in ('echo %commit_message% ^| git commit-tree %tree% -m "%commit_message%"') do set commit=%%c
+for /f %%c in ('echo %commit_message% ^| git commit-tree !tree! -m "!commit_message!"') do set commit=%%c
 
 :: Force push the commit to the target branch
-git push -f origin %commit%:refs/heads/%target_branch%
+git push -f origin !commit!:refs/heads/%target_branch%
 
 echo.
-echo Deployment to %target_branch% complete!
+echo Deployment from %source_branch% to %target_branch% complete!
 pause

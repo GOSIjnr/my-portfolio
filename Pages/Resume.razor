@@ -8,6 +8,7 @@
         <div class="resume__nav-button-wrapper">
             @for (int i = 0; i < _resumeSections.Count; i++)
             {
+                if (_resumeSections[i] is null) continue;
                 ResumeTabItemLayoutData section = _resumeSections[i];
 
                 <button class="resume__nav-button @(_currentSection == section.Key ? "resume__nav-button--active" : "")"

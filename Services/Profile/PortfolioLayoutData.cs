@@ -45,6 +45,8 @@ public class PortfolioLayoutData : IAppLayoutData
 
 	public static readonly string _educationSubTitle = "Education has been the foundation of my growth, providing me with the tools to think critically, solve problems, and explore new ideas. Every step along the way has opened new doors, fueling my curiosity and shaping the way I approach the world.";
 
+	public static readonly string _skillsSubTitle = "The skills I've developed reflect both my passions and my commitment to continuous learning. Each one represents countless hours of curiosity, experimentation, and practice—tools that help me bring ideas to life and tackle challenges with confidence.";
+
 	public List<NavigationItem> NavigationLinks => _navigationLinks;
 	public NavigationItem ContactMeLink => _contactNavigationLink;
 	public NavigationItem ContactMeLinkAccent => _contactNavigationLinkAccent;
@@ -55,4 +57,5 @@ public class PortfolioLayoutData : IAppLayoutData
 	public List<ResumeTabItemLayoutData> ResumeTabItemLayoutData => _resumeTabItemLayoutData;
 	public string ExperienceSectionBody => _experienceSubTitle;
 	public string EducationSectionBody => _educationSubTitle;
+	public string SkillSectionBody => _skillsSubTitle;
 }

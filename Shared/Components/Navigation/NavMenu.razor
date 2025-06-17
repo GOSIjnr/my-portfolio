@@ -5,8 +5,9 @@
         <Brand BrandInfo="@_brand" />
 
         <div class="nav-bar__links">
-            @foreach (NavigationItem item in _navigationLinks)
+            @foreach (NavigationItem? item in _navigationLinks)
             {
+                if (item is null) continue;
                 <NavLinkItem NavigationLinkInfo="item" LinkType="TargetUrlFormat.Plain" />
             }
 

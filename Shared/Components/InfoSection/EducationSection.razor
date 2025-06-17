@@ -3,8 +3,9 @@
     <p class="education-section__description">@_description</p>
 
     <div class="education-section__grid">
-        @foreach (InfoCardModel cardData in _adaptedEducationCards)
+        @foreach (InfoCardModel? cardData in _adaptedEducationCards)
         {
+            if (cardData is null) continue;
             <InfoCard InfoCardData="@cardData" OnReadMoreClicked="@(() => ShowModal(cardData))" />
         }
     </div>

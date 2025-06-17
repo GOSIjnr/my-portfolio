@@ -3,8 +3,9 @@
 	<p class="skill-section__description">@_description</p>
 
 	<div class="skill-section__grid">
-		@foreach (SkillInfo skill in _skills)
+		@foreach (SkillInfo? skill in _skills)
 		{
+			if (skill is null) continue;
 			<SkillBox SkillInfo="@skill" />
 		}
 	</div>
@@ -12,9 +13,7 @@
 
 @code {
 	[Inject] private AppContent? AppContent { get; set; }
-	[Inject] private IJSRuntime JS { get; set; } = default!;
 
-	private string _description => AppContent?.Layout?.ExperienceSectionBody ?? string.Empty;
-	private List<InfoEventBase> _experienceCards => AppContent?.User?.ExperienceEvents ?? [];
+	private string _description => AppContent?.Layout?.SkillSectionBody ?? string.Empty;
 	private List<SkillInfo> _skills => AppContent?.User?.SkillInfos ?? [];
 }

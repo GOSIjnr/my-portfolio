@@ -6,8 +6,9 @@
 			SelectedService="@_selectedService?.Name" />
 
 		<div class="contact__info-grid">
-			@foreach (LinkInfo info in _contactInfos)
+			@foreach (LinkInfo? info in _contactInfos)
 			{
+				if (info is null) continue;
 				<ContactOption ContactInfo="@info" />
 			}
 		</div>

@@ -30,7 +30,7 @@
 				</div>
 
 				<div class="contact-form__radio-group" role="radiogroup" aria-label="Services">
-					@foreach (var service in FilteredServices)
+					@foreach (string? service in FilteredServices)
 					{
 						<ServiceRadioCard Service="@service" Selected="(_formModel.Service == service)"
 							OnSelect="OnServiceSelected" />

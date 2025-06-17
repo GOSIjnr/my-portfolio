@@ -9,8 +9,10 @@
                     <Brand BrandInfo="_brand" OnBrandClick="CloseMenu" />
                 </div>
 
-                @foreach (NavigationItem item in _navigationItems)
+                @foreach (NavigationItem? item in _navigationItems)
                 {
+                    if (item is null) continue;
+
                     <div class="side-bar__link">
                         <NavLinkItem NavigationLinkInfo="item" LinkType="@TargetUrlFormat.Plain"
                             OnNavMenuItemClick="CloseMenu" />

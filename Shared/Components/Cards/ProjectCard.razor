@@ -16,8 +16,10 @@
                 <div class="project-card__live-button-divider" />
             }
 
-            @foreach (LinkInfo link in _otherLinks)
+            @foreach (LinkInfo? link in _otherLinks)
             {
+                if (link is null) continue;
+
                 <a class="project-card__button" href="@link.Link" target="_blank" rel="noopener noreferrer">
                     @link.Title
                 </a>

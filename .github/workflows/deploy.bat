@@ -1,34 +1,29 @@
 @echo off
 setlocal EnableDelayedExpansion
 
-:: Move to root directory
+:: Move to the root of the Git repository
 for /f "delims=" %%i in ('git rev-parse --show-toplevel 2^>nul') do cd /d "%%i"
 
-:: Confirm we're in a Git repo
+:: Confirm we're in a Git repository
 git rev-parse --is-inside-work-tree >nul 2>&1
-
 if errorlevel 1 (
-    echo Can't run script, You are not inside a Git repository.
+    echo ERROR: This is not a Git repository.
     pause
     exit /b
 )
 
-:: Save current branch so we can return to it later
-for /f %%b in ('git rev-parse --abbrev-ref HEAD') do set original_branch=%%b
-
-:: Ask user for source branch
+:: Ask for source branch
 set /p source_branch=Enter the source branch to deploy from (e.g., main):
 
 :: Check if source branch exists
 git show-ref --verify --quiet refs/heads/%source_branch%
-
 if errorlevel 1 (
-    echo Source branch "%source_branch%" does not exist.
+    echo ERROR: Source branch "%source_branch%" does not exist.
     pause
     exit /b
 )
 
-:: Ask user for target branch (default: pages-deploy)
+:: Ask for target branch (default: pages-deploy)
 set /p target_branch=Enter the target branch (default is pages-deploy):
 if "%target_branch%"=="" set target_branch=pages-deploy
 
@@ -37,37 +32,14 @@ echo Deploying from: %source_branch%
 echo Deploying to: %target_branch% (as a single commit)
 pause
 
-:: Checkout source branch
-git checkout %source_branch%
+:: Create commit directly from the source branch tree without checking it out
+for /f %%t in ('git rev-parse %source_branch%^{tree}') do set tree=%%t
+set commit_message=Deploy: snapshot from %source_branch%
+for /f %%c in ('echo %commit_message% ^| git commit-tree %tree% -m "%commit_message%"') do set commit=%%c
 
-if errorlevel 1 (
-    echo Failed to checkout source branch.
-    pause
-    exit /b
-)
-
-:: Create an orphan branch for deployment
-git checkout --orphan deploy-temp
-git reset --hard
-
-:: Copy files from source branch to orphan branch
-git checkout %source_branch% -- .
-
-:: Commit the snapshot
-git add .
-git commit -m "Deploy: snapshot from %source_branch%"
-
-:: Rename orphan branch to target branch
-git branch -M %target_branch%
-
-:: Force push the deploy branch to remote
-git push -f origin %target_branch%
-
-:: Switch back to the original branch you started from
-git checkout %original_branch%
+:: Force push the commit to the target branch
+git push -f origin %commit%:refs/heads/%target_branch%
 
 echo.
 echo Deployment to %target_branch% complete!
-echo You are now back on branch: %original_branch%.
-echo Script completed successfully. Press any key to exit.
 pause

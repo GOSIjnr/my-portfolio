@@ -29,7 +29,7 @@ if "%target_branch%"=="" set target_branch=pages-deploy
 
 echo.
 echo Deploying from: %source_branch%
-echo Deploying to: %target_branch% (as a single commit)
+echo Deploying to:   %target_branch% (as a single commit)
 pause
 
 :: Create commit directly from the source branch tree without checking it out

@@ -1,22 +1,25 @@
-<div class="nav-item" @onclick="HandleNavMenuItemClickAsync">
-	@if (OnNavMenuItemClick.HasDelegate)
-	{
+@if (OnButtonItemClick.HasDelegate)
+{
+	<div class="nav-item" @onclick="HandleButtonItemClickAsync">
 		<button class="nav-item__link nav-item__link--button">
 			<span class="nav-item__label @_cssModifier">@_displayText</span>
 		</button>
-	}
-	else
-	{
+	</div>
+}
+else
+{
+	<div class="nav-item" @onclick="HandleNavItemClickAsync">
 		<NavLink class="nav-item__link" ActiveClass="@_cssActiveModifier" href="@_targetUrl" Match="NavLinkMatch.All">
 			<span class="nav-item__label @_cssModifier">@_displayText</span>
 		</NavLink>
-	}
-</div>
+	</div>
+}
 
 @code {
 	[Parameter, EditorRequired] public NavigationItem NavigationLinkInfo { get; set; } = new();
 	[Parameter] public TargetUrlFormat LinkType { get; set; } = TargetUrlFormat.HashPrefix;
-	[Parameter] public EventCallback OnNavMenuItemClick { get; set; }
+	[Parameter] public EventCallback OnNavItemClick { get; set; }
+	[Parameter] public EventCallback OnButtonItemClick { get; set; }
 
 	private string _displayText => NavigationLinkInfo.DisplayText;
 	private string _rawTargetUrl => NavigationLinkInfo.RawTargetUrl;
@@ -37,11 +40,19 @@
 		_ => string.Empty,
 	};
 
-	private async Task HandleNavMenuItemClickAsync(MouseEventArgs mouseEventArgs)
+	private async Task HandleNavItemClickAsync(MouseEventArgs mouseEventArgs)
 	{
-		if (OnNavMenuItemClick.HasDelegate)
+		if (OnNavItemClick.HasDelegate)
 		{
-			await OnNavMenuItemClick.InvokeAsync();
+			await OnNavItemClick.InvokeAsync();
+		}
+	}
+
+	private async Task HandleButtonItemClickAsync(MouseEventArgs mouseEventArgs)
+	{
+		if (OnButtonItemClick.HasDelegate)
+		{
+			await OnButtonItemClick.InvokeAsync();
 		}
 	}
 }

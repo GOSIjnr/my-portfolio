@@ -23,6 +23,7 @@
 	flex-direction: column;
 	padding: var(--resume-padding);
 	gap: var(--resume-gap);
+	margin-bottom: 4rem;
 }
 
 .resume__title {

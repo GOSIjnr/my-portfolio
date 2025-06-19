@@ -5,6 +5,7 @@
 .contact {
 	padding: var(--contact-page-padding);
 	overflow: hidden;
+	margin-bottom: 4rem;
 }
 
 .contact__grid {
@@ -18,7 +19,6 @@
 	gap: 1.5rem;
 	grid-template-columns: 1fr;
 	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-	margin-bottom: 4rem;
 }
 
 @media (min-width: 768px) {

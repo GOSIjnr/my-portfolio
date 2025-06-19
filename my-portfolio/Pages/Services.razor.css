@@ -2,7 +2,7 @@
 	--services-padding: 1rem;
 	--services-grid-gap: 40px;
 	--services-grid-columns: 1fr;
-	--services-grid-margin: 1rem 0rem 6.25rem 0rem;
+	--services-grid-margin: 1rem 0rem;
 }
 
 .services {
@@ -12,6 +12,7 @@
 	display: flex;
 	flex-direction: column;
 	flex: 1;
+	margin-bottom: 4rem;
 }
 
 .services__grid {

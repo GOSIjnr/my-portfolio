@@ -4,6 +4,7 @@
 
 .projects {
 	padding: var(--projects-page-padding);
+	margin-bottom: 4rem;
 }
 
 .projects__no-content {

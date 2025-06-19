@@ -5,12 +5,13 @@ using MyPortfolio.Services.Contracts;
 using MyPortfolio.Models.Common;
 using MyPortfolio.Core.Enum;
 using MyPortfolio.Models.InfoCard;
+using MyPortfolio.Models.Home;
 
 namespace MyPortfolio.Services.Profile;
 
 public class GosiJnrProfileData : IUserProfileData
 {
-	private static readonly BrandInfo _brandInfo = new("GOSI", "jnr.", string.Empty);
+	private static readonly BrandInfo _brandInfo = new("Victor", ".", string.Empty);
 	private const string _profileImageUrl = "https://github.com/GOSIjnr.png";
 
 	private static readonly List<LinkInfo> _socialMediaIconList =
@@ -75,7 +76,7 @@ public class GosiJnrProfileData : IUserProfileData
 		"Hi, I'm Chinedu Victor Awugosi, a developer who enjoys building smooth, intuitive digital experiences and solving technical challenges. I work across the stack, explore new tech, and occasionally dive into game engines for fun.",
 		new() {
 			{ "Name", "Awugosi Victor" },
-			{ "Experience", "3+ years" },
+			{ "Experience", "2 years" },
 			{ "Nationality", "Nigerian" },
 			{ "Email", "gosijnr7@yahoo.com" },
 			{ "Language", "English" },
@@ -113,6 +114,23 @@ public class GosiJnrProfileData : IUserProfileData
 		new("Figma", "https://api.iconify.design/solar/figma-bold-duotone.svg"),
 	];
 
+	private static readonly List<HomeStatItem> _homeStatsInfo =
+	[
+		new("2", "Years of <br>experience"),
+		new("3", "Projects <br>completed"),
+		new("10+", "Technologies <br>mastered"),
+		new("60+", "Code <br>commits")
+	];
+
+	private static readonly string _resumeDocID = "1NdPAG_6jcNHaFta0fJK6lT5TlNLzEMgQ";
+
+	private static readonly HomePageContentInfo _homePageContentInfo = new(
+		"Full-Stack / Game Developer",
+		"Hello I'm",
+		"Victor Awugosi",
+		"I turn caffeine into code, pixels into purpose, and bugs into... features (sometimes). Code builds it, curiosity drives it."
+	);
+
 	public BrandInfo Brand => _brandInfo;
 	public string ProfileImageUrl => _profileImageUrl;
 	public List<LinkInfo> SocialLinks => _socialMediaIconList;
@@ -123,4 +141,7 @@ public class GosiJnrProfileData : IUserProfileData
 	public List<InfoEventBase> ExperienceEvents => _experienceEvents;
 	public List<InfoEventBase> EducationEvents => _educationEvents;
 	public List<SkillInfo> SkillInfos => _skillInfos;
+	public List<HomeStatItem> HomeStatsInfo => _homeStatsInfo;
+	public string ResumeDocID => _resumeDocID;
+	public HomePageContentInfo HomePageContent => _homePageContentInfo;
 }

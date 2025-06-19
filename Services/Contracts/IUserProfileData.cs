@@ -3,6 +3,7 @@ using MyPortfolio.Models.Navigation;
 using MyPortfolio.Models.Project;
 using MyPortfolio.Models.Common;
 using MyPortfolio.Models.InfoCard;
+using MyPortfolio.Models.Home;
 
 namespace MyPortfolio.Services.Contracts;
 
@@ -18,4 +19,7 @@ public interface IUserProfileData
 	List<InfoEventBase> ExperienceEvents { get; }
 	List<InfoEventBase> EducationEvents { get; }
 	List<SkillInfo> SkillInfos { get; }
+	List<HomeStatItem> HomeStatsInfo { get; }
+	string ResumeDocID { get; }
+	HomePageContentInfo HomePageContent { get; }
 }

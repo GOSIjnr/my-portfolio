@@ -1,35 +1,35 @@
 namespace MyPortfolio.Models.Home;
 
-public class HomePageContentInfo(string mainTitle, string highlightedTitlePart, string descriptionBody, string backgroundImagePath)
+public class HomePageContentInfo(string role, string greeting, string greetingHighlighted, string description)
 {
-	private string _mainTitle = mainTitle ?? string.Empty;
-	private string _highlightedTitlePart = highlightedTitlePart ?? string.Empty;
-	private string _descriptionBody = descriptionBody ?? string.Empty;
-	private string _backgroundImagePath = backgroundImagePath ?? string.Empty;
+	private string _role = role ?? string.Empty;
+	private string _greeting = greeting ?? string.Empty;
+	private string _greetingHighlighted = greetingHighlighted ?? string.Empty;
+	private string _description = description ?? string.Empty;
 
-	public string MainTitle
+	public string Role
 	{
-		get => _mainTitle;
-		set => _mainTitle = value ?? string.Empty;
+		get => _role;
+		set => _role = value ?? string.Empty;
 	}
 
-	public string HighlightedTitlePart
+	public string Greeting
 	{
-		get => _highlightedTitlePart;
-		set => _highlightedTitlePart = value ?? string.Empty;
+		get => _greeting;
+		set => _greeting = value ?? string.Empty;
 	}
 
-	public string DescriptionBody
+	public string GreetingHighlighted
 	{
-		get => _descriptionBody;
-		set => _descriptionBody = value ?? string.Empty;
+		get => _greetingHighlighted;
+		set => _greetingHighlighted = value ?? string.Empty;
 	}
 
-	public string BackgroundImagePath
+	public string Description
 	{
-		get => _backgroundImagePath;
-		set => _backgroundImagePath = value ?? string.Empty;
+		get => _description;
+		set => _description = value ?? string.Empty;
 	}
 
-	public HomePageContentInfo() : this("Lorem", "ipsum", "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", string.Empty) { }
+	public HomePageContentInfo() : this("Lorem ispum", "Hello I'm", "Lorem ispum", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque consequat, faucibus et, et.") {}
 }

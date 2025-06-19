@@ -4,43 +4,40 @@
 	<div class="home__container">
 		<div class="home__photo">
 			<svg class="photo-border" viewBox="0 0 200 200">
-				<circle cx="100" cy="100" r="95" stroke="var(--color-2-lighter)" stroke-width="2"
-					stroke-linecap="round" stroke-dasharray="35 15 10 15 35 15 10 15" fill="none" />
+				<circle cx="100" cy="100" r="95" stroke="var(--color-2-lighter)" stroke-width="2" stroke-linecap="round"
+					stroke-dasharray="35 15 10 15 35 15 10 15" fill="none" />
 			</svg>
 
-			<img src="images/no-image.svg" alt="Photo" class="home__photo-img" />
+			<img src="@_profileImgUrl" alt="Photo" class="home__photo-img" />
 		</div>
 
 		<div class="home__intro">
-			<span class="home__role">Digital Binary Warrior</span>
-
-			<h1 class="home__greeting">Hello I'm <br><span class="home__name">Victor Awugosi</span></h1>
-
-			<p class="home__description">
-				I turn caffeine into code, pixels into purpose, and bugs into... features (sometimes). Code builds
-				it, curiosity drives it.
-			</p>
+			<span class="home__role">@_role</span>
+			<h1 class="home__greeting">@_greeting<br><span class="home__name">@_greetingHighlighted</span></h1>
+			<p class="home__description">@_description</p>
 
 			<div class="home__cta-wrapper">
 				<div class="home__cta">
-					<NavLinkItem LinkType="TargetUrlFormat.Plain"
-						NavigationLinkInfo="@new("Download CV", "", NavigationItemCssType.Rounded, NavigationItemCssActiveType.Normal)"
-						OnNavMenuItemClick="PreviewResume" />
+					<NavLinkItem LinkType="TargetUrlFormat.Plain" NavigationLinkInfo="@_downloadCV"
+						OnNavMenuItemClick="DownloadResume" />
 				</div>
 
 				<div class="home__cta">
-					<NavLinkItem LinkType="TargetUrlFormat.Plain"
-						NavigationLinkInfo="@new("Check My Works", "projects",NavigationItemCssType.RoundedInverted, NavigationItemCssActiveType.Normal)" />
+					<NavLinkItem LinkType="TargetUrlFormat.Plain" NavigationLinkInfo="@_checkMyWorks" />
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<div class="home__stats">
-		<div class="home__stat"><span class="home__stat-number">12</span> Years of <br>experience</div>
-		<div class="home__stat"><span class="home__stat-number">26</span> Projects <br>completed</div>
-		<div class="home__stat"><span class="home__stat-number">8</span> Technologies <br>mastered</div>
-		<div class="home__stat"><span class="home__stat-number">500</span> Code <br>commits</div>
+		@foreach (HomeStatItem? stat in _homeStatsItems)
+		{
+			if (stat is null) continue;
+
+			<div class="home__stat">
+				<span class="home__stat-number">@stat.Number</span> @((MarkupString)stat.Description)
+			</div>
+		}
 	</div>
 </div>
 
@@ -48,24 +45,23 @@
 	[Inject] private IJSRuntime? Js { get; set; }
 	[Inject] private AppContent? AppContent { get; set; }
 
-	private HomePageContentInfo _homePageContentInfo => AppContent?.Layout?.HomePageContent ?? new();
+	private HomePageContentInfo _homePageContentInfo => AppContent?.User?.HomePageContent ?? new();
 
-	private string docxFileId = "1NdPAG_6jcNHaFta0fJK6lT5TlNLzEMgQ";
-	private string previewFileId = "1NdPAG_6jcNHaFta0fJK6lT5TlNLzEMgQ";
+	private string _role => _homePageContentInfo.Role;
+	private string _greeting => _homePageContentInfo.Greeting;
+	private string _greetingHighlighted => _homePageContentInfo.GreetingHighlighted;
+	private string _description => _homePageContentInfo.Description;
+	private List<HomeStatItem> _homeStatsItems => AppContent?.User?.HomeStatsInfo ?? [];
+	private string _resumeDocID => AppContent?.User?.ResumeDocID ?? string.Empty;
+	private string _profileImgUrl => AppContent?.User?.ProfileImageUrl ?? string.Empty;
+	private NavigationItem _downloadCV => AppContent?.Layout?.DownloadCVLink ?? new();
+	private NavigationItem _checkMyWorks => AppContent?.Layout?.CheckMyProjectsLink ?? new();
 
 	private async Task DownloadResume()
 	{
 		if (Js is null) return;
 
-		string url = $"https://drive.google.com/uc?export=download&id={docxFileId}";
+		string url = $"https://drive.google.com/uc?export=download&id={_resumeDocID}";
 		await Js.InvokeVoidAsync("downloadFile", url);
-	}
-
-	private async Task PreviewResume()
-	{
-		if (Js is null) return;
-
-		string previewUrl = $"https://drive.google.com/file/d/{previewFileId}/preview";
-		await Js.InvokeVoidAsync("openFileInNewTab", previewUrl);
 	}
 }

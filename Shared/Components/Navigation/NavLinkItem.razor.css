@@ -34,6 +34,18 @@
 	color: inherit;
 }
 
+.nav-item__link--button {
+	background: none;
+	border: none;
+	width: 100%;
+	padding: 0;
+	text-align: inherit;
+	font: inherit;
+	color: inherit;
+	cursor: pointer;
+	text-decoration: none;
+}
+
 ::deep .nav-item__link--underline {
 	color: var(--navitem-label-color-accent);
 	display: inline-block;

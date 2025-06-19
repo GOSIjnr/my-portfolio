@@ -3,41 +3,48 @@
 <div class="home">
 	<div class="home__container">
 		<div class="home__photo">
-			<img src="images/no-image.svg" alt="Luke Coleman photo" class="home__photo-img" />
+			<svg class="photo-border" viewBox="0 0 200 200">
+				<circle cx="100" cy="100" r="95" stroke="var(--color-2-lighter)" stroke-width="2"
+					stroke-linecap="round" stroke-dasharray="35 15 10 15 35 15 10 15" fill="none" />
+			</svg>
+
+			<img src="images/no-image.svg" alt="Photo" class="home__photo-img" />
 		</div>
 
 		<div class="home__intro">
 			<span class="home__role">Digital Binary Warrior</span>
 
-			<h1 class="home__greeting">Hello I'm <br><span class="home__name">Luke Coleman</span></h1>
+			<h1 class="home__greeting">Hello I'm <br><span class="home__name">Victor Awugosi</span></h1>
 
 			<p class="home__description">
-				I excel at crafting elegant digital experiences and I am proficient in
-				various programming languages and technologies.
+				I turn caffeine into code, pixels into purpose, and bugs into... features (sometimes). Code builds
+				it, curiosity drives it.
 			</p>
 
-			<a class="home__cta" href="/cv.pdf" download>Download CV</a>
+			<div class="home__cta-wrapper">
+				<div class="home__cta">
+					<NavLinkItem LinkType="TargetUrlFormat.Plain"
+						NavigationLinkInfo="@new("Download CV", "", NavigationItemCssType.Rounded, NavigationItemCssActiveType.Normal)"
+						OnNavMenuItemClick="PreviewResume" />
+				</div>
 
-			<div class="home__socials">
-				<a href="#" class="home__social"><i class="icon-question"></i></a>
-				<a href="#" class="home__social"><i class="icon-linkedin"></i></a>
-				<a href="#" class="home__social"><i class="icon-youtube"></i></a>
-				<a href="#" class="home__social"><i class="icon-twitter"></i></a>
+				<div class="home__cta">
+					<NavLinkItem LinkType="TargetUrlFormat.Plain"
+						NavigationLinkInfo="@new("Check My Works", "projects",NavigationItemCssType.RoundedInverted, NavigationItemCssActiveType.Normal)" />
+				</div>
 			</div>
 		</div>
 	</div>
 
 	<div class="home__stats">
-		<div class="home__stat"><span class="home__stat-number">12</span> Years of experience</div>
-		<div class="home__stat"><span class="home__stat-number">26</span> Projects completed</div>
-		<div class="home__stat"><span class="home__stat-number">8</span> Technologies mastered</div>
-		<div class="home__stat"><span class="home__stat-number">500</span> Code commits</div>
+		<div class="home__stat"><span class="home__stat-number">12</span> Years of <br>experience</div>
+		<div class="home__stat"><span class="home__stat-number">26</span> Projects <br>completed</div>
+		<div class="home__stat"><span class="home__stat-number">8</span> Technologies <br>mastered</div>
+		<div class="home__stat"><span class="home__stat-number">500</span> Code <br>commits</div>
 	</div>
 </div>
 
-
 @code {
-
 	[Inject] private IJSRuntime? Js { get; set; }
 	[Inject] private AppContent? AppContent { get; set; }
 

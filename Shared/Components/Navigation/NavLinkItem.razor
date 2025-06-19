@@ -1,7 +1,7 @@
-<div class="nav-item" @onclick="HandleNavMenuItemClickAsync">
-	<NavLink class="nav-item__link" ActiveClass="@_cssActiveModifier" href="@_targetUrl" Match="NavLinkMatch.All">
-		<span class="nav-item__label @_cssModifier">@_displayText</span>
-	</NavLink>
+<div class="nav-item" @onclick="HandleNavMenuItemClickAsync" @onclick:stopPropagation="true">
+		<NavLink class="nav-item__link" ActiveClass="@_cssActiveModifier" href="@_targetUrl" Match="NavLinkMatch.All">
+			<span class="nav-item__label @_cssModifier">@_displayText</span>
+		</NavLink>
 </div>
 
 @code {
@@ -34,5 +34,10 @@
 		{
 			await OnNavMenuItemClick.InvokeAsync();
 		}
+	}
+
+	private async Task HandleNavClick(MouseEventArgs e)
+	{
+		await OnNavMenuItemClick.InvokeAsync();
 	}
 }

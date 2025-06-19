@@ -18,7 +18,7 @@ public class GosiJnrProfileData : IUserProfileData
 		new("https://api.iconify.design/simple-icons/github.svg", "Github", "GOSIjnr", "https://github.com/GOSIjnr", LinkType.Link),
 		new("https://api.iconify.design/simple-icons/discord.svg", "Discord", "GOSIjnr", "https://discord.com/users/GOSIjnr", LinkType.Link),
 		new("https://api.iconify.design/simple-icons/x.svg", "X", "@GOSIjnr", "https://twitter.com/GOSIjnr", LinkType.Link),
-		new("https://api.iconify.design/cib/linkedin.svg", "Linkden", "Chinedu Awugosi", "https://www.linkedin.com/in/victor-awugosi/", LinkType.Link),
+		new("https://api.iconify.design/cib/linkedin.svg", "Linkden", "Victor Awugosi", "https://www.linkedin.com/in/victor-awugosi/", LinkType.Link),
 	];
 
 	private static readonly List<ServiceInfo> _serviceInfoList =

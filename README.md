@@ -1,6 +1,6 @@
 # 🚀 My Portfolio
 
-![.NET 9.0](https://img.shields.io/badge/.NET-9.0-blue)
+![.NET 8.0](https://img.shields.io/badge/.NET-8.0-blue)
 ![License](https://img.shields.io/badge/license-CC-lightgrey)
 ![GitHub Pages](https://img.shields.io/badge/deploy-GitHub%20Pages-brightgreen)
 
@@ -17,6 +17,20 @@ A **personal portfolio website** to showcase your projects, skills, and experien
 * 🎨 **Easily customizable** structure and styles
 * 🚀 **Automatic Deployment** with GitHub Actions & GitHub Pages
 * ⚙️ **Batch File** to deploy your source branch to a target branch on GitHub with a single commit
+
+---
+
+## 📷 Screenshots
+
+### 💻 Desktop View
+
+<img src="docs/images/home-desktop.png" alt="Desktop Screenshot" height="200" />
+
+### 📱 Mobile View
+
+<img src="docs/images/home-mobile.png" alt="Mobile Screenshot" width="200" />
+
+*Homepage preview using the default profile (fully customizable).*
 
 ---
 

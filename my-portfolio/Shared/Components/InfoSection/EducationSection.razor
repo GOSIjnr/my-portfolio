@@ -1,0 +1,41 @@
+<div class="education-section">
+    <h2 class="education-section__heading">My Education</h2>
+    <p class="education-section__description">@_description</p>
+
+    <div class="education-section__grid">
+        @foreach (InfoCardModel? cardData in _adaptedEducationCards)
+        {
+            if (cardData is null) continue;
+            <InfoCard InfoCardData="@cardData" OnReadMoreClicked="@(() => ShowModal(cardData))" />
+        }
+    </div>
+</div>
+
+<Modal IsVisible="@showModal" IsVisibleChanged="@(value => showModal = value)">
+    @if (selectedCard is not null)
+    {
+        <InfoCard InfoCardData="@selectedCard" ForceExpanded="true" />
+    }
+</Modal>
+
+@code {
+    [Inject] private AppContent? AppContent { get; set; }
+
+    private List<InfoCardModel> _adaptedEducationCards = [];
+    private InfoCardModel? selectedCard = null;
+    private bool showModal = false;
+
+    private string _description => AppContent?.Layout?.EducationSectionBody ?? string.Empty;
+    private List<InfoEventBase> _educationCards => AppContent?.User?.EducationEvents ?? [];
+
+    protected override void OnParametersSet()
+    {
+        _adaptedEducationCards = InfoCardAdapterResolver.AdaptList(_educationCards);
+    }
+
+    private void ShowModal(InfoCardModel card)
+    {
+        selectedCard = card;
+        showModal = true;
+    }
+}

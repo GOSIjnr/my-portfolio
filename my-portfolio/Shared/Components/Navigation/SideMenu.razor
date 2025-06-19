@@ -1,0 +1,69 @@
+<div class="side-bar">
+    <div class="side-bar__slider @(IsOpened ? "side-bar__slider--open" : "")">
+        <button class="side-bar__close-btn side-bar__close-btn--mask" type="button" title="Close menu"
+            @onclick="CloseMenu" />
+
+        <div class="side-bar__content">
+            <div class="side-bar__links">
+                <div class="side-bar__logo">
+                    <Brand BrandInfo="_brand" OnBrandClick="CloseMenu" />
+                </div>
+
+                @foreach (NavigationItem? item in _navigationItems)
+                {
+                    if (item is null) continue;
+
+                    <div class="side-bar__link">
+                        <NavLinkItem NavigationLinkInfo="item" LinkType="@TargetUrlFormat.Plain"
+                            OnNavMenuItemClick="CloseMenu" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    @if (IsOpened)
+    {
+        <div class="side-bar__backdrop" @onclick="CloseMenu"></div>
+    }
+</div>
+
+@code {
+    [Parameter, EditorRequired] public bool IsOpened { get; set; } = false;
+    [Parameter] public EventCallback OnClose { get; set; }
+
+    [Inject] private AppContent? AppContent { get; set; }
+    [Inject] private IJSRuntime? JS { get; set; }
+
+    private BrandInfo _brand => AppContent?.User?.Brand ?? new();
+    private List<NavigationItem> _navigationItems => AppContent?.Layout?.NavigationLinks ?? [];
+
+    private readonly string _sidebarId = $"sidebar-{Guid.NewGuid():N}";
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await ToggleScrollLock(IsOpened, _sidebarId);
+    }
+
+    private async Task ToggleScrollLock(bool enabled, string targetId)
+    {
+        if (JS is null) return;
+
+        if (enabled)
+        {
+            await JS.InvokeVoidAsync("scrollLocker.disableScroll", targetId);
+        }
+        else
+        {
+            await JS.InvokeVoidAsync("scrollLocker.enableScroll");
+        }
+    }
+
+    public async Task CloseMenu()
+    {
+        if (OnClose.HasDelegate)
+        {
+            await OnClose.InvokeAsync();
+        }
+    }
+}

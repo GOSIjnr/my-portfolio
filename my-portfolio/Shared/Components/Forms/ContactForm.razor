@@ -1,0 +1,92 @@
+<div class="contact-form">
+	<EditForm Model="_formModel" OnValidSubmit="HandleValidSubmit" Enhance>
+		<DataAnnotationsValidator />
+
+		<h2 class="contact-form__title">@ContactFormLayout.Heading</h2>
+		<p class="contact-form__subtitle">@ContactFormLayout.SubHeading</p>
+
+		<div class="contact-form__fields">
+			<div class="contact-form__group">
+				<InputText class="contact-form__input" placeholder="First name" @bind-Value="_formModel.FirstName" />
+			</div>
+
+			<div class="contact-form__group">
+				<InputText class="contact-form__input" placeholder="Last name" @bind-Value="_formModel.LastName" />
+			</div>
+
+			<div class="contact-form__group">
+				<InputText class="contact-form__input" placeholder="Email address" @bind-Value="_formModel.Email" />
+			</div>
+
+			<div class="contact-form__group">
+				<InputText class="contact-form__input" placeholder="Phone number" @bind-Value="_formModel.Phone" />
+			</div>
+
+			<div class="contact-form__group contact-form__group--full contact-form__service-group">
+				<label class="contact-form__service-label" for="serviceSearch">Select a service</label>
+
+				<div class="contact-form__service-search-wrapper">
+					<SearchInput @bind-Search="serviceSearch" Delay="400" Placeholder="Search services..." />
+				</div>
+
+				<div class="contact-form__radio-group" role="radiogroup" aria-label="Services">
+					@foreach (string? service in FilteredServices)
+					{
+						<ServiceRadioCard Service="@service" Selected="(_formModel.Service == service)"
+							OnSelect="OnServiceSelected" />
+					}
+				</div>
+			</div>
+
+			<div class="contact-form__group contact-form__group--full">
+				<InputTextArea class="contact-form__textarea" placeholder="Type your message here."
+					@bind-Value="_formModel.Message" />
+			</div>
+		</div>
+
+		<div class="contact-form__error-wrapper">
+			<ValidationSummary class="contact-form__error" />
+		</div>
+
+		<button type="submit" class="contact-form__submit">Send message</button>
+	</EditForm>
+</div>
+
+@code {
+	[EditorRequired, Parameter] public ContactFormLayout ContactFormLayout { get; set; } = new();
+	[Parameter] public List<string> ServicesNames { get; set; } = new();
+	[Parameter] public string SelectedService { get; set; } = "";
+
+	[Inject] private NavigationManager? NavigationManager { get; set; }
+
+	private ContactFormModel _formModel = new();
+	private string serviceSearch = "";
+
+	private IEnumerable<string> FilteredServices => string.IsNullOrWhiteSpace(serviceSearch) ? ServicesNames :
+	ServicesNames.Select(s => new { Name = s, Score = Fuzz.PartialRatio(serviceSearch.ToLower().RemoveEmptySpaces(), s.ToLower().RemoveEmptySpaces()) })
+	.Where(x => x.Score > 60)
+	.OrderByDescending(x => x.Score)
+	.Select(x => x.Name);
+
+	protected override void OnInitialized()
+	{
+		if (!string.IsNullOrWhiteSpace(SelectedService))
+		{
+			_formModel.Service = SelectedService;
+		}
+	}
+
+	private void OnServiceSelected(string selectedService)
+	{
+		_formModel.Service = selectedService;
+	}
+
+	private void HandleValidSubmit()
+	{
+		Console.WriteLine(JsonSerializer.Serialize(_formModel));
+
+		// first send the data with async and when failed or successfull redirect to home page
+		// then notfice of success or failure
+		NavigationManager?.NavigateTo(string.Empty);
+	}
+}

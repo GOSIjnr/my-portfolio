@@ -1,0 +1,19 @@
+<div class="skill-section">
+	<h2 class="skill-section__heading">My Skills</h2>
+	<p class="skill-section__description">@_description</p>
+
+	<div class="skill-section__grid">
+		@foreach (SkillInfo? skill in _skills)
+		{
+			if (skill is null) continue;
+			<SkillBox SkillInfo="@skill" />
+		}
+	</div>
+</div>
+
+@code {
+	[Inject] private AppContent? AppContent { get; set; }
+
+	private string _description => AppContent?.Layout?.SkillSectionBody ?? string.Empty;
+	private List<SkillInfo> _skills => AppContent?.User?.SkillInfos ?? [];
+}

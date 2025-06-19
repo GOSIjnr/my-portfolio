@@ -35,7 +35,7 @@ jobs:
         uses: na1307/blazor-github-pages@v3
         id: prepare
         with:
-          project-path: MyPortfolio.csproj
+          project-path: my-portfolio/MyPortfolio.csproj
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact

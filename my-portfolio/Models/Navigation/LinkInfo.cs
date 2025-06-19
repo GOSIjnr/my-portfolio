@@ -41,5 +41,5 @@ public class LinkInfo(string iconUrl, string title, string detail, string link, 
 		set => _type = EnumValidator.ValidateOrDefault(value, LinkType.Text);
 	}
 
-	public LinkInfo() : this("images/web.svg", "Lorem ispum", "Lorem ispum dolor sit amet", string.Empty, LinkType.Text) { }
+	public LinkInfo() : this("images/web.svg", "Lorem ispum", "Lorem ispum dolor", string.Empty, LinkType.Text) { }
 }

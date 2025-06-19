@@ -118,9 +118,12 @@ For major changes, please open an issue first to discuss what you’d like to im
 
 ---
 
-## 📜 License
+## License
+This project is licensed under the [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) license.
 
-Licensed under the [Creative Commons Legal Code](LICENSE).
+You're free to modify and use this project for personal or public **non-commercial** purposes, as long as you provide credit.
+
+**Commercial use is not permitted without permission.** Contact me at: **gosijnr7@yahoo.com**
 
 ---
 

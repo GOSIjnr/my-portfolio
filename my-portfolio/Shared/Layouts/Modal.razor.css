@@ -4,9 +4,11 @@
 	--modal-content-width: 90%;
 	--modal-content-padding: 1.5rem;
 	--modal-close-btn-size: 30px;
-	--modal-close-btn-margin-bottom: 1rem;
 	--modal-close-btn-color: var(--color-3-lightest);
 	--modal-close-btn-mask-url: url("images/close-button.svg");
+
+	--modal-scrollbar-track-color: transparent;
+	--modal-scrollbar-thumb-color: var(--color-2-lighter);
 }
 
 .modal {
@@ -22,20 +24,38 @@
 .modal__content {
 	max-width: var(--modal-content-max-width);
 	width: var(--modal-content-width);
-	padding: var(--modal-content-padding);
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
+	max-height: 90dvh;
+	overflow: auto;
+
+	/* Scrollbar styles (Webkit browsers) */
+	scrollbar-width: thin;
+	/* Firefox */
+	scrollbar-color: var(--modal-scrollbar-thumb-color) var(--modal-scrollbar-track-color);
+}
+
+.modal__content::-webkit-scrollbar {
+	width: 8px;
+}
+
+.modal__content::-webkit-scrollbar-track {
+	background-color: var(--modal-scrollbar-track-color);
+}
+
+.modal__content::-webkit-scrollbar-thumb {
+	background-color: var(--modal-scrollbar-thumb-color);
+	border-radius: 4px;
 }
 
 .modal__close-btn {
+	position: fixed;
+	top: 1.5rem;
+	right: 1.5rem;
 	width: var(--modal-close-btn-size);
 	height: var(--modal-close-btn-size);
-	margin-bottom: var(--modal-close-btn-margin-bottom);
 	cursor: pointer;
-	align-self: flex-end;
 	border: none;
 	background-color: transparent;
+	z-index: 1100;
 }
 
 .modal__close-btn--mask {

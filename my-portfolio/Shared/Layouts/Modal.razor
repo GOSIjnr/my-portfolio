@@ -1,10 +1,17 @@
 @if (IsVisible)
 {
 	<div class="modal" id="@_modalId" @onclick="Close">
-		<div class="modal__content" @onclick:stopPropagation="true">
-			<button class="modal__close-btn modal__close-btn--mask" type="button" title="Close menu" @onclick="Close" />
+		<div class="modal__backdrop"></div>
 
-			@ChildContent
+		<div class="modal__container" @onclick:stopPropagation="true">
+			<div class="modal__header">
+				<p class="modal__title">@ModalTitle</p>
+				<button class="modal__close-btn" type="button" title="Close modal" @onclick="Close"></button>
+			</div>
+
+			<div class="modal__body">
+				@ChildContent
+			</div>
 		</div>
 	</div>
 }
@@ -13,10 +20,16 @@
 	[Parameter] public bool IsVisible { get; set; }
 	[Parameter] public EventCallback<bool> IsVisibleChanged { get; set; }
 	[Parameter] public RenderFragment? ChildContent { get; set; }
+	[Parameter] public string? ModalTitle { get; set; }
 
-	[Inject] private IJSRuntime JS { get; set; } = default!;
+	[Inject] private IJSRuntime? JS { get; set; }
 
 	private readonly string _modalId = $"modal-{Guid.NewGuid():N}";
+
+	protected override void OnParametersSet()
+	{
+		ModalTitle ??= string.Empty;
+	}
 
 	protected override async Task OnParametersSetAsync()
 	{
@@ -25,6 +38,8 @@
 
 	private async Task ToggleScrollLock(bool enabled, string targetId)
 	{
+		if (JS is null) return;
+
 		if (enabled)
 		{
 			await JS.InvokeVoidAsync("scrollLocker.disableScroll", targetId);

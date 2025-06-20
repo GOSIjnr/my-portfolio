@@ -1,12 +1,10 @@
 .modal {
-	--modal-backdrop-color: rgba(0, 0, 0, 0.65);
+	--modal-backdrop-color: rgb(1, 1, 1, 0.65);
 	--modal-content-max-width: 600px;
-	--modal-content-width: 90%;
 	--modal-content-padding: 1.5rem;
 	--modal-close-btn-size: 30px;
 	--modal-close-btn-color: var(--color-3-lightest);
 	--modal-close-btn-mask-url: url("images/close-button.svg");
-
 	--modal-scrollbar-track-color: transparent;
 	--modal-scrollbar-thumb-color: var(--color-2-lighter);
 }
@@ -14,51 +12,49 @@
 .modal {
 	position: fixed;
 	inset: 0;
-	background-color: var(--modal-backdrop-color);
+	z-index: 1000;
 	display: flex;
 	justify-content: center;
-	align-items: center;
-	z-index: 1000;
+	align-items: flex-start;
+	padding: 2rem;
+	overflow-y: auto;
 }
 
-.modal__content {
+.modal__backdrop {
+	position: fixed;
+	inset: 0;
+	background-color: var(--modal-backdrop-color);
+	z-index: -1;
+}
+
+.modal__container {
+	background: var(--color-1-light);
 	max-width: var(--modal-content-max-width);
-	width: var(--modal-content-width);
-	max-height: 90dvh;
-	overflow: auto;
-
-	/* Scrollbar styles (Webkit browsers) */
-	scrollbar-width: thin;
-	/* Firefox */
-	scrollbar-color: var(--modal-scrollbar-thumb-color) var(--modal-scrollbar-track-color);
+	width: 95%;
+	display: flex;
+	flex-direction: column;
 }
 
-.modal__content::-webkit-scrollbar {
-	width: 8px;
+.modal__header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.75rem 1.25rem;
+	border-bottom: 2px solid var(--color-1-lighter);
 }
 
-.modal__content::-webkit-scrollbar-track {
-	background-color: var(--modal-scrollbar-track-color);
-}
-
-.modal__content::-webkit-scrollbar-thumb {
-	background-color: var(--modal-scrollbar-thumb-color);
-	border-radius: 4px;
+.modal__title {
+	margin: 0;
+	font-size: 1.15rem;
+	font-weight: bold;
 }
 
 .modal__close-btn {
-	position: fixed;
-	top: 1.5rem;
-	right: 1.5rem;
 	width: var(--modal-close-btn-size);
 	height: var(--modal-close-btn-size);
-	cursor: pointer;
 	border: none;
+	cursor: pointer;
 	background-color: transparent;
-	z-index: 1100;
-}
-
-.modal__close-btn--mask {
 	-webkit-mask-image: var(--modal-close-btn-mask-url);
 	mask-image: var(--modal-close-btn-mask-url);
 	-webkit-mask-repeat: no-repeat;

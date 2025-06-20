@@ -12,23 +12,18 @@
             }
 
             <div class="nav-bar__contact-link">
-                <NavLinkItem NavigationLinkInfo="@_contactMeLink" LinkType="TargetUrlFormat.Plain" />
+                <NavLinkItem NavigationLinkInfo="@_contactMeLink" LinkType="TargetUrlFormat.Plain"
+                    OnButtonItemClick="ShowContactModal" />
             </div>
-
-            <!-- Let's Connect CTA Button -->
-            <button type="button" class="nav-bar__connect-btn" @onclick="ShowContactModal">
-                Let's Connect
-            </button>
         </div>
 
         <button type="button" class="nav-bar__toggle-btn nav-bar__toggle-btn--mask" title="Close menu"
             @onclick="ToggleSidebar" />
     </div>
 
-    <SideMenu IsOpened="@_isSidebarOpen" OnClose="@ToggleSidebar" />
+    <SideMenu IsOpened="@_isSidebarOpen" OnClose="@ToggleSidebar" OnContactMeClick="ShowContactModal" />
 
-    <!-- Modal with ContactForm -->
-    <Modal IsVisible="@_isContactModalVisible" IsVisibleChanged="@OnModalVisibilityChanged">
+    <Modal IsVisible="@_isContactModalVisible" IsVisibleChanged="@OnModalVisibilityChanged" ModalTitle="Let's Connect">
         <ContactForm ContactFormLayout="@_contactFormLayoutData" ServicesNames="@_serviceNames"
             SelectedService="@_selectedService?.Name" />
     </Modal>

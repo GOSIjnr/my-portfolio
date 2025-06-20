@@ -19,6 +19,11 @@
                     </div>
                 }
             </div>
+
+            <div class="side-bar__contact-link">
+                <NavLinkItem NavigationLinkInfo="@_contactMeLink" LinkType="TargetUrlFormat.Plain"
+                    OnNavItemClick="CloseMenu" />
+            </div>
         </div>
     </div>
 
@@ -37,6 +42,8 @@
 
     private BrandInfo _brand => AppContent?.User?.Brand ?? new();
     private List<NavigationItem> _navigationItems => AppContent?.Layout?.NavigationLinks ?? [];
+    private NavigationItem _contactMeLink => AppContent?.Layout?.ContactMeLink ?? new();
+
 
     private readonly string _sidebarId = $"sidebar-{Guid.NewGuid():N}";
 

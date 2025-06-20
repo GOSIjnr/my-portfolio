@@ -87,6 +87,9 @@
 	height: 100%;
 	justify-content: center;
 	align-items: center;
+	width:100%;
+	margin-bottom: 1rem;
+	border-bottom: 2px solid var(--sidebar-separator);
 }
 
 .side-bar__link
@@ -103,6 +106,10 @@
 	margin-top: 2rem;
 	padding-top: 1rem;
 	border-top: 1px solid var(--sidebar-separator);
+}
+
+.side-bar__contact-link {
+	width: 100%;
 }
 
 @media (min-width: 576px) {

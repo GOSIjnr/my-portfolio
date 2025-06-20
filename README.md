@@ -38,7 +38,7 @@ A **personal portfolio website** to showcase your projects, skills, and experien
 
 ### ✅ Prerequisites
 
-📚 **New to Blazor?** Learn more here: [Introduction to Blazor](https://learn.microsoft.com/en-us/aspnet/core/blazor/introduction)
+📚 **New to Blazor?** Learn more here: [Introduction to Blazor](https://dotnet.microsoft.com/en-us/learn/aspnet/blazor-tutorial/intro)
 
 * [.NET 8 SDK or later](https://dotnet.microsoft.com/download)
 

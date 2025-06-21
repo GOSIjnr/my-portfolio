@@ -1,5 +1,21 @@
+@using System.Text.Json
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
 <div class="contact-form">
-	<EditForm Model="_formModel" OnValidSubmit="HandleValidSubmit" Enhance>
+	@if (!string.IsNullOrEmpty(StatusMessage))
+	{
+		<div class="toast show position-fixed bottom-0 end-0 m-3" role="alert" aria-live="assertive" aria-atomic="true">
+			<div class="toast-header bg-@StatusType text-white">
+				<strong class="me-auto">Message</strong>
+				<small>Now</small>
+				<button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+			</div>
+			<div class="toast-body">@StatusMessage</div>
+		</div>
+	}
+
+	<EditForm Model="_formModel" OnValidSubmit="HandleValidSubmit">
 		<DataAnnotationsValidator />
 
 		<h2 class="contact-form__title">@ContactFormLayout.Heading</h2>
@@ -19,7 +35,9 @@
 			</div>
 
 			<div class="contact-form__group">
-				<InputText class="contact-form__input" placeholder="Phone number" @bind-Value="_formModel.Phone" />
+				<InputText class="contact-form__input"
+					placeholder="Reason for contact (e.g., hiring, question, feedback)"
+					@bind-Value="_formModel.Reason" />
 			</div>
 
 			<div class="contact-form__group contact-form__group--full contact-form__service-group">
@@ -47,23 +65,40 @@
 		<div class="contact-form__error-wrapper">
 			<ValidationSummary class="contact-form__error" />
 		</div>
+		<!-- 🐝 Honeypot Trap - Hidden from users -->
+		<div style="display:none;">
+			<InputText @bind-Value="_honeypot" />
+		</div>
 
-		<button type="submit" class="contact-form__submit">Send message</button>
+		<button class="contact-form__submit" disabled="@IsSubmitting">
+			@(IsSubmitting ? "Sending..." : "Send Message")
+		</button>
 	</EditForm>
 </div>
 
 @code {
-	[EditorRequired, Parameter] public ContactFormLayout ContactFormLayout { get; set; } = new();
+	[Parameter] public ContactFormLayout ContactFormLayout { get; set; } = new();
 	[Parameter] public List<string> ServicesNames { get; set; } = new();
 	[Parameter] public string SelectedService { get; set; } = "";
 
-	[Inject] private NavigationManager? NavigationManager { get; set; }
-
 	private ContactFormModel _formModel = new();
 	private string serviceSearch = "";
+	private bool IsSubmitting = false;
 
-	private IEnumerable<string> FilteredServices => string.IsNullOrWhiteSpace(serviceSearch) ? ServicesNames :
-	ServicesNames.Select(s => new { Name = s, Score = Fuzz.PartialRatio(serviceSearch.ToLower().RemoveEmptySpaces(), s.ToLower().RemoveEmptySpaces()) })
+	private string? StatusMessage;
+	private string StatusType = "primary";
+
+	private string _honeypot = "";
+	private DateTime _lastSentTime = DateTime.MinValue;
+
+	private IEnumerable<string> FilteredServices => string.IsNullOrWhiteSpace(serviceSearch)
+	? ServicesNames
+	: ServicesNames.Select(s => new
+	{
+		Name = s,
+		Score = Fuzz.PartialRatio(serviceSearch.ToLower().RemoveEmptySpaces(),
+	s.ToLower().RemoveEmptySpaces())
+	})
 	.Where(x => x.Score > 60)
 	.OrderByDescending(x => x.Score)
 	.Select(x => x.Name);
@@ -81,12 +116,77 @@
 		_formModel.Service = selectedService;
 	}
 
-	private void HandleValidSubmit()
+	private async void HandleValidSubmit()
 	{
-		Console.WriteLine(JsonSerializer.Serialize(_formModel));
+		if (!string.IsNullOrEmpty(_honeypot))
+		{
+			ShowToast("❌ Submission blocked (possible spam).", "danger");
+			return;
+		}
 
-		// first send the data with async and when failed or successfull redirect to home page
-		// then notfice of success or failure
-		NavigationManager?.NavigateTo(string.Empty);
+		if ((DateTime.Now - _lastSentTime).TotalSeconds < 30)
+		{
+			ShowToast("Please wait before sending another message.", "warning");
+			return;
+		}
+
+		IsSubmitting = true;
+
+		try
+		{
+			await SendEmailAsync();
+			_lastSentTime = DateTime.Now;
+			ShowToast("✅ Message sent successfully!", "success");
+			_formModel = new();
+		}
+		catch (Exception ex)
+		{
+			ShowToast($"❌ Failed to send message: {ex.Message}", "danger");
+		}
+		finally
+		{
+			IsSubmitting = false;
+			_honeypot = "";
+		}
+	}
+
+	private async Task SendEmailAsync()
+	{
+		var payload = new
+		{
+			service_id = "YOUR_SERVICE_ID",
+			template_id = "YOUR_TEMPLATE_ID",
+			user_id = "YOUR_PUBLIC_KEY",
+			template_params = new
+			{
+				reason = _formModel.Reason,
+				name = _formModel.FirstName + " " + _formModel.LastName,
+				email = _formModel.Email,
+				service = _formModel.Service,
+				message = _formModel.Message,
+				time = DateTime.Now.ToString("f")
+			}
+		};
+
+		var response = await Http.PostAsJsonAsync("https://api.emailjs.com/api/v1.0/email/send", payload);
+
+		if (!response.IsSuccessStatusCode)
+		{
+			var error = await response.Content.ReadAsStringAsync();
+			throw new Exception($"Email sending failed: {error}");
+		}
+	}
+
+	private void ShowToast(string message, string type)
+	{
+		StatusMessage = message;
+		StatusType = type;
+		StateHasChanged();
+
+		_ = Task.Delay(5000).ContinueWith(_ =>
+		{
+			StatusMessage = null;
+			InvokeAsync(StateHasChanged);
+		});
 	}
 }

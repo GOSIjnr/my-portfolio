@@ -222,6 +222,13 @@ code {
     text-align: start;
 }
 
+.scroll-locked {
+    overflow: hidden;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+}
+
 @media (min-width: 576px) {
     body {
         font-size: 1.08rem;

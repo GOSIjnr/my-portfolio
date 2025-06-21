@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <button type="button" class="nav-bar__toggle-btn nav-bar__toggle-btn--mask" title="Close menu"
+        <button type="button" class="nav-bar__toggle-btn nav-bar__toggle-btn--mask" title="Toggle menu"
             @onclick="ToggleSidebar" />
     </div>
 
@@ -33,6 +33,7 @@
     [Inject] private IJSRuntime? Js { get; set; }
     [Inject] private AppContent? AppContent { get; set; }
     [Inject] private SelectedServiceState? SelectedServiceState { get; set; }
+    [Inject] private ScrollLockService? ScrollLockService { get; set; }
 
     private bool _isSidebarOpen = false;
     private bool _isContactModalVisible = false;
@@ -47,6 +48,8 @@
 
     private DotNetObjectReference<NavMenu>? _objectReference;
 
+    private bool _isOpeningContactModal = false;
+
     [JSInvokable]
     public void OnResize(int width)
     {
@@ -59,11 +62,25 @@
 
     private void ToggleSidebar() => _isSidebarOpen = !_isSidebarOpen;
 
-    private void ShowContactModal()
+    private async Task ShowContactModal()
     {
+        if (_isOpeningContactModal) return;
+        _isOpeningContactModal = true;
+
         ConsumeSelectedService();
         PopulateServicesOffered();
+
+        if (_isSidebarOpen)
+        {
+            _isSidebarOpen = false;
+            await InvokeAsync(StateHasChanged);
+            await ScrollLockService!.UnlockScrollAsync(); // release sidebar scroll lock first
+        }
+
         _isContactModalVisible = true;
+        await InvokeAsync(StateHasChanged);
+
+        _isOpeningContactModal = false;
     }
 
     private Task OnModalVisibilityChanged(bool value)

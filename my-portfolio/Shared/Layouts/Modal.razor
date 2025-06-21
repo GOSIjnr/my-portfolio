@@ -1,12 +1,14 @@
+@inject ScrollLockService ScrollLockService
+
 @if (IsVisible)
 {
-	<div class="modal" id="@_modalId" @onclick="Close">
+	<div class="modal" @onclick="Close">
 		<div class="modal__backdrop"></div>
 
 		<div class="modal__container" @onclick:stopPropagation="true">
 			<div class="modal__header">
 				<p class="modal__title">@ModalTitle</p>
-				<button class="modal__close-btn" type="button" title="Close modal" @onclick="Close"></button>
+				<button class="modal__close-btn" @onclick="Close">×</button>
 			</div>
 
 			<div class="modal__body">
@@ -20,39 +22,29 @@
 	[Parameter] public bool IsVisible { get; set; }
 	[Parameter] public EventCallback<bool> IsVisibleChanged { get; set; }
 	[Parameter] public RenderFragment? ChildContent { get; set; }
-	[Parameter] public string? ModalTitle { get; set; }
+	[Parameter] public string ModalTitle { get; set; } = "";
 
-	[Inject] private IJSRuntime? JS { get; set; }
+	private bool _wasVisible;
 
-	private readonly string _modalId = $"modal-{Guid.NewGuid():N}";
-
-	protected override void OnParametersSet()
+	protected override async Task OnAfterRenderAsync(bool firstRender)
 	{
-		ModalTitle ??= string.Empty;
-	}
-
-	protected override async Task OnParametersSetAsync()
-	{
-		await ToggleScrollLock(IsVisible, _modalId);
-	}
-
-	private async Task ToggleScrollLock(bool enabled, string targetId)
-	{
-		if (JS is null) return;
-
-		if (enabled)
+		if (_wasVisible != IsVisible)
 		{
-			await JS.InvokeVoidAsync("scrollLocker.disableScroll", targetId);
-		}
-		else
-		{
-			await JS.InvokeVoidAsync("scrollLocker.enableScroll");
+			_wasVisible = IsVisible;
+
+			if (IsVisible)
+				await ScrollLockService.LockScrollAsync();
+			else
+				await ScrollLockService.UnlockScrollAsync();
 		}
 	}
 
 	private async Task Close()
 	{
-		IsVisible = false;
-		await IsVisibleChanged.InvokeAsync(IsVisible);
+		if (IsVisible)
+		{
+			IsVisible = false;
+			await IsVisibleChanged.InvokeAsync(IsVisible);
+		}
 	}
 }

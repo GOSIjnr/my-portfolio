@@ -1,64 +1,35 @@
 window.scrollLocker = (function () {
-	let _scrollY = null;
-	let _preventScroll = null;
-	let _targetElement = null;
-	const _listenerOptions = { passive: false };
+	const CLASS_NAME = "scroll-locked";
+	let lockCount = 0;
 
-	function preventScroll(e) {
-		if (_targetElement && _targetElement.contains(e.target)) {
-			return; // Allow scroll inside target element
-		}
-		e.preventDefault();
+	function getScrollbarWidth() {
+		return window.innerWidth - document.documentElement.clientWidth;
 	}
 
 	return {
-		disableScroll: function (selector) {
-			if (_scrollY !== null) return; // already locked
-
-			_targetElement = document.getElementById(selector);
-
-			_scrollY = window.pageYOffset || window.scrollY || 0;
-
-			document.body.style.position = 'fixed';
-			document.body.style.top = `-${_scrollY}px`;
-			document.body.style.left = '0';
-			document.body.style.right = '0';
-			document.body.style.width = '100%';
-
-			_preventScroll = preventScroll;
-
-			document.addEventListener('wheel', _preventScroll, _listenerOptions);
-			document.addEventListener('touchmove', _preventScroll, _listenerOptions);
+		disableScroll: function () {
+			lockCount++;
+			console.log(`[scrollLocker] disableScroll() called → lockCount: ${lockCount}`);
+			if (lockCount === 1) {
+				document.body.classList.add(CLASS_NAME);
+				document.body.style.setProperty("--scrollbar-width", `${getScrollbarWidth()}px`);
+				console.log(`[scrollLocker] scroll locked → scrollbar-width: ${getScrollbarWidth()}px`);
+			}
 		},
-
 		enableScroll: function () {
-			if (_scrollY === null) return; // nothing to restore
-
-			document.body.style.position = '';
-			document.body.style.top = '';
-			document.body.style.left = '';
-			document.body.style.right = '';
-			document.body.style.width = '';
-
-			document.removeEventListener('wheel', _preventScroll, _listenerOptions);
-			document.removeEventListener('touchmove', _preventScroll, _listenerOptions);
-
-			const scrollY = _scrollY;
-			_scrollY = null;
-			_targetElement = null;
-			_preventScroll = null;
-
-			setTimeout(() => {
-				document.documentElement.style.scrollBehavior = 'auto';
-				document.body.style.scrollBehavior = 'auto';
-
-				window.scrollTo({ top: scrollY, left: 0 });
-
-				setTimeout(() => {
-					document.documentElement.style.scrollBehavior = '';
-					document.body.style.scrollBehavior = '';
-				}, 50);
-			}, 10);
+			lockCount = Math.max(0, lockCount - 1);
+			console.log(`[scrollLocker] enableScroll() called → lockCount: ${lockCount}`);
+			if (lockCount === 0) {
+				document.body.classList.remove(CLASS_NAME);
+				document.body.style.removeProperty("--scrollbar-width");
+				console.log(`[scrollLocker] scroll unlocked`);
+			}
+		},
+		forceUnlock: function () {
+			lockCount = 0;
+			document.body.classList.remove(CLASS_NAME);
+			document.body.style.removeProperty("--scrollbar-width");
+			console.log(`[scrollLocker] forceUnlock → Scroll unlocked forcibly`);
 		}
 	};
 })();

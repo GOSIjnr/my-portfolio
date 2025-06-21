@@ -1,3 +1,6 @@
+@inject ScrollLockService ScrollLockService
+@implements IAsyncDisposable
+
 <div class="side-bar">
     <div class="side-bar__slider @(IsOpened ? "side-bar__slider--open" : "")">
         <button class="side-bar__close-btn side-bar__close-btn--mask" type="button" title="Close menu"
@@ -12,7 +15,6 @@
                 @foreach (NavigationItem? item in _navigationItems)
                 {
                     if (item is null) continue;
-
                     <div class="side-bar__link">
                         <NavLinkItem NavigationLinkInfo="item" LinkType="@TargetUrlFormat.Plain"
                             OnNavItemClick="CloseMenu" />
@@ -34,44 +36,28 @@
 </div>
 
 @code {
-    [Parameter, EditorRequired] public bool IsOpened { get; set; } = false;
+    [Parameter, EditorRequired] public bool IsOpened { get; set; }
     [Parameter] public EventCallback OnClose { get; set; }
     [Parameter] public EventCallback OnContactMeClick { get; set; }
 
     [Inject] private AppContent? AppContent { get; set; }
-    [Inject] private IJSRuntime? JS { get; set; }
 
     private BrandInfo _brand => AppContent?.User?.Brand ?? new();
     private List<NavigationItem> _navigationItems => AppContent?.Layout?.NavigationLinks ?? [];
     private NavigationItem _contactMeLink => AppContent?.Layout?.ContactMeLink ?? new();
 
-    private readonly string _sidebarId = $"sidebar-{Guid.NewGuid():N}";
-
     protected override async Task OnParametersSetAsync()
     {
-        await ToggleScrollLock(IsOpened, _sidebarId);
-    }
-
-    private async Task ToggleScrollLock(bool enabled, string targetId)
-    {
-        if (JS is null) return;
-
-        if (enabled)
-        {
-            await JS.InvokeVoidAsync("scrollLocker.disableScroll", targetId);
-        }
+        if (IsOpened)
+            await ScrollLockService.LockScrollAsync();
         else
-        {
-            await JS.InvokeVoidAsync("scrollLocker.enableScroll");
-        }
+            await ScrollLockService.UnlockScrollAsync();
     }
 
     private async Task HandleContactMeClick()
     {
         if (OnContactMeClick.HasDelegate)
-        {
             await OnContactMeClick.InvokeAsync();
-        }
 
         await CloseMenu();
     }
@@ -79,8 +65,11 @@
     public async Task CloseMenu()
     {
         if (OnClose.HasDelegate)
-        {
             await OnClose.InvokeAsync();
-        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        await ScrollLockService.ForceUnlockAsync();
     }
 }

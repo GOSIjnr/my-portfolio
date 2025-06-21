@@ -1,0 +1,121 @@
+.resume {
+	--resume-padding: 1rem;
+	--resume-gap: 2rem;
+	--resume-title-font-size: 2rem;
+	--resume-title-weight: 700;
+	--resume-subtitle-font-size: 0.785rem;
+	--resume-subtitle-weight: 300;
+
+	--resume-nav-button-padding: 0.65rem 1rem;
+	--resume-nav-button-font-size: 0.75rem;
+	--resume-nav-button-font-weight: 200;
+
+	--resume-color-primary: var(--color-1-light);
+	--resume-color-hover: var(--color-1-lighter);
+	--resume-color-active: var(--color-2-lighter);
+	--resume-color-text: var(--color-3-lightest);
+	--resume-color-subtext: var(--color-3-dark);
+	--resume-font-family: var(--font-1);
+}
+
+.resume {
+	display: flex;
+	flex-direction: column;
+	padding: var(--resume-padding);
+	gap: var(--resume-gap);
+	margin-bottom: 4rem;
+}
+
+.resume__title {
+	margin-bottom: 1.5rem;
+	font-size: var(--resume-title-font-size);
+	font-weight: var(--resume-title-weight);
+	text-align: center;
+	padding: 0 0.45rem;
+}
+
+.resume__subtitle {
+	font-size: var(--resume-subtitle-font-size);
+	color: var(--resume-color-subtext);
+	font-weight: var(--resume-subtitle-weight);
+	margin-bottom: 2rem;
+	text-align: center;
+	padding: 0 0.45rem;
+}
+
+.resume__nav-button-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 1.3rem;
+	margin-bottom: 2rem;
+	max-height: 250px;
+	overflow: auto;
+	padding: 0 0.45rem;
+	scrollbar-width: thin;
+	scrollbar-color: var(--resume-color-active) transparent;
+}
+
+.resume__nav-button-wrapper::-webkit-scrollbar {
+	width: 6px;
+}
+
+.resume__nav-button-wrapper::-webkit-scrollbar-track {
+	background: transparent;
+	border-radius: 4px;
+}
+
+.resume__nav-button-wrapper::-webkit-scrollbar-thumb {
+	background-color: var(--resume-color-active);
+	border-radius: 4px;
+}
+
+.resume__nav-button-wrapper::-webkit-scrollbar-thumb:hover {
+	background-color: var(--resume-color-hover);
+}
+
+.resume__nav-button {
+	font-family: var(--resume-font-family);
+	padding: var(--resume-nav-button-padding);
+	border: none;
+	font-weight: var(--resume-nav-button-font-weight);
+	font-size: var(--resume-nav-button-font-size);
+	background-color: var(--resume-color-primary);
+	color: var(--resume-color-text);
+	cursor: pointer;
+	transition: background-color 0.2s ease;
+}
+
+.resume__nav-button:hover {
+	background-color: var(--resume-color-hover);
+}
+
+.resume__nav-button--active {
+	background-color: var(--resume-color-active);
+	color: var(--resume-color-text);
+	font-weight: 700;
+}
+
+.resume__nav-button--active:hover {
+	background-color: var(--resume-color-active);
+}
+
+.resume__content {
+	width: 100%;
+}
+
+@media (min-width: 768px) {
+	.resume {
+		flex-direction: row;
+		padding: 2rem 1rem;
+	}
+
+	.resume__nav {
+		width: 300px;
+		flex-shrink: 0;
+	}
+
+	.resume__title,
+	.resume__subtitle {
+		text-align: left;
+	}
+}

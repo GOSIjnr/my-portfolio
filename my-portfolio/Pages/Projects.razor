@@ -1,0 +1,23 @@
+@page "/projects"
+
+<div class="projects">
+    @if (_projectInfoDetails.Count > 0)
+    {
+        <ProjectCard @bind-ProjectNo="_projectIndex" ProjectInfo="_projectInfoDetails[_projectIndex]"
+            TotalProjects="_projectInfoDetails.Count" />
+    }
+    else
+    {
+        <p class="projects__no-content">
+            There are no projects to display at the moment. <br>Please check back soon.
+        </p>
+    }
+</div>
+
+@code {
+    [Inject] private AppContent? AppContent { get; set; }
+
+    private List<ProjectInfo> _projectInfoDetails => AppContent?.User?.ProjectInfos ?? new();
+
+    private int _projectIndex = 0;
+}

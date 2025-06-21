@@ -1,0 +1,18 @@
+<div class="about-me">
+	<h2 class="about-me__title">About Me</h2>
+	<p class="about-me__subtitle">@_aboutMeIntro</p>
+
+	<div class="about-me__items">
+		@foreach (var item in _aboutMeData)
+		{
+			<p class="about-me__item">@item.Key: <span class="about-me__item-value">@item.Value</span></p>
+		}
+	</div>
+</div>
+
+@code {
+	[Inject] private AppContent? AppContent { get; set; }
+
+	private string _aboutMeIntro => AppContent?.User?.AboutMeInfo.Introduction ?? string.Empty;
+	private Dictionary<string, string> _aboutMeData => AppContent?.User?.AboutMeInfo.IntroDetails ?? [];
+}

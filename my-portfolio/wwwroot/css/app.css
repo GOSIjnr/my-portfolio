@@ -1,0 +1,278 @@
+:root {
+    --font-1: "JetBrains Mono", Consolas, "Liberation Mono", Menlo, monospace;
+    --font-2: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+
+    --color-1: #141416;
+    --color-1-light: #2a2b2e;
+    --color-1-lighter: #3f4044;
+    --color-1-lightest: #5a5b5f;
+    --color-1-dark: #0f0f10;
+    --color-1-darker: #0a0a0b;
+    --color-1-darkest: #060607;
+
+    --color-2: #ff6600;
+    --color-2-light: #ff8533;
+    --color-2-lighter: #ffa366;
+    --color-2-lightest: #ffb580;
+    --color-2-dark: #cc5200;
+    --color-2-darker: #993d00;
+    --color-2-darkest: #661f00;
+
+    --color-3: #bfbfbf;
+    --color-3-light: #d9d9d9;
+    --color-3-lighter: #f0f0f0;
+    --color-3-lightest: #ffffff;
+    --color-3-dark: #8c8c8c;
+    --color-3-darker: #595959;
+    --color-3-darkest: #262626;
+
+    color-scheme: only dark;
+}
+
+html,
+body {
+    color: var(--color-3-lighter);
+    font-family: var(--font-1);
+    background-color: var(--color-1);
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+hr {
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible;
+}
+
+a {
+    background-color: transparent;
+    color: var(--color-1);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:focus,
+a:hover,
+a:active {
+    color: var(--color-2);
+    outline: 0;
+}
+
+b,
+strong {
+    font-weight: bold;
+}
+
+code,
+kbd,
+samp,
+pre {
+    font-family: var(--font-2);
+    font-size: 1em;
+}
+
+small {
+    font-size: 80%;
+}
+
+img {
+    border-style: none;
+    max-width: 100%;
+    height: auto;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    color: var(--color-3-lightest);
+    font-family: var(--font-2);
+    font-size: 0.875rem;
+    line-height: 1.15;
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-2);
+    font-weight: 400;
+    margin-top: 1.8rem;
+    margin-bottom: 0.7rem;
+    color: var(--color-3-lightest);
+}
+
+h1 {
+    font-size: 2.15rem;
+}
+
+h2 {
+    font-size: 1.55rem;
+}
+
+h3 {
+    font-size: 1.25rem;
+}
+
+h4,
+h5,
+h6 {
+    font-size: 1rem;
+}
+
+p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+em,
+i {
+    font-style: italic;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.wrong-route-error-boundary {
+    height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem;
+}
+
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-sizing: border-box;
+    display: none;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    color: var(--color-1);
+}
+
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
+
+.blazor-error-ui-reload {
+    color: #b32121;
+}
+
+.blazor-error-boundary {
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.blazor-error-boundary::after {
+    content: "An error has occurred!!!"
+}
+
+.loading-progress {
+    height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.loading-progress-text {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.loading-progress-text:after {
+    content: var(--blazor-load-percentage-text, "0%");
+}
+
+code {
+    color: #c02d76;
+}
+
+.form-floating>.form-control-plaintext::placeholder,
+.form-floating>.form-control::placeholder {
+    color: var(--bs-secondary-color);
+    text-align: end;
+}
+
+.form-floating>.form-control-plaintext:focus::placeholder,
+.form-floating>.form-control:focus::placeholder {
+    text-align: start;
+}
+
+.scroll-locked {
+    overflow: hidden;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+}
+
+@media (min-width: 576px) {
+    body {
+        font-size: 1.08rem;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 1.85rem;
+    }
+
+    h3 {
+        font-size: 1.45rem;
+    }
+}
+
+@media (min-width: 768px) {
+    body {
+        font-size: 1.12rem;
+    }
+}
+
+@media (min-width: 992px) {
+    body {
+        font-size: 1.16rem;
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 2.2rem;
+    }
+
+    h3 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    body {
+        font-size: 1.19rem;
+    }
+}

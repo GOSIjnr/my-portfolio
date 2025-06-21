@@ -1,0 +1,67 @@
+﻿@page "/"
+
+<div class="home">
+	<div class="home__container">
+		<div class="home__photo">
+			<svg class="photo-border" viewBox="0 0 200 200">
+				<circle cx="100" cy="100" r="95" stroke="var(--color-2-lighter)" stroke-width="2" stroke-linecap="round"
+					stroke-dasharray="35 15 10 15 35 15 10 15" fill="none" />
+			</svg>
+
+			<img src="@_profileImgUrl" alt="Photo" class="home__photo-img" />
+		</div>
+
+		<div class="home__intro">
+			<span class="home__role">@_role</span>
+			<h1 class="home__greeting">@_greeting<br><span class="home__name">@_greetingHighlighted</span></h1>
+			<p class="home__description">@_description</p>
+
+			<div class="home__cta-wrapper">
+				<div class="home__cta">
+					<NavLinkItem LinkType="TargetUrlFormat.Plain" NavigationLinkInfo="@_downloadCV"
+						OnButtonItemClick="DownloadResume" />
+				</div>
+
+				<div class="home__cta">
+					<NavLinkItem LinkType="TargetUrlFormat.Plain" NavigationLinkInfo="@_checkMyWorks" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="home__stats">
+		@foreach (HomeStatItem? stat in _homeStatsItems)
+		{
+			if (stat is null) continue;
+
+			<div class="home__stat">
+				<span class="home__stat-number">@stat.Number</span> @((MarkupString)stat.Description)
+			</div>
+		}
+	</div>
+</div>
+
+@code {
+	[Inject] private IJSRuntime? Js { get; set; }
+	[Inject] private AppContent? AppContent { get; set; }
+
+	private HomePageContentInfo _homePageContentInfo => AppContent?.User?.HomePageContent ?? new();
+
+	private string _role => _homePageContentInfo.Role;
+	private string _greeting => _homePageContentInfo.Greeting;
+	private string _greetingHighlighted => _homePageContentInfo.GreetingHighlighted;
+	private string _description => _homePageContentInfo.Description;
+	private List<HomeStatItem> _homeStatsItems => AppContent?.User?.HomeStatsInfo ?? [];
+	private string _resumeDocID => AppContent?.User?.ResumeDocID ?? string.Empty;
+	private string _profileImgUrl => AppContent?.User?.ProfileImageUrl ?? string.Empty;
+	private NavigationItem _downloadCV => AppContent?.Layout?.DownloadCVLink ?? new();
+	private NavigationItem _checkMyWorks => AppContent?.Layout?.CheckMyProjectsLink ?? new();
+
+	private async Task DownloadResume()
+	{
+		if (Js is null) return;
+
+		string url = $"https://drive.google.com/uc?export=download&id={_resumeDocID}";
+		await Js.InvokeVoidAsync("downloadFile", url);
+	}
+}

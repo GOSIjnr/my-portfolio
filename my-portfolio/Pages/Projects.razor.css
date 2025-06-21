@@ -1,0 +1,20 @@
+.projects {
+	--projects-page-padding: 1rem;
+}
+
+.projects {
+	padding: var(--projects-page-padding);
+	margin-bottom: 4rem;
+}
+
+.projects__no-content {
+	margin-top: 50px;
+	font-size: 0.875rem;
+	text-align: center;
+}
+
+@media (min-width: 768px) {
+	.projects {
+		--projects-page-padding: 2rem 1rem;
+	}
+}

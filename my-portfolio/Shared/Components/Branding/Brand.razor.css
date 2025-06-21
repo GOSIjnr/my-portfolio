@@ -1,0 +1,47 @@
+.brand {
+	--brand-font-size: 1.1rem;
+	--brand-highlighted-color-1: var(--color-2-lighter);
+	--brand-highlighted-color-2: var(--color-2-light);
+}
+
+.brand {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.2s ease-out;
+}
+
+.brand:hover {
+	--brand-highlighted-color-1: var(--brand-highlighted-color-2);
+}
+
+::deep .brand__link {
+	width: inherit;
+	height: inherit;
+	text-decoration: none;
+	color: inherit;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.brand__name {
+	font-size: var(--brand-font-size);
+	font-weight: bolder;
+}
+
+.brand__name--highlighted {
+	color: var(--brand-highlighted-color-1);
+}
+
+@media (min-width: 576px) {
+	.brand {
+		--brand-font-size: 1.45rem;
+	}
+}
+
+@media (min-width: 768px) {
+	.brand {
+		--brand-font-size: 1.65rem;
+	}
+}

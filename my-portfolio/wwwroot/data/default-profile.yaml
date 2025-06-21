@@ -1,0 +1,115 @@
+# === Brand Info ===
+brand:
+  name: "John Doe"                  # Your full name or display name
+  shortDescription: "Creative Developer"  # Short tagline under your name/logo
+  description: "Passionate about building solutions that combine creativity and technology."  # Brief summary (optional)
+
+# === Profile Image URL ===
+profileImageUrl: "https://via.placeholder.com/300"   # Link to your profile image
+
+# === Social Links ===
+socials:
+  - iconUrl: "https://api.iconify.design/simple-icons/github.svg"   # URL for the icon (SVG from iconify)
+    platform: "Github"              # Platform name
+    username: "johndoe"             # Displayed username
+    url: "https://github.com/johndoe" # Link to your profile
+    type: "Link"                    # Type: Link or Email
+
+  - iconUrl: "https://api.iconify.design/simple-icons/linkedin.svg"
+    platform: "LinkedIn"
+    username: "John Doe"
+    url: "https://linkedin.com/in/johndoe"
+    type: "Link"
+
+  - iconUrl: "https://api.iconify.design/simple-icons/twitter.svg"
+    platform: "Twitter"
+    username: "@john_doe"
+    url: "https://twitter.com/john_doe"
+    type: "Link"
+
+# === Contact Info (Email, etc.) ===
+contact:
+  - iconUrl: "https://api.iconify.design/solar/letter-bold.svg"
+    label: "Email"
+    displayText: "john@example.com"
+    url: "john@example.com"
+    type: "Email"
+
+# === Services You Offer ===
+services:
+  - title: "Web Development"
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero."
+
+  - title: "UI/UX Design"
+    description: "Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet."
+
+  - title: "Consulting"
+    description: "Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta."
+
+# === About Me ===
+aboutMe:
+  bio: |
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
+  details:
+    Name: "John Doe"
+    Experience: "5 years"
+    Nationality: "Global Citizen"
+    Email: "john@example.com"
+    Language: "English"
+    Hobbies: "Reading, Traveling, Photography"
+
+# === Work Experience ===
+experience:
+  - start: "2022-01-01"     # Start date (YYYY-MM-DD)
+    end: "2023-12-31"       # End date (YYYY-MM-DD)
+    title: "Software Engineer"
+    company: "Acme Corp"
+
+# === Education ===
+education:
+  - start: "2018-09-01"
+    end: "2022-06-01"
+    title: "B.Sc. Computer Science"
+    institution: "University of Example"
+
+  - date: "2023-04-01"      # For certifications or single-day events
+    title: "Certified Web Developer"
+    institution: "Example Academy"
+
+# === Skills (Displayed as Icons) ===
+skills:
+  - name: "JavaScript"
+    iconUrl: "https://api.iconify.design/simple-icons/javascript.svg"
+
+  - name: "React"
+    iconUrl: "https://api.iconify.design/simple-icons/react.svg"
+
+  - name: "Figma"
+    iconUrl: "https://api.iconify.design/simple-icons/figma.svg"
+
+  - name: "Git"
+    iconUrl: "https://api.iconify.design/simple-icons/git.svg"
+
+# === Home Page Statistics (Optional Fun Facts/Stats) ===
+homeStats:
+  - value: "5+"
+    label: "Years of <br>experience"
+
+  - value: "20+"
+    label: "Projects <br>completed"
+
+  - value: "15+"
+    label: "Technologies <br>used"
+
+  - value: "500+"
+    label: "Commits <br>made"
+
+# === Resume Document ID (Optional - For download link) ===
+resumeDocId: "default-doc-id-123456"
+
+# === Hero / Home Page Text ===
+homePageContent:
+  role: "Full Stack Developer"        # Profession or role displayed prominently
+  greeting: "Hi, I'm"
+  name: "John Doe"
+  tagline: "Turning ideas into beautiful web applications."   # Sub-heading or fun quote

@@ -6,6 +6,7 @@ using MyPortfolio.Models.Common;
 using MyPortfolio.Core.Enum;
 using MyPortfolio.Models.InfoCard;
 using MyPortfolio.Models.Home;
+using MyPortfolio.Shared.Components.Branding;
 
 namespace MyPortfolio.Services.Profile;
 

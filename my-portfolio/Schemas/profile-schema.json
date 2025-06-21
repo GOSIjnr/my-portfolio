@@ -1,0 +1,336 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"title": "User Profile Schema",
+	"type": "object",
+	"properties": {
+		"brand": {
+			"type": "object",
+			"properties": {
+				"firstName": {
+					"type": "string"
+				},
+				"lastName": {
+					"type": "string"
+				},
+				"suffix": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"firstName",
+				"lastName"
+			]
+		},
+		"profileImageUrl": {
+			"type": "string",
+			"format": "uri"
+		},
+		"socialLinks": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"iconUrl": {
+						"type": "string",
+						"format": "uri"
+					},
+					"label": {
+						"type": "string"
+					},
+					"value": {
+						"type": "string"
+					},
+					"href": {
+						"type": "string",
+						"format": "uri"
+					},
+					"type": {
+						"type": "string",
+						"enum": [
+							"Link",
+							"Email"
+						]
+					}
+				},
+				"required": [
+					"iconUrl",
+					"label",
+					"value",
+					"href",
+					"type"
+				]
+			}
+		},
+		"services": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"title": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"title",
+					"description"
+				]
+			}
+		},
+		"contacts": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"iconUrl": {
+						"type": "string",
+						"format": "uri"
+					},
+					"label": {
+						"type": "string"
+					},
+					"value": {
+						"type": "string"
+					},
+					"href": {
+						"type": "string"
+					},
+					"type": {
+						"type": "string",
+						"enum": [
+							"Email"
+						]
+					}
+				},
+				"required": [
+					"iconUrl",
+					"label",
+					"value",
+					"href",
+					"type"
+				]
+			}
+		},
+		"projects": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"title": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					},
+					"tags": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					},
+					"imageUrl": {
+						"type": "string"
+					},
+					"primaryLink": {
+						"type": [
+							"object",
+							"null"
+						],
+						"properties": {
+							"iconUrl": {
+								"type": "string",
+								"format": "uri"
+							},
+							"label": {
+								"type": "string"
+							},
+							"value": {
+								"type": "string"
+							},
+							"href": {
+								"type": "string",
+								"format": "uri"
+							},
+							"type": {
+								"type": "string"
+							}
+						}
+					},
+					"otherLinks": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"iconUrl": {
+									"type": "string",
+									"format": "uri"
+								},
+								"label": {
+									"type": "string"
+								},
+								"value": {
+									"type": "string"
+								},
+								"href": {
+									"type": "string",
+									"format": "uri"
+								},
+								"type": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				},
+				"required": [
+					"title",
+					"description",
+					"tags",
+					"otherLinks"
+				]
+			}
+		},
+		"aboutMe": {
+			"type": "object",
+			"properties": {
+				"description": {
+					"type": "string"
+				},
+				"facts": {
+					"type": "object",
+					"additionalProperties": {
+						"type": "string"
+					}
+				}
+			},
+			"required": [
+				"description",
+				"facts"
+			]
+		},
+		"experienceEvents": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"type": {
+						"type": "string",
+						"enum": [
+							"SingleDateEvent",
+							"DoubleDateEvent"
+						]
+					},
+					"title": {
+						"type": "string"
+					},
+					"organization": {
+						"type": "string"
+					},
+					"dateStart": {
+						"type": "string",
+						"format": "date"
+					},
+					"dateEnd": {
+						"type": [
+							"string",
+							"null"
+						],
+						"format": "date"
+					}
+				},
+				"required": [
+					"type",
+					"title",
+					"organization",
+					"dateStart"
+				]
+			}
+		},
+		"educationEvents": {
+			"type": "array",
+			"items": {
+				"$ref": "#/properties/experienceEvents/items"
+			}
+		},
+		"skills": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"label": {
+						"type": "string"
+					},
+					"iconUrl": {
+						"type": "string",
+						"format": "uri"
+					}
+				},
+				"required": [
+					"label",
+					"iconUrl"
+				]
+			}
+		},
+		"homeStats": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"value": {
+						"type": "string"
+					},
+					"label": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"value",
+					"label"
+				]
+			}
+		},
+		"resumeDocId": {
+			"type": "string"
+		},
+		"homePageContent": {
+			"type": "object",
+			"properties": {
+				"title": {
+					"type": "string"
+				},
+				"greeting": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				},
+				"description": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"title",
+				"greeting",
+				"name",
+				"description"
+			]
+		}
+	},
+	"required": [
+		"brand",
+		"profileImageUrl",
+		"socialLinks",
+		"services",
+		"contacts",
+		"projects",
+		"aboutMe",
+		"experienceEvents",
+		"educationEvents",
+		"skills",
+		"homeStats",
+		"resumeDocId",
+		"homePageContent"
+	]
+}

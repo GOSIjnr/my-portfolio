@@ -6,7 +6,7 @@
 			SelectedService="@_selectedService?.Name" />
 
 		<div class="contact__info-grid">
-			@foreach (LinkInfo? info in _contactInfos)
+			@foreach (ExternalLinkInfo? info in _contactInfos)
 			{
 				if (info is null) continue;
 				<ContactOption ContactInfo="@info" />
@@ -16,14 +16,14 @@
 </div>
 
 @code {
-	[Inject] private AppContent? AppContent { get; set; }
+	[Inject] private PortfolioData? AppContent { get; set; }
 	[Inject] private SelectedServiceState? SelectedServiceState { get; set; }
 
-	private ContactFormLayout _contactFormLayoutData => AppContent?.Layout?.ContactFormContent ?? new();
+	private ContactFormInfo _contactFormLayoutData => AppContent?.Layout?.ContactForm;
 
 	private ServiceInfo? _selectedService;
 	private List<string> _serviceNames = [];
-	private List<LinkInfo> _contactInfos = [];
+	private List<ExternalLinkInfo> _contactInfos = [];
 
 	protected override void OnInitialized()
 	{
@@ -41,7 +41,7 @@
 	{
 		if (AppContent?.User is null) return;
 
-		foreach (ServiceInfo serviceInfo in AppContent.User.ServiceInfos)
+		foreach (ServiceInfo serviceInfo in AppContent.User.Services)
 		{
 			_serviceNames.Add(serviceInfo.Name);
 		}
@@ -53,7 +53,7 @@
 	{
 		if (AppContent?.User is null) return;
 
-		_contactInfos.AddRange(AppContent.User.ContactInfos);
+		_contactInfos.AddRange(AppContent.User.ContactLinks);
 		_contactInfos.AddRange(AppContent.User.SocialLinks);
 	}
 }

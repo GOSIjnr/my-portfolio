@@ -1,5 +1,5 @@
 using System.Text;
-using MyPortfolio.Core.Enum;
+using MyPortfolio.Core.Enums;
 
 namespace MyPortfolio.Core.Utilities;
 
@@ -22,7 +22,6 @@ public static class NavigationUrlFormatter
 		if (string.IsNullOrWhiteSpace(urlToSanitize)) return string.Empty;
 
 		string trimmedStart = urlToSanitize.Trim().TrimStart('#', '/');
-
 		StringBuilder sanitized = new(trimmedStart.Length);
 
 		foreach (char character in trimmedStart)

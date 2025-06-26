@@ -11,8 +11,8 @@
 </div>
 
 @code {
-	[Inject] private AppContent? AppContent { get; set; }
+	[Inject] private PortfolioData? AppContent { get; set; }
 
 	private string _aboutMeIntro => AppContent?.User?.AboutMeInfo.Introduction ?? string.Empty;
-	private Dictionary<string, string> _aboutMeData => AppContent?.User?.AboutMeInfo.IntroDetails ?? [];
+	private Dictionary<string, string> _aboutMeData => AppContent?.User?.AboutMeInfo.PersonalDetails ?? [];
 }

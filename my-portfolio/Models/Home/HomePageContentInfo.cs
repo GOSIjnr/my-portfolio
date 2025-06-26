@@ -1,35 +1,18 @@
-namespace MyPortfolio.Models.Home;
-
-public class HomePageContentInfo(string role, string greeting, string greetingHighlighted, string description)
+namespace MyPortfolio.Models.Home
 {
-	private string _role = role ?? string.Empty;
-	private string _greeting = greeting ?? string.Empty;
-	private string _greetingHighlighted = greetingHighlighted ?? string.Empty;
-	private string _description = description ?? string.Empty;
-
-	public string Role
+	public class HomePageContentInfo
 	{
-		get => _role;
-		set => _role = value ?? string.Empty;
-	}
+		public required string Role { get; init; }
+		public required string Greeting { get; init; }
+		public string? GreetingHighlighted { get; init; }
+		public required string Description { get; init; }
 
-	public string Greeting
-	{
-		get => _greeting;
-		set => _greeting = value ?? string.Empty;
+		public static HomePageContentInfo Default => new()
+		{
+			Role = "Full Stack Developer",
+			Greeting = "Hello I'm",
+			GreetingHighlighted = "John Doe",
+			Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque consequat, faucibus et, et."
+		};
 	}
-
-	public string GreetingHighlighted
-	{
-		get => _greetingHighlighted;
-		set => _greetingHighlighted = value ?? string.Empty;
-	}
-
-	public string Description
-	{
-		get => _description;
-		set => _description = value ?? string.Empty;
-	}
-
-	public HomePageContentInfo() : this("Lorem ispum", "Hello I'm", "Lorem ispum", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque consequat, faucibus et, et.") {}
 }

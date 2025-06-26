@@ -1,21 +1,13 @@
 namespace MyPortfolio.Models.Common;
 
-public class SkillInfo(string skillName, string iconUrl)
+public class SkillInfo
 {
-	private string _skillName = skillName ?? string.Empty;
-	private string _iconUrl = iconUrl ?? string.Empty;
+	public required string Name { get; init; }
+	public required string IconUrl { get; init; }
 
-	public string SkillName
+	public static SkillInfo Default => new()
 	{
-		get => _skillName;
-		set => _skillName = value ?? string.Empty;
-	}
-
-	public string IconUrl
-	{
-		get => _iconUrl;
-		set => _iconUrl = value ?? string.Empty;
-	}
-
-	public SkillInfo() : this("Lorem ispum", "images/web.svg") { }
+		Name = "Lorem ispum",
+		IconUrl = "images/web.svg"
+	};
 }

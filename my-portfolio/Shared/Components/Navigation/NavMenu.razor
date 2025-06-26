@@ -1,18 +1,23 @@
-﻿@implements IDisposable
+﻿@using MyPortfolio.Models.Common
+@using MyPortfolio.Models.ContactForm
+@using MyPortfolio.Models.Data
+@using MyPortfolio.Models.Navigation
+@using MyPortfolio.Services.StateManagement
+@implements IDisposable
 
 <nav class="nav-bar">
     <div class="nav-bar__container">
         <Brand BrandInfo="@_brand" />
 
         <div class="nav-bar__links">
-            @foreach (NavigationItem? item in _navigationLinks)
+            @foreach (NavigationLinkInfo? item in _navigationLinks)
             {
                 if (item is null) continue;
-                <NavLinkItem NavigationLinkInfo="item" LinkType="TargetUrlFormat.Plain" />
+                <NavLinkItem NavigationLinkInfo="item" ExternalLinkType="TargetUrlFormat.Plain" />
             }
 
             <div class="nav-bar__contact-link">
-                <NavLinkItem NavigationLinkInfo="@_contactMeLink" LinkType="TargetUrlFormat.Plain"
+                <NavLinkItem NavigationLinkInfo="@_contactMeLink" ExternalLinkType="TargetUrlFormat.Plain"
                     OnButtonItemClick="ShowContactModal" />
             </div>
         </div>
@@ -31,17 +36,17 @@
 
 @code {
     [Inject] private IJSRuntime? Js { get; set; }
-    [Inject] private AppContent? AppContent { get; set; }
+    [Inject] private PortfolioData? AppContent { get; set; }
     [Inject] private SelectedServiceState? SelectedServiceState { get; set; }
     [Inject] private ScrollLockService? ScrollLockService { get; set; }
 
     private bool _isSidebarOpen = false;
     private bool _isContactModalVisible = false;
 
-    private BrandInfo _brand => AppContent?.User?.Brand ?? new();
-    private NavigationItem _contactMeLink => AppContent?.Layout?.ContactMeLink ?? new();
-    private List<NavigationItem> _navigationLinks => AppContent?.Layout?.NavigationLinks ?? [];
-    private ContactFormLayout _contactFormLayoutData => AppContent?.Layout?.ContactFormContent ?? new();
+    private BrandInfo _brand => AppContent?.User.Brand ?? BrandInfo.Default;
+    private NavigationLinkInfo _contactMeLink => AppContent?.Layout?.ContactMeLink;
+    private List<NavigationLinkInfo> _navigationLinks => AppContent?.Layout?.NavigationLinks ?? [];
+    private ContactFormInfo _contactFormLayoutData => AppContent?.Layout?.ContactForm;
 
     private ServiceInfo? _selectedService;
     private List<string> _serviceNames = [];
@@ -109,7 +114,7 @@
 
         if (AppContent?.User is null) return;
 
-        foreach (ServiceInfo serviceInfo in AppContent.User.ServiceInfos)
+        foreach (ServiceInfo serviceInfo in AppContent.User.Services)
         {
             _serviceNames.Add(serviceInfo.Name);
         }

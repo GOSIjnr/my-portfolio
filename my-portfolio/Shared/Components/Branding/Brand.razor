@@ -6,7 +6,7 @@
 </div>
 
 @code {
-	[Parameter, EditorRequired] public BrandInfo BrandInfo { get; set; } = new();
+	[Parameter, EditorRequired] public BrandInfo BrandInfo { get; set; }
 
 	[Parameter] public EventCallback OnBrandClick { get; set; }
 
@@ -18,7 +18,7 @@
 
 	protected override void OnParametersSet()
 	{
-		BrandInfo ??= new();
+		BrandInfo ??= BrandInfo.Default;
 	}
 
 	private async Task HandleBrandClickAsync(MouseEventArgs mouseEventArgs)

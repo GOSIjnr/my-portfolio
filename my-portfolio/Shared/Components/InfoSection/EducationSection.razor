@@ -1,9 +1,16 @@
+@using MyPortfolio.Adapters.InfoCard
+@using MyPortfolio.Contracts.InfoCard
+@using MyPortfolio.Models.Data
+@using MyPortfolio.Models.InfoCard
+@using MyPortfolio.Shared.Layouts
+@using MyPortfolio.Shared.Components.Cards
+
 <div class="education-section">
     <h2 class="education-section__heading">My Education</h2>
     <p class="education-section__description">@_description</p>
 
     <div class="education-section__grid">
-        @foreach (InfoCardModel? cardData in _adaptedEducationCards)
+        @foreach (InfoCardViewModel? cardData in _adaptedEducationCards)
         {
             if (cardData is null) continue;
             <InfoCard InfoCardData="@cardData" OnReadMoreClicked="@(() => ShowModal(cardData))" />
@@ -19,10 +26,10 @@
 </Modal>
 
 @code {
-    [Inject] private AppContent? AppContent { get; set; }
+    [Inject] private PortfolioData? AppContent { get; set; }
 
-    private List<InfoCardModel> _adaptedEducationCards = [];
-    private InfoCardModel? selectedCard = null;
+    private List<InfoCardViewModel> _adaptedEducationCards = [];
+    private InfoCardViewModel? selectedCard = null;
     private bool showModal = false;
 
     private string _description => AppContent?.Layout?.EducationSectionBody ?? string.Empty;
@@ -33,7 +40,7 @@
         _adaptedEducationCards = InfoCardAdapterResolver.AdaptList(_educationCards);
     }
 
-    private void ShowModal(InfoCardModel card)
+    private void ShowModal(InfoCardViewModel card)
     {
         selectedCard = card;
         showModal = true;

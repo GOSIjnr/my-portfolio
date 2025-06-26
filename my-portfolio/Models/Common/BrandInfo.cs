@@ -1,6 +1,15 @@
 namespace MyPortfolio.Models.Common;
 
-public record BrandInfo(string? BrandDisplayName, string? BrandHighlightedDisplayName, string? BrandRawTargetUrl)
+public class BrandInfo
 {
-	public static BrandInfo Default => new("Lorem", "ipsum", string.Empty);
+	public required string BrandDisplayName { get; init; }
+	public string? BrandHighlightedDisplayName { get; init; }
+	public string? BrandRawTargetUrl { get; init; }
+
+	public static BrandInfo Default => new()
+	{
+		BrandDisplayName = "Lorem",
+		BrandHighlightedDisplayName = "ipsum",
+		BrandRawTargetUrl = string.Empty
+	};
 }

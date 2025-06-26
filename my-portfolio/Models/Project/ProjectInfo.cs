@@ -2,50 +2,22 @@ using MyPortfolio.Models.Navigation;
 
 namespace MyPortfolio.Models.Project;
 
-public class ProjectInfo(string title, string description, List<string> technologies, string imageUrl, LinkInfo? liveLink, List<LinkInfo> otherLinks)
+public class ProjectInfo
 {
-	private string _title = title ?? string.Empty;
-	private string _description = description ?? string.Empty;
-	private List<string> _technologies = technologies ?? [];
-	private string _imageUrl = imageUrl ?? string.Empty;
-	private LinkInfo? _liveLink = liveLink;
-	private List<LinkInfo> _otherLinks = otherLinks ?? [];
+	public required string Title { get; init; }
+	public required string Description { get; init; }
+	public List<string>? Technologies { get; init; }
+	public string? ImageUrl { get; init; }
+	public ExternalLinkInfo? LiveLink { get; init; }
+	public List<ExternalLinkInfo>? OtherLinks { get; init; }
 
-	public string Title
+	public static ProjectInfo Default => new()
 	{
-		get => _title;
-		set => _title = value ?? string.Empty;
-	}
-
-	public string Description
-	{
-		get => _description;
-		set => _description = value ?? string.Empty;
-	}
-
-	public List<string> Technologies
-	{
-		get => [.. _technologies.Where(x => !string.IsNullOrEmpty(x))];
-		set => _technologies = value ?? [];
-	}
-
-	public string ImageUrl
-	{
-		get => _imageUrl;
-		set => _imageUrl = value ?? string.Empty;
-	}
-
-	public LinkInfo? LiveLink
-	{
-		get => _liveLink;
-		set => _liveLink = value;
-	}
-
-	public List<LinkInfo> OtherLinks
-	{
-		get => [.. _otherLinks.Where(x => x is not null)];
-		set => _otherLinks = value ?? [];
-	}
-
-	public ProjectInfo() : this("Lorem ispum", "Lorem ispum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", ["Lorem ispum"], "images/no-image.svg", null, []) { }
+		Title = "Lorem ipsum",
+		Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+		Technologies = ["Lorem ipsum"],
+		ImageUrl = "images/no-image.svg",
+		LiveLink = null,
+		OtherLinks = []
+	};
 }

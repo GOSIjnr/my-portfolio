@@ -13,7 +13,7 @@
 
 @code {
 	[Parameter, EditorRequired] public int ServiceNo { get; set; } = 0;
-	[Parameter, EditorRequired] public ServiceInfo Service { get; set; } = new();
+	[Parameter, EditorRequired] public ServiceInfo Service { get; set; }
 
 	[Inject] private NavigationManager? NavigationManager { get; set; }
 	[Inject] private SelectedServiceState? SelectedServiceState { get; set; }

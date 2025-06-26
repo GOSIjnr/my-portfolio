@@ -1,9 +1,11 @@
+@using MyPortfolio.Adapters.InfoCard
+@using MyPortfolio.Contracts.InfoCard
 <div class="experience-section">
     <h2 class="experience-section__heading">My Experience</h2>
     <p class="experience-section__description">@_description</p>
 
     <div class="experience-section__grid">
-        @foreach (InfoCardModel? cardData in _adaptedExperienceCards)
+        @foreach (InfoCardViewModel? cardData in _adaptedExperienceCards)
         {
             if (cardData is null) continue;
             <InfoCard InfoCardData="@cardData" OnReadMoreClicked="@(() => ShowModal(cardData))" />
@@ -19,10 +21,10 @@
 </Modal>
 
 @code {
-    [Inject] private AppContent? AppContent { get; set; }
+    [Inject] private PortfolioData? AppContent { get; set; }
 
-    private List<InfoCardModel> _adaptedExperienceCards = [];
-    private InfoCardModel? selectedCard = null;
+    private List<InfoCardViewModel> _adaptedExperienceCards = [];
+    private InfoCardViewModel? selectedCard = null;
     private bool showModal = false;
 
     private string _description => AppContent?.Layout?.ExperienceSectionBody ?? string.Empty;
@@ -33,7 +35,7 @@
         _adaptedExperienceCards = InfoCardAdapterResolver.AdaptList(_experienceCards);
     }
 
-    private void ShowModal(InfoCardModel card)
+    private void ShowModal(InfoCardViewModel card)
     {
         selectedCard = card;
         showModal = true;

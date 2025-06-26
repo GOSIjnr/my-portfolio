@@ -15,9 +15,9 @@
 </div>
 
 @code {
-    [Inject] private AppContent? AppContent { get; set; }
+    [Inject] private PortfolioData? AppContent { get; set; }
 
-    private List<ProjectInfo> _projectInfoDetails => AppContent?.User?.ProjectInfos ?? new();
+    private List<ProjectInfo> _projectInfoDetails => AppContent?.User?.Projects ?? new();
 
     private int _projectIndex = 0;
 }

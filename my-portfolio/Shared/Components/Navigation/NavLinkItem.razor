@@ -1,3 +1,8 @@
+@using MyPortfolio.Core.Enums
+@using MyPortfolio.Core.Utilities
+@using MyPortfolio.Models.Data
+@using MyPortfolio.Models.Navigation
+
 @if (OnButtonItemClick.HasDelegate)
 {
 	<div class="nav-item" @onclick="HandleButtonItemClickAsync">
@@ -16,14 +21,14 @@ else
 }
 
 @code {
-	[Parameter, EditorRequired] public NavigationItem NavigationLinkInfo { get; set; } = new();
-	[Parameter] public TargetUrlFormat LinkType { get; set; } = TargetUrlFormat.HashPrefix;
+	[Parameter, EditorRequired] public NavigationLinkInfo NavigationLinkInfo { get; set; }
+	[Parameter] public TargetUrlFormat ExternalLinkType { get; set; } = TargetUrlFormat.HashPrefix;
 	[Parameter] public EventCallback OnNavItemClick { get; set; }
 	[Parameter] public EventCallback OnButtonItemClick { get; set; }
 
 	private string _displayText => NavigationLinkInfo.DisplayText;
 	private string _rawTargetUrl => NavigationLinkInfo.RawTargetUrl;
-	private string _targetUrl => NavigationUrlFormatter.GetFormattedSanitizedTargetUrl(_rawTargetUrl, LinkType);
+	private string _targetUrl => NavigationUrlFormatter.GetFormattedSanitizedTargetUrl(_rawTargetUrl, ExternalLinkType);
 
 	private string _cssModifier => NavigationLinkInfo.CssClassType switch
 	{

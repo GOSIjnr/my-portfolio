@@ -18,19 +18,19 @@
 
 			<div class="home__cta-wrapper">
 				<div class="home__cta">
-					<NavLinkItem LinkType="TargetUrlFormat.Plain" NavigationLinkInfo="@_downloadCV"
+					<NavLinkItem ExternalLinkType="TargetUrlFormat.Plain" NavigationLinkInfo="@_downloadCV"
 						OnButtonItemClick="DownloadResume" />
 				</div>
 
 				<div class="home__cta">
-					<NavLinkItem LinkType="TargetUrlFormat.Plain" NavigationLinkInfo="@_checkMyWorks" />
+					<NavLinkItem ExternalLinkType="TargetUrlFormat.Plain" NavigationLinkInfo="@_checkMyWorks" />
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<div class="home__stats">
-		@foreach (HomeStatItem? stat in _homeStatsItems)
+		@foreach (StatInfo? stat in _homeStatsItems)
 		{
 			if (stat is null) continue;
 
@@ -43,19 +43,19 @@
 
 @code {
 	[Inject] private IJSRuntime? Js { get; set; }
-	[Inject] private AppContent? AppContent { get; set; }
+	[Inject] private PortfolioData? AppContent { get; set; }
 
-	private HomePageContentInfo _homePageContentInfo => AppContent?.User?.HomePageContent ?? new();
+	private HomePageContentInfo _homePageContentInfo => AppContent?.User?.HomePageContent;
 
 	private string _role => _homePageContentInfo.Role;
 	private string _greeting => _homePageContentInfo.Greeting;
 	private string _greetingHighlighted => _homePageContentInfo.GreetingHighlighted;
 	private string _description => _homePageContentInfo.Description;
-	private List<HomeStatItem> _homeStatsItems => AppContent?.User?.HomeStatsInfo ?? [];
+	private List<StatInfo> _homeStatsItems => AppContent?.User?.Stats ?? [];
 	private string _resumeDocID => AppContent?.User?.ResumeDocID ?? string.Empty;
 	private string _profileImgUrl => AppContent?.User?.ProfileImageUrl ?? string.Empty;
-	private NavigationItem _downloadCV => AppContent?.Layout?.DownloadCVLink ?? new();
-	private NavigationItem _checkMyWorks => AppContent?.Layout?.CheckMyProjectsLink ?? new();
+	private NavigationLinkInfo _downloadCV => AppContent.Layout.DownloadCVLink;
+	private NavigationLinkInfo _checkMyWorks => AppContent.Layout.ProjectsLink;
 
 	private async Task DownloadResume()
 	{

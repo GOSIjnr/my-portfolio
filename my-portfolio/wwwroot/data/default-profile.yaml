@@ -1,115 +1,121 @@
-# === Brand Info ===
 brand:
-  name: "John Doe"                  # Your full name or display name
-  shortDescription: "Creative Developer"  # Short tagline under your name/logo
-  description: "Passionate about building solutions that combine creativity and technology."  # Brief summary (optional)
+  brandDisplayName: "John"
+  brandHighlightedDisplayName: "Doe."
+  brandRawTargetUrl: "https://example.com/images/profile.jpg"
 
-# === Profile Image URL ===
-profileImageUrl: "https://via.placeholder.com/300"   # Link to your profile image
+profileImageUrl: "https://example.com/images/profile.jpg"
 
-# === Social Links ===
-socials:
-  - iconUrl: "https://api.iconify.design/simple-icons/github.svg"   # URL for the icon (SVG from iconify)
-    platform: "Github"              # Platform name
-    username: "johndoe"             # Displayed username
-    url: "https://github.com/johndoe" # Link to your profile
-    type: "Link"                    # Type: Link or Email
+socialLinks:
+  - iconUrl: "https://example.com/icons/github.svg"
+    title: "GitHub"
+    detail: "victorawugosi"
+    linkUrl: "https://github.com/victorawugosi"
+    externalLinkType: link
+  - iconUrl: "https://example.com/icons/linkedin.svg"
+    title: "LinkedIn"
+    detail: "Victor Awugosi"
+    linkUrl: "https://linkedin.com/in/victorawugosi"
+    externalLinkType: 2
 
-  - iconUrl: "https://api.iconify.design/simple-icons/linkedin.svg"
-    platform: "LinkedIn"
-    username: "John Doe"
-    url: "https://linkedin.com/in/johndoe"
-    type: "Link"
+serviceInfos:
+  - name: "Web Development"
+    description: "Building fast, modern websites using React, Next.js, and TypeScript."
+  - name: "API Design"
+    description: "Designing scalable RESTful APIs with Node.js and Express."
 
-  - iconUrl: "https://api.iconify.design/simple-icons/twitter.svg"
-    platform: "Twitter"
-    username: "@john_doe"
-    url: "https://twitter.com/john_doe"
-    type: "Link"
+contactInfos:
+  - iconUrl: "https://example.com/icons/email.svg"
+    title: "Email"
+    detail: "hello@victorawugosi.dev"
+    linkUrl: "mailto:hello@victorawugosi.dev"
+    externalLinkType: 0
+  - iconUrl: "https://example.com/icons/phone.svg"
+    title: "Phone"
+    detail: "+234-800-000-0000"
+    linkUrl: "tel:+2348000000000"
+    externalLinkType: 1
 
-# === Contact Info (Email, etc.) ===
-contact:
-  - iconUrl: "https://api.iconify.design/solar/letter-bold.svg"
-    label: "Email"
-    displayText: "john@example.com"
-    url: "john@example.com"
-    type: "Email"
+projectInfos:
+  - title: "Portfolio Website"
+    description: "My personal portfolio built with Next.js, Tailwind CSS, and TypeScript."
+    technologies: ["Next.js", "React", "Tailwind CSS", "TypeScript"]
+    imageUrl: "https://example.com/images/portfolio.png"
+    liveLink:
+      iconUrl: "https://example.com/icons/external.svg"
+      title: "Live Site"
+      detail: ""
+      linkUrl: "https://victorawugosi.dev"
+      externalLinkType: 2
+    otherLinks:
+      - iconUrl: "https://example.com/icons/github.svg"
+        title: "GitHub Repository"
+        detail: ""
+        linkUrl: "https://github.com/victorawugosi/portfolio"
+        externalLinkType: 2
 
-# === Services You Offer ===
-services:
-  - title: "Web Development"
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero."
+  - title: "Task Manager API"
+    description: "A robust REST API for task management with authentication and authorization."
+    technologies: ["Node.js", "Express", "MongoDB"]
+    imageUrl: "https://example.com/images/task-api.png"
+    liveLink: null
+    otherLinks:
+      - iconUrl: "https://example.com/icons/github.svg"
+        title: "GitHub Repository"
+        detail: ""
+        linkUrl: "https://github.com/victorawugosi/task-manager-api"
+        externalLinkType: 2
 
-  - title: "UI/UX Design"
-    description: "Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet."
+aboutMeInfo:
+  introduction: "Hi! I'm John Doe, a passionate software developer focused on creating efficient and beautiful web applications."
+  introDetails:
+    Location: "Lagos, Nigeria"
+    Interests: "Web Development, Open Source, Music"
 
-  - title: "Consulting"
-    description: "Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta."
+experienceEvents:
+  - type: "dateRange"
+    startDate: "2023-01-01T00:00:00Z"
+    endDate: "2024-01-01T00:00:00Z"
+    description: "Lead Developer at XYZ Company"
+    note: "Full-stack role"
+    startDateFormat: 0
+    endDateFormat: 0
 
-# === About Me ===
-aboutMe:
-  bio: |
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
-  details:
-    Name: "John Doe"
-    Experience: "5 years"
-    Nationality: "Global Citizen"
-    Email: "john@example.com"
-    Language: "English"
-    Hobbies: "Reading, Traveling, Photography"
+  - type: "date"
+    date: "2022-01-01T00:00:00Z"
+    description: "Started freelance web development"
+    note: "Freelance projects"
+    dateFormat: 0
 
-# === Work Experience ===
-experience:
-  - start: "2022-01-01"     # Start date (YYYY-MM-DD)
-    end: "2023-12-31"       # End date (YYYY-MM-DD)
-    title: "Software Engineer"
-    company: "Acme Corp"
+educationEvents:
+  - type: "dateRange"
+    startDate: "2018-09-01T00:00:00Z"
+    endDate: "2022-06-01T00:00:00Z"
+    description: "B.Sc. in Computer Science - University of Lagos"
+    note: "Graduated with honors"
+    startDateFormat: 0
+    endDateFormat: 0
 
-# === Education ===
-education:
-  - start: "2018-09-01"
-    end: "2022-06-01"
-    title: "B.Sc. Computer Science"
-    institution: "University of Example"
+skillInfos:
+  - skillName: "JavaScript"
+    iconUrl: "https://example.com/icons/javascript.svg"
+  - skillName: "TypeScript"
+    iconUrl: "https://example.com/icons/typescript.svg"
+  - skillName: "React"
+    iconUrl: "https://example.com/icons/react.svg"
+  - skillName: "Node.js"
+    iconUrl: "https://example.com/icons/nodejs.svg"
 
-  - date: "2023-04-01"      # For certifications or single-day events
-    title: "Certified Web Developer"
-    institution: "Example Academy"
+homeStatsInfo:
+  - number: 20
+    numberPrefix: "+"
+    description: "Projects Completed"
+  - number: 3
+    description: "Years of Experience"
 
-# === Skills (Displayed as Icons) ===
-skills:
-  - name: "JavaScript"
-    iconUrl: "https://api.iconify.design/simple-icons/javascript.svg"
+resumeDocID: "resume-victorawugosi-2025"
 
-  - name: "React"
-    iconUrl: "https://api.iconify.design/simple-icons/react.svg"
-
-  - name: "Figma"
-    iconUrl: "https://api.iconify.design/simple-icons/figma.svg"
-
-  - name: "Git"
-    iconUrl: "https://api.iconify.design/simple-icons/git.svg"
-
-# === Home Page Statistics (Optional Fun Facts/Stats) ===
-homeStats:
-  - value: "5+"
-    label: "Years of <br>experience"
-
-  - value: "20+"
-    label: "Projects <br>completed"
-
-  - value: "15+"
-    label: "Technologies <br>used"
-
-  - value: "500+"
-    label: "Commits <br>made"
-
-# === Resume Document ID (Optional - For download link) ===
-resumeDocId: "default-doc-id-123456"
-
-# === Hero / Home Page Text ===
 homePageContent:
-  role: "Full Stack Developer"        # Profession or role displayed prominently
-  greeting: "Hi, I'm"
-  name: "John Doe"
-  tagline: "Turning ideas into beautiful web applications."   # Sub-heading or fun quote
+  role: "Full Stack Developer"
+  greeting: "Hello! I'm"
+  greetingHighlighted: "John Doe"
+  description: "Crafting beautiful and performant applications for the web."

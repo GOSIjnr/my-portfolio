@@ -1,21 +1,20 @@
 using MyPortfolio.Models.Service;
 
-namespace MyPortfolio.Services.StateManagement
+namespace MyPortfolio.Services.StateManagement;
+
+public class SelectedServiceState
 {
-	public class SelectedServiceState
+	private ServiceInfo? _selectedService;
+
+	public void SetSelectedService(ServiceInfo service)
 	{
-		private ServiceInfo? _selectedService;
+		_selectedService = service;
+	}
 
-		public void SetSelectedService(ServiceInfo service)
-		{
-			_selectedService = service;
-		}
-
-		public ServiceInfo? ConsumeSelectedService()
-		{
-			ServiceInfo? service = _selectedService;
-			_selectedService = null;
-			return service;
-		}
+	public ServiceInfo? ConsumeSelectedService()
+	{
+		ServiceInfo? service = _selectedService;
+		_selectedService = null;
+		return service;
 	}
 }

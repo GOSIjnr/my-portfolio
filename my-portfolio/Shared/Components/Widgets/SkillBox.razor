@@ -3,11 +3,11 @@
 </div>
 
 @code {
-	[Parameter, EditorRequired] public SkillInfo SkillInfo { get; set; } = new();
+	[Parameter, EditorRequired] public SkillInfo SkillInfo { get; set; }
 
 	[Inject] private IJSRuntime? JS { get; set; }
 
-	private string _skillName => SkillInfo.SkillName;
+	private string _skillName => SkillInfo.Name;
 	private string _skillImageUrl => SkillInfo.IconUrl;
 
 	private string _fallbackUrl = "images/web.svg";

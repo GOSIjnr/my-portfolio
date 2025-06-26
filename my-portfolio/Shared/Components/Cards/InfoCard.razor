@@ -1,3 +1,4 @@
+@using MyPortfolio.Models.InfoCard
 <div class="info-card @(_isCardExpanded ? "info-card--expanded" : "")">
 	<div class="info-card__left">
 		<p class="info-card__header @(_isCardExpanded ? "info-card__header--expanded" : "")">@_header</p>
@@ -20,7 +21,7 @@
 </div>
 
 @code {
-	[EditorRequired, Parameter] public InfoCardModel InfoCardData { get; set; } = new();
+	[EditorRequired, Parameter] public InfoCardViewModel InfoCardData { get; set; }
 	[Parameter] public bool IsExpanded { get; set; } = false;
 	[Parameter] public bool ForceExpanded { get; set; } = false;
 

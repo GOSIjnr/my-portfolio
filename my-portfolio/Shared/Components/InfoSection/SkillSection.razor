@@ -12,8 +12,8 @@
 </div>
 
 @code {
-	[Inject] private AppContent? AppContent { get; set; }
+	[Inject] private PortfolioData? AppContent { get; set; }
 
 	private string _description => AppContent?.Layout?.SkillSectionBody ?? string.Empty;
-	private List<SkillInfo> _skills => AppContent?.User?.SkillInfos ?? [];
+	private List<SkillInfo> _skills => AppContent?.User?.Skills ?? [];
 }

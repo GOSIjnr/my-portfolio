@@ -1,3 +1,7 @@
+@using MyPortfolio.Models.Common
+@using MyPortfolio.Models.Data
+@using MyPortfolio.Models.Navigation
+@using MyPortfolio.Services.StateManagement
 @inject ScrollLockService ScrollLockService
 @implements IAsyncDisposable
 
@@ -12,18 +16,18 @@
                     <Brand BrandInfo="_brand" OnBrandClick="CloseMenu" />
                 </div>
 
-                @foreach (NavigationItem? item in _navigationItems)
+                @foreach (NavigationLinkInfo? item in _navigationItems)
                 {
                     if (item is null) continue;
                     <div class="side-bar__link">
-                        <NavLinkItem NavigationLinkInfo="item" LinkType="@TargetUrlFormat.Plain"
+                        <NavLinkItem NavigationLinkInfo="item" ExternalLinkType="@TargetUrlFormat.Plain"
                             OnNavItemClick="CloseMenu" />
                     </div>
                 }
             </div>
 
             <div class="side-bar__contact-link">
-                <NavLinkItem NavigationLinkInfo="@_contactMeLink" LinkType="TargetUrlFormat.Plain"
+                <NavLinkItem NavigationLinkInfo="@_contactMeLink" ExternalLinkType="TargetUrlFormat.Plain"
                     OnButtonItemClick="HandleContactMeClick" />
             </div>
         </div>
@@ -40,11 +44,11 @@
     [Parameter] public EventCallback OnClose { get; set; }
     [Parameter] public EventCallback OnContactMeClick { get; set; }
 
-    [Inject] private AppContent? AppContent { get; set; }
+    [Inject] private PortfolioData? AppContent { get; set; }
 
-    private BrandInfo _brand => AppContent?.User?.Brand ?? new();
-    private List<NavigationItem> _navigationItems => AppContent?.Layout?.NavigationLinks ?? [];
-    private NavigationItem _contactMeLink => AppContent?.Layout?.ContactMeLink ?? new();
+    private BrandInfo _brand => AppContent?.User?.Brand;
+    private List<NavigationLinkInfo> _navigationItems => AppContent?.Layout?.NavigationLinks ?? [];
+    private NavigationLinkInfo _contactMeLink => AppContent?.Layout?.ContactMeLink;
 
     protected override async Task OnParametersSetAsync()
     {

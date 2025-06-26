@@ -9,7 +9,7 @@
             @for (int i = 0; i < _resumeSections.Count; i++)
             {
                 if (_resumeSections[i] is null) continue;
-                ResumeTabItemLayoutData section = _resumeSections[i];
+                TabButtonInfo section = _resumeSections[i];
 
                 <button class="resume__nav-button @(_currentSection == section.Key ? "resume__nav-button--active" : "")"
                     @onclick="@(() => SelectSection(section.Key))">
@@ -25,10 +25,10 @@
 </div>
 
 @code {
-    [Inject] private AppContent? AppContent { get; set; }
+    [Inject] private PortfolioData? AppContent { get; set; }
 
-    private ResumeHeaderLayoutData _resumeHeader => AppContent?.Layout?.ResumeHeaderLayoutData ?? new();
-    private List<ResumeTabItemLayoutData> _resumeSections => AppContent?.Layout?.ResumeTabItemLayoutData.Where(x => x is not
+    private ResumeHeaderInfo _resumeHeader => AppContent?.Layout?.ResumeHeader;
+    private List<TabButtonInfo> _resumeSections => AppContent?.Layout?.ResumeTabs.Where(x => x is not
     null).ToList() ?? [];
 
     private string _currentSection = "AboutMe";

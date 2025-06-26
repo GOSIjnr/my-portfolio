@@ -7,16 +7,16 @@
 		<p class="contact-option__title">@_contactTitle</p>
 
 		<p class="contact-option__detail">
-			@switch (ContactInfo.Type)
+			@switch (ContactInfo.ExternalLinkType)
 			{
-				case LinkType.Email:
-					<a href="mailto:@ContactInfo.Link">@ContactInfo.Detail</a>
+				case ExternalLinkType.Email:
+					<a href="mailto:@ContactInfo.LinkUrl">@ContactInfo.Detail</a>
 					break;
-				case LinkType.Phone:
-					<a href="tel:@ContactInfo.Link">@ContactInfo.Detail</a>
+				case ExternalLinkType.Phone:
+					<a href="tel:@ContactInfo.LinkUrl">@ContactInfo.Detail</a>
 					break;
-				case LinkType.Link:
-					<a href="@ContactInfo.Link" target="_blank" rel="noopener noreferrer">@ContactInfo.Detail</a>
+				case ExternalLinkType.Link:
+					<a href="@ContactInfo.LinkUrl" target="_blank" rel="noopener noreferrer">@ContactInfo.Detail</a>
 					break;
 				default:
 					@ContactInfo.Detail
@@ -27,7 +27,7 @@
 </div>
 
 @code {
-	[Parameter, EditorRequired] public LinkInfo ContactInfo { get; set; } = new();
+	[Parameter, EditorRequired] public ExternalLinkInfo ContactInfo { get; set; }
 
 	[Inject] private IJSRuntime? JS { get; set; }
 

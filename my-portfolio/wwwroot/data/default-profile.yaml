@@ -17,13 +17,13 @@ socialLinks:
     linkUrl: "https://linkedin.com/in/victorawugosi"
     externalLinkType: 2
 
-serviceInfos:
+services:
   - name: "Web Development"
     description: "Building fast, modern websites using React, Next.js, and TypeScript."
   - name: "API Design"
     description: "Designing scalable RESTful APIs with Node.js and Express."
 
-contactInfos:
+contactLinks:
   - iconUrl: "https://example.com/icons/email.svg"
     title: "Email"
     detail: "hello@victorawugosi.dev"
@@ -35,7 +35,7 @@ contactInfos:
     linkUrl: "tel:+2348000000000"
     externalLinkType: 1
 
-projectInfos:
+projects:
   - title: "Portfolio Website"
     description: "My personal portfolio built with Next.js, Tailwind CSS, and TypeScript."
     technologies: ["Next.js", "React", "Tailwind CSS", "TypeScript"]
@@ -95,7 +95,7 @@ educationEvents:
     startDateFormat: 0
     endDateFormat: 0
 
-skillInfos:
+skills:
   - skillName: "JavaScript"
     iconUrl: "https://example.com/icons/javascript.svg"
   - skillName: "TypeScript"
@@ -105,7 +105,7 @@ skillInfos:
   - skillName: "Node.js"
     iconUrl: "https://example.com/icons/nodejs.svg"
 
-homeStatsInfo:
+stats:
   - number: 20
     numberPrefix: "+"
     description: "Projects Completed"
@@ -118,4 +118,4 @@ homePageContent:
   role: "Full Stack Developer"
   greeting: "Hello! I'm"
   greetingHighlighted: "John Doe"
-  description: "Crafting beautiful and performant applications for the web."
+  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque consequat, faucibus et, et."

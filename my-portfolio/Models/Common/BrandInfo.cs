@@ -8,8 +8,8 @@ public class BrandInfo
 
 	public static BrandInfo Default => new()
 	{
-		BrandDisplayName = "Lorem",
-		BrandHighlightedDisplayName = "ipsum",
+		BrandDisplayName = "John",
+		BrandHighlightedDisplayName = "Doe.",
 		BrandRawTargetUrl = string.Empty
 	};
 }

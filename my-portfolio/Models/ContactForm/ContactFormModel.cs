@@ -15,7 +15,7 @@ public class ContactFormModel
 
 	[Required] public string? Service { get; set; }
 
-	[Required, StringLength(200, MinimumLength = 2)]
+	[Required, StringLength(100, MinimumLength = 2)]
 	public string? Reason { get; set; }
 
 	[StringLength(2000)] public string? Message { get; set; }

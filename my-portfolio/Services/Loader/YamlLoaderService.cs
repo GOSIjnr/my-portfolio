@@ -1,3 +1,5 @@
+// --- YamlLoaderService.cs ---
+using MyPortfolio.Models.Data;
 using MyPortfolio.Contracts.InfoCard;
 using MyPortfolio.Models.InfoCard;
 using YamlDotNet.Serialization;
@@ -24,27 +26,48 @@ public class YamlLoaderService(HttpClient http)
 		.IgnoreUnmatchedProperties()
 		.Build();
 
-	public async Task<T> LoadYamlAsync<T>(string path)
+	public async Task<T?> LoadYamlAsync<T>(string path)
 	{
 		try
 		{
-			var yaml = await _http.GetStringAsync(path);
-			Console.WriteLine("YAML content received:");
-			Console.WriteLine(yaml);
+			Console.WriteLine($"📦 Loading YAML from: {path}");
+			string yaml = await _http.GetStringAsync(path);
 
-			return _deserializer.Deserialize<T>(yaml)!;
+			if (string.IsNullOrWhiteSpace(yaml))
+				throw new InvalidDataException("YAML file content is null or empty.");
+
+			var model = _deserializer.Deserialize<T>(yaml);
+			if (model is null)
+				throw new InvalidDataException("Deserialized YAML returned null.");
+
+			var result = new ValidationResult();
+			ValidationRegistry.ValidateIfSupported(model, result, $"YAML<{typeof(T).Name}>");
+
+			if (!result.IsValid)
+			{
+				Console.Error.WriteLine("❌ Validation failed:");
+				foreach (var err in result.Errors)
+					Console.Error.WriteLine($"  - {err}");
+
+				throw new InvalidDataException($"❌ Failed to load or validate '{path}'.");
+			}
+
+			foreach (var warn in result.Warnings)
+				Console.WriteLine($"⚠️  {warn}");
+
+			return model;
 		}
 		catch (YamlDotNet.Core.YamlException yamlEx)
 		{
-			Console.WriteLine($"YAML Parsing Error: {yamlEx.Message}");
-			Console.WriteLine($"Details: {yamlEx.InnerException?.Message}");
-			throw;
+			Console.Error.WriteLine($"YAML Parsing Error in '{path}': {yamlEx.Message}");
+			Console.Error.WriteLine($"Details: {yamlEx.InnerException?.Message}");
+			return default;
 		}
 		catch (Exception ex)
 		{
-			Console.WriteLine($"General Error: {ex.Message}");
-			Console.WriteLine($"Details: {ex.InnerException?.Message}");
-			throw;
+			Console.Error.WriteLine($"❌ Exception loading YAML from '{path}': {ex.Message}");
+			Console.Error.WriteLine($"Details: {ex.InnerException?.Message}");
+			return default;
 		}
 	}
 }

@@ -11,7 +11,7 @@ public class ScrollLockService(IJSRuntime js, ILogger<ScrollLockService> logger)
 	public async Task LockScrollAsync()
 	{
 		_lockCount++;
-
+	
 		if (_lockCount == 1)
 		{
 			await _js.InvokeVoidAsync("scrollLocker.disableScroll");

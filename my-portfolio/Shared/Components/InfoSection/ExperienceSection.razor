@@ -27,7 +27,7 @@
     private InfoCardViewModel? selectedCard = null;
     private bool showModal = false;
 
-    private string _description => AppContent?.Layout?.ExperienceSectionBody ?? string.Empty;
+    private string _description => AppContent?.User.ResumeSectionIntro.Experience ?? string.Empty;
     private List<InfoEventBase> _experienceCards => AppContent?.User?.ExperienceEvents ?? [];
 
     protected override void OnParametersSet()

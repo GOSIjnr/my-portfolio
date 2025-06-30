@@ -108,9 +108,9 @@ skills:
 stats:
   - number: 20
     numberPrefix: "+"
-    description: "Projects Completed"
+    description: "Projects<br>Completed"
   - number: 3
-    description: "Years of Experience"
+    description: "Years of<br>Experience"
 
 resumeDocID: "resume-victorawugosi-2025"
 
@@ -119,3 +119,8 @@ homePageContent:
   greeting: "Hello! I'm"
   greetingHighlighted: "John Doe"
   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque consequat, faucibus et, et."
+
+resumeSectionIntro:
+  experience: "My journey has been shaped by a variety of experiences—some planned, some unexpected—all of which have helped me grow into who I am today. Each role has left its mark, teaching me something new about myself and the world around me."
+  education: "Education has been the foundation of my growth, providing me with the tools to think critically, solve problems, and explore new ideas. Every step along the way has opened new doors, fueling my curiosity and shaping the way I approach the world."
+  skill: "The skills I've developed reflect both my passions and my commitment to continuous learning. Each one represents countless hours of curiosity, experimentation, and practice—tools that help me bring ideas to life and tackle challenges with confidence."

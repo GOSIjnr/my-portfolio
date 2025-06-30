@@ -15,7 +15,4 @@ public class AppLayoutData : IAppLayoutData
 	public required ContactFormInfo ContactForm { get; init; }
 	public required ResumeHeaderInfo ResumeHeader { get; init; }
 	public required List<TabButtonInfo> ResumeTabs { get; init; }
-	public required string ExperienceSectionBody { get; init; }
-	public required string EducationSectionBody { get; init; }
-	public required string SkillSectionBody { get; init; }
 }

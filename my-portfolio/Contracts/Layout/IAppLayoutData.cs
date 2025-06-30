@@ -14,7 +14,4 @@ public interface IAppLayoutData
 	ContactFormInfo ContactForm { get; init; }
 	ResumeHeaderInfo ResumeHeader { get; init; }
 	List<TabButtonInfo> ResumeTabs { get; init; }
-	string ExperienceSectionBody { get; init; }
-	string EducationSectionBody { get; init; }
-	string SkillSectionBody { get; init; }
 }

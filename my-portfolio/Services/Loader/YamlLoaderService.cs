@@ -1,15 +1,15 @@
-// --- YamlLoaderService.cs ---
-using MyPortfolio.Models.Data;
 using MyPortfolio.Contracts.InfoCard;
+using MyPortfolio.Core.Validation;
 using MyPortfolio.Models.InfoCard;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
 namespace MyPortfolio.Services.Loader;
 
-public class YamlLoaderService(HttpClient http)
+public class YamlLoaderService(HttpClient http, ILogger<YamlLoaderService> logger)
 {
 	private readonly HttpClient _http = http;
+	private readonly ILogger<YamlLoaderService> _logger = logger;
 	private readonly IDeserializer _deserializer = new DeserializerBuilder()
 		.WithNamingConvention(CamelCaseNamingConvention.Instance)
 		.WithTypeDiscriminatingNodeDeserializer(options =>
@@ -30,43 +30,56 @@ public class YamlLoaderService(HttpClient http)
 	{
 		try
 		{
-			Console.WriteLine($"📦 Loading YAML from: {path}");
+			_logger.LogDebug("Loading YAML from: {Path}", path);
 			string yaml = await _http.GetStringAsync(path);
 
 			if (string.IsNullOrWhiteSpace(yaml))
+			{
 				throw new InvalidDataException("YAML file content is null or empty.");
+			}
 
-			var model = _deserializer.Deserialize<T>(yaml);
-			if (model is null)
-				throw new InvalidDataException("Deserialized YAML returned null.");
-
+			var model = _deserializer.Deserialize<T>(yaml) ?? throw new InvalidDataException("Deserialized YAML returned null.");
 			var result = new ValidationResult();
-			ValidationRegistry.ValidateIfSupported(model, result, $"YAML<{typeof(T).Name}>");
+			ValidationRegistry.ValidateIfSupported(model, result, $"YAML<{typeof(T).Name}>", _logger);
 
 			if (!result.IsValid)
 			{
-				Console.Error.WriteLine("❌ Validation failed:");
-				foreach (var err in result.Errors)
-					Console.Error.WriteLine($"  - {err}");
+				_logger.LogError("Validation failed:");
 
-				throw new InvalidDataException($"❌ Failed to load or validate '{path}'.");
+				foreach (string error in result.Errors)
+				{
+					_logger.LogError("	{error}", error);
+				}
+
+				foreach (string warning in result.Warnings)
+				{
+					_logger.LogWarning("	{warning}", warning);
+				}
+
+				foreach (var (key, example) in result.Examples)
+				{
+					_logger.LogInformation("Example YAML structure for {key}:\n{example}", [key, example]);
+				}
+
+				throw new InvalidDataException($"Failed to load or validate '{path}'.");
 			}
 
-			foreach (var warn in result.Warnings)
-				Console.WriteLine($"⚠️  {warn}");
+			foreach (string warning in result.Warnings)
+			{
+				_logger.LogWarning("	{warning}", warning);
+			}
 
 			return model;
 		}
 		catch (YamlDotNet.Core.YamlException yamlEx)
 		{
-			Console.Error.WriteLine($"YAML Parsing Error in '{path}': {yamlEx.Message}");
-			Console.Error.WriteLine($"Details: {yamlEx.InnerException?.Message}");
+			_logger.LogError("YAML Parsing Error in '{path}': {Message}", [path, yamlEx.Message]);
+			_logger.LogError("Details: {Message}", yamlEx.InnerException?.Message);
 			return default;
 		}
 		catch (Exception ex)
 		{
-			Console.Error.WriteLine($"❌ Exception loading YAML from '{path}': {ex.Message}");
-			Console.Error.WriteLine($"Details: {ex.InnerException?.Message}");
+			_logger.LogError("Exception loading YAML from '{path}': {ex.Message}", [path, ex.Message]);
 			return default;
 		}
 	}

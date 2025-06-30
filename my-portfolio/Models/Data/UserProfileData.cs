@@ -23,4 +23,5 @@ public class UserProfileData : IUserProfileData
 	public required List<StatInfo> Stats { get; init; }
 	public required string ResumeDocID { get; init; }
 	public required HomePageContentInfo HomePageContent { get; init; }
+	public required ResumeSectionIntro ResumeSectionIntro { get; init; }
 }

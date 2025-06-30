@@ -22,4 +22,5 @@ public interface IUserProfileData
 	List<StatInfo> Stats { get; init; }
 	string ResumeDocID { get; init; }
 	HomePageContentInfo HomePageContent { get; init; }
+	ResumeSectionIntro ResumeSectionIntro { get; init; }
 }

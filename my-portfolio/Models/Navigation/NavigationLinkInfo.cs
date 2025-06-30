@@ -12,7 +12,7 @@ public class NavigationLinkInfo
 	public static NavigationLinkInfo Default => new()
 	{
 		DisplayText = "Lorem ipsum",
-		RawTargetUrl = "https://example.com",
+		RawTargetUrl = string.Empty,
 		CssClassType = NavigationItemCssType.Normal,
 		CssActiveClassType = NavigationItemCssActiveType.Normal
 	};

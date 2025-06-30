@@ -32,7 +32,7 @@
     private InfoCardViewModel? selectedCard = null;
     private bool showModal = false;
 
-    private string _description => AppContent?.Layout?.EducationSectionBody ?? string.Empty;
+    private string _description => AppContent?.User.ResumeSectionIntro.Education ?? string.Empty;
     private List<InfoEventBase> _educationCards => AppContent?.User?.EducationEvents ?? [];
 
     protected override void OnParametersSet()

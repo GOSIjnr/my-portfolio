@@ -4,7 +4,7 @@ public static class ValidatorHelpers
 {
 	public static bool IsNullOrWhiteSpace(string? input) => string.IsNullOrWhiteSpace(input);
 
-	public static bool IsValidRelativeUrl(string? url)
+	public static bool IsRelativeUrl(string? url)
 	{
 		if (url is null) return false;
 

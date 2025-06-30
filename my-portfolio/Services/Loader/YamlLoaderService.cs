@@ -44,16 +44,14 @@ public class YamlLoaderService(HttpClient http, ILogger<YamlLoaderService> logge
 
 			if (!result.IsValid)
 			{
-				_logger.LogError("Validation failed:");
-
 				foreach (string error in result.Errors)
 				{
-					_logger.LogError("	{error}", error);
+					_logger.LogError("{error}", error);
 				}
 
 				foreach (string warning in result.Warnings)
 				{
-					_logger.LogWarning("	{warning}", warning);
+					_logger.LogWarning("{warning}", warning);
 				}
 
 				foreach (var (key, example) in result.Examples)
@@ -66,7 +64,7 @@ public class YamlLoaderService(HttpClient http, ILogger<YamlLoaderService> logge
 
 			foreach (string warning in result.Warnings)
 			{
-				_logger.LogWarning("	{warning}", warning);
+				_logger.LogWarning("{warning}", warning);
 			}
 
 			return model;

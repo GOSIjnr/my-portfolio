@@ -25,7 +25,7 @@ public class BrandInfoValidator : ValidatorBase<BrandInfo>
 			result.AddWarning($"{path}.{nameof(model.BrandHighlightedDisplayName)} is missing.");
 		}
 
-		if (ValidatorHelpers.IsValidRelativeUrl(model.BrandRawTargetUrl))
+		if (ValidatorHelpers.IsRelativeUrl(model.BrandRawTargetUrl))
 		{
 			result.AddWarning($"{path}.{nameof(model.BrandRawTargetUrl)} is not a valid relative URL.");
 		}

@@ -96,13 +96,13 @@ educationEvents:
     endDateFormat: 0
 
 skills:
-  - skillName: "JavaScript"
+  - name: "JavaScript"
     iconUrl: "https://example.com/icons/javascript.svg"
-  - skillName: "TypeScript"
+  - name: "TypeScript"
     iconUrl: "https://example.com/icons/typescript.svg"
-  - skillName: "React"
+  - name: "React"
     iconUrl: "https://example.com/icons/react.svg"
-  - skillName: "Node.js"
+  - name: "Node.js"
     iconUrl: "https://example.com/icons/nodejs.svg"
 
 stats:

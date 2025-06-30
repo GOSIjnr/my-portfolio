@@ -1,5 +1,3 @@
-using MyPortfolio.Shared.Components.InfoSection;
-
 namespace MyPortfolio.Models.Common;
 
 public class ResumeSectionIntro

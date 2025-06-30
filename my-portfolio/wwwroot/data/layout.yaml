@@ -1,6 +1,6 @@
 navigationLinks:
   - displayText: "Home"
-    rawTargetUrl: ""
+    rawTargetUrl: "/"
     cssClassType: 0
     cssActiveClassType: 1
 
@@ -26,13 +26,13 @@ navigationLinks:
 
 contactMeLink:
   displayText: "Let's Connect"
-  rawTargetUrl: ""
+  rawTargetUrl: "contact"
   cssClassType: 1
   cssActiveClassType: 0
 
 downloadCVLink:
   displayText: "Download CV"
-  rawTargetUrl: ""
+  rawTargetUrl: "/"
   cssClassType: 2
   cssActiveClassType: 0
 

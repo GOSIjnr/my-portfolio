@@ -43,7 +43,8 @@
     private bool _isSidebarOpen = false;
     private bool _isContactModalVisible = false;
 
-    private BrandInfo _brand => AppContent?.User.Brand ?? BrandInfo.Default;
+    @* private BrandInfo _brand => AppContent?.User.Brand ?? BrandInfo.Default; *@
+    private BrandInfo _brand => AppContent?.User.Brand;
     private NavigationLinkInfo _contactMeLink => AppContent?.Layout?.ContactMeLink;
     private List<NavigationLinkInfo> _navigationLinks => AppContent?.Layout?.NavigationLinks ?? [];
     private ContactFormInfo _contactFormLayoutData => AppContent?.Layout?.ContactForm;

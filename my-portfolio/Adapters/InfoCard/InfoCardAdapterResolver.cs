@@ -32,6 +32,9 @@ public static class InfoCardAdapterResolver
 
 	public static List<InfoCardViewModel> AdaptList(IEnumerable<InfoEventBase> sources)
 	{
-		return [.. sources.Select(Adapt).Where(model => model is not null)];
+		return [.. sources
+			.Select(Adapt)
+			.Where(model => model is not null)
+			.Cast<InfoCardViewModel>()];
 	}
 }

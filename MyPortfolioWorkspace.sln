@@ -7,6 +7,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "my-portfolio", "my-portfoli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyPortfolio", "my-portfolio\MyPortfolio.csproj", "{9B26FE37-2518-43B5-8B4B-B3A39C1B40C7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "schema-generator", "schema-generator", "{DF8499C1-A88C-7EE6-471D-C446E43707CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaGenerator", "schema-generator\SchemaGenerator.csproj", "{098FFD92-C8D9-4F4F-AC7F-7F5FD6E5FB17}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,11 +33,24 @@ Global
 		{9B26FE37-2518-43B5-8B4B-B3A39C1B40C7}.Release|x64.Build.0 = Release|Any CPU
 		{9B26FE37-2518-43B5-8B4B-B3A39C1B40C7}.Release|x86.ActiveCfg = Release|Any CPU
 		{9B26FE37-2518-43B5-8B4B-B3A39C1B40C7}.Release|x86.Build.0 = Release|Any CPU
+		{098FFD92-C8D9-4F4F-AC7F-7F5FD6E5FB17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{098FFD92-C8D9-4F4F-AC7F-7F5FD6E5FB17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{098FFD92-C8D9-4F4F-AC7F-7F5FD6E5FB17}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{098FFD92-C8D9-4F4F-AC7F-7F5FD6E5FB17}.Debug|x64.Build.0 = Debug|Any CPU
+		{098FFD92-C8D9-4F4F-AC7F-7F5FD6E5FB17}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{098FFD92-C8D9-4F4F-AC7F-7F5FD6E5FB17}.Debug|x86.Build.0 = Debug|Any CPU
+		{098FFD92-C8D9-4F4F-AC7F-7F5FD6E5FB17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{098FFD92-C8D9-4F4F-AC7F-7F5FD6E5FB17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{098FFD92-C8D9-4F4F-AC7F-7F5FD6E5FB17}.Release|x64.ActiveCfg = Release|Any CPU
+		{098FFD92-C8D9-4F4F-AC7F-7F5FD6E5FB17}.Release|x64.Build.0 = Release|Any CPU
+		{098FFD92-C8D9-4F4F-AC7F-7F5FD6E5FB17}.Release|x86.ActiveCfg = Release|Any CPU
+		{098FFD92-C8D9-4F4F-AC7F-7F5FD6E5FB17}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9B26FE37-2518-43B5-8B4B-B3A39C1B40C7} = {ED758E34-B74D-186D-24C6-FFA6A9B04A48}
+		{098FFD92-C8D9-4F4F-AC7F-7F5FD6E5FB17} = {DF8499C1-A88C-7EE6-471D-C446E43707CE}
 	EndGlobalSection
 EndGlobal

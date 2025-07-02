@@ -1,0 +1,152 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "AppLayoutData",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "NavigationLinks",
+    "ContactMeLink",
+    "DownloadCVLink",
+    "ProjectsLink",
+    "ContactForm",
+    "ResumeHeader",
+    "ResumeTabs"
+  ],
+  "properties": {
+    "NavigationLinks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/NavigationLinkInfo"
+      }
+    },
+    "ContactMeLink": {
+      "$ref": "#/definitions/NavigationLinkInfo"
+    },
+    "DownloadCVLink": {
+      "$ref": "#/definitions/NavigationLinkInfo"
+    },
+    "ProjectsLink": {
+      "$ref": "#/definitions/NavigationLinkInfo"
+    },
+    "ContactForm": {
+      "$ref": "#/definitions/ContactFormInfo"
+    },
+    "ResumeHeader": {
+      "$ref": "#/definitions/ResumeHeaderInfo"
+    },
+    "ResumeTabs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/TabButtonInfo"
+      }
+    }
+  },
+  "definitions": {
+    "NavigationLinkInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "DisplayText",
+        "RawTargetUrl",
+        "CssClassType",
+        "CssActiveClassType"
+      ],
+      "properties": {
+        "DisplayText": {
+          "type": "string",
+          "minLength": 1
+        },
+        "RawTargetUrl": {
+          "type": "string",
+          "minLength": 1
+        },
+        "CssClassType": {
+          "$ref": "#/definitions/NavigationItemCssType"
+        },
+        "CssActiveClassType": {
+          "$ref": "#/definitions/NavigationItemCssActiveType"
+        }
+      }
+    },
+    "NavigationItemCssType": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Normal",
+        "Rounded",
+        "RoundedInverted"
+      ],
+      "enum": [
+        0,
+        1,
+        2
+      ]
+    },
+    "NavigationItemCssActiveType": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Normal",
+        "UnderLine"
+      ],
+      "enum": [
+        0,
+        1
+      ]
+    },
+    "ContactFormInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Heading",
+        "SubHeading"
+      ],
+      "properties": {
+        "Heading": {
+          "type": "string",
+          "minLength": 1
+        },
+        "SubHeading": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "ResumeHeaderInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Title",
+        "Subtitle"
+      ],
+      "properties": {
+        "Title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "Subtitle": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "TabButtonInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Key",
+        "Label"
+      ],
+      "properties": {
+        "Key": {
+          "type": "string",
+          "minLength": 1
+        },
+        "Label": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

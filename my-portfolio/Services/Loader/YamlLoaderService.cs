@@ -1,5 +1,4 @@
 using MyPortfolio.Contracts.InfoCard;
-using MyPortfolio.Core.Validation;
 using MyPortfolio.Models.InfoCard;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
@@ -39,33 +38,6 @@ public class YamlLoaderService(HttpClient http, ILogger<YamlLoaderService> logge
 			}
 
 			var model = _deserializer.Deserialize<T>(yaml) ?? throw new InvalidDataException("Deserialized YAML returned null.");
-			var result = new ValidationResult();
-			ValidationRegistry.ValidateIfSupported(model, result, $"YAML<{typeof(T).Name}>", _logger);
-
-			if (!result.IsValid)
-			{
-				foreach (string error in result.Errors)
-				{
-					_logger.LogError("{error}", error);
-				}
-
-				foreach (string warning in result.Warnings)
-				{
-					_logger.LogWarning("{warning}", warning);
-				}
-
-				foreach (var (key, example) in result.Examples)
-				{
-					_logger.LogInformation("Example YAML structure for {key}:\n{example}", [key, example]);
-				}
-
-				throw new InvalidDataException($"Failed to load or validate '{path}'.");
-			}
-
-			foreach (string warning in result.Warnings)
-			{
-				_logger.LogWarning("{warning}", warning);
-			}
 
 			return model;
 		}

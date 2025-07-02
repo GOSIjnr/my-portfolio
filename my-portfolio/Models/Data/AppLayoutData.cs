@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using MyPortfolio.Contracts.Layout;
 using MyPortfolio.Models.Common;
 using MyPortfolio.Models.ContactForm;
@@ -8,11 +9,11 @@ namespace MyPortfolio.Models.Data;
 
 public class AppLayoutData : IAppLayoutData
 {
-	public required List<NavigationLinkInfo> NavigationLinks { get; init; }
-	public required NavigationLinkInfo ContactMeLink { get; init; }
-	public required NavigationLinkInfo DownloadCVLink { get; init; }
-	public required NavigationLinkInfo ProjectsLink { get; init; }
-	public required ContactFormInfo ContactForm { get; init; }
-	public required ResumeHeaderInfo ResumeHeader { get; init; }
-	public required List<TabButtonInfo> ResumeTabs { get; init; }
+	[Required] public required List<NavigationLinkInfo> NavigationLinks { get; init; }
+	[Required] public required NavigationLinkInfo ContactMeLink { get; init; }
+	[Required] public required NavigationLinkInfo DownloadCVLink { get; init; }
+	[Required] public required NavigationLinkInfo ProjectsLink { get; init; }
+	[Required] public required ContactFormInfo ContactForm { get; init; }
+	[Required] public required ResumeHeaderInfo ResumeHeader { get; init; }
+	[Required] public required List<TabButtonInfo> ResumeTabs { get; init; }
 }

@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using MyPortfolio.Contracts.InfoCard;
 using MyPortfolio.Contracts.Profile;
 using MyPortfolio.Models.Common;
@@ -10,18 +11,18 @@ namespace MyPortfolio.Models.Data;
 
 public class UserProfileData : IUserProfileData
 {
-	public required BrandInfo Brand { get; init; }
-	public required string ProfileImageUrl { get; init; }
-	public required List<ExternalLinkInfo> SocialLinks { get; init; }
-	public required List<ServiceInfo> Services { get; init; }
-	public required List<ExternalLinkInfo> ContactLinks { get; init; }
-	public required List<ProjectInfo> Projects { get; init; }
-	public required AboutMeInfo AboutMeInfo { get; init; }
-	public required List<InfoEventBase> ExperienceEvents { get; init; }
-	public required List<InfoEventBase> EducationEvents { get; init; }
-	public required List<SkillInfo> Skills { get; init; }
-	public required List<StatInfo> Stats { get; init; }
-	public required string ResumeDocID { get; init; }
-	public required HomePageContentInfo HomePageContent { get; init; }
-	public required ResumeSectionIntro ResumeSectionIntro { get; init; }
+	[Required] public required BrandInfo Brand { get; init; }
+	[Required] public required string ProfileImageUrl { get; init; }
+	[Required] public required List<ExternalLinkInfo> SocialLinks { get; init; }
+	[Required] public required List<ServiceInfo> Services { get; init; }
+	[Required] public required List<ExternalLinkInfo> ContactLinks { get; init; }
+	[Required] public required List<ProjectInfo> Projects { get; init; }
+	[Required] public required AboutMeInfo AboutMeInfo { get; init; }
+	[Required] public required List<InfoEventBase> ExperienceEvents { get; init; }
+	[Required] public required List<InfoEventBase> EducationEvents { get; init; }
+	[Required] public required List<SkillInfo> Skills { get; init; }
+	[Required] public required List<StatInfo> Stats { get; init; }
+	[Required] public required string ResumeDocID { get; init; }
+	[Required] public required HomePageContentInfo HomePageContent { get; init; }
+	[Required] public required ResumeSectionIntro ResumeSectionIntro { get; init; }
 }

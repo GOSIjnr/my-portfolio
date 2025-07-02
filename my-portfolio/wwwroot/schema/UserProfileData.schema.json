@@ -1,0 +1,367 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "UserProfileData",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "Brand",
+    "ProfileImageUrl",
+    "SocialLinks",
+    "Services",
+    "ContactLinks",
+    "Projects",
+    "AboutMeInfo",
+    "ExperienceEvents",
+    "EducationEvents",
+    "Skills",
+    "Stats",
+    "ResumeDocID",
+    "HomePageContent",
+    "ResumeSectionIntro"
+  ],
+  "properties": {
+    "Brand": {
+      "$ref": "#/definitions/BrandInfo"
+    },
+    "ProfileImageUrl": {
+      "type": "string",
+      "minLength": 1
+    },
+    "SocialLinks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ExternalLinkInfo"
+      }
+    },
+    "Services": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ServiceInfo"
+      }
+    },
+    "ContactLinks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ExternalLinkInfo"
+      }
+    },
+    "Projects": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ProjectInfo"
+      }
+    },
+    "AboutMeInfo": {
+      "$ref": "#/definitions/AboutMeInfo"
+    },
+    "ExperienceEvents": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/InfoEventBase"
+      }
+    },
+    "EducationEvents": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/InfoEventBase"
+      }
+    },
+    "Skills": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/SkillInfo"
+      }
+    },
+    "Stats": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/StatInfo"
+      }
+    },
+    "ResumeDocID": {
+      "type": "string",
+      "minLength": 1
+    },
+    "HomePageContent": {
+      "$ref": "#/definitions/HomePageContentInfo"
+    },
+    "ResumeSectionIntro": {
+      "$ref": "#/definitions/ResumeSectionIntro"
+    }
+  },
+  "definitions": {
+    "BrandInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "BrandDisplayName"
+      ],
+      "properties": {
+        "BrandDisplayName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "BrandHighlightedDisplayName": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "BrandRawTargetUrl": {
+          "type": [
+            "null",
+            "string"
+          ]
+        }
+      }
+    },
+    "ExternalLinkInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "LinkUrl",
+        "ExternalLinkType"
+      ],
+      "properties": {
+        "IconUrl": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "Title": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "Detail": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "LinkUrl": {
+          "type": "string",
+          "minLength": 1
+        },
+        "ExternalLinkType": {
+          "$ref": "#/definitions/ExternalLinkType"
+        }
+      }
+    },
+    "ExternalLinkType": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Email",
+        "Phone",
+        "Link",
+        "Text"
+      ],
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "ServiceInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Name",
+        "Description"
+      ],
+      "properties": {
+        "Name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "Description": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "ProjectInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Title",
+        "Description"
+      ],
+      "properties": {
+        "Title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "Description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "Technologies": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "ImageUrl": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "LiveLink": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/ExternalLinkInfo"
+            }
+          ]
+        },
+        "OtherLinks": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/ExternalLinkInfo"
+          }
+        }
+      }
+    },
+    "AboutMeInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Introduction",
+        "PersonalDetails"
+      ],
+      "properties": {
+        "Introduction": {
+          "type": "string",
+          "minLength": 1
+        },
+        "PersonalDetails": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "InfoEventBase": {
+      "type": "object",
+      "x-abstract": true,
+      "additionalProperties": false,
+      "properties": {
+        "Type": {
+          "type": [
+            "null",
+            "string"
+          ]
+        }
+      }
+    },
+    "SkillInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Name",
+        "IconUrl"
+      ],
+      "properties": {
+        "Name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "IconUrl": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "StatInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Number",
+        "Description"
+      ],
+      "properties": {
+        "Number": {
+          "type": "number",
+          "format": "double"
+        },
+        "NumberPrefix": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "Description": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "HomePageContentInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Role",
+        "Greeting",
+        "Description"
+      ],
+      "properties": {
+        "Role": {
+          "type": "string",
+          "minLength": 1
+        },
+        "Greeting": {
+          "type": "string",
+          "minLength": 1
+        },
+        "GreetingHighlighted": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "Description": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "ResumeSectionIntro": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Experience",
+        "Education",
+        "Skill"
+      ],
+      "properties": {
+        "Experience": {
+          "type": "string",
+          "minLength": 1
+        },
+        "Education": {
+          "type": "string",
+          "minLength": 1
+        },
+        "Skill": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

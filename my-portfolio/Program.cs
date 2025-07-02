@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MyPortfolio;
-using MyPortfolio.Core.Validation;
 using MyPortfolio.Models.Data;
 using MyPortfolio.Services.Loader;
 using MyPortfolio.Services.StateManagement;
@@ -33,9 +32,6 @@ builder.Services.AddSingleton<YamlLoaderService>();     // Loads and parses YAML
 // Build a temporary service provider to load configuration data at startup
 using var tempProvider = builder.Services.BuildServiceProvider();
 var loader = tempProvider.GetRequiredService<YamlLoaderService>();
-
-// Register all validators before loading and validating YAML data
-ValidatorRegistryInitializer.RegisterAll();
 
 // Load and validate user profile data from YAML
 var userProfile = await loader.LoadYamlAsync<UserProfileData>("data/default-profile.yaml")

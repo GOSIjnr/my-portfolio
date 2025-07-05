@@ -12,11 +12,11 @@ builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 // Configure logging level based on build configuration
-#if DEBUG
-builder.Logging.SetMinimumLevel(LogLevel.Debug);
-#else
-builder.Logging.SetMinimumLevel(LogLevel.Error);
-#endif
+// #if DEBUG
+// builder.Logging.SetMinimumLevel(LogLevel.Trace);
+// #else
+// builder.Logging.SetMinimumLevel(LogLevel.Error);
+// #endif
 
 // Register HttpClient for making HTTP requests (e.g., loading YAML files)
 builder.Services.AddScoped(sp => new HttpClient
@@ -25,12 +25,12 @@ builder.Services.AddScoped(sp => new HttpClient
 });
 
 // Register application services
-builder.Services.AddScoped<SelectedServiceState>();    // Manages selected service state
-builder.Services.AddScoped<ScrollLockService>();        // Handles scroll lock logic
-builder.Services.AddSingleton<YamlLoaderService>();     // Loads and parses YAML files
+builder.Services.AddScoped<SelectedServiceState>();
+builder.Services.AddScoped<ScrollLockService>();
+builder.Services.AddSingleton<YamlLoaderService>();
 
 // Build a temporary service provider to load configuration data at startup
-using var tempProvider = builder.Services.BuildServiceProvider();
+using ServiceProvider? tempProvider = builder.Services.BuildServiceProvider();
 var loader = tempProvider.GetRequiredService<YamlLoaderService>();
 
 // Load and validate user profile data from YAML

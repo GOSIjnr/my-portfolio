@@ -32,7 +32,7 @@ public class YamlLoaderService(HttpClient http, ILogger<YamlLoaderService> logge
 	{
 		try
 		{
-			_logger.LogDebug("📥 Loading YAML from: {Path}", yamlPath);
+			_logger.LogInformation("Loading YAML from: {Path}", yamlPath);
 			string yaml = await _http.GetStringAsync(yamlPath, cancellationToken);
 
 			if (string.IsNullOrWhiteSpace(yaml))
@@ -47,17 +47,17 @@ public class YamlLoaderService(HttpClient http, ILogger<YamlLoaderService> logge
 		}
 		catch (ValidationException vex)
 		{
-			_logger.LogError("❌ Validation error: {Message}", vex.Message);
+			_logger.LogError("Validation error: {Message}", vex.Message);
 			return default;
 		}
 		catch (YamlException yex)
 		{
-			_logger.LogError("❌ YAML deserialization error in '{Path}': {Message}", yamlPath, yex.Message);
+			_logger.LogError("YAML deserialization error in '{Path}': {Message}", yamlPath, yex.Message);
 			return default;
 		}
 		catch (Exception ex)
 		{
-			_logger.LogError("❌ General error loading YAML '{Path}': {Message}", yamlPath, ex.Message);
+			_logger.LogError("General error loading YAML '{Path}': {Message}", yamlPath, ex.Message);
 			return default;
 		}
 	}

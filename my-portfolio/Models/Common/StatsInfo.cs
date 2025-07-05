@@ -6,5 +6,6 @@ public class StatInfo
 {
 	[Required] public required double Number { get; init; }
 	public string? NumberPrefix { get; init; }
-	[Required] public required string Description { get; init; }
+	[Required] public required string LabelLine1 { get; init; }
+	public string? LabelLine2 { get; init; }
 }

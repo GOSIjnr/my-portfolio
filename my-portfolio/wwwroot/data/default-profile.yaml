@@ -1,7 +1,7 @@
 brand:
   brandDisplayName: "John"
   brandHighlightedDisplayName: "Doe."
-  brandRawTargetUrl: ""
+  brandRawTargetUrl: "/"
 
 profileImageUrl: "/images/no-image.svg"
 
@@ -45,7 +45,7 @@ projects:
       - "HTML"
       - "CSS"
       - "JavaScript"
-    imageUrl: "https://example.com/images/portfolio.png"
+    imageUrl: "images/no-image.svg"
     liveLink:
       iconUrl: "https://example.com/icons/external.svg"
       title: "Live Demo"
@@ -101,19 +101,23 @@ skills:
 stats:
   - number: 15
     numberPrefix: "+"
-    description: "Projects<br>Completed"
+    labelLine1: "Projects"
+    labelLine2: "Completed"
 
   - number: 4
     numberPrefix: null
-    description: "Years of<br>Experience"
+    labelLine1: "Years of"
+    labelLine2: "Experience"
 
   - number: 40
     numberPrefix: "+"
-    description: "Satisfied<br>Clients"
+    labelLine1: "Satisfied"
+    labelLine2: "Clients"
 
   - number: 10
     numberPrefix: null
-    description: "Skills<br>Mastered"
+    labelLine1: "Skills"
+    labelLine2: "Mastered"
 
 resumeDocID: "resume-johndoe-sample"
 

@@ -21,7 +21,7 @@ public class UserProfileData : IUserProfileData
 	[Required] public required List<InfoEventBase> ExperienceEvents { get; init; }
 	[Required] public required List<InfoEventBase> EducationEvents { get; init; }
 	[Required] public required List<SkillInfo> Skills { get; init; }
-	[Required] public required List<StatInfo> Stats { get; init; }
+	[Required, MinLength(1), MaxLength(4)] public required List<StatInfo> Stats { get; init; }
 	[Required] public required string ResumeDocID { get; init; }
 	[Required] public required HomePageContentInfo HomePageContent { get; init; }
 	[Required] public required ResumeSectionIntro ResumeSectionIntro { get; init; }

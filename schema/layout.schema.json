@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "AppLayoutData",
   "type": "object",
   "additionalProperties": false,
@@ -20,7 +20,7 @@
       "items": {
         "$ref": "#/definitions/NavigationLinkInfo"
       },
-      "description": "Top navigation links for the site (1–5 items)."
+      "description": "Top navigation links for the site (1-5 items)."
     },
     "contactMeLink": {
       "$ref": "#/definitions/NavigationLinkInfo",
@@ -47,7 +47,7 @@
       "items": {
         "$ref": "#/definitions/TabButtonInfo"
       },
-      "description": "Tabs for switching between resume sections (1–4 items)."
+      "description": "Tabs for switching between resume sections (1-4 items)."
     }
   },
   "definitions": {
@@ -68,7 +68,7 @@
         },
         "rawTargetUrl": {
           "type": "string",
-          "minLength": 1,
+          "format": "uri",
           "description": "The URL or anchor target this link points to."
         },
         "cssClassType": {
@@ -81,28 +81,19 @@
     },
     "NavigationItemCssType": {
       "type": "integer",
-      "description": "Style class for navigation item appearance.",
+      "description": "Style class for navigation item appearance.\n  0 = Normal\n  1 = Rounded\n  2 = RoundedInverted",
       "enum": [
         0,
         1,
         2
-      ],
-      "x-enumNames": [
-        "Normal",
-        "Rounded",
-        "RoundedInverted"
       ]
     },
     "NavigationItemCssActiveType": {
       "type": "integer",
-      "description": "Style class applied when the nav item is active.",
+      "description": "Style class applied when the nav item is active.\n  0 = Normal\n  1 = UnderLine",
       "enum": [
         0,
         1
-      ],
-      "x-enumNames": [
-        "Normal",
-        "UnderLine"
       ]
     },
     "ContactFormInfo": {

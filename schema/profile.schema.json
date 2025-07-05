@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "UserProfileData",
   "description": "Schema representing the full profile of a user, including branding, links, biography, projects, experience, education, and resume info.",
   "type": "object",
@@ -28,6 +28,7 @@
     "profileImageUrl": {
       "type": "string",
       "minLength": 1,
+      "format": "uri",
       "description": "URL to the user's profile image."
     },
     "socialLinks": {
@@ -143,6 +144,7 @@
             "null",
             "string"
           ],
+          "format": "uri",
           "description": "URL to which the brand links (e.g., home)."
         }
       },
@@ -161,6 +163,7 @@
             "null",
             "string"
           ],
+          "format": "uri",
           "description": "Optional icon for the link."
         },
         "title": {
@@ -180,6 +183,7 @@
         "linkUrl": {
           "type": "string",
           "minLength": 1,
+          "format": "uri",
           "description": "Target URL or URI (mailto:, tel:, etc.)."
         },
         "externalLinkType": {
@@ -190,18 +194,12 @@
     },
     "ExternalLinkType": {
       "type": "integer",
-      "description": "The type of external link (e.g., email, phone).",
+      "description": "The type of external link.\n  0 = Email\n  1 = Phone\n  2 = Link\n  3 = Text",
       "enum": [
         0,
         1,
         2,
         3
-      ],
-      "x-enumNames": [
-        "Email",
-        "Phone",
-        "Link",
-        "Text"
       ]
     },
     "ServiceInfo": {
@@ -258,6 +256,7 @@
             "null",
             "string"
           ],
+          "format": "uri",
           "description": "Image representing the project."
         },
         "liveLink": {
@@ -288,8 +287,7 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "introduction",
-        "personalDetails"
+        "introduction"
       ],
       "properties": {
         "introduction": {
@@ -323,6 +321,7 @@
         "iconUrl": {
           "type": "string",
           "minLength": 1,
+          "format": "uri",
           "description": "URL to an icon representing the skill."
         }
       },
@@ -333,7 +332,7 @@
       "additionalProperties": false,
       "required": [
         "number",
-        "description"
+        "labelLine1"
       ],
       "properties": {
         "number": {
@@ -347,10 +346,15 @@
           ],
           "description": "Optional prefix for the number (e.g., '+')."
         },
-        "description": {
+        "labelLine1": {
           "type": "string",
           "minLength": 1,
-          "description": "Description of the statistic."
+          "description": "Description of the statistic. (Line1)"
+        },
+        "labelLine2": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Description of the statistic.(Line2)"
         }
       },
       "description": "Numerical metric or highlight with label."
@@ -421,14 +425,18 @@
       "enum": [
         0,
         1,
-        2
+        2,
+        3,
+        4
       ],
       "x-enumNames": [
-        "FullDate",
         "MonthYear",
-        "Year"
+        "YearMonth",
+        "DayMonthYear",
+        "IsoDate",
+        "FullDateTime"
       ],
-      "description": "Specifies how a date should be formatted visually."
+      "description": "Specifies how a date should be formatted visually.\n  0 = MonthYear\n  1 = YearMonth\n  2 = DayMonthYear\n  3 = IsoDate\n  4 = FullDateTime"
     },
     "DateEventInfo": {
       "type": "object",

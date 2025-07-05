@@ -9,11 +9,11 @@ namespace MyPortfolio.Models.Data;
 
 public class AppLayoutData : IAppLayoutData
 {
-	[Required] public required List<NavigationLinkInfo> NavigationLinks { get; init; }
+	[Required, MinLength(1), MaxLength(5)] public required List<NavigationLinkInfo> NavigationLinks { get; init; }
 	[Required] public required NavigationLinkInfo ContactMeLink { get; init; }
 	[Required] public required NavigationLinkInfo DownloadCVLink { get; init; }
 	[Required] public required NavigationLinkInfo ProjectsLink { get; init; }
 	[Required] public required ContactFormInfo ContactForm { get; init; }
 	[Required] public required ResumeHeaderInfo ResumeHeader { get; init; }
-	[Required] public required List<TabButtonInfo> ResumeTabs { get; init; }
+	[Required, MinLength(1), MaxLength(4)] public required List<TabButtonInfo> ResumeTabs { get; init; }
 }

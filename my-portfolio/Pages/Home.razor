@@ -35,7 +35,7 @@
 			if (stat is null) continue;
 
 			<div class="home__stat">
-				<span class="home__stat-number">@stat.Number</span> @((MarkupString)stat.Description)
+				<span class="home__stat-number">@(stat.Number + stat.NumberPrefix)</span> @((MarkupString)stat.Description)
 			</div>
 		}
 	</div>

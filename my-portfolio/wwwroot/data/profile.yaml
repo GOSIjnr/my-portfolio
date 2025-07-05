@@ -1,15 +1,15 @@
 brand:
-  name: "Victor"
+  brandDisplayName: "Victor"
   shortDescription: "."
   description: ""
 
 profileImageUrl: "https://github.com/GOSIjnr.png"
 
-socials:
+socialLinks:
   - iconUrl: "https://api.iconify.design/simple-icons/github.svg"
     platform: "Github"
     username: "GOSIjnr"
-    url: "https://github.com/GOSIjnr"
+    linkUrl: "https://github.com/GOSIjnr"
     type: "Link"
   - iconUrl: "https://api.iconify.design/simple-icons/discord.svg"
     platform: "Discord"
@@ -64,8 +64,9 @@ aboutMe:
     Language: "English"
     Hobbies: "Coding, gaming, and watching anime"
 
-experience:
-  - start: "2023-08-01"
+experienceEvents:
+  - type: "dateEvent"
+    start: "2023-08-01"
     end: "2023-10-01"
     title: "Network Operating Centre (Intern)"
     company: "InterConnect Clearing House Nigeria Limited"

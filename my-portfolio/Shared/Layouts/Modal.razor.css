@@ -26,14 +26,16 @@
 }
 
 .modal__container {
-	background: var(--color-1-light);
+	background: var(--color-3-lightest);
 	max-width: var(--modal-content-max-width);
 	width: 95%;
 	display: flex;
 	flex-direction: column;
+	padding: 2px;
 }
 
 .modal__header {
+	background: var(--color-1-light);
 	display: flex;
 	align-items: center;
 	justify-content: space-between;

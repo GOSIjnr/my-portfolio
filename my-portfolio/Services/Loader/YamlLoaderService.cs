@@ -1,5 +1,7 @@
+using System.ComponentModel.DataAnnotations;
 using MyPortfolio.Contracts.InfoCard;
 using MyPortfolio.Models.InfoCard;
+using YamlDotNet.Core;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
@@ -9,7 +11,8 @@ public class YamlLoaderService(HttpClient http, ILogger<YamlLoaderService> logge
 {
 	private readonly HttpClient _http = http;
 	private readonly ILogger<YamlLoaderService> _logger = logger;
-	private readonly IDeserializer _deserializer = new DeserializerBuilder()
+
+	private static readonly IDeserializer _validatedDeserializer = new DeserializerBuilder()
 		.WithNamingConvention(CamelCaseNamingConvention.Instance)
 		.WithTypeDiscriminatingNodeDeserializer(options =>
 		{
@@ -25,32 +28,49 @@ public class YamlLoaderService(HttpClient http, ILogger<YamlLoaderService> logge
 		.IgnoreUnmatchedProperties()
 		.Build();
 
-	public async Task<T?> LoadYamlAsync<T>(string path)
+	public async Task<T?> LoadYamlAsync<T>(string yamlPath, CancellationToken cancellationToken = default)
 	{
 		try
 		{
-			_logger.LogDebug("Loading YAML from: {Path}", path);
-			string yaml = await _http.GetStringAsync(path);
+			_logger.LogDebug("📥 Loading YAML from: {Path}", yamlPath);
+			string yaml = await _http.GetStringAsync(yamlPath, cancellationToken);
 
 			if (string.IsNullOrWhiteSpace(yaml))
-			{
-				throw new InvalidDataException("YAML file content is null or empty.");
-			}
+				throw new InvalidDataException("YAML content is null or empty.");
 
-			var model = _deserializer.Deserialize<T>(yaml) ?? throw new InvalidDataException("Deserialized YAML returned null.");
+			T model = _validatedDeserializer.Deserialize<T>(yaml)
+				?? throw new InvalidDataException("Deserialization returned null.");
+
+			ValidateModel(model);
 
 			return model;
 		}
-		catch (YamlDotNet.Core.YamlException yamlEx)
+		catch (ValidationException vex)
 		{
-			_logger.LogError("YAML Parsing Error in '{path}': {Message}", [path, yamlEx.Message]);
-			_logger.LogError("Details: {Message}", yamlEx.InnerException?.Message);
+			_logger.LogError("❌ Validation error: {Message}", vex.Message);
+			return default;
+		}
+		catch (YamlException yex)
+		{
+			_logger.LogError("❌ YAML deserialization error in '{Path}': {Message}", yamlPath, yex.Message);
 			return default;
 		}
 		catch (Exception ex)
 		{
-			_logger.LogError("Exception loading YAML from '{path}': {ex.Message}", [path, ex.Message]);
+			_logger.LogError("❌ General error loading YAML '{Path}': {Message}", yamlPath, ex.Message);
 			return default;
+		}
+	}
+
+	private static void ValidateModel<T>(T model)
+	{
+		var validationContext = new ValidationContext(model!);
+		var validationResults = new List<ValidationResult>();
+
+		if (!Validator.TryValidateObject(model!, validationContext, validationResults, validateAllProperties: true))
+		{
+			var errorMessages = string.Join("; ", validationResults.Select(r => r.ErrorMessage));
+			throw new ValidationException($"Validation failed: {errorMessages}");
 		}
 	}
 }

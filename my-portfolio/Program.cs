@@ -35,11 +35,10 @@ var loader = tempProvider.GetRequiredService<YamlLoaderService>();
 
 // Load and validate user profile data from YAML
 var userProfile = await loader.LoadYamlAsync<UserProfileData>("data/default-profile.yaml")
-	?? throw new InvalidOperationException("Failed to load or validate 'default-profile.yaml'.");
+	?? throw new InvalidOperationException("Failed to load or validate profile data.");
 
-// Load and validate layout configuration from YAML
 var layout = await loader.LoadYamlAsync<AppLayoutData>("data/layout.yaml")
-	?? throw new InvalidOperationException("Failed to load or validate 'layout.yaml'.");
+	?? throw new InvalidOperationException("Failed to load or validate layout data.");
 
 // Register strongly-typed configuration as a singleton for DI
 builder.Services.AddSingleton(new PortfolioData

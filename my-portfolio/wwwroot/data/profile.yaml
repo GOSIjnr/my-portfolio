@@ -1,62 +1,103 @@
 brand:
-  brandDisplayName: "Victor"
-  shortDescription: "."
-  description: ""
+  brandDisplayName: "Vic"
+  brandHighlightedDisplayName: "tor."
+  brandRawTargetUrl: "/"
 
 profileImageUrl: "https://github.com/GOSIjnr.png"
 
 socialLinks:
   - iconUrl: "https://api.iconify.design/simple-icons/github.svg"
-    platform: "Github"
-    username: "GOSIjnr"
+    title: "Github"
+    detail: "GOSIjnr"
     linkUrl: "https://github.com/GOSIjnr"
-    type: "Link"
-  - iconUrl: "https://api.iconify.design/simple-icons/discord.svg"
-    platform: "Discord"
-    username: "GOSIjnr"
-    url: "https://discord.com/users/GOSIjnr"
-    type: "Link"
-  - iconUrl: "https://api.iconify.design/simple-icons/x.svg"
-    platform: "X"
-    username: "@GOSIjnr"
-    url: "https://twitter.com/GOSIjnr"
-    type: "Link"
-  - iconUrl: "https://api.iconify.design/cib/linkedin.svg"
-    platform: "LinkedIn"
-    username: "Victor Awugosi"
-    url: "https://www.linkedin.com/in/victor-awugosi/"
-    type: "Link"
+    externalLinkType: 2
 
-contact:
-  - iconUrl: "https://api.iconify.design/solar/letter-bold.svg"
-    label: "Email"
-    displayText: "gosijnr7@yahoo.com"
-    url: "gosijnr7@yahoo.com"
-    type: "Email"
-  - iconUrl: "https://api.iconify.design/solar/letter-bold.svg"
-    label: "Email (secondary)"
-    displayText: "gosijnr7@gmail.com"
-    url: "gosijnr7@gmail.com"
-    type: "Email"
+  - iconUrl: "https://api.iconify.design/simple-icons/discord.svg"
+    title: "Discord"
+    detail: "GOSIjnr"
+    linkUrl: "https://discord.com/users/GOSIjnr"
+    externalLinkType: 2
+
+  - iconUrl: "https://api.iconify.design/simple-icons/x.svg"
+    title: "X"
+    detail: "@GOSIjnr"
+    linkUrl: "https://twitter.com/GOSIjnr"
+    externalLinkType: 2
+
+  - iconUrl: "https://api.iconify.design/cib/linkedin.svg"
+    title: "LinkedIn"
+    detail: "Victor Awugosi"
+    linkUrl: "https://www.linkedin.com/in/victor-awugosi/"
+    externalLinkType: 2
 
 services:
-  - title: "Full-Stack Web Development"
+  - name: "Full-Stack Web Development"
     description: "I build scalable, performant web applications from front-end interfaces to back-end infrastructure using modern frameworks and tools."
-  - title: "Game Development"
+  - name: "Game Development"
     description: "I design and develop engaging games using Godot, Unity and other engines, focusing on gameplay mechanics, UI, and cross-platform compatibility."
-  - title: "Data Analysis & Visualization"
+  - name: "Data Analysis & Visualization"
     description: "I analyze datasets to uncover insights, trends, and patterns, presenting them through clear visualizations and reports to support data-driven decisions."
-  - title: "Front-End Development"
+  - name: "Front-End Development"
     description: "I create responsive, accessible, and user-focused interfaces using HTML, CSS, JavaScript, and modern front-end frameworks like Blazor"
-  - title: "Back-End Development"
+  - name: "Back-End Development"
     description: "I develop secure, efficient APIs and server-side logic using technologies such as C# and databases like MySQL."
-  - title: "Graphic Design & Digital Art"
+  - name: "Graphic Design & Digital Art"
     description: "I create digital illustrations, brand assets, and visual content for web, games, and print."
 
-aboutMe:
-  bio: |
-    Hi, I'm Chinedu Victor Awugosi, a developer who enjoys building smooth, intuitive digital experiences and solving technical challenges. I work across the stack, explore new tech, and occasionally dive into game engines for fun.
-  details:
+contactLinks:
+  - iconUrl: "https://api.iconify.design/solar/letter-bold.svg"
+    title: "Email"
+    detail: "gosijnr7@yahoo.com"
+    linkUrl: "gosijnr7@yahoo.com"
+    externalLinkType: 0
+
+  - iconUrl: "https://api.iconify.design/solar/letter-bold.svg"
+    title: "Email (secondary)"
+    detail: "gosijnr7@gmail.com"
+    linkUrl: "gosijnr7@gmail.com"
+    externalLinkType: 0
+
+projects:
+  - title: Esut Brain Train App
+    description: "A mobile app with logic, math, memory, and vocabulary games to boost cognitive skills. Built as a final-year project at ESUT."
+    technologies:
+      - "Godot"
+      - "GDScript"
+    imageUrl: "images/esut-brain-trainer.png"
+    liveLink:
+      linkUrl: "https://github.com/GOSIjnr/esut-brain-trainer/releases"
+      externalLinkType: 2
+    otherLinks:
+      - linkUrl: "https://github.com/GOSIjnr/esut-brain-trainer"
+        externalLinkType: 2
+        title: Github
+
+  - title: "User Management API"
+    description: "A RESTful API for managing user data with CRUD operations, built using ASP.NET Core and clean architecture principles."
+    technologies:
+      - "C#"
+      - "ASP.NET Core"
+    imageUrl: "images/no-image.svg"
+    otherLinks:
+      - linkUrl: "https://github.com/GOSIjnr/user-management-api"
+        externalLinkType: 2
+        title: Github
+
+  - title: "Expense Tracker API"
+    description: "An ASP.NET Core API for tracking expenses, with support for categories, transactions, and spending reports."
+    technologies:
+      - "C#"
+      - "ASP.NET Core"
+      - "MySQL."
+    imageUrl: "images/no-image.svg"
+    otherLinks:
+      - linkUrl: "https://github.com/GOSIjnr/expense-tracker-api"
+        externalLinkType: 2
+        title: Github
+
+aboutMeInfo:
+  introduction: Hi, I'm Chinedu Victor Awugosi, a developer who enjoys building smooth, intuitive digital experiences and solving technical challenges. I work across the stack, explore new tech, and occasionally dive into game engines for fun.
+  personalDetails:
     Name: "Awugosi Victor"
     Experience: "2 years"
     Nationality: "Nigerian"
@@ -65,23 +106,34 @@ aboutMe:
     Hobbies: "Coding, gaming, and watching anime"
 
 experienceEvents:
-  - type: "dateEvent"
-    start: "2023-08-01"
-    end: "2023-10-01"
-    title: "Network Operating Centre (Intern)"
-    company: "InterConnect Clearing House Nigeria Limited"
+  - type: "dateRange"
+    startDate: "2023-08-01T00:00:00Z"
+    endDate: "2023-10-01T00:00:00Z"
+    description: "Network Operating Centre (Intern)"
+    note: "InterConnect Clearing House Nigeria Limited"
+    startDateFormat: 0
+    endDateFormat: 0
 
-education:
-  - start: "2019-12-10"
-    end: "2024-10-10"
-    title: "Bachelor of Engineering, Computer Engineering"
-    institution: "Enugu State University of Science and Technology"
-  - date: "2025-02-17"
-    title: "Microsoft Power BI Data Analyst"
-    institution: "Microsoft Corporation"
-  - date: "2025-04-25"
-    title: "UI / UX Design"
-    institution: "California Institute of the Art"
+educationEvents:
+  - type: "dateRange"
+    startDate: "2019-12-10T00:00:00Z"
+    endDate: "2024-10-10T00:00:00Z"
+    description: "Bachelor of Engineering, Computer Engineering"
+    note: "Enugu State University of Science and Technology"
+    startDateFormat: 0
+    endDateFormat: 0
+
+  - type: "date"
+    date: "2025-02-17T00:00:00Z"
+    description: "Microsoft Power BI Data Analyst"
+    note: "Microsoft Corporation"
+    dateFormat: 0
+
+  - type: "date"
+    date: "2025-04-25T00:00:00Z"
+    description: "UI / UX Design"
+    note: "California Institute of the Art"
+    dateFormat: 0
 
 skills:
   - name: "Blazor"
@@ -113,20 +165,34 @@ skills:
   - name: "Figma"
     iconUrl: "https://api.iconify.design/solar/figma-bold-duotone.svg"
 
-homeStats:
-  - value: "2"
-    label: "Years of <br>experience"
-  - value: "3"
-    label: "Projects <br>completed"
-  - value: "10+"
-    label: "Technologies <br>mastered"
-  - value: "60+"
-    label: "Code <br>commits"
+stats:
+  - number: 2
+    labelLine1: "Years of"
+    labelLine2: "Experience"
 
-resumeDocId: "1NdPAG_6jcNHaFta0fJK6lT5TlNLzEMgQ"
+  - number: 3
+    labelLine1: "Projects"
+    labelLine2: "completed"
+
+  - number: 10
+    numberPrefix: "+"
+    labelLine1: "Techologies"
+    labelLine2: "mastered"
+
+  - number: 60
+    numberPrefix: "+"
+    labelLine1: "Code"
+    labelLine2: "commits"
+
+resumeDocID: "1NdPAG_6jcNHaFta0fJK6lT5TlNLzEMgQ"
 
 homePageContent:
   role: "Full-Stack / Game Developer"
   greeting: "Hello I'm"
-  name: "Victor Awugosi"
-  tagline: "I turn caffeine into code, pixels into purpose, and bugs into... features (sometimes). Code builds it, curiosity drives it."
+  greetingHighlighted: "Victor Awugosi"
+  description: "I turn caffeine into code, pixels into purpose, and bugs into... features (sometimes). Code builds it, curiosity drives it."
+
+resumeSectionIntro:
+  experience: "My journey has been shaped by a variety of experiences—some planned, some unexpected—all of which have helped me grow into who I am today. Each role has left its mark, teaching me something new about myself and the world around me."
+  education: "Education has been the foundation of my growth, providing me with the tools to think critically, solve problems, and explore new ideas. Every step along the way has opened new doors, fueling my curiosity and shaping the way I approach the world."
+  skill: "The skills I've developed reflect both my passions and my commitment to continuous learning. Each one represents countless hours of curiosity, experimentation, and practice—tools that help me bring ideas to life and tackle challenges with confidence."

@@ -42,21 +42,19 @@
 </div>
 
 @code {
+    [Inject] private ImageLoaderService ImageLoader { get; set; } = null!;
+
     [Parameter, EditorRequired] public ProjectInfo ProjectInfo { get; set; }
     [Parameter] public int ProjectNo { get; set; }
     [Parameter] public int TotalProjects { get; set; }
-
     [Parameter] public EventCallback<int> ProjectNoChanged { get; set; }
 
-    [Inject] private IJSRuntime? JS { get; set; }
-
-    private string _projectImageId = $"project-card__image--{Guid.NewGuid():N}";
+    private readonly string _projectImageId = $"project-card__image--{Guid.NewGuid():N}";
     private string? _lastImageUrl;
-
     private string _title => ProjectInfo.Title;
     private string _description => ProjectInfo.Description;
     private List<string> _technologies => ProjectInfo.Technologies ?? new();
-    private string _imageUrl => ProjectInfo.ImageUrl;
+    private string _imageUrl => ProjectInfo.ImageUrl ?? string.Empty;
     private ExternalLinkInfo? _liveLink => ProjectInfo.LiveLink;
     private List<ExternalLinkInfo> _otherLinks => ProjectInfo.OtherLinks ?? new();
     private bool IsFirst => ProjectNo == 0;
@@ -64,11 +62,10 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (_imageUrl != _lastImageUrl && JS is not null)
+        if (_imageUrl != _lastImageUrl)
         {
             _lastImageUrl = _imageUrl;
-
-            await JS.InvokeVoidAsync("imageLoader.applyImgSrcWithFallback", new ImageLoaderOptions
+            await ImageLoader.ApplyImgSrcWithFallbackAsync(new ImageLoaderOptions
             {
                 ElementId = _projectImageId,
                 ImageUrl = _imageUrl,

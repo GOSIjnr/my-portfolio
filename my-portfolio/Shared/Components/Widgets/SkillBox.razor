@@ -3,21 +3,20 @@
 </div>
 
 @code {
-	[Parameter, EditorRequired] public SkillInfo SkillInfo { get; set; }
+	[Inject] private ImageLoaderService ImageLoader { get; set; } = null!;
 
-	[Inject] private IJSRuntime? JS { get; set; }
+	[Parameter, EditorRequired] public SkillInfo SkillInfo { get; set; }
 
 	private string _skillName => SkillInfo.Name;
 	private string _skillImageUrl => SkillInfo.IconUrl;
+	private const string _fallbackUrl = "images/web.svg";
+	private readonly string _elementId = $"skill_{Guid.NewGuid():N}";
 
-	private string _fallbackUrl = "images/web.svg";
-	private string _elementId = $"skill_{Guid.NewGuid():N}";
-
-	protected override void OnAfterRender(bool firstRender)
+	protected override async Task OnAfterRenderAsync(bool firstRender)
 	{
-		if (firstRender && JS is not null)
+		if (firstRender)
 		{
-			JS.InvokeVoidAsync("imageLoader.applyCssImageWithFallback", new ImageLoaderOptions
+			await ImageLoader.ApplyCssImageWithFallbackAsync(new ImageLoaderOptions
 			{
 				ElementId = _elementId,
 				CssProperty = "--skill-icon-image",

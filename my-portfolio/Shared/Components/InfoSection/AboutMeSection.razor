@@ -1,18 +1,22 @@
 <div class="about-me">
 	<h2 class="about-me__title">About Me</h2>
-	<p class="about-me__subtitle">@_aboutMeIntro</p>
+	<p class="about-me__subtitle">@_introduction</p>
 
 	<div class="about-me__items">
-		@foreach (var item in _aboutMeData)
+		@foreach (var (info, detail) in _personalDetails)
 		{
-			<p class="about-me__item">@item.Key: <span class="about-me__item-value">@item.Value</span></p>
+			if (string.IsNullOrWhiteSpace(info) || string.IsNullOrWhiteSpace(detail)) continue;
+
+			<p class="about-me__item">@info:
+				<span class="about-me__item-value">@detail</span>
+			</p>
 		}
 	</div>
 </div>
 
 @code {
-	[Inject] private PortfolioData? AppContent { get; set; }
+	[Inject] private PortfolioData AppContent { get; set; } = null!;
 
-	private string _aboutMeIntro => AppContent?.User?.AboutMeInfo.Introduction ?? string.Empty;
-	private Dictionary<string, string> _aboutMeData => AppContent?.User?.AboutMeInfo.PersonalDetails ?? [];
+	private string _introduction => AppContent.User.AboutMeInfo.Introduction;
+	private Dictionary<string, string> _personalDetails => AppContent.User.AboutMeInfo.PersonalDetails ?? [];
 }

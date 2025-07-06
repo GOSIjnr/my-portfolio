@@ -1,8 +1,3 @@
-@using MyPortfolio.Models.Common
-@using MyPortfolio.Models.Data
-@using MyPortfolio.Models.Navigation
-@using MyPortfolio.Services.StateManagement
-@inject ScrollLockService ScrollLockService
 @implements IAsyncDisposable
 
 <div class="side-bar">
@@ -28,7 +23,7 @@
 
             <div class="side-bar__contact-link">
                 <NavLinkItem NavigationLinkInfo="@_contactMeLink" ExternalLinkType="TargetUrlFormat.Plain"
-                    OnButtonItemClick="HandleContactMeClick" />
+                    OnNavItemClick="HandleContactMeClick" IsButton="true" />
             </div>
         </div>
     </div>
@@ -40,15 +35,16 @@
 </div>
 
 @code {
+    [Inject] private PortfolioData AppContent { get; set; } = null!;
+    [Inject] private ScrollLockService ScrollLockService { get; set; } = null!;
+
     [Parameter, EditorRequired] public bool IsOpened { get; set; }
     [Parameter] public EventCallback OnClose { get; set; }
     [Parameter] public EventCallback OnContactMeClick { get; set; }
 
-    [Inject] private PortfolioData? AppContent { get; set; }
-
-    private BrandInfo _brand => AppContent?.User?.Brand;
+    private BrandInfo _brand => AppContent.User.Brand;
     private List<NavigationLinkInfo> _navigationItems => AppContent?.Layout?.NavigationLinks ?? [];
-    private NavigationLinkInfo _contactMeLink => AppContent?.Layout?.ContactMeLink;
+    private NavigationLinkInfo _contactMeLink => AppContent.Layout.ContactMeLink;
 
     protected override async Task OnParametersSetAsync()
     {
@@ -60,10 +56,11 @@
 
     private async Task HandleContactMeClick()
     {
+        await CloseMenu();
+
         if (OnContactMeClick.HasDelegate)
             await OnContactMeClick.InvokeAsync();
 
-        await CloseMenu();
     }
 
     public async Task CloseMenu()

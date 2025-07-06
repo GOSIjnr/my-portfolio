@@ -1,8 +1,8 @@
 @using MyPortfolio.Adapters.InfoCard
-@using MyPortfolio.Contracts.InfoCard
+
 <div class="experience-section">
     <h2 class="experience-section__heading">My Experience</h2>
-    <p class="experience-section__description">@_description</p>
+    <p class="experience-section__description">@_introduction</p>
 
     <div class="experience-section__grid">
         @foreach (InfoCardViewModel? cardData in _adaptedExperienceCards)
@@ -21,14 +21,14 @@
 </Modal>
 
 @code {
-    [Inject] private PortfolioData? AppContent { get; set; }
+    [Inject] private PortfolioData AppContent { get; set; } = null!;
 
     private List<InfoCardViewModel> _adaptedExperienceCards = [];
     private InfoCardViewModel? selectedCard = null;
     private bool showModal = false;
 
-    private string _description => AppContent?.User.ResumeSectionIntro.Experience ?? string.Empty;
-    private List<InfoEventBase> _experienceCards => AppContent?.User?.ExperienceEvents ?? [];
+    private string _introduction => AppContent.User.ResumeSectionIntro.Experience;
+    private List<InfoEventBase> _experienceCards => AppContent.User.ExperienceEvents;
 
     protected override void OnParametersSet()
     {

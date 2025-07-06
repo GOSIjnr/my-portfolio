@@ -1,20 +1,19 @@
-@using MyPortfolio.Models.InfoCard
-<div class="info-card @(_isCardExpanded ? "info-card--expanded" : "")">
+<div class="info-card @(_isExpandedEffective ? "info-card--expanded" : string.Empty)">
 	<div class="info-card__left">
-		<p class="info-card__header @(_isCardExpanded ? "info-card__header--expanded" : "")">@_header</p>
+		<p class="info-card__header @_headerStyle">@_header</p>
 
 		<div class="info-card__body-holder">
-			<h3 class="info-card__body @(_isCardExpanded ? "info-card__body--expanded" : "")">@_body</h3>
+			<h3 class="info-card__body @_bodyStyle">@_body</h3>
 		</div>
 
-		<p class="info-card__footer @(_isCardExpanded ? "info-card__footer--expanded" : "")">@_footer</p>
+		<p class="info-card__footer @_footerStyle">@_footer</p>
 	</div>
 
 	@if (_isLongText && !ForceExpanded)
 	{
 		<div class="info-card__right">
 			<button class="info-card__read-more" @onclick="HandleReadMore">
-				@(_isCardExpanded ? "Show Less" : "Read More")
+				@(_isExpandedEffective ? "Show Less" : "Read More")
 			</button>
 		</div>
 	}
@@ -22,18 +21,22 @@
 
 @code {
 	[EditorRequired, Parameter] public InfoCardViewModel InfoCardData { get; set; }
-	[Parameter] public bool IsExpanded { get; set; } = false;
-	[Parameter] public bool ForceExpanded { get; set; } = false;
-
+	[Parameter] public bool IsExpanded { get; set; }
+	[Parameter] public bool ForceExpanded { get; set; }
 	[Parameter] public EventCallback OnReadMoreClicked { get; set; }
+
+	private bool _internalExpanded = false;
 
 	private string _header => InfoCardData.Header;
 	private string _body => InfoCardData.Body;
-	private string _footer => InfoCardData.Footer;
+	private string _footer => InfoCardData.Footer ?? string.Empty;
 
-	private bool _internalExpanded;
 	private bool _isLongText => new[] { _header, _body, _footer }.Any(s => s?.Length > 35);
-	private bool _isCardExpanded => ForceExpanded || _internalExpanded || IsExpanded;
+	private bool _isExpandedEffective => ForceExpanded || IsExpanded || _internalExpanded;
+
+	private string _headerStyle => _isExpandedEffective ? "info-card__header--expanded" : string.Empty;
+	private string _bodyStyle => _isExpandedEffective ? "info-card__body--expanded" : string.Empty;
+	private string _footerStyle => _isExpandedEffective ? " info-card__footer--expanded" : string.Empty;
 
 	private async Task HandleReadMore()
 	{

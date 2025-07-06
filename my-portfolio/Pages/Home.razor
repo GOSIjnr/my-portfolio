@@ -19,7 +19,7 @@
 			<div class="home__cta-wrapper">
 				<div class="home__cta">
 					<NavLinkItem ExternalLinkType="TargetUrlFormat.Plain" NavigationLinkInfo="@_downloadCV"
-						OnButtonItemClick="DownloadResume" />
+						OnNavItemClick="DownloadResume" IsButton="true" />
 				</div>
 
 				<div class="home__cta">
@@ -43,26 +43,22 @@
 </div>
 
 @code {
-	[Inject] private IJSRuntime? Js { get; set; }
-	[Inject] private PortfolioData? AppContent { get; set; }
+	[Inject] private PortfolioData AppContent { get; set; } = null!;
+	[Inject] private FileAndTabService FileAndTab { get; set; } = null!;
 
-	private HomePageContentInfo _homePageContentInfo => AppContent?.User?.HomePageContent;
-
+	private HomePageContentInfo _homePageContentInfo => AppContent.User.HomePageContent;
 	private string _role => _homePageContentInfo.Role;
 	private string _greeting => _homePageContentInfo.Greeting;
-	private string _greetingHighlighted => _homePageContentInfo.GreetingHighlighted;
+	private string _greetingHighlighted => _homePageContentInfo.GreetingHighlighted ?? string.Empty;
 	private string _description => _homePageContentInfo.Description;
-	private List<StatInfo> _homeStatsItems => AppContent?.User?.Stats ?? [];
-	private string _resumeDocID => AppContent?.User?.ResumeDocID ?? string.Empty;
-	private string _profileImgUrl => AppContent?.User?.ProfileImageUrl ?? string.Empty;
+	private List<StatInfo> _homeStatsItems => AppContent.User.Stats;
+	private string _resumeDocID => AppContent.User.ResumeDocID;
+	private string _profileImgUrl => AppContent.User.ProfileImageUrl;
 	private NavigationLinkInfo _downloadCV => AppContent.Layout.DownloadCVLink;
 	private NavigationLinkInfo _checkMyWorks => AppContent.Layout.ProjectsLink;
 
 	private async Task DownloadResume()
 	{
-		if (Js is null) return;
-
-		string url = $"https://drive.google.com/uc?export=download&id={_resumeDocID}";
-		await Js.InvokeVoidAsync("downloadFile", url);
+		await FileAndTab.DownloadFileFromGoogleDriveAsync(_resumeDocID);
 	}
 }

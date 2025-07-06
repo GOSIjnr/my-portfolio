@@ -1,9 +1,4 @@
-﻿@using MyPortfolio.Models.Common
-@using MyPortfolio.Models.ContactForm
-@using MyPortfolio.Models.Data
-@using MyPortfolio.Models.Navigation
-@using MyPortfolio.Services.StateManagement
-@implements IDisposable
+﻿@implements IDisposable
 
 <nav class="nav-bar">
     <div class="nav-bar__container">
@@ -18,7 +13,7 @@
 
             <div class="nav-bar__contact-link">
                 <NavLinkItem NavigationLinkInfo="@_contactMeLink" ExternalLinkType="TargetUrlFormat.Plain"
-                    OnButtonItemClick="ShowContactModal" />
+                    OnNavItemClick="ShowContactModal" IsButton="true" />
             </div>
         </div>
 
@@ -35,19 +30,18 @@
 </nav>
 
 @code {
-    [Inject] private IJSRuntime? Js { get; set; }
-    [Inject] private PortfolioData? AppContent { get; set; }
-    [Inject] private SelectedServiceState? SelectedServiceState { get; set; }
-    [Inject] private ScrollLockService? ScrollLockService { get; set; }
+    [Inject] private IJSRuntime Js { get; set; } = null!;
+    [Inject] private PortfolioData AppContent { get; set; } = null!;
+    [Inject] private SelectedServiceState SelectedServiceState { get; set; } = null!;
+    [Inject] private ScrollLockService ScrollLockService { get; set; } = null!;
 
     private bool _isSidebarOpen = false;
     private bool _isContactModalVisible = false;
 
-    @* private BrandInfo _brand => AppContent?.User.Brand ?? BrandInfo.Default; *@
-    private BrandInfo _brand => AppContent?.User.Brand;
-    private NavigationLinkInfo _contactMeLink => AppContent?.Layout?.ContactMeLink;
-    private List<NavigationLinkInfo> _navigationLinks => AppContent?.Layout?.NavigationLinks ?? [];
-    private ContactFormInfo _contactFormLayoutData => AppContent?.Layout?.ContactForm;
+    private BrandInfo _brand => AppContent.User.Brand;
+    private NavigationLinkInfo _contactMeLink => AppContent.Layout.ContactMeLink;
+    private List<NavigationLinkInfo> _navigationLinks => AppContent.Layout.NavigationLinks;
+    private ContactFormInfo _contactFormLayoutData => AppContent.Layout.ContactForm;
 
     private ServiceInfo? _selectedService;
     private List<string> _serviceNames = [];

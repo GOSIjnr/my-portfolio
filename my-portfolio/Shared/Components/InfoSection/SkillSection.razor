@@ -1,6 +1,6 @@
 <div class="skill-section">
 	<h2 class="skill-section__heading">My Skills</h2>
-	<p class="skill-section__description">@_description</p>
+	<p class="skill-section__description">@_introduction</p>
 
 	<div class="skill-section__grid">
 		@foreach (SkillInfo? skill in _skills)
@@ -12,8 +12,8 @@
 </div>
 
 @code {
-	[Inject] private PortfolioData? AppContent { get; set; }
+	[Inject] private PortfolioData AppContent { get; set; } = null!;
 
-	private string _description => AppContent?.User.ResumeSectionIntro.Skill ?? string.Empty;
-	private List<SkillInfo> _skills => AppContent?.User?.Skills ?? [];
+	private string _introduction => AppContent.User.ResumeSectionIntro.Skill;
+	private List<SkillInfo> _skills => AppContent.User.Skills;
 }

@@ -1,11 +1,6 @@
-@using MyPortfolio.Core.Enums
-@using MyPortfolio.Core.Utilities
-@using MyPortfolio.Models.Data
-@using MyPortfolio.Models.Navigation
-
-@if (OnButtonItemClick.HasDelegate)
+@if (IsButton)
 {
-	<div class="nav-item" @onclick="HandleButtonItemClickAsync">
+	<div class="nav-item" @onclick="HandleNavItemClickAsync">
 		<button class="nav-item__link nav-item__link--button">
 			<span class="nav-item__label @_cssModifier">@_displayText</span>
 		</button>
@@ -24,7 +19,7 @@ else
 	[Parameter, EditorRequired] public NavigationLinkInfo NavigationLinkInfo { get; set; }
 	[Parameter] public TargetUrlFormat ExternalLinkType { get; set; } = TargetUrlFormat.HashPrefix;
 	[Parameter] public EventCallback OnNavItemClick { get; set; }
-	[Parameter] public EventCallback OnButtonItemClick { get; set; }
+	[Parameter] public bool IsButton { get; set; } = false;
 
 	private string _displayText => NavigationLinkInfo.DisplayText;
 	private string _rawTargetUrl => NavigationLinkInfo.RawTargetUrl;
@@ -50,14 +45,6 @@ else
 		if (OnNavItemClick.HasDelegate)
 		{
 			await OnNavItemClick.InvokeAsync();
-		}
-	}
-
-	private async Task HandleButtonItemClickAsync(MouseEventArgs mouseEventArgs)
-	{
-		if (OnButtonItemClick.HasDelegate)
-		{
-			await OnButtonItemClick.InvokeAsync();
 		}
 	}
 }

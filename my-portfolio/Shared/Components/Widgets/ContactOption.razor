@@ -27,23 +27,21 @@
 </div>
 
 @code {
+	[Inject] private ImageLoaderService ImageLoader { get; set; } = null!;
+
 	[Parameter, EditorRequired] public ExternalLinkInfo ContactInfo { get; set; }
 
-	[Inject] private IJSRuntime? JS { get; set; }
-
-	private string _contactIconId = $"contact-option__icon--{Guid.NewGuid():N}";
-
-	private string _contactIconUrl => ContactInfo.IconUrl;
-	private string _contactTitle => ContactInfo.Title;
-	private string _contactDetail => ContactInfo.Detail;
-
+	private readonly string _contactIconId = $"contact-option__icon--{Guid.NewGuid():N}";
 	private const string FallbackIcon = "images/web.svg";
+	private string _contactIconUrl => ContactInfo.IconUrl ?? string.Empty;
+	private string _contactTitle => ContactInfo.Title ?? string.Empty;
+	private string _contactDetail => ContactInfo.Detail ?? string.Empty;
 
 	protected override async Task OnAfterRenderAsync(bool firstRender)
 	{
-		if (firstRender && JS is not null)
+		if (firstRender)
 		{
-			await JS.InvokeVoidAsync("imageLoader.applyCssImageWithFallback", new ImageLoaderOptions
+			await ImageLoader.ApplyCssImageWithFallbackAsync(new ImageLoaderOptions
 			{
 				ElementId = _contactIconId,
 				CssProperty = "--contact-icon-image",

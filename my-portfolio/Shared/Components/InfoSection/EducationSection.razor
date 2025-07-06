@@ -1,9 +1,4 @@
 @using MyPortfolio.Adapters.InfoCard
-@using MyPortfolio.Contracts.InfoCard
-@using MyPortfolio.Models.Data
-@using MyPortfolio.Models.InfoCard
-@using MyPortfolio.Shared.Layouts
-@using MyPortfolio.Shared.Components.Cards
 
 <div class="education-section">
     <h2 class="education-section__heading">My Education</h2>
@@ -26,14 +21,14 @@
 </Modal>
 
 @code {
-    [Inject] private PortfolioData? AppContent { get; set; }
+    [Inject] private PortfolioData AppContent { get; set; } = null!;
 
     private List<InfoCardViewModel> _adaptedEducationCards = [];
     private InfoCardViewModel? selectedCard = null;
     private bool showModal = false;
 
-    private string _description => AppContent?.User.ResumeSectionIntro.Education ?? string.Empty;
-    private List<InfoEventBase> _educationCards => AppContent?.User?.EducationEvents ?? [];
+    private string _description => AppContent.User.ResumeSectionIntro.Education;
+    private List<InfoEventBase> _educationCards => AppContent.User.EducationEvents;
 
     protected override void OnParametersSet()
     {

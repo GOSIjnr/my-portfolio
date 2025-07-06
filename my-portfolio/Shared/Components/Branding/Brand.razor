@@ -7,19 +7,13 @@
 
 @code {
 	[Parameter, EditorRequired] public BrandInfo BrandInfo { get; set; }
-
 	[Parameter] public EventCallback OnBrandClick { get; set; }
 
 	private string _displayText => BrandInfo.BrandDisplayName;
-	private string _highlightedDisplayText => BrandInfo.BrandHighlightedDisplayName;
-	private string _rawTargetUrl => BrandInfo.BrandRawTargetUrl;
+	private string _highlightedDisplayText => BrandInfo.BrandHighlightedDisplayName ?? string.Empty;
+	private string _rawTargetUrl => BrandInfo.BrandRawTargetUrl ?? string.Empty;
 	private string _targetUrl => NavigationUrlFormatter.GetFormattedSanitizedTargetUrl(_rawTargetUrl,
 	TargetUrlFormat.Plain);
-
-	protected override void OnParametersSet()
-	{
-		@* BrandInfo ??= BrandInfo.Default; *@
-	}
 
 	private async Task HandleBrandClickAsync(MouseEventArgs mouseEventArgs)
 	{

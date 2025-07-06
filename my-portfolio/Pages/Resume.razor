@@ -25,12 +25,11 @@
 </div>
 
 @code {
-    [Inject] private PortfolioData? AppContent { get; set; }
+    [Inject] private PortfolioData AppContent { get; set; } = null!;
 
-    private ResumeHeaderInfo _resumeHeader => AppContent?.Layout?.ResumeHeader;
-    private List<TabButtonInfo> _resumeSections => AppContent?.Layout?.ResumeTabs.Where(x => x is not
+    private ResumeHeaderInfo _resumeHeader => AppContent.Layout.ResumeHeader;
+    private List<TabButtonInfo> _resumeSections => AppContent.Layout.ResumeTabs.Where(x => x is not
     null).ToList() ?? [];
-
     private string _currentSection = "AboutMe";
 
     private void SelectSection(string section)

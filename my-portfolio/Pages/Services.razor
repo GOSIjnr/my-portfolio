@@ -4,14 +4,14 @@
 	<div class="services__grid">
 		@for (int i = 0; i < _serviceCards.Count; i++)
 		{
-			@if (_serviceCards[i] is null) continue;
+			if (_serviceCards[i] is null) continue;
 			<ServiceCard ServiceNo="@(i + 1)" Service="@_serviceCards[i]" />
 		}
 	</div>
 </div>
 
 @code {
-	[Inject] private PortfolioData? AppContent { get; set; }
+	[Inject] private PortfolioData AppContent { get; set; } = null!;
 
-	private List<ServiceInfo> _serviceCards => AppContent?.User?.Services ?? [];
+	private List<ServiceInfo> _serviceCards => AppContent.User.Services;
 }

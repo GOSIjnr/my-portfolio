@@ -16,10 +16,10 @@
 </div>
 
 @code {
-	[Inject] private PortfolioData? AppContent { get; set; }
-	[Inject] private SelectedServiceState? SelectedServiceState { get; set; }
+	[Inject] private PortfolioData AppContent { get; set; } = null!;
+	[Inject] private SelectedServiceState SelectedServiceState { get; set; } = null!;
 
-	private ContactFormInfo _contactFormLayoutData => AppContent?.Layout?.ContactForm;
+	private ContactFormInfo _contactFormLayoutData => AppContent.Layout.ContactForm;
 
 	private ServiceInfo? _selectedService;
 	private List<string> _serviceNames = [];
@@ -34,13 +34,11 @@
 
 	private void ConsumeSelectedService()
 	{
-		_selectedService = SelectedServiceState?.ConsumeSelectedService();
+		_selectedService = SelectedServiceState.ConsumeSelectedService();
 	}
 
 	private void PopulateServicesOffered()
 	{
-		if (AppContent?.User is null) return;
-
 		foreach (ServiceInfo serviceInfo in AppContent.User.Services)
 		{
 			_serviceNames.Add(serviceInfo.Name);
@@ -51,8 +49,6 @@
 
 	private void PopulateContactInfos()
 	{
-		if (AppContent?.User is null) return;
-
 		_contactInfos.AddRange(AppContent.User.ContactLinks);
 		_contactInfos.AddRange(AppContent.User.SocialLinks);
 	}

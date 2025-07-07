@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MyPortfolio;
+using MyPortfolio.Contracts.ContactForm;
 using MyPortfolio.Models.Data;
 using MyPortfolio.Services.Browser;
+using MyPortfolio.Services.ContactForm;
 using MyPortfolio.Services.Loader;
 using MyPortfolio.Services.StateManagement;
 
@@ -24,6 +26,7 @@ builder.Services.AddScoped<ScrollLockService>();
 builder.Services.AddScoped<ImageLoaderService>();
 builder.Services.AddScoped<FileAndTabService>();
 builder.Services.AddSingleton<YamlLoaderService>();
+builder.Services.AddScoped<IContactFormDataService, ContactFormDataService>();
 
 // Build a temporary service provider to load configuration data at startup
 using ServiceProvider? tempProvider = builder.Services.BuildServiceProvider();

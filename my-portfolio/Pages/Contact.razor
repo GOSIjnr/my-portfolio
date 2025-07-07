@@ -17,7 +17,7 @@
 
 @code {
 	[Inject] private PortfolioData AppContent { get; set; } = null!;
-	[Inject] private SelectedServiceState SelectedServiceState { get; set; } = null!;
+	[Inject] private IContactFormDataService ContactFormData { get; set; } = null!;
 
 	private ContactFormInfo _contactFormLayoutData => AppContent.Layout.ContactForm;
 
@@ -27,24 +27,9 @@
 
 	protected override void OnInitialized()
 	{
-		ConsumeSelectedService();
-		PopulateServicesOffered();
+		_selectedService = ContactFormData.GetSelectedService();
+		_serviceNames.AddRange(ContactFormData.GetServiceNames());
 		PopulateContactInfos();
-	}
-
-	private void ConsumeSelectedService()
-	{
-		_selectedService = SelectedServiceState.ConsumeSelectedService();
-	}
-
-	private void PopulateServicesOffered()
-	{
-		foreach (ServiceInfo serviceInfo in AppContent.User.Services)
-		{
-			_serviceNames.Add(serviceInfo.Name);
-		}
-
-		_serviceNames.Add("Others");
 	}
 
 	private void PopulateContactInfos()

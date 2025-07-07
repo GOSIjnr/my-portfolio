@@ -1,7 +1,5 @@
-@implements IAsyncDisposable
-
 <div class="side-bar">
-    <div class="side-bar__slider @(IsOpened ? "side-bar__slider--open" : "")">
+    <div class="side-bar__slider @(IsOpened ? "side-bar__slider--open" : string.Empty)">
         <button class="side-bar__close-btn side-bar__close-btn--mask" type="button" title="Close menu"
             @onclick="CloseMenu" />
 
@@ -36,7 +34,6 @@
 
 @code {
     [Inject] private PortfolioData AppContent { get; set; } = null!;
-    [Inject] private ScrollLockService ScrollLockService { get; set; } = null!;
 
     [Parameter, EditorRequired] public bool IsOpened { get; set; }
     [Parameter] public EventCallback OnClose { get; set; }
@@ -46,31 +43,21 @@
     private List<NavigationLinkInfo> _navigationItems => AppContent?.Layout?.NavigationLinks ?? [];
     private NavigationLinkInfo _contactMeLink => AppContent.Layout.ContactMeLink;
 
-    protected override async Task OnParametersSetAsync()
-    {
-        if (IsOpened)
-            await ScrollLockService.LockScrollAsync();
-        else
-            await ScrollLockService.UnlockScrollAsync();
-    }
-
     private async Task HandleContactMeClick()
     {
         await CloseMenu();
 
         if (OnContactMeClick.HasDelegate)
+        {
             await OnContactMeClick.InvokeAsync();
-
+        }
     }
 
-    public async Task CloseMenu()
+    private async Task CloseMenu()
     {
         if (OnClose.HasDelegate)
+        {
             await OnClose.InvokeAsync();
-    }
-
-    public async ValueTask DisposeAsync()
-    {
-        await ScrollLockService.ForceUnlockAsync();
+        }
     }
 }

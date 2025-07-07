@@ -32,23 +32,18 @@
 @code {
     [Inject] private IJSRuntime Js { get; set; } = null!;
     [Inject] private PortfolioData AppContent { get; set; } = null!;
-    [Inject] private SelectedServiceState SelectedServiceState { get; set; } = null!;
     [Inject] private ScrollLockService ScrollLockService { get; set; } = null!;
+    [Inject] private IContactFormDataService ContactFormData { get; set; } = null!;
 
     private bool _isSidebarOpen = false;
     private bool _isContactModalVisible = false;
-
     private BrandInfo _brand => AppContent.User.Brand;
     private NavigationLinkInfo _contactMeLink => AppContent.Layout.ContactMeLink;
     private List<NavigationLinkInfo> _navigationLinks => AppContent.Layout.NavigationLinks;
     private ContactFormInfo _contactFormLayoutData => AppContent.Layout.ContactForm;
-
     private ServiceInfo? _selectedService;
     private List<string> _serviceNames = [];
-
     private DotNetObjectReference<NavMenu>? _objectReference;
-
-    private bool _isOpeningContactModal = false;
 
     [JSInvokable]
     public void OnResize(int width)
@@ -60,61 +55,52 @@
         }
     }
 
-    private void ToggleSidebar() => _isSidebarOpen = !_isSidebarOpen;
-
-    private async Task ShowContactModal()
+    protected override void OnInitialized()
     {
-        if (_isOpeningContactModal) return;
-        _isOpeningContactModal = true;
-
-        ConsumeSelectedService();
-        PopulateServicesOffered();
-
-        if (_isSidebarOpen)
-        {
-            _isSidebarOpen = false;
-            await InvokeAsync(StateHasChanged);
-            await ScrollLockService!.UnlockScrollAsync(); // release sidebar scroll lock first
-        }
-
-        _isContactModalVisible = true;
-        await InvokeAsync(StateHasChanged);
-
-        _isOpeningContactModal = false;
-    }
-
-    private Task OnModalVisibilityChanged(bool value)
-    {
-        _isContactModalVisible = value;
-        return Task.CompletedTask;
+        _selectedService = ContactFormData.GetSelectedService();
+        _serviceNames.AddRange(ContactFormData.GetServiceNames());
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender && Js is not null)
+        if (firstRender)
         {
             _objectReference = DotNetObjectReference.Create(this);
             await Js.InvokeVoidAsync("resizeNotifier.registerResizeCallback", _objectReference);
         }
     }
 
-    private void ConsumeSelectedService()
+    private async Task ToggleSidebar()
     {
-        _selectedService = SelectedServiceState?.ConsumeSelectedService();
+        _isSidebarOpen = !_isSidebarOpen;
+
+        if (_isSidebarOpen)
+        {
+            await ScrollLockService.LockScrollAsync();
+        }
+        else
+        {
+            await ScrollLockService.UnlockScrollAsync();
+        }
     }
 
-    private void PopulateServicesOffered()
+    private async Task ShowContactModal()
     {
-        _serviceNames.Clear();
-
-        if (AppContent?.User is null) return;
-
-        foreach (ServiceInfo serviceInfo in AppContent.User.Services)
+        if (_isSidebarOpen)
         {
-            _serviceNames.Add(serviceInfo.Name);
+            _isSidebarOpen = false;
+            await InvokeAsync(StateHasChanged);
+            await ScrollLockService.UnlockScrollAsync();
         }
 
-        _serviceNames.Add("Others");
+        _isContactModalVisible = true;
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private Task OnModalVisibilityChanged(bool value)
+    {
+        _isContactModalVisible = value;
+        return Task.CompletedTask;
     }
 
     public void Dispose()

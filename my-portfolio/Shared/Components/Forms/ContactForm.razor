@@ -81,7 +81,7 @@
 @code {
 	[Parameter] public ContactFormInfo? ContactFormLayout { get; set; }
 	[Parameter] public List<string> ServicesNames { get; set; } = new();
-	[Parameter] public string SelectedService { get; set; } = "";
+	[Parameter] public string? SelectedService { get; set; }
 
 	private ContactFormModel _formModel = new();
 	private string serviceSearch = "";

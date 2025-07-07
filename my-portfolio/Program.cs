@@ -27,6 +27,7 @@ builder.Services.AddScoped<ImageLoaderService>();
 builder.Services.AddScoped<FileAndTabService>();
 builder.Services.AddSingleton<YamlLoaderService>();
 builder.Services.AddScoped<IContactFormDataService, ContactFormDataService>();
+builder.Services.AddScoped(typeof(ResizeEventListenerService<>));
 
 // Build a temporary service provider to load configuration data at startup
 using ServiceProvider? tempProvider = builder.Services.BuildServiceProvider();

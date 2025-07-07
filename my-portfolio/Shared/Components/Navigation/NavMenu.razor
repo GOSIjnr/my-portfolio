@@ -1,4 +1,4 @@
-﻿@implements IDisposable
+﻿@implements IAsyncDisposable
 
 <nav class="nav-bar">
     <div class="nav-bar__container">
@@ -30,10 +30,10 @@
 </nav>
 
 @code {
-    [Inject] private IJSRuntime Js { get; set; } = null!;
     [Inject] private PortfolioData AppContent { get; set; } = null!;
     [Inject] private ScrollLockService ScrollLockService { get; set; } = null!;
     [Inject] private IContactFormDataService ContactFormData { get; set; } = null!;
+    [Inject] private ResizeEventListenerService<NavMenu> ResizeListener { get; set; } = null!;
 
     private bool _isSidebarOpen = false;
     private bool _isContactModalVisible = false;
@@ -43,7 +43,6 @@
     private ContactFormInfo _contactFormLayoutData => AppContent.Layout.ContactForm;
     private ServiceInfo? _selectedService;
     private List<string> _serviceNames = [];
-    private DotNetObjectReference<NavMenu>? _objectReference;
 
     [JSInvokable]
     public void OnResize(int width)
@@ -65,8 +64,7 @@
     {
         if (firstRender)
         {
-            _objectReference = DotNetObjectReference.Create(this);
-            await Js.InvokeVoidAsync("resizeNotifier.registerResizeCallback", _objectReference);
+            await ResizeListener.RegisterResizeCallbackAsync(this);
         }
     }
 
@@ -89,12 +87,10 @@
         if (_isSidebarOpen)
         {
             _isSidebarOpen = false;
-            await InvokeAsync(StateHasChanged);
             await ScrollLockService.UnlockScrollAsync();
         }
 
         _isContactModalVisible = true;
-        await InvokeAsync(StateHasChanged);
     }
 
     private Task OnModalVisibilityChanged(bool value)
@@ -103,8 +99,8 @@
         return Task.CompletedTask;
     }
 
-    public void Dispose()
+    public async ValueTask DisposeAsync()
     {
-        _objectReference?.Dispose();
+        await ResizeListener.DisposeAsync();
     }
 }

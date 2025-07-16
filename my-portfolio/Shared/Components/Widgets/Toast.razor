@@ -1,0 +1,40 @@
+@if (!string.IsNullOrEmpty(Message))
+{
+	<div class="toast toast--show" role="alert" aria-live="assertive" aria-atomic="true">
+		<div class="toast__header @GetHeaderClass(Level)">
+			<strong class="toast__title">Message</strong>
+			<small class="toast__time">Now</small>
+			<button class="toast__close" @onclick="Hide" aria-label="Close">✖</button>
+		</div>
+		<div class="toast__body">@Message</div>
+	</div>
+}
+
+@code {
+	[Parameter] public string? Message { get; set; }
+	[Parameter] public ToastLevel Level { get; set; } = ToastLevel.Primary;
+	[Parameter] public EventCallback OnDismissed { get; set; }
+
+	private async Task Hide()
+	{
+		Message = null;
+
+		if (OnDismissed.HasDelegate)
+		{
+			await OnDismissed.InvokeAsync();
+		}
+	}
+
+	private string GetHeaderClass(ToastLevel level)
+	{
+		return level switch
+		{
+			ToastLevel.Primary => "toast__header--primary",
+			ToastLevel.Success => "toast__header--success",
+			ToastLevel.Danger => "toast__header--danger",
+			ToastLevel.Warning => "toast__header--warning",
+			ToastLevel.Info => "toast__header--info",
+			_ => string.Empty
+		};
+	}
+}

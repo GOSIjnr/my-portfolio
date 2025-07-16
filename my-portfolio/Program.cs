@@ -25,16 +25,19 @@ builder.Services.AddScoped<SelectedServiceState>();
 builder.Services.AddScoped<ScrollLockService>();
 builder.Services.AddScoped<ImageLoaderService>();
 builder.Services.AddScoped<FileAndTabService>();
-builder.Services.AddSingleton<YamlLoaderService>();
+builder.Services.AddScoped<CooldownService>();
+builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddScoped<YamlLoaderService>();
 builder.Services.AddScoped<IContactFormDataService, ContactFormDataService>();
 builder.Services.AddScoped(typeof(ResizeEventListenerService<>));
+builder.Services.AddScoped<EmailSubmitHandler>();
 
 // Build a temporary service provider to load configuration data at startup
 using ServiceProvider? tempProvider = builder.Services.BuildServiceProvider();
 var loader = tempProvider.GetRequiredService<YamlLoaderService>();
 
 // Load and validate user profile data from YAML
-var userProfile = await loader.LoadYamlAsync<UserProfileData>("data/profile.yaml")
+var userProfile = await loader.LoadYamlAsync<UserProfileData>("data/default-profile.yaml")
 	?? throw new InvalidOperationException("Failed to load or validate profile data.");
 
 var layout = await loader.LoadYamlAsync<AppLayoutData>("data/layout.yaml")

@@ -1,13 +1,12 @@
-<div class="service-radio__card @_serviceCardStyle" tabindex="0" role="radio"
-	aria-checked="@Selected" @onclick="HandleClick">
+<div class="service-radio__card @_serviceCardStyle" tabindex="0" role="radio" aria-checked="@Selected"
+	@onclick="HandleClick">
 	<input type="radio" hidden name="service" value="@Service" checked="@Selected" />
 	<span class="service-radio__card-name">@Service</span>
 </div>
 
 @code {
-	[Parameter, EditorRequired] public string Service { get; set; }
+	[Parameter, EditorRequired] public string Service { get; set; } = "service card";
 	[Parameter] public bool Selected { get; set; } = false;
-
 	[Parameter] public EventCallback<string> OnSelect { get; set; }
 
 	private string _serviceCardStyle => Selected ? "service-radio__card--selected" : string.Empty;

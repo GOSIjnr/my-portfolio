@@ -2,8 +2,8 @@
 
 <div class="contact">
 	<div class="contact__grid">
-		<ContactForm ContactFormLayout="@_contactFormLayoutData" ServicesNames="@_serviceNames"
-			SelectedService="@_selectedService?.Name" />
+		<ContactForm ContactFormLayout="@_contactFormLayoutData" ServiceFilter="new FuzzySearchFilter()"
+			ServicesNames="@_serviceNames" SelectedService="@_selectedService?.Name" />
 
 		<div class="contact__info-grid">
 			@foreach (ExternalLinkInfo? info in _contactInfos)

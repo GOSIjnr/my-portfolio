@@ -24,8 +24,8 @@
     <SideMenu IsOpened="@_isSidebarOpen" OnClose="@ToggleSidebar" OnContactMeClick="ShowContactModal" />
 
     <Modal IsVisible="@_isContactModalVisible" IsVisibleChanged="@OnModalVisibilityChanged" ModalTitle="Let's Connect">
-        <ContactForm ContactFormLayout="@_contactFormLayoutData" ServicesNames="@_serviceNames"
-            SelectedService="@_selectedService?.Name" />
+        <ContactForm ContactFormLayout="@_contactFormLayoutData" ServiceFilter="new FuzzySearchFilter()"
+            ServicesNames="@_serviceNames" SelectedService="@_selectedService?.Name" />
     </Modal>
 </nav>
 
@@ -44,16 +44,6 @@
     private ServiceInfo? _selectedService;
     private List<string> _serviceNames = [];
 
-    [JSInvokable]
-    public void OnResize(int width)
-    {
-        if (width >= 992 && _isSidebarOpen)
-        {
-            _isSidebarOpen = false;
-            StateHasChanged();
-        }
-    }
-
     protected override void OnInitialized()
     {
         _selectedService = ContactFormData.GetSelectedService();
@@ -65,6 +55,16 @@
         if (firstRender)
         {
             await ResizeListener.RegisterResizeCallbackAsync(this);
+        }
+    }
+
+    [JSInvokable]
+    public void OnResize(int width)
+    {
+        if (width >= 992 && _isSidebarOpen)
+        {
+            _isSidebarOpen = false;
+            StateHasChanged();
         }
     }
 

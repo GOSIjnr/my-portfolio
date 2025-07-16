@@ -6,4 +6,10 @@ public class SkillInfo
 {
 	[Required] public required string Name { get; init; }
 	[Required] public required string IconUrl { get; init; }
+
+	public static SkillInfo Default => new()
+	{
+		Name = "Default",
+		IconUrl = "default-icon-url"
+	};
 }

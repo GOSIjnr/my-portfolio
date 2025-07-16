@@ -5,7 +5,7 @@
 @code {
 	[Inject] private ImageLoaderService ImageLoader { get; set; } = null!;
 
-	[Parameter, EditorRequired] public SkillInfo SkillInfo { get; set; }
+	[Parameter, EditorRequired] public SkillInfo SkillInfo { get; set; } = SkillInfo.Default;
 
 	private string _skillName => SkillInfo.Name;
 	private string _skillImageUrl => SkillInfo.IconUrl;

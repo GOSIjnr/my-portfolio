@@ -1,20 +1,22 @@
+@implements IDisposable
+
 <div class="search-input">
 	<input class="search-input__field" type="text" value="@_inputValue" placeholder="@Placeholder"
 		@oninput="HandleInput" />
 
-	@if (!string.IsNullOrEmpty(_inputValue))
+	@if (!string.IsNullOrWhiteSpace(_inputValue))
 	{
 		<button class="search-input__clear-button" type="button" @onclick="ClearInput" aria-label="Clear search" />
 	}
 </div>
 
 @code {
-	[Parameter, EditorRequired] public string Placeholder { get; set; } = "";
-	[Parameter] public string Search { get; set; } = string.Empty;
+	[Parameter, EditorRequired] public string Placeholder { get; set; } = "Search";
+	[Parameter] public string? Search { get; set; }
 	[Parameter] public int DelayInMilliSeconds { get; set; } = 400;
 	[Parameter] public EventCallback<string> SearchChanged { get; set; }
 
-	private string _inputValue = string.Empty;
+	private string? _inputValue;
 	private CancellationTokenSource? _debounceCts;
 
 	protected override void OnParametersSet()
@@ -28,7 +30,7 @@
 
 		_debounceCts?.Cancel();
 		_debounceCts = new CancellationTokenSource();
-		var token = _debounceCts.Token;
+		CancellationToken token = _debounceCts.Token;
 
 		try
 		{
@@ -50,11 +52,16 @@
 		}
 	}
 
-	private async void ClearInput()
+	public void Dispose()
 	{
+		_debounceCts?.Dispose();
+	}
+
+    private async void ClearInput()
+    {
 		_debounceCts?.Cancel();
 
-		_inputValue = string.Empty;
+		_inputValue = null;
 		await CallSearchChanged();
 	}
 }

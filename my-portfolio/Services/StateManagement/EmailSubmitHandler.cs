@@ -1,6 +1,7 @@
 using MyPortfolio.Models.ContactForm;
 using MyPortfolio.Contracts.ContactForm;
 using MyPortfolio.Models.DTOs;
+using MyPortfolio.Core.Enums;
 
 namespace MyPortfolio.Services.StateManagement;
 
@@ -10,11 +11,15 @@ public class EmailSubmitHandler(IEmailService emailService, CooldownService cool
 	private readonly IEmailService _emailService = emailService;
 	private readonly CooldownService _cooldown = cooldown;
 
-	public async Task<ApiResponse<object>> SubmitAsync(ContactFormModel model, string? honeypot)
+	public async Task<EmailSubmissionResponse<object>> SubmitAsync(ContactFormModel model, string? honeypot)
 	{
 		if (!string.IsNullOrEmpty(honeypot))
 		{
-			return ApiResponse<object>.Fail(null, "Submission blocked (possible spam).");
+			return new EmailSubmissionResponse<object>
+			{
+				Response = ApiResponse<object>.Fail(null, "Submission blocked (possible spam)."),
+				ToastLevel = ToastLevel.Info,
+			};
 		}
 
 		if (!_cooldown.IsCoolingDown)
@@ -24,7 +29,11 @@ public class EmailSubmitHandler(IEmailService emailService, CooldownService cool
 
 		if (_cooldown.IsCoolingDown)
 		{
-			return ApiResponse<object>.Fail(null, $"Please wait {_cooldown.RemainingSeconds}s before trying again.");
+			return new EmailSubmissionResponse<object>
+			{
+				Response = ApiResponse<object>.Fail(null, $"Please wait {_cooldown.RemainingSeconds}s before trying again."),
+				ToastLevel = ToastLevel.Warning,
+			};
 		}
 
 		ApiResponse<object> response = await _emailService.SendEmailAsync(model);
@@ -32,12 +41,19 @@ public class EmailSubmitHandler(IEmailService emailService, CooldownService cool
 		if (response.Success)
 		{
 			_cooldown.TriggerCooldown();
-		}
-		else
-		{
-			_cooldown.TriggerCooldown(10);
+			return new EmailSubmissionResponse<object>
+			{
+				Response = response,
+				ToastLevel = ToastLevel.Success,
+			};
 		}
 
-		return response;
+		_cooldown.TriggerCooldown(10);
+
+		return new EmailSubmissionResponse<object>
+		{
+			Response = response,
+			ToastLevel = ToastLevel.Danger,
+		};
 	}
 }

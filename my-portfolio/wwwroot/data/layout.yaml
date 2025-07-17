@@ -51,14 +51,14 @@ resumeHeader:
   subtitle: "Browse through the areas below to learn more about my skills and experience."
 
 resumeTabs:
-  - key: "AboutMe"
+  - key: "aboutMe"
     label: "About Me"
 
-  - key: "Experience"
+  - key: "experience"
     label: "Experience"
 
-  - key: "Education"
+  - key: "education"
     label: "Education"
 
-  - key: "Skills"
+  - key: "skills"
     label: "Skills"

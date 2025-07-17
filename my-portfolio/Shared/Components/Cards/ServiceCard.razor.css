@@ -1,27 +1,28 @@
 .service-card {
-	--service-card-border-color: var(--color-1-light);
-	--service-card-main-color: var(--color-3-lightest);
-	--service-card-hover-color: var(--color-2-lighter);
-	--service-card-text-color: var(--color-3-dark);
-	--service-card-arrow-main-color: var(--color-1);
-	--service-card-arrow-accent-color: var(--color-3-lightest);
-	--service-card-button-hover-bg: var(--color-2-lightest);
-	--service-card-button-hover-color: var(--service-card-arrow-main-color);
-	--service-card-padding: 1rem;
-	--service-card-button-size: 40px;
-	--service-card-number-size: 2rem;
-	--service-card-title-size: 1.5rem;
-	--service-card-description-size: 0.7rem;
-	--service-card-arrow-size: 1.5rem;
-	--service-card-color: var(--service-card-main-color);
-	--service-card-arrow-image: url("images/arrow-right-linear.svg");
-	--service-card-arrow-image-size: 20px;
+	--border-color: var(--color-1-light);
+	--main-color: var(--color-3-lightest);
+	--hover-color: var(--color-2-lighter);
+	--text-color: var(--color-3-dark);
+	--arrow-color: var(--color-1);
+	--arrow-hover-color: var(--color-3-lightest);
+	--button-hover-bg: var(--color-2-lightest);
+	--button-hover-arrow: var(--arrow-color);
+	--arrow-icon: url("images/arrow-right-linear.svg");
+
+	--padding: 1rem;
+	--button-size: 40px;
+	--arrow-size: 20px;
+	--number-size: 2rem;
+	--title-size: 1.5rem;
+	--desc-size: 0.7rem;
+
+	--current-color: var(--main-color);
 }
 
 .service-card {
-	border-bottom: 2px solid var(--service-card-border-color);
-	color: var(--service-card-hover-color);
-	padding: var(--service-card-padding);
+	border-bottom: 2px solid var(--border-color);
+	color: var(--hover-color);
+	padding: var(--padding);
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -30,8 +31,8 @@
 }
 
 .service-card:hover {
-	--service-card-color: var(--service-card-hover-color);
-	--service-card-button-hover-color: var(--service-card-arrow-accent-color);
+	--current-color: var(--hover-color);
+	--button-hover-arrow: var(--arrow-hover-color);
 }
 
 .service-card__header {
@@ -42,18 +43,18 @@
 }
 
 .service-card__number {
-	-webkit-text-stroke-color: var(--service-card-color);
-	-webkit-text-stroke-width: 1px;
-	font-size: var(--service-card-number-size);
+	font-size: var(--number-size);
 	font-weight: bolder;
 	color: transparent;
+	-webkit-text-stroke-color: var(--current-color);
+	-webkit-text-stroke-width: 1px;
 }
 
 .service-card__button {
-	background-color: var(--service-card-color);
+	background-color: var(--current-color);
 	border-radius: 50%;
-	width: var(--service-card-button-size);
-	height: var(--service-card-button-size);
+	width: var(--button-size);
+	height: var(--button-size);
 	border: none;
 	cursor: pointer;
 	display: flex;
@@ -64,18 +65,18 @@
 
 .service-card__button:hover,
 .service-card__button:focus {
-	background-color: var(--service-card-button-hover-bg);
+	background-color: var(--button-hover-bg);
 }
 
 .service-card__arrow {
-	-webkit-mask: var(--service-card-arrow-image) no-repeat center / contain;
-	mask: var(--service-card-arrow-image) no-repeat center / contain;
-	background-color: var(--service-card-button-hover-color);
+	width: var(--arrow-size);
+	height: var(--arrow-size);
+	background-color: var(--button-hover-arrow);
+	-webkit-mask: var(--arrow-icon) no-repeat center / contain;
+	mask: var(--arrow-icon) no-repeat center / contain;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: var(--service-card-arrow-image-size);
-	height: var(--service-card-arrow-image-size);
 	transform: rotate(45deg);
 	transition: transform 0.3s ease-out;
 }
@@ -86,8 +87,8 @@
 }
 
 .service-card__title {
-	color: var(--service-card-color);
-	font-size: var(--service-card-title-size);
+	color: var(--current-color);
+	font-size: var(--title-size);
 	font-weight: bolder;
 	text-align: left;
 	white-space: normal;
@@ -96,9 +97,9 @@
 }
 
 .service-card__description {
-	font-size: var(--service-card-description-size);
+	font-size: var(--desc-size);
 	line-height: 1.5;
-	color: var(--service-card-text-color);
+	color: var(--text-color);
 	text-align: left;
 	word-break: break-word;
 	flex-grow: 1;
@@ -106,30 +107,30 @@
 
 @media (min-width: 576px) {
 	.service-card {
-		--service-card-title-size: 1.6rem;
+		--title-size: 1.6rem;
 	}
 }
 
 @media (min-width: 768px) {
 	.service-card {
-		--service-card-title-size: 1.7rem;
+		--title-size: 1.7rem;
 	}
 }
 
 @media (min-width: 992px) {
 	.service-card {
-		--service-card-title-size: 1.8rem;
+		--title-size: 1.8rem;
 	}
 }
 
 @media (min-width: 1200px) {
 	.service-card {
-		--service-card-title-size: 1.9rem;
+		--title-size: 1.9rem;
 	}
 }
 
 @media (min-width: 1400px) {
 	.service-card {
-		--service-card-title-size: 2rem;
+		--title-size: 2rem;
 	}
 }

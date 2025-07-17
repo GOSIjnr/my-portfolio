@@ -1,7 +1,7 @@
 .brand {
-	--brand-font-size: 1.1rem;
-	--brand-highlighted-color-1: var(--color-2-lighter);
-	--brand-highlighted-color-2: var(--color-2-light);
+	--font-size: 1.1rem;
+	--highlight-color: var(--color-2-lighter);
+	--highlight-hover-color: var(--color-2-light);
 }
 
 .brand {
@@ -12,7 +12,7 @@
 }
 
 .brand:hover {
-	--brand-highlighted-color-1: var(--brand-highlighted-color-2);
+	--highlight-color: var(--highlight-hover-color);
 }
 
 ::deep .brand__link {
@@ -21,27 +21,27 @@
 	text-decoration: none;
 	color: inherit;
 	display: flex;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
 }
 
 .brand__name {
-	font-size: var(--brand-font-size);
+	font-size: var(--font-size);
 	font-weight: bolder;
 }
 
 .brand__name--highlighted {
-	color: var(--brand-highlighted-color-1);
+	color: var(--highlight-color);
 }
 
 @media (min-width: 576px) {
 	.brand {
-		--brand-font-size: 1.45rem;
+		--font-size: 1.45rem;
 	}
 }
 
 @media (min-width: 768px) {
 	.brand {
-		--brand-font-size: 1.65rem;
+		--font-size: 1.65rem;
 	}
 }

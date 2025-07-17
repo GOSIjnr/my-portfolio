@@ -9,7 +9,7 @@ public class SkillInfo
 
 	public static SkillInfo Default => new()
 	{
-		Name = "Default",
-		IconUrl = "default-icon-url"
+		Name = string.Empty,
+		IconUrl = string.Empty,
 	};
 }

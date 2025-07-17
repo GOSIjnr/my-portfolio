@@ -1,12 +1,12 @@
 .services {
-	--services-padding: 1rem;
-	--services-grid-gap: 40px;
-	--services-grid-columns: 1fr;
-	--services-grid-margin: 1rem 0rem;
+	--padding-block: 1rem;
+	--grid-gap: 40px;
+	--grid-columns: 1fr;
+	--grid-margin: 1rem 0;
 }
 
 .services {
-	padding: var(--services-padding);
+	padding: var(--padding-block);
 	text-align: center;
 	overflow: hidden;
 	display: flex;
@@ -16,21 +16,21 @@
 }
 
 .services__grid {
-	margin: var(--services-grid-margin);
+	margin: var(--grid-margin);
 	display: grid;
-	gap: var(--services-grid-gap);
+	gap: var(--grid-gap);
+	grid-template-columns: var(--grid-columns);
 	align-self: stretch;
-	grid-template-columns: var(--services-grid-columns);
 }
 
 @media (min-width: 768px) {
 	.services {
-		--services-grid-margin: 2rem 0rem 6.25rem 0rem;
+		--grid-margin: 2rem 0 6.25rem 0;
 	}
 }
 
 @media (min-width: 992px) {
 	.services {
-		--services-grid-columns: repeat(2, 1fr);
+		--grid-columns: repeat(2, 1fr);
 	}
 }

@@ -5,8 +5,6 @@
 	<div class="about-me__items">
 		@foreach (var (info, detail) in _personalDetails)
 		{
-			if (string.IsNullOrWhiteSpace(info) || string.IsNullOrWhiteSpace(detail)) continue;
-
 			<p class="about-me__item">@info:
 				<span class="about-me__item-value">@detail</span>
 			</p>

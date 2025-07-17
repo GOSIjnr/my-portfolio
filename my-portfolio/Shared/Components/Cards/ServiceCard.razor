@@ -15,8 +15,8 @@
 	[Inject] private NavigationManager NavigationManager { get; set; } = null!;
 	[Inject] private SelectedServiceState SelectedServiceState { get; set; } = null!;
 
-	[Parameter, EditorRequired] public int ServiceNo { get; set; }
-	[Parameter, EditorRequired] public ServiceInfo Service { get; set; }
+	[Parameter, EditorRequired] public int ServiceNo { get; set; } = 0;
+	[Parameter, EditorRequired] public ServiceInfo Service { get; set; } = ServiceInfo.Default;
 
 	private string _name => Service.Name;
 	private string _description => Service.Description;

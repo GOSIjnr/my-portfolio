@@ -1,12 +1,11 @@
 .contact-option {
-	--contact-icon-size: 1.1rem;
-	--contact-icon-padding: 0.6rem;
-	--contact-icon-color: var(--contact-color-lighter);
-	--contact-icon-image: url("images/web.svg");
-	--contact-color-dark: var(--color-1-dark);
-	--contact-color-lighter: var(--color-2-lighter);
-	--contact-color-darker: var(--color-3-dark);
-	--contact-font: var(--font-2);
+	--icon-size: 1.1rem;
+	--icon-padding: 0.6rem;
+	--icon-color: var(--color-2-lighter);
+	--icon-image: url("images/web.svg");
+	--bg-color: var(--color-1-dark);
+	--title-color: var(--color-3-dark);
+	--font-family: var(--font-2);
 }
 
 .contact-option {
@@ -18,19 +17,19 @@
 }
 
 .contact-option__icon-holder {
-	background-color: var(--contact-color-dark);
-	padding: var(--contact-icon-padding);
+	background-color: var(--bg-color);
+	padding: var(--icon-padding);
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
 .contact-option__icon {
-	width: var(--contact-icon-size);
-	height: var(--contact-icon-size);
-	background-color: var(--contact-icon-color);
-	-webkit-mask: var(--contact-icon-image) no-repeat center / contain;
-	mask: var(--contact-icon-image) no-repeat center / contain;
+	width: var(--icon-size);
+	height: var(--icon-size);
+	background-color: var(--icon-color);
+	-webkit-mask: var(--icon-image) no-repeat center / contain;
+	mask: var(--icon-image) no-repeat center / contain;
 	flex-shrink: 0;
 }
 
@@ -51,8 +50,8 @@
 }
 
 .contact-option__title {
-	font-family: var(--contact-font);
-	color: var(--contact-color-darker);
+	font-family: var(--font-family);
+	color: var(--title-color);
 	line-height: 1.2;
 	font-size: 0.65rem;
 }
@@ -67,5 +66,5 @@
 }
 
 .contact-option__detail a:hover {
-	color: var(--contact-color-lighter);
+	color: var(--icon-color);
 }

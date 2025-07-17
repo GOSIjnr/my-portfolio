@@ -1,11 +1,11 @@
 .unknown-section {
-	--message-color: var(--color-3-dark);
+	--text-color: var(--color-3-dark);
 }
 
 .unknown-section__title,
 .unknown-section__message {
-	text-align: center;
 	margin-bottom: 1.5rem;
+	text-align: center;
 }
 
 .unknown-section__title {
@@ -15,7 +15,7 @@
 
 .unknown-section__message {
 	font-size: 0.785rem;
-	color: var(--message-color);
+	color: var(--text-color);
 }
 
 @media (min-width: 768px) {

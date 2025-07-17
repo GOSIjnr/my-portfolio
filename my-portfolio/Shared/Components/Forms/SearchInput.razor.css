@@ -1,12 +1,12 @@
 .search-input {
-	--search-font-size: 0.875rem;
-	--search-color-input: var(--color-1);
-	--search-color-text: var(--color-3-lightest);
-	--search-border-color: var(--color-1-lighter);
-	--search-border-color-focus: var(--color-2-lighter);
-	--search-button-bg: var(--color-1-light);
-	--search-button-icon-color: var(--color-3);
-	--search-button-icon: url("images/close-button-circle.svg");
+	--font-size: 0.875rem;
+	--input-bg: var(--color-1);
+	--input-text-color: var(--color-3-lightest);
+	--input-border-color: var(--color-1-lighter);
+	--input-border-focus: var(--color-2-lighter);
+	--clear-button-bg: var(--color-1-light);
+	--clear-icon-color: var(--color-3);
+	--clear-icon-url: url("images/close-button-circle.svg");
 }
 
 .search-input {
@@ -17,16 +17,16 @@
 .search-input__field {
 	width: 100%;
 	padding: 0.65rem 2.5rem 0.65rem 1rem;
-	font-size: var(--search-font-size);
-	background-color: var(--search-color-input);
-	color: var(--search-color-text);
-	border: 1px solid var(--search-border-color);
+	font-size: var(--font-size);
+	background-color: var(--input-bg);
+	color: var(--input-text-color);
+	border: 1px solid var(--input-border-color);
 	transition: border-color 0.3s;
 	box-sizing: border-box;
 }
 
 .search-input__field:focus {
-	border-color: var(--search-border-color-focus);
+	border-color: var(--input-border-focus);
 	outline: none;
 }
 
@@ -38,16 +38,20 @@
 	width: 1.5rem;
 	height: 1.5rem;
 	border: none;
-	background-color: var(--search-button-bg);
-	cursor: pointer;
 	border-radius: 6px;
-	transition: all 0.3s ease-in;
+	cursor: pointer;
+	background-color: var(--clear-icon-color);
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-size: 1.25rem;
-	line-height: 1;
-	mask-image: var(--search-button-icon);
-	-webkit-mask-image: var(--search-button-icon);
-	background-color: var(--search-button-icon-color);
+	transition: all 0.3s ease-in;
+
+	mask-image: var(--clear-icon-url);
+	-webkit-mask-image: var(--clear-icon-url);
+	mask-repeat: no-repeat;
+	mask-position: center;
+	mask-size: contain;
+	-webkit-mask-repeat: no-repeat;
+	-webkit-mask-position: center;
+	-webkit-mask-size: contain;
 }

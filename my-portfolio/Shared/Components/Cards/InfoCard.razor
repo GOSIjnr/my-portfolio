@@ -20,7 +20,7 @@
 </div>
 
 @code {
-	[EditorRequired, Parameter] public InfoCardViewModel InfoCardData { get; set; }
+	[EditorRequired, Parameter] public InfoCardViewModel InfoCardData { get; set; } = InfoCardViewModel.Default;
 	[Parameter] public bool IsExpanded { get; set; }
 	[Parameter] public bool ForceExpanded { get; set; }
 	[Parameter] public EventCallback OnReadMoreClicked { get; set; }

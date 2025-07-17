@@ -6,7 +6,7 @@
 </div>
 
 @code {
-	[Parameter, EditorRequired] public BrandInfo BrandInfo { get; set; }
+	[Parameter, EditorRequired] public BrandInfo BrandInfo { get; set; } = BrandInfo.Default;
 	[Parameter] public EventCallback OnBrandClick { get; set; }
 
 	private string _displayText => BrandInfo.BrandDisplayName;
@@ -15,7 +15,7 @@
 	private string _targetUrl => NavigationUrlFormatter.GetFormattedSanitizedTargetUrl(_rawTargetUrl,
 	TargetUrlFormat.Plain);
 
-	private async Task HandleBrandClickAsync(MouseEventArgs mouseEventArgs)
+	private async Task HandleBrandClickAsync()
 	{
 		if (OnBrandClick.HasDelegate)
 		{

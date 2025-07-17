@@ -1,9 +1,9 @@
 .contact {
-	--contact-page-padding: 1rem;
+	--page-padding: 1rem;
 }
 
 .contact {
-	padding: var(--contact-page-padding);
+	padding: var(--page-padding);
 	overflow: hidden;
 	margin-bottom: 4rem;
 }
@@ -17,13 +17,12 @@
 .contact__info-grid {
 	display: grid;
 	gap: 1.5rem;
-	grid-template-columns: 1fr;
 	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 @media (min-width: 768px) {
 	.contact {
-		--contact-page-padding: 2rem 1rem;
+		--page-padding: 2rem 1rem;
 	}
 }
 
@@ -32,10 +31,6 @@
 		flex-direction: row;
 		align-items: center;
 		justify-content: space-between;
-	}
-
-	.contact__info {
-		justify-content: center;
 	}
 
 	.contact__info-grid {

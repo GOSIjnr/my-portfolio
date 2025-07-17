@@ -11,7 +11,7 @@
 </div>
 
 @code {
-	[Parameter, EditorRequired] public string Placeholder { get; set; } = "Search";
+	[Parameter, EditorRequired] public string Placeholder { get; set; } = string.Empty;
 	[Parameter] public string? Search { get; set; }
 	[Parameter] public int DelayInMilliSeconds { get; set; } = 400;
 	[Parameter] public EventCallback<string> SearchChanged { get; set; }

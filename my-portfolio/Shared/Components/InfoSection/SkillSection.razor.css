@@ -23,9 +23,30 @@
 
 .skill-section__grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+	grid-template-columns: repeat(4, 1fr);
+	/* Always 6 columns */
 	grid-auto-rows: 1fr;
 	gap: 1rem;
+	justify-items: center;
+	/* Centers items inside their grid cell */
+}
+
+@media (min-width: 480px) {
+	.skill-section__grid {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media (min-width: 768px) {
+	.skill-section__grid {
+		grid-template-columns: repeat(6, 1fr);
+		/* 6 on larger screens */
+		padding-right: 0.3rem;
+		max-height: 320px;
+		overflow-y: auto;
+		scrollbar-width: thin;
+		scrollbar-color: var(--scrollbar-slider-color) transparent;
+	}
 }
 
 @media (min-width: 768px) {

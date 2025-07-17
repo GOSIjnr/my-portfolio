@@ -6,4 +6,10 @@ public class ContactFormInfo
 {
 	[Required] public required string Heading { get; init; }
 	[Required] public required string SubHeading { get; init; }
+
+	public readonly static ContactFormInfo Default = new()
+	{
+		Heading = string.Empty,
+		SubHeading = string.Empty,
+	};
 }

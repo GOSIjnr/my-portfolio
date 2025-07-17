@@ -16,10 +16,8 @@
                 <div class="project-card__live-button-divider" />
             }
 
-            @foreach (ExternalLinkInfo? link in _otherLinks)
+            @foreach (ExternalLinkInfo link in _otherLinks)
             {
-                if (link is null) continue;
-
                 <a class="project-card__button" href="@link.LinkUrl" target="_blank" rel="noopener noreferrer">
                     @link.Title
                 </a>
@@ -31,10 +29,10 @@
         <img class="project-card__image" id="@_projectImageId" alt="@_title" />
 
         <div class="project-card__nav">
-            <button @onclick="Previous" disabled="@IsFirst" class="project-card__nav-button">
+            <button @onclick="ShowPreviousCard" disabled="@IsFirst" class="project-card__nav-button">
                 <div class="project-card__nav-button-icon project-card__nav-button-icon--left" />
             </button>
-            <button @onclick="Next" disabled="@IsLast" class="project-card__nav-button">
+            <button @onclick="ShowNextCard" disabled="@IsLast" class="project-card__nav-button">
                 <div class="project-card__nav-button-icon project-card__nav-button-icon--right" />
             </button>
         </div>
@@ -53,10 +51,10 @@
     private string? _lastImageUrl;
     private string _title => ProjectInfo.Title;
     private string _description => ProjectInfo.Description;
-    private List<string> _technologies => ProjectInfo.Technologies ?? new();
+    private List<string> _technologies => ProjectInfo.Technologies ?? [];
     private string _imageUrl => ProjectInfo.ImageUrl ?? string.Empty;
     private ExternalLinkInfo? _liveLink => ProjectInfo.LiveLink;
-    private List<ExternalLinkInfo> _otherLinks => ProjectInfo.OtherLinks ?? new();
+    private List<ExternalLinkInfo> _otherLinks => ProjectInfo.OtherLinks ?? [];
     private bool IsFirst => ProjectNo == 0;
     private bool IsLast => ProjectNo == TotalProjects - 1;
 
@@ -75,7 +73,7 @@
         }
     }
 
-    private async Task Previous()
+    private async Task ShowPreviousCard()
     {
         if (!IsFirst)
         {
@@ -83,7 +81,7 @@
         }
     }
 
-    private async Task Next()
+    private async Task ShowNextCard()
     {
         if (!IsLast)
         {

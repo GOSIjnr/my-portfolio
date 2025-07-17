@@ -2,8 +2,7 @@ using Microsoft.JSInterop;
 
 namespace MyPortfolio.Services.StateManagement;
 
-public sealed class ResizeEventListenerService<TComponent>(IJSRuntime jsRuntime) : IAsyncDisposable
-	where TComponent : class
+public sealed class ResizeEventListenerService<TComponent>(IJSRuntime jsRuntime) : IAsyncDisposable where TComponent : class
 {
 	private readonly IJSRuntime _jsRuntime = jsRuntime;
 	private DotNetObjectReference<TComponent>? _dotNetRef;

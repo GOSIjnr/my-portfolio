@@ -4,7 +4,6 @@
 	<div class="services__grid">
 		@for (int i = 0; i < _serviceCards.Count; i++)
 		{
-			if (_serviceCards[i] is null) continue;
 			<ServiceCard ServiceNo="@(i + 1)" Service="@_serviceCards[i]" />
 		}
 	</div>

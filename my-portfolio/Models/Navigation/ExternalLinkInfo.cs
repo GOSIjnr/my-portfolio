@@ -10,4 +10,9 @@ public class ExternalLinkInfo
 	public string? Detail { get; init; }
 	[Required] public required string LinkUrl { get; init; }
 	[Required] public ExternalLinkType ExternalLinkType { get; init; }
+
+	public static readonly ExternalLinkInfo Default = new()
+	{
+		LinkUrl = string.Empty,
+	};
 }

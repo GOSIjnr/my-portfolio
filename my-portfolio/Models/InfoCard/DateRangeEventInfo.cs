@@ -12,4 +12,11 @@ public class DateRangeEventInfo : InfoEventBase
 	public string? Note { get; init; }
 	[Required] public DateFormatType StartDateFormat { get; init; }
 	[Required] public DateFormatType EndDateFormat { get; init; }
+
+	public static readonly DateRangeEventInfo Default = new()
+	{
+		StartDate = DateTime.Now,
+		EndDate = DateTime.Now,
+		Description = string.Empty,
+	};
 }

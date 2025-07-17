@@ -7,4 +7,9 @@ public class BrandInfo
 	[Required] public required string BrandDisplayName { get; init; }
 	public string? BrandHighlightedDisplayName { get; init; }
 	public string? BrandRawTargetUrl { get; init; }
+
+	public static readonly BrandInfo Default = new()
+	{
+		BrandDisplayName = string.Empty,
+	};
 }

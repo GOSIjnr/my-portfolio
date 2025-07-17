@@ -11,4 +11,10 @@ public class ProjectInfo
 	public string? ImageUrl { get; init; }
 	public ExternalLinkInfo? LiveLink { get; init; }
 	public List<ExternalLinkInfo>? OtherLinks { get; init; }
+
+	public static readonly ProjectInfo Default = new()
+	{
+		Title = string.Empty,
+		Description = string.Empty,
+	};
 }

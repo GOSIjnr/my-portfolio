@@ -5,7 +5,7 @@
 </div>
 
 @code {
-	[Parameter, EditorRequired] public string Service { get; set; } = "service card";
+	[Parameter, EditorRequired] public string Service { get; set; } = string.Empty;
 	[Parameter] public bool Selected { get; set; } = false;
 	[Parameter] public EventCallback<string> OnSelect { get; set; }
 

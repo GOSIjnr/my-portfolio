@@ -25,7 +25,7 @@
 	--description-color: var(--color-3-dark);
 	--stat-color: var(--color-3-light);
 	--stat-number-color: var(--color-3-lightest);
-	--font-family-primary: var(--font-1);
+	--primary--font: var(--font-1);
 }
 
 .home {
@@ -51,12 +51,13 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	overflow: hidden;
 }
 
-.photo-border {
+.home__photo-border {
+	position: absolute;
 	width: var(--photo-size);
 	height: var(--photo-size);
-	position: absolute;
 	animation: rotate var(--animation-rotate-speed) linear infinite;
 }
 
@@ -84,7 +85,7 @@
 .home__greeting {
 	font-size: var(--greeting-font-size);
 	font-weight: 900;
-	font-family: var(--font-family-primary);
+	font-family: var(--primary--font);
 	color: var(--greeting-color);
 	margin-bottom: 1.5rem;
 }
@@ -121,12 +122,12 @@
 
 .home__stat {
 	display: flex;
-	font-family: var(--font-family-primary);
-	line-height: 1.3em;
+	align-items: center;
+	justify-content: center;
+	font-family: var(--primary--font);
+	line-height: 1.3;
 	font-size: 0.75rem;
 	color: var(--stat-color);
-	justify-content: center;
-	align-items: center;
 	gap: 0.5rem;
 }
 
@@ -152,9 +153,9 @@
 	}
 
 	.home__cta-wrapper {
+		flex-direction: row;
 		align-items: center;
 		justify-content: center;
-		flex-direction: row;
 	}
 }
 
@@ -186,8 +187,8 @@
 	}
 
 	.home__cta-wrapper {
-		align-items: flex-start;
 		flex-direction: row;
+		align-items: flex-start;
 		justify-content: flex-start;
 	}
 

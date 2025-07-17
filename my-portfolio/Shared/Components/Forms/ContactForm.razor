@@ -45,15 +45,17 @@
 				</div>
 			</div>
 
-			<div class="contact-form__group contact-form__group--full">
-				<InputText class="contact-form__input"
-					placeholder="Reason for contact (e.g., hiring, question, feedback)"
-					@bind-Value="_formModel.Reason" />
-			</div>
+			<div class="contact-form__textarea-wrapper contact-form__group contact-form__group--full">
+				<div class="contact-form__group contact-form__group--full">
+					<InputText class="contact-form__input"
+						placeholder="Reason for contact (e.g., hiring, question, feedback)"
+						@bind-Value="_formModel.Reason" />
+				</div>
 
-			<div class="contact-form__group contact-form__group--full">
-				<InputTextArea class="contact-form__textarea" placeholder="Type your message here."
-					@bind-Value="_formModel.Message" />
+				<div class="contact-form__group contact-form__group--full">
+					<InputTextArea class="contact-form__textarea" placeholder="Type your message here."
+						@bind-Value="_formModel.Message" />
+				</div>
 			</div>
 		</div>
 
@@ -82,7 +84,7 @@
 	[Inject] private EmailSubmitHandler EmailFormHandler { get; set; } = null!;
 	[Inject] private CooldownService CooldownService { get; set; } = null!;
 
-	[Parameter, EditorRequired] public ContactFormInfo ContactFormLayout { get; set; } = default!;
+	[Parameter, EditorRequired] public ContactFormInfo ContactFormLayout { get; set; } = ContactFormInfo.Default;
 	[Parameter, EditorRequired] public ISearchFilter ServiceFilter { get; set; } = new FuzzySearchFilter();
 	[Parameter] public List<string> ServicesNames { get; set; } = [];
 	[Parameter] public string? SelectedService { get; set; }
@@ -132,11 +134,11 @@
 	{
 		_isSubmitting = true;
 
-		ApiResponse<object> result = await EmailFormHandler.SubmitAsync(_formModel, _honeypot);
+		EmailSubmissionResponse<object> result = await EmailFormHandler.SubmitAsync(_formModel, _honeypot);
 
-		ShowToast(result.Message, result.Success ? ToastLevel.Success : ToastLevel.Danger);
+		ShowToast(result.Response.Message, result.ToastLevel);
 
-		if (result.Success)
+		if (result.Response.Success)
 		{
 			_formModel = new();
 		}

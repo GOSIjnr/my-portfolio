@@ -29,7 +29,7 @@
 @code {
 	[Inject] private ImageLoaderService ImageLoader { get; set; } = null!;
 
-	[Parameter, EditorRequired] public ExternalLinkInfo ContactInfo { get; set; }
+	[Parameter, EditorRequired] public ExternalLinkInfo ContactInfo { get; set; } = ExternalLinkInfo.Default;
 
 	private readonly string _contactIconId = $"contact-option__icon--{Guid.NewGuid():N}";
 	private const string FallbackIcon = "images/web.svg";
@@ -44,7 +44,7 @@
 			await ImageLoader.ApplyCssImageWithFallbackAsync(new ImageLoaderOptions
 			{
 				ElementId = _contactIconId,
-				CssProperty = "--contact-icon-image",
+				CssProperty = "--icon-image",
 				ImageUrl = _contactIconUrl,
 				FallbackUrl = FallbackIcon,
 				UseVariable = true

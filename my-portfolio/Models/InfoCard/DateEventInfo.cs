@@ -10,4 +10,10 @@ public class DateEventInfo : InfoEventBase
 	[Required] public required string Description { get; init; }
 	public string? Note { get; init; }
 	[Required] public DateFormatType DateFormat { get; init; }
+
+	public static readonly DateEventInfo Default = new()
+	{
+		Date = DateTime.Now,
+		Description = string.Empty,
+	};
 }

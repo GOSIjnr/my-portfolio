@@ -2,7 +2,7 @@ namespace MyPortfolio.Services.Config;
 
 public static class ApiRoutes
 {
-	public const string Base = "http://localhost:5009";
+	public const string Base = "https://my-portfolio-backend-10vn.onrender.com";
 
 	public static class Email
 	{

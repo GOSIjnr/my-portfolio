@@ -8,4 +8,10 @@ public class StatInfo
 	public string? NumberPrefix { get; init; }
 	[Required] public required string LabelLine1 { get; init; }
 	public string? LabelLine2 { get; init; }
+
+	public static readonly StatInfo Default = new()
+	{
+		Number = 0,
+		LabelLine1 = string.Empty,
+	};
 }

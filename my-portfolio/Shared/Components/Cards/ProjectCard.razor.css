@@ -1,31 +1,31 @@
 .project-card {
-	--number-stroke-color: var(--color-3-lighter);
-	--title-text-color: var(--color-3-lighter);
-	--description-text-color: var(--color-3-dark);
+	--stroke-number: var(--color-3-lighter);
+	--title-color: var(--color-3-lighter);
+	--description-color: var(--color-3-dark);
 	--tech-text-color: var(--color-2-lighter);
 	--tech-border-color: var(--color-1-lighter);
 
-	--button-text-color: var(--color-2-lighter);
-	--button-border-color: var(--color-2-lighter);
+	--button-text: var(--color-2-lighter);
+	--button-border: var(--color-2-lighter);
 	--button-hover-bg: var(--color-2-lighter);
 	--button-hover-text: var(--color-1);
-	--button-default-text-color: var(--color-3-lightest);
-	--button-default-border-color: var(--color-3-darker);
+	--button-default-text: var(--color-3-lightest);
+	--button-default-border: var(--color-3-darker);
 
-	--divider-border-color: var(--color-1-lighter);
+	--divider-color: var(--color-1-lighter);
 
-	--image-bg-color: var(--color-3);
+	--image-bg: var(--color-3);
 
-	--nav-bg-color: var(--color-2-lighter);
-	--nav-hover-bg-color: var(--color-2-light);
+	--nav-bg: var(--color-2-lighter);
+	--nav-hover-bg: var(--color-2-light);
 	--nav-icon-color: var(--color-1);
-	--nav-icon-disabled-color: var(--color-3-lightest);
-	--nav-disabled-bg-color: var(--color-3-darker);
+	--nav-icon-disabled: var(--color-3-lightest);
+	--nav-disabled-bg: var(--color-3-darker);
 
 	--font-heading: var(--font-2);
 
-	--icon-arrow-left: url("images/arrow-left-broken.svg");
-	--icon-arrow-right: url("images/arrow-right-broken.svg");
+	--icon-left: url("images/arrow-left-broken.svg");
+	--icon-right: url("images/arrow-right-broken.svg");
 }
 
 .project-card {
@@ -39,7 +39,7 @@
 }
 
 .project-card__number {
-	-webkit-text-stroke: 1px var(--number-stroke-color);
+	-webkit-text-stroke: 1px var(--stroke-number);
 	font-weight: bolder;
 	font-size: 2.5rem;
 	color: transparent;
@@ -50,14 +50,14 @@
 	font-size: 1.65rem;
 	font-weight: bolder;
 	font-family: var(--font-heading);
-	color: var(--title-text-color);
+	color: var(--title-color);
 }
 
 .project-card__description {
 	margin-bottom: 1rem;
 	font-size: 0.75rem;
 	font-weight: lighter;
-	color: var(--description-text-color);
+	color: var(--description-color);
 }
 
 .project-card__tech {
@@ -76,9 +76,9 @@
 }
 
 .project-card__button {
-	color: var(--button-default-text-color);
+	color: var(--button-default-text);
 	text-decoration: none;
-	border: 1px solid var(--button-default-border-color);
+	border: 1px solid var(--button-default-border);
 	border-radius: 550px;
 	padding: 0.2rem 1rem;
 	font-size: 0.65rem;
@@ -96,7 +96,7 @@
 }
 
 .project-card__live-button-divider {
-	border-right: 2px solid var(--divider-border-color);
+	border-right: 2px solid var(--divider-color);
 	height: 16px;
 	margin: auto 0;
 	width: 1px;
@@ -113,7 +113,7 @@
 	height: 470px;
 	display: block;
 	object-fit: cover;
-	background-color: var(--image-bg-color);
+	background-color: var(--image-bg);
 	background-repeat: no-repeat;
 }
 
@@ -134,24 +134,24 @@
 	padding: 0.25rem;
 	border: none;
 	cursor: pointer;
-	background-color: var(--nav-bg-color);
+	background-color: var(--nav-bg);
 	color: var(--nav-icon-color);
 	transition: all 0.2s ease-out;
 }
 
 .project-card__nav-button:hover:not(:disabled),
 .project-card__nav-button:focus-visible:not(:disabled) {
-	background-color: var(--nav-hover-bg-color);
+	background-color: var(--nav-hover-bg);
 	outline: none;
 }
 
 .project-card__nav-button:disabled {
-	background-color: var(--nav-disabled-bg-color);
+	background-color: var(--nav-disabled-bg);
 	cursor: not-allowed;
 }
 
 .project-card__nav-button:disabled .project-card__nav-button-icon {
-	background-color: var(--nav-icon-disabled-color);
+	background-color: var(--nav-icon-disabled);
 }
 
 .project-card__nav-button-icon {
@@ -165,13 +165,13 @@
 }
 
 .project-card__nav-button-icon--left {
-	-webkit-mask-image: var(--icon-arrow-left);
-	mask-image: var(--icon-arrow-left);
+	-webkit-mask-image: var(--icon-left);
+	mask-image: var(--icon-left);
 }
 
 .project-card__nav-button-icon--right {
-	-webkit-mask-image: var(--icon-arrow-right);
-	mask-image: var(--icon-arrow-right);
+	-webkit-mask-image: var(--icon-right);
+	mask-image: var(--icon-right);
 }
 
 @media (min-width: 768px) {

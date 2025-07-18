@@ -1,5 +1,4 @@
 .brand {
-	--font-size: 1.1rem;
 	--highlight-color: var(--color-2-lighter);
 	--highlight-hover-color: var(--color-2-light);
 }
@@ -26,22 +25,13 @@
 }
 
 .brand__name {
-	font-size: var(--font-size);
+	display: flex;
+	flex: 1;
+	margin: 0;
 	font-weight: bolder;
+
 }
 
 .brand__name--highlighted {
 	color: var(--highlight-color);
-}
-
-@media (min-width: 576px) {
-	.brand {
-		--font-size: 1.45rem;
-	}
-}
-
-@media (min-width: 768px) {
-	.brand {
-		--font-size: 1.65rem;
-	}
 }

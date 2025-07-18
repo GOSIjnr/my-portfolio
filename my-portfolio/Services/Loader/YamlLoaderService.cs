@@ -64,8 +64,8 @@ public class YamlLoaderService(HttpClient http, ILogger<YamlLoaderService> logge
 
 	private static void ValidateModel<T>(T model)
 	{
-		var validationContext = new ValidationContext(model!);
-		var validationResults = new List<ValidationResult>();
+		ValidationContext validationContext = new(model!);
+		List<ValidationResult> validationResults = [];
 
 		if (!Validator.TryValidateObject(model!, validationContext, validationResults, validateAllProperties: true))
 		{

@@ -5,11 +5,7 @@
 	--side-bg: var(--color-2-lighter);
 	--side-shadow: inset 2px 0px 2px #1a0b0198;
 	--read-more-color: var(--color-3-lightest);
-
-	--font-size-header: 0.75rem;
-	--font-size-body: 0.95rem;
-	--font-size-footer: 0.75rem;
-	--font-size-read-more: 0.7rem;
+	--read-more-font: var(--font-1);
 }
 
 .info-card {
@@ -33,7 +29,6 @@
 
 .info-card__header {
 	color: var(--header-color);
-	font-size: var(--font-size-header);
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
@@ -52,7 +47,6 @@
 
 .info-card__body {
 	margin: 0;
-	font-size: var(--font-size-body);
 	font-weight: 600;
 	font-family: var(--font-2);
 	display: -webkit-box;
@@ -77,7 +71,6 @@
 }
 
 .info-card__footer {
-	font-size: var(--font-size-footer);
 	color: var(--footer-color);
 	white-space: nowrap;
 	text-overflow: ellipsis;
@@ -107,8 +100,7 @@
 .info-card__read-more {
 	writing-mode: vertical-rl;
 	text-orientation: mixed;
-	font-size: var(--font-size-read-more);
-	font-family: var(--font-1);
+	font-family: var(--read-more-font);
 	text-transform: uppercase;
 	color: var(--read-more-color);
 	border: none;

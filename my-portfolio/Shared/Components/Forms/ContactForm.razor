@@ -5,7 +5,7 @@
 <div class="contact-form">
 	<Toast Message="@_statusMessage" Level="@_toastLevel" OnDismissed="ClearToast" />
 
-	<EditForm EditContext="_editContext" OnValidSubmit="HandleValidSubmit">
+	<EditForm EditContext="_editContext" OnValidSubmit="HandleSubmission">
 		<DataAnnotationsValidator />
 
 		<h2 class="contact-form__title">@ContactFormLayout.Heading</h2>
@@ -130,7 +130,7 @@
 		_editContext?.NotifyFieldChanged(_editField);
 	}
 
-	private async Task HandleValidSubmit()
+	private async Task HandleSubmission()
 	{
 		_isSubmitting = true;
 

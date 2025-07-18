@@ -1,7 +1,8 @@
 <div class="brand" @onclick="HandleBrandClickAsync">
 	<NavLink class="brand__link" href="@_targetUrl" Match="NavLinkMatch.All">
-		<span class="brand__name">@_displayText</span>
-		<span class="brand__name brand__name--highlighted">@_highlightedDisplayText</span>
+		<h2 class="brand__name">
+			@_displayText<span class="brand__name brand__name--highlighted">@_highlightedDisplayText</span>
+		</h2>
 	</NavLink>
 </div>
 

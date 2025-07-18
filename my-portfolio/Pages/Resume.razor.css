@@ -2,14 +2,11 @@
 	--section-padding: 1rem;
 	--section-gap: 2rem;
 
-	--title-font-size: 2rem;
 	--title-weight: 700;
-
-	--subtitle-font-size: 0.785rem;
 	--subtitle-weight: 300;
 
 	--nav-button-padding: 0.65rem 1rem;
-	--nav-button-font-size: 0.75rem;
+	--nav-button-font-size: 0.7rem;
 	--nav-button-font-weight: 200;
 
 	--color-bg: var(--color-1-light);
@@ -19,8 +16,6 @@
 	--color-subtext: var(--color-3-dark);
 
 	--color-subtitle: var(--color-subtext);
-
-	--font-family: var(--font-1);
 }
 
 .resume {
@@ -33,14 +28,12 @@
 
 .resume__title {
 	margin-bottom: 1.5rem;
-	font-size: var(--title-font-size);
 	font-weight: var(--title-weight);
 	text-align: center;
 	padding: 0 0.45rem;
 }
 
 .resume__subtitle {
-	font-size: var(--subtitle-font-size);
 	color: var(--color-subtitle);
 	font-weight: var(--subtitle-weight);
 	margin-bottom: 2rem;
@@ -51,7 +44,7 @@
 .resume__nav-button-wrapper {
 	display: flex;
 	flex-direction: column;
-	gap: 1.3rem;
+	gap: 1.25rem;
 	margin-bottom: 2rem;
 	max-height: 250px;
 	overflow: auto;
@@ -87,7 +80,7 @@
 	background-color: var(--color-bg);
 	color: var(--color-text);
 	cursor: pointer;
-	transition: background-color 0.2s ease;
+	transition: background-color 0.2s ease-out;
 }
 
 .resume__nav-button:hover {

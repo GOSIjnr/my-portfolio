@@ -59,12 +59,13 @@
     }
 
     [JSInvokable]
-    public void OnResize(int width)
+    public async Task OnResize(int width)
     {
         if (width >= 992 && _isSidebarOpen)
         {
             _isSidebarOpen = false;
             StateHasChanged();
+            await ScrollLockService.ForceUnlockAsync();
         }
     }
 

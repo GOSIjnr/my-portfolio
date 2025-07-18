@@ -1,19 +1,18 @@
 <div class="project-card">
     <div class="project-card__info">
-        <div class="project-card__number">@((ProjectNo + 1).ToString("D2"))</div>
+        <h1 class="project-card__number">@((ProjectNo + 1).ToString("D2"))</h1>
 
-        <h2 class="project-card__title">@_title</h2>
+        <h1 class="project-card__title">@_title</h1>
         <p class="project-card__description">@_description</p>
-        <p class="project-card__tech">@string.Join(", ", _technologies)</p>
+        <small class="project-card__tech">@string.Join(", ", _technologies)</small>
 
         <div class="project-card__buttons">
             @if (_liveLink is not null)
             {
-                <a class="project-card__button" href="@_liveLink.LinkUrl" target="_blank" rel="noopener noreferrer">
+                <a class="project-card__button project-card__button--launch" href="@_liveLink.LinkUrl" target="_blank"
+                    rel="noopener noreferrer">
                     Launch
                 </a>
-
-                <div class="project-card__live-button-divider" />
             }
 
             @foreach (ExternalLinkInfo link in _otherLinks)
@@ -42,7 +41,7 @@
 @code {
     [Inject] private ImageLoaderService ImageLoader { get; set; } = null!;
 
-    [Parameter, EditorRequired] public ProjectInfo ProjectInfo { get; set; }
+    [Parameter, EditorRequired] public ProjectInfo ProjectInfo { get; set; } = ProjectInfo.Default;
     [Parameter] public int ProjectNo { get; set; }
     [Parameter] public int TotalProjects { get; set; }
     [Parameter] public EventCallback<int> ProjectNoChanged { get; set; }

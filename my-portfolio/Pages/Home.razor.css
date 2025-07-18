@@ -1,22 +1,21 @@
 .home {
-	--photo-size: 230px;
-	--photo-img-scale: 0.88;
+	--photo-size: 17rem;
+	--photo-img-scale: 0.90;
 	--photo-img-size: calc(var(--photo-size) * var(--photo-img-scale));
 
-	--greeting-font-size: 2rem;
-	--role-font-size: 0.85rem;
-	--description-font-size: 0.875rem;
+	--greeting-font-size: 2.25rem;
+	--description-font-size: 0.75rem;
 	--stat-number-font-size: 2rem;
 
 	--gap-main: 3rem;
 	--gap-container: 2rem;
 	--gap-stats: 1.25rem;
 
-	--cta-max-width: 200px;
+	--cta-max-width: 15rem;
 	--cta-width: 50%;
 
-	--animation-rotate-speed: 8s;
-	--border-radius-photo: 50%;
+	--animation-rotate-speed: 10s;
+	--border-radius-photo: 50vw;
 
 	--photo-bg-color: var(--color-1-light);
 	--role-color: var(--color-2-lighter);
@@ -25,7 +24,7 @@
 	--description-color: var(--color-3-dark);
 	--stat-color: var(--color-3-light);
 	--stat-number-color: var(--color-3-lightest);
-	--primary--font: var(--font-1);
+	--primary-font: var(--font-1);
 }
 
 .home {
@@ -78,16 +77,16 @@
 .home__role {
 	text-transform: uppercase;
 	color: var(--role-color);
-	font-size: var(--role-font-size);
 	text-align: center;
 }
 
 .home__greeting {
 	font-size: var(--greeting-font-size);
 	font-weight: 900;
-	font-family: var(--primary--font);
+	font-family: var(--primary-font);
 	color: var(--greeting-color);
 	margin-bottom: 1.5rem;
+	flex: 2;
 }
 
 .home__name {
@@ -98,6 +97,7 @@
 	font-size: var(--description-font-size);
 	color: var(--description-color);
 	margin-bottom: 2rem;
+	flex: 1;
 }
 
 .home__cta-wrapper {
@@ -124,7 +124,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-family: var(--primary--font);
+	font-family: var(--primary-font);
 	line-height: 1.3;
 	font-size: 0.75rem;
 	color: var(--stat-color);
@@ -149,7 +149,7 @@
 
 @media (min-width: 576px) {
 	.home {
-		--greeting-font-size: 2.5rem;
+		--greeting-font-size: 2.75rem;
 	}
 
 	.home__cta-wrapper {
@@ -161,7 +161,7 @@
 
 @media (min-width: 768px) {
 	.home {
-		--photo-size: 300px;
+		--photo-size: 20rem;
 		--greeting-font-size: 3.25rem;
 	}
 }
@@ -195,11 +195,5 @@
 	.home__stats {
 		flex-direction: row;
 		justify-content: space-between;
-	}
-}
-
-@media (min-width: 1200px) {
-	.home {
-		--photo-size: 350px;
 	}
 }

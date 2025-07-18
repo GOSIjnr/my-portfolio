@@ -6,9 +6,8 @@
 			ServicesNames="@_serviceNames" SelectedService="@_selectedService?.Name" />
 
 		<div class="contact__info-grid">
-			@foreach (ExternalLinkInfo? info in _contactInfos)
+			@foreach (ExternalLinkInfo info in _contactInfos)
 			{
-				if (info is null) continue;
 				<ContactOption ContactInfo="@info" />
 			}
 		</div>

@@ -1,5 +1,6 @@
 .modal {
 	--backdrop-color: rgba(1, 1, 1, 0.65);
+	/* --backdrop-color: red; */
 	--max-width: 600px;
 	--content-padding: 0.75rem;
 	--close-size: 1.5rem;
@@ -19,10 +20,12 @@
 }
 
 .modal__backdrop {
-	position: fixed;
-	inset: 0;
+	position: absolute;
+	/* inset: 0; */
 	background-color: var(--backdrop-color);
-	z-index: -1;
+	/* z-index: -1; */
+	pointer-events: none;
+	/* width: calc(100vw - var(--scrollbar-width)) */
 }
 
 .modal__container {

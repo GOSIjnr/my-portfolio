@@ -10,11 +10,9 @@
 	--arrow-icon: url("images/arrow-right-linear.svg");
 
 	--padding: 1rem;
-	--button-size: 40px;
-	--arrow-size: 20px;
+	--button-size: 2.25rem;
+	--arrow-size: 1.15rem;
 	--number-size: 2rem;
-	--title-size: 1.5rem;
-	--desc-size: 0.7rem;
 
 	--current-color: var(--main-color);
 }
@@ -40,6 +38,7 @@
 	align-items: center;
 	justify-content: space-between;
 	margin-bottom: 0.5rem;
+	flex-direction: row;
 }
 
 .service-card__number {
@@ -48,11 +47,12 @@
 	color: transparent;
 	-webkit-text-stroke-color: var(--current-color);
 	-webkit-text-stroke-width: 1px;
+	margin: 0;
 }
 
 .service-card__button {
 	background-color: var(--current-color);
-	border-radius: 50%;
+	border-radius: 50vw;
 	width: var(--button-size);
 	height: var(--button-size);
 	border: none;
@@ -88,7 +88,6 @@
 
 .service-card__title {
 	color: var(--current-color);
-	font-size: var(--title-size);
 	font-weight: bolder;
 	text-align: left;
 	white-space: normal;
@@ -97,40 +96,9 @@
 }
 
 .service-card__description {
-	font-size: var(--desc-size);
 	line-height: 1.5;
 	color: var(--text-color);
 	text-align: left;
 	word-break: break-word;
 	flex-grow: 1;
-}
-
-@media (min-width: 576px) {
-	.service-card {
-		--title-size: 1.6rem;
-	}
-}
-
-@media (min-width: 768px) {
-	.service-card {
-		--title-size: 1.7rem;
-	}
-}
-
-@media (min-width: 992px) {
-	.service-card {
-		--title-size: 1.8rem;
-	}
-}
-
-@media (min-width: 1200px) {
-	.service-card {
-		--title-size: 1.9rem;
-	}
-}
-
-@media (min-width: 1400px) {
-	.service-card {
-		--title-size: 2rem;
-	}
 }

@@ -1,6 +1,6 @@
 .services {
 	--padding-block: 1rem;
-	--grid-gap: 40px;
+	--grid-gap: 2.5rem;
 	--grid-columns: 1fr;
 	--grid-margin: 1rem 0;
 }

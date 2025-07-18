@@ -3,17 +3,19 @@
 		<p class="info-card__header @_headerStyle">@_header</p>
 
 		<div class="info-card__body-holder">
-			<h3 class="info-card__body @_bodyStyle">@_body</h3>
+			<h4 class="info-card__body @_bodyStyle">@_body</h4>
 		</div>
 
-		<p class="info-card__footer @_footerStyle">@_footer</p>
+		<small class="info-card__footer @_footerStyle">@_footer</small>
 	</div>
 
 	@if (_isLongText && !ForceExpanded)
 	{
 		<div class="info-card__right">
 			<button class="info-card__read-more" @onclick="HandleReadMore">
-				@(_isExpandedEffective ? "Show Less" : "Read More")
+				<small>
+					@(_isExpandedEffective ? "Show Less" : "Read More")
+				</small>
 			</button>
 		</div>
 	}

@@ -44,7 +44,7 @@ builder.Services.Configure<EmailSubmitSettings>(options =>
 using ServiceProvider? tempProvider = builder.Services.BuildServiceProvider();
 var loader = tempProvider.GetRequiredService<YamlLoaderService>();
 
-var userProfile = await loader.LoadYamlAsync<UserProfileData>("data/profile.yaml")
+var userProfile = await loader.LoadYamlAsync<UserProfileData>("data/default-profile.yaml")
 	?? throw new InvalidOperationException("Failed to load or validate profile data.");
 
 var layout = await loader.LoadYamlAsync<AppLayoutData>("data/layout.yaml")

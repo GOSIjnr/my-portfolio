@@ -1,4 +1,5 @@
 # 🚀 My Portfolio
+
 ![.NET 9.0](https://img.shields.io/badge/.NET-9.0-purple)
 ![License](https://img.shields.io/badge/license-CC-blue)
 ![GitHub Pages](https://img.shields.io/badge/deploy-GitHub%20Pages-lightgrey)
@@ -23,7 +24,12 @@ A **personal portfolio website** to showcase your projects, skills, and experien
 
 ### 💻 Desktop View
 
+<img src="docs/images/home-desktop.png" alt="Desktop Screenshot" width="500"/>
+
 ### 📱 Mobile View
+
+<img src="docs/images/home-mobile.png" alt="Mobile Screenshot" width="200"/>
+
 
 > *Homepage preview using the default profile — fully customizable!*
 
@@ -120,7 +126,7 @@ Enable IntelliSense, auto-completion, and warnings in Visual Studio Code by addi
 
 Schemas assist with structure and suggestions, but **do not guarantee runtime safety**. Always test your configuration.
 
-#### 🧹 Other Editors
+#### 🩹 Other Editors
 
 Other editors like JetBrains Rider, Neovim, etc., also support YAML schemas. Refer to their documentation for configuration.
 
@@ -139,16 +145,19 @@ Each variable includes shades from **darkest** to **lightest**. Adjust them to m
 
 ---
 
-## 📁 Folder Structure
+## 📄 Adding a Resume
 
+You can easily link to your resume from the site.
+
+1. Upload your resume (PDF or DOCX) to **Google Drive**.
+2. Copy the **file ID** from the shared URL.
+3. Paste the ID into your `profile.yaml` under the `resumeDocID` field:
+
+```yaml
+resumeDocID: "your-google-drive-file-id"
 ```
-Core/       → Core logic and utilities
-Models/     → Application data models
-Pages/      → Main pages (Home, Projects, About, etc.)
-Services/   → Profile and app-level services
-Shared/     → Layout and reusable components
-wwwroot/    → Static files (CSS, images, etc.)
-```
+
+> 🔇 If no resume ID is provided, the resume button will be visible but non-functional. Consider hiding it with a CSS override.
 
 ---
 
@@ -156,7 +165,7 @@ wwwroot/    → Static files (CSS, images, etc.)
 
 The contact form is powered by a backend email relay service.
 
-> 🔒 **Security First**
+> 🔐 **Security First**
 >
 > To protect sensitive keys and credentials, the email logic is handled server-side. This ensures better security and separation of concerns.
 
@@ -174,7 +183,11 @@ If disabled, users will see a toast notification prompting them to use other con
 
 > 🔧 **Backend Overview**
 >
-> A small API built with C# runs in a Docker container and is deployed to a platform like Render, Railway, or similar. It accepts form submissions and relays them to an email delivery service (e.g., Resend, SendGrid, Mailgun). The API response follows a standard wrapper format:
+> A small API built with C# runs in a Docker container and is deployed to a platform like **Render**, **Railway**, or other container-friendly services. It accepts form submissions and relays them to an email delivery provider such as **Resend**, **SendGrid**, or **Mailgun**.
+>
+> To prevent abuse, a honeypot is used on the frontend, and the backend applies IP rate limits and cooldowns.
+>
+> API responses use a consistent wrapper structure like:
 >
 > ```json
 > {
@@ -184,8 +197,6 @@ If disabled, users will see a toast notification prompting them to use other con
 >   "Data": null
 > }
 > ```
->
-> To prevent spam, it uses frontend honeypots and IP rate limiting with cooldowns.
 
 ---
 
@@ -202,9 +213,22 @@ The deployment workflow is based on [na1307/blazor-github-pages](https://github.
 1. Fork or clone this repo
 2. Adjust the `.github/workflows/deploy.yaml` if needed
 3. Push to `main`
-4. GitHub Actions will deploy automatically to `pages-deploy`
+4. GitHub Actions will deploy automatically to `pages-deploy` — only when you push the source code to that branch. A `deploy.bat` script is included under the `.github/workflows/` folder (alongside the deployment YAML) to simplify the process; feel free to review and customize it to fit your workflow.
 
 ➡️ Need help? Refer to the [blazor-github-pages repo](https://github.com/na1307/blazor-github-pages).
+
+---
+
+## 📁 Folder Structure
+
+```
+Core/       → Core logic and utilities
+Models/     → Application data models
+Pages/      → Main pages (Home, Projects, About, etc.)
+Services/   → Profile and app-level services
+Shared/     → Layout and reusable components
+wwwroot/    → Static files (CSS, images, etc.)
+```
 
 ---
 

@@ -170,7 +170,7 @@ stats:
     labelLine1: "Years of"
     labelLine2: "Experience"
 
-  - number: 3
+  - number: 4
     labelLine1: "Projects"
     labelLine2: "completed"
 

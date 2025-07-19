@@ -86,8 +86,7 @@
 	transition: all 0.2s ease-in;
 }
 
-.project-card__button--launch
-{
+.project-card__button--launch {
 	background-color: var(--button-bg-color);
 }
 
@@ -108,7 +107,6 @@
 .project-card__image {
 	width: 100%;
 	height: 250px;
-	/* display: block; */
 	object-fit: cover;
 	background-color: var(--image-bg);
 	background-repeat: no-repeat;
@@ -126,14 +124,16 @@
 }
 
 .project-card__nav-button {
-	width: 2rem;
-	height: 2rem;
-	padding: 0.25rem;
+	width: 2.2rem;
+	height: 2.2rem;
+	padding: 0.4rem;
 	border: none;
+	border-radius: 50vw;
 	cursor: pointer;
 	background-color: var(--nav-bg);
 	color: var(--nav-icon-color);
 	transition: all 0.2s ease-out;
+
 }
 
 .project-card__nav-button:hover:not(:disabled),
@@ -170,7 +170,7 @@
 	mask-image: var(--icon-right);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
 	.project-card {
 		flex-direction: row;
 		align-items: center;

@@ -1,6 +1,6 @@
 .nav-bar {
     --nav-bar-padding: 1rem;
-    --nav-bar-toggle-btn-size: 1.2rem;
+    --nav-bar-toggle-btn-size: 1.4rem;
     --nav-bar-toggle-icon-color: var(--color-2-lighter);
     --nav-bar-toggle-icon-hover-color: var(--color-2-light);
     --nav-links-gap: 2rem;
@@ -20,7 +20,6 @@
     justify-content: space-between;
     flex-wrap: wrap;
     width: 100%;
-    flex: 1;
 }
 
 .nav-bar__links,
@@ -54,13 +53,13 @@
 
 @media (min-width: 576px) {
     .nav-bar {
-        --nav-bar-toggle-btn-size: 1.4rem;
+        --nav-bar-toggle-btn-size: 1.6rem;
     }
 }
 
 @media (min-width: 768px) {
     .nav-bar {
-        --nav-bar-toggle-btn-size: 1.6rem;
+        --nav-bar-toggle-btn-size: 1.8rem;
     }
 }
 

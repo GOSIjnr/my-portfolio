@@ -81,6 +81,7 @@
 	color: var(--color-text);
 	cursor: pointer;
 	transition: background-color 0.2s ease-out;
+	border-radius: 50vw;
 }
 
 .resume__nav-button:hover {
@@ -108,7 +109,7 @@
 	}
 
 	.resume__nav {
-		width: 300px;
+		width: 30%;
 		flex-shrink: 0;
 	}
 

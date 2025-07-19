@@ -3,9 +3,8 @@
 	<p class="skill-section__description">@_introduction</p>
 
 	<div class="skill-section__grid">
-		@foreach (SkillInfo? skill in _skills)
+		@foreach (SkillInfo skill in _skills)
 		{
-			if (skill is null) continue;
 			<SkillBox SkillInfo="@skill" />
 		}
 	</div>

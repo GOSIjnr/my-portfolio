@@ -13,10 +13,10 @@
     </div>
 </div>
 
-<Modal IsVisible="@showModal" IsVisibleChanged="@(value => showModal = value)">
-    @if (selectedCard is not null)
+<Modal IsVisible="@_showModal" IsVisibleChanged="@(value => _showModal = value)">
+    @if (_selectedCard is not null)
     {
-        <InfoCard InfoCardData="@selectedCard" ForceExpanded="true" />
+        <InfoCard InfoCardData="@_selectedCard" ForceExpanded="true" />
     }
 </Modal>
 
@@ -24,8 +24,8 @@
     [Inject] private PortfolioData AppContent { get; set; } = null!;
 
     private List<InfoCardViewModel> _adaptedExperienceCards = [];
-    private InfoCardViewModel? selectedCard = null;
-    private bool showModal = false;
+    private InfoCardViewModel? _selectedCard = null;
+    private bool _showModal = false;
 
     private string _introduction => AppContent.User.ResumeSectionIntro.Experience;
     private List<InfoEventBase> _experienceCards => AppContent.User.ExperienceEvents;
@@ -37,7 +37,7 @@
 
     private void ShowModal(InfoCardViewModel card)
     {
-        selectedCard = card;
-        showModal = true;
+        _selectedCard = card;
+        _showModal = true;
     }
 }

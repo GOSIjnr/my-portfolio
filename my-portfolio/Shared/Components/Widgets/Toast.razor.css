@@ -6,12 +6,9 @@
 	--min-height: 100px;
 	--z: 9999;
 
-	--font-title: 0.875rem;
-	--font-time: 0.65rem;
-	--font-body: 0.75rem;
-
 	--color: var(--color-3-lightest);
 	--header-bg: var(--color-2-lighter);
+	--header-color-light: var(--color-1);
 	--padding: 0.45rem 0.75rem;
 }
 
@@ -58,7 +55,7 @@
 
 .toast__header--warning {
 	--header-bg: #fbc02d;
-	--color: #000;
+	--color: var(--header-color-light);
 }
 
 .toast__header--info {
@@ -66,12 +63,10 @@
 }
 
 .toast__title {
-	font-size: var(--font-title);
 	flex: 1;
 }
 
 .toast__time {
-	font-size: var(--font-time);
 	opacity: 0.75;
 }
 
@@ -79,14 +74,12 @@
 	background: none;
 	border: none;
 	color: inherit;
-	font-size: 1rem;
 	margin-left: 0.75rem;
 	cursor: pointer;
 }
 
 .toast__body {
 	padding: var(--padding);
-	font-size: var(--font-body);
 	font-family: var(--font-2);
 	line-height: 1.4;
 }

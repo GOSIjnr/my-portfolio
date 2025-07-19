@@ -1,7 +1,7 @@
 <div class="service-radio__card @_serviceCardStyle" tabindex="0" role="radio" aria-checked="@Selected"
 	@onclick="HandleClick">
 	<input type="radio" hidden name="service" value="@Service" checked="@Selected" />
-	<span class="service-radio__card-name">@Service</span>
+	<small class="service-radio__card-name">@Service</small>
 </div>
 
 @code {

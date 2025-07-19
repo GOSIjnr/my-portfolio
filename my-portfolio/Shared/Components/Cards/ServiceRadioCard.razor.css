@@ -1,6 +1,6 @@
 .service-radio__card {
 	--padding: 0.2rem 1rem;
-	--radius: 500px;
+	--radius: 50vw;
 
 	--bg-default: transparent;
 	--bg-selected: var(--color-2-lighter);
@@ -11,7 +11,6 @@
 	--text-color: var(--color-3-light);
 	--text-selected-color: var(--color-1);
 
-	--font-size: 0.65rem;
 	--font-weight: lighter;
 	--font-weight-selected: 800;
 }
@@ -43,7 +42,6 @@
 }
 
 .service-radio__card-name {
-	font-size: var(--font-size);
 	color: var(--text-color);
 	font-weight: var(--font-weight);
 }

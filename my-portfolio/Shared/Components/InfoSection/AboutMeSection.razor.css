@@ -3,9 +3,6 @@
 	--subtitle-color: var(--color-3-dark);
 	--item-color: var(--color-3-dark);
 	--item-highlight-color: var(--color-3-lightest);
-	--title-font-size: 2rem;
-	--subtitle-font-size: 0.785rem;
-	--item-font-size: 0.785rem;
 }
 
 .about-me__title,
@@ -15,13 +12,11 @@
 }
 
 .about-me__title {
-	font-size: var(--title-font-size);
 	font-weight: 700;
 	color: var(--title-color);
 }
 
 .about-me__subtitle {
-	font-size: var(--subtitle-font-size);
 	font-weight: 300;
 	color: var(--subtitle-color);
 }
@@ -34,7 +29,6 @@
 }
 
 .about-me__item {
-	font-size: var(--item-font-size);
 	text-align: center;
 	margin: 0.25rem 0;
 	color: var(--item-color);
@@ -53,7 +47,7 @@
 
 	.about-me__items {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		grid-template-columns: repeat(2, 1fr);
 		gap: 1rem;
 		align-items: start;
 	}

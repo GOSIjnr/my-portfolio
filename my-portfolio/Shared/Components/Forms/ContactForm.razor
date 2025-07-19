@@ -8,7 +8,7 @@
 	<EditForm EditContext="_editContext" OnValidSubmit="HandleSubmission">
 		<DataAnnotationsValidator />
 
-		<h2 class="contact-form__title">@ContactFormLayout.Heading</h2>
+		<h3 class="contact-form__title">@ContactFormLayout.Heading</h3>
 		<p class="contact-form__subtitle">@ContactFormLayout.SubHeading</p>
 
 		<div class="contact-form__fields">
@@ -63,20 +63,23 @@
 			<ValidationSummary class="contact-form__error" />
 		</div>
 
-		<button type="submit" class="contact-form__submit" disabled="@(_isSubmitting || CooldownService.IsCoolingDown)">
-			@if (CooldownService.IsCoolingDown)
-			{
-				<span class="cooldown-text">Please wait: @(_cooldownRemaining)s</span>
-			}
-			else if (_isSubmitting)
-			{
-				<span>Sending...</span>
-			}
-			else
-			{
-				<span>Send Message</span>
-			}
-		</button>
+		<div class="contact-form__submit-wrapper">
+			<button type="submit" class="contact-form__submit"
+				disabled="@(_isSubmitting || CooldownService.IsCoolingDown)">
+				@if (CooldownService.IsCoolingDown)
+				{
+					<p class="cooldown-text">Please wait: @(_cooldownRemaining)s</p>
+				}
+				else if (_isSubmitting)
+				{
+					<p>Sending...</p>
+				}
+				else
+				{
+					<p>Send Message</p>
+				}
+			</button>
+		</div>
 	</EditForm>
 </div>
 

@@ -2,7 +2,7 @@
 {
 	<div class="nav-item" @onclick="HandleNavItemClickAsync">
 		<button class="nav-item__link nav-item__link--button">
-			<span class="nav-item__label @_cssModifier">@_displayText</span>
+			<p class="nav-item__label @_cssModifier">@_displayText</p>
 		</button>
 	</div>
 }
@@ -10,13 +10,13 @@ else
 {
 	<div class="nav-item" @onclick="HandleNavItemClickAsync">
 		<NavLink class="nav-item__link" ActiveClass="@_cssActiveModifier" href="@_targetUrl" Match="NavLinkMatch.All">
-			<span class="nav-item__label @_cssModifier">@_displayText</span>
+			<p class="nav-item__label @_cssModifier">@_displayText</p>
 		</NavLink>
 	</div>
 }
 
 @code {
-	[Parameter, EditorRequired] public NavigationLinkInfo NavigationLinkInfo { get; set; }
+	[Parameter, EditorRequired] public NavigationLinkInfo NavigationLinkInfo { get; set; } = NavigationLinkInfo.Default;
 	[Parameter] public TargetUrlFormat ExternalLinkType { get; set; } = TargetUrlFormat.HashPrefix;
 	[Parameter] public EventCallback OnNavItemClick { get; set; }
 	[Parameter] public bool IsButton { get; set; } = false;

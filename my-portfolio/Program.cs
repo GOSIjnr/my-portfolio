@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MyPortfolio;
 using MyPortfolio.Contracts.ContactForm;
-using MyPortfolio.Core.Enums;
 using MyPortfolio.Models.Data;
 using MyPortfolio.Services.Browser;
 using MyPortfolio.Services.ContactForm;

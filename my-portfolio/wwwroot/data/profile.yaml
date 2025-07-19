@@ -179,7 +179,7 @@ stats:
     labelLine1: "Techologies"
     labelLine2: "mastered"
 
-  - number: 60
+  - number: 70
     numberPrefix: "+"
     labelLine1: "Code"
     labelLine2: "commits"

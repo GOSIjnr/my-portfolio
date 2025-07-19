@@ -9,14 +9,12 @@
 }
 
 .skill-section__heading {
-	font-size: 2rem;
 	font-weight: 700;
 	margin-bottom: 1.5rem;
 }
 
 .skill-section__description {
 	margin-top: 1.5rem;
-	font-size: 0.785rem;
 	color: var(--description-font-color);
 	margin-bottom: 2rem;
 }
@@ -24,28 +22,12 @@
 .skill-section__grid {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
-	/* Always 6 columns */
-	grid-auto-rows: 1fr;
 	gap: 1rem;
-	justify-items: center;
-	/* Centers items inside their grid cell */
 }
 
-@media (min-width: 480px) {
+@media (min-width: 576px) {
 	.skill-section__grid {
-		grid-template-columns: repeat(3, 1fr);
-	}
-}
-
-@media (min-width: 768px) {
-	.skill-section__grid {
-		grid-template-columns: repeat(6, 1fr);
-		/* 6 on larger screens */
-		padding-right: 0.3rem;
-		max-height: 320px;
-		overflow-y: auto;
-		scrollbar-width: thin;
-		scrollbar-color: var(--scrollbar-slider-color) transparent;
+		grid-template-columns: repeat(5, 1fr);
 	}
 }
 
@@ -57,6 +39,7 @@
 	}
 
 	.skill-section__grid {
+		grid-template-columns: repeat(6, 1fr);
 		padding-right: 0.3rem;
 		max-height: 320px;
 		overflow-y: auto;
@@ -75,5 +58,11 @@
 	.skill-section__grid::-webkit-scrollbar-thumb {
 		background-color: var(--scrollbar-slider-color);
 		border-radius: 3px;
+	}
+}
+
+@media (min-width: 922px) {
+	.skill-section__grid {
+		grid-template-columns: repeat(7, 1fr);
 	}
 }

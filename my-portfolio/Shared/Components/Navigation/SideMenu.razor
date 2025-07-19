@@ -9,9 +9,8 @@
                     <Brand BrandInfo="_brand" OnBrandClick="CloseMenu" />
                 </div>
 
-                @foreach (NavigationLinkInfo? item in _navigationItems)
+                @foreach (NavigationLinkInfo item in _navigationItems)
                 {
-                    if (item is null) continue;
                     <div class="side-bar__link">
                         <NavLinkItem NavigationLinkInfo="item" ExternalLinkType="@TargetUrlFormat.Plain"
                             OnNavItemClick="CloseMenu" />
@@ -35,7 +34,7 @@
 @code {
     [Inject] private PortfolioData AppContent { get; set; } = null!;
 
-    [Parameter, EditorRequired] public bool IsOpened { get; set; }
+    [Parameter, EditorRequired] public bool IsOpened { get; set; } = false;
     [Parameter] public EventCallback OnClose { get; set; }
     [Parameter] public EventCallback OnContactMeClick { get; set; }
 

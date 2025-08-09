@@ -1,0 +1,66 @@
+﻿@page "/"
+
+<div class="home">
+	<div class="home__container">
+		<div class="home__photo">
+			<svg class="home__photo-border" viewBox="0 0 200 200">
+				<circle cx="100" cy="100" r="95" stroke="var(--color-2-lighter)" stroke-width="1.25" stroke-linecap="round"
+					stroke-dasharray="35 15 10 15 35 15 10 15" fill="none" />
+			</svg>
+
+			<img src="@_profileImgUrl" alt="Photo" class="home__photo-img" />
+		</div>
+
+		<div class="home__intro">
+			<p class="home__role">@_role</p>
+
+			<h1 class="home__greeting">@_greeting<br>
+				<span class="home__name">@_greetingHighlighted</span>
+			</h1>
+
+			<p class="home__description">@_description</p>
+
+			<div class="home__cta-wrapper">
+				<div class="home__cta">
+					<NavLinkItem ExternalLinkType="TargetUrlFormat.Plain" NavigationLinkInfo="@_downloadCV"
+						OnNavItemClick="DownloadResume" IsButton="true" />
+				</div>
+
+				<div class="home__cta">
+					<NavLinkItem ExternalLinkType="TargetUrlFormat.Plain" NavigationLinkInfo="@_checkMyWorks" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="home__stats">
+		@foreach (StatInfo stat in _homeStatsItems)
+		{
+			<div class="home__stat">
+				<span class="home__stat-number">@(stat.Number + stat.NumberPrefix)</span>
+				@stat.LabelLine1<br>@stat.LabelLine2
+			</div>
+		}
+	</div>
+</div>
+
+@code {
+	[Inject] private PortfolioData AppContent { get; set; } = null!;
+	[Inject] private FileAndTabService FileAndTab { get; set; } = null!;
+
+	private HomePageContentInfo _homePageContentInfo => AppContent.User.HomePageContent;
+	private string _role => _homePageContentInfo.Role;
+	private string _greeting => _homePageContentInfo.Greeting;
+	private string _greetingHighlighted => _homePageContentInfo.GreetingHighlighted ?? string.Empty;
+	private string _description => _homePageContentInfo.Description;
+	private List<StatInfo> _homeStatsItems => AppContent.User.Stats;
+	private string _resumeDocID => AppContent.User.ResumeDocID;
+	private string _profileImgUrl => AppContent.User.ProfileImageUrl;
+	private NavigationLinkInfo _downloadCV => AppContent.Layout.DownloadCVLink;
+	private NavigationLinkInfo _checkMyWorks => AppContent.Layout.ProjectsLink;
+
+	private async Task DownloadResume()
+	{
+		await FileAndTab.DownloadFileFromGoogleDriveAsync(_resumeDocID);
+	}
+}

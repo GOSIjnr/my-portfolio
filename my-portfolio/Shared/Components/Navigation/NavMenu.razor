@@ -1,0 +1,106 @@
+﻿@implements IAsyncDisposable
+
+<nav class="nav-bar">
+    <div class="nav-bar__container">
+        <Brand BrandInfo="@_brand" />
+
+        <div class="nav-bar__links">
+            @foreach (NavigationLinkInfo item in _navigationLinks)
+            {
+                <NavLinkItem NavigationLinkInfo="item" ExternalLinkType="TargetUrlFormat.Plain" />
+            }
+
+            <div class="nav-bar__contact-link">
+                <NavLinkItem NavigationLinkInfo="@_contactMeLink" ExternalLinkType="TargetUrlFormat.Plain"
+                    OnNavItemClick="ShowContactModal" IsButton="true" />
+            </div>
+        </div>
+
+        <button type="button" class="nav-bar__toggle-btn nav-bar__toggle-btn--mask" title="Toggle menu"
+            @onclick="ToggleSidebar" />
+    </div>
+
+    <SideMenu IsOpened="@_isSidebarOpen" OnClose="@ToggleSidebar" OnContactMeClick="ShowContactModal" />
+
+    <Modal IsVisible="@_isContactModalVisible" IsVisibleChanged="@OnModalVisibilityChanged" ModalTitle="Let's Connect">
+        <ContactForm ContactFormLayout="@_contactFormLayoutData" ServiceFilter="new FuzzySearchFilter()"
+            ServicesNames="@_serviceNames" SelectedService="@_selectedService?.Name" />
+    </Modal>
+</nav>
+
+@code {
+    [Inject] private PortfolioData AppContent { get; set; } = null!;
+    [Inject] private ScrollLockService ScrollLockService { get; set; } = null!;
+    [Inject] private IContactFormDataService ContactFormData { get; set; } = null!;
+    [Inject] private ResizeEventListenerService<NavMenu> ResizeListener { get; set; } = null!;
+
+    private bool _isSidebarOpen = false;
+    private bool _isContactModalVisible = false;
+    private BrandInfo _brand => AppContent.User.Brand;
+    private NavigationLinkInfo _contactMeLink => AppContent.Layout.ContactMeLink;
+    private List<NavigationLinkInfo> _navigationLinks => AppContent.Layout.NavigationLinks;
+    private ContactFormInfo _contactFormLayoutData => AppContent.Layout.ContactForm;
+    private ServiceInfo? _selectedService;
+    private List<string> _serviceNames = [];
+
+    protected override void OnInitialized()
+    {
+        _selectedService = ContactFormData.GetSelectedService();
+        _serviceNames.AddRange(ContactFormData.GetServiceNames());
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await ResizeListener.RegisterResizeCallbackAsync(this);
+        }
+    }
+
+    [JSInvokable]
+    public async Task OnResize(int width)
+    {
+        if (width >= 992 && _isSidebarOpen)
+        {
+            _isSidebarOpen = false;
+            StateHasChanged();
+            await ScrollLockService.ForceUnlockAsync();
+        }
+    }
+
+    private async Task ToggleSidebar()
+    {
+        _isSidebarOpen = !_isSidebarOpen;
+
+        if (_isSidebarOpen)
+        {
+            await ScrollLockService.LockScrollAsync();
+        }
+        else
+        {
+            await ScrollLockService.UnlockScrollAsync();
+        }
+    }
+
+    private async Task ShowContactModal()
+    {
+        if (_isSidebarOpen)
+        {
+            _isSidebarOpen = false;
+            await ScrollLockService.UnlockScrollAsync();
+        }
+
+        _isContactModalVisible = true;
+    }
+
+    private Task OnModalVisibilityChanged(bool value)
+    {
+        _isContactModalVisible = value;
+        return Task.CompletedTask;
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        await ResizeListener.DisposeAsync();
+    }
+}

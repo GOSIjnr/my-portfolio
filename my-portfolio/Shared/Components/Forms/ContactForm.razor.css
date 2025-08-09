@@ -1,0 +1,191 @@
+.contact-form {
+	--bg: var(--color-1-light);
+	--title-color: var(--color-2-lighter);
+	--subtitle-color: var(--color-3-lighter);
+	--label-color: var(--color-3-lighter);
+	--input-bg: var(--color-1);
+	--input-border: var(--color-1-lighter);
+	--input-focus: var(--color-2-lighter);
+	--input-text: var(--color-3-lightest);
+	--autofill-text: var(--color-3-dark);
+	--font-body: var(--font-2);
+	--scroll-thumb: var(--color-2-lighter);
+	--scroll-track: var(--color-1-light);
+	--error-bg: bisque;
+	--error-text: rgb(214, 63, 63);
+	--submit-bg: var(--color-2-lighter);
+	--submit-hover-bg: var(--color-2-light);
+	--submit-color: var(--color-1);
+	--submit-hover-color: var(--color-3-lightest);
+	--submit-font: var(--font-1);
+	--submit-disabled-bg: var(--color-1-lightest);
+	--submit-disabled-color: var(--color-3-lightest);
+}
+
+.contact-form {
+	background-color: var(--bg);
+	padding: 1.5rem;
+}
+
+.contact-form__title {
+	color: var(--title-color);
+	font-weight: 700;
+}
+
+.contact-form__subtitle {
+	color: var(--subtitle-color);
+	font-weight: lighter;
+	margin-bottom: 2rem;
+}
+
+.contact-form__fields {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 0.35rem;
+	margin-bottom: 0.65rem;
+}
+
+.contact-form__group {
+	display: flex;
+}
+
+.contact-form__group--full {
+	grid-column: 1 / -1;
+}
+
+.contact-form__service-group {
+	flex-direction: column;
+}
+
+.contact-form__textarea-wrapper {
+	flex-direction: column;
+	gap: 0.3rem;
+}
+
+::deep .contact-form__input,
+::deep .contact-form__textarea {
+	background-color: var(--input-bg);
+	border: 1px solid var(--input-border);
+	color: var(--input-text);
+	padding: 0.65rem 1rem;
+	width: 100%;
+	transition: border-color 0.2s ease-in;
+}
+
+::deep .contact-form__input:focus,
+::deep .contact-form__textarea:focus {
+	border-color: var(--input-focus);
+	outline: none;
+}
+
+::deep .contact-form__input:-webkit-autofill,
+::deep .contact-form__textarea:-webkit-autofill {
+	-webkit-text-fill-color: var(--autofill-text);
+	caret-color: var(--autofill-text);
+	font-family: var(--font-body);
+	transition: all 9999s ease-in-out 0s;
+}
+
+::deep .contact-form__textarea {
+	overflow-x: hidden;
+	min-height: 150px;
+	resize: vertical;
+	scrollbar-width: thin;
+	scrollbar-color: var(--scroll-thumb) var(--scroll-track);
+}
+
+::deep .contact-form__textarea::-webkit-scrollbar,
+::deep .contact-form__radio-group::-webkit-scrollbar {
+	width: 8px;
+}
+
+::deep .contact-form__textarea::-webkit-scrollbar-track,
+::deep .contact-form__radio-group::-webkit-scrollbar-track {
+	background: var(--scroll-track);
+}
+
+::deep .contact-form__textarea::-webkit-scrollbar-thumb,
+::deep .contact-form__radio-group::-webkit-scrollbar-thumb {
+	background-color: var(--scroll-thumb);
+	border-radius: 4px;
+	border: 2px solid transparent;
+	background-clip: content-box;
+}
+
+::deep .contact-form__textarea::-webkit-scrollbar-thumb:hover,
+::deep .contact-form__radio-group::-webkit-scrollbar-thumb:hover {
+	background-color: var(--scroll-thumb);
+}
+
+.contact-form__service-label {
+	color: var(--label-color);
+	font-weight: 700;
+	margin-top: 1rem;
+	margin-bottom: 0;
+	display: block;
+}
+
+.contact-form__service-search-wrapper {
+	margin-top: 0.3rem;
+}
+
+.contact-form__radio-group {
+	margin-top: 0.3rem;
+	margin-bottom: 0.875rem;
+	background-color: var(--input-bg);
+	display: flex;
+	flex-wrap: wrap;
+	overflow-y: auto;
+	gap: 0.75rem;
+	height: 100px;
+	align-items: flex-start;
+	align-content: flex-start;
+	padding: 0.5rem;
+	scrollbar-width: thin;
+	scrollbar-color: var(--scroll-thumb) var(--scroll-track);
+	border: 1px solid var(--input-border);
+}
+
+.contact-form__error-wrapper {
+	background-color: var(--error-bg);
+	margin-bottom: 0.65rem;
+}
+
+::deep .contact-form__error {
+	margin-bottom: 0;
+	font-size: 0.6rem;
+	color: var(--error-text);
+	padding: 1rem 1rem 1rem 2rem;
+}
+
+.contact-form__submit-wrapper {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.contact-form__submit {
+	background-color: var(--submit-bg);
+	color: var(--submit-color);
+	font-family: var(--submit-font);
+	padding: 0.65rem 2.5rem;
+	border: none;
+	cursor: pointer;
+	transition: background-color 0.3s ease-out, color 0.3s ease-out;
+	border-radius: 50vw;
+}
+
+.contact-form__submit p{
+	font-weight: 900;
+	margin: 0;
+}
+
+.contact-form__submit:hover:not(:disabled) {
+	background-color: var(--submit-hover-bg);
+	color: var(--submit-hover-color);
+}
+
+.contact-form__submit:disabled {
+	cursor: not-allowed;
+	background-color: var(--submit-disabled-bg);
+	color: var(--submit-disabled-color);
+}

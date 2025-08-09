@@ -1,0 +1,26 @@
+<div class="brand" @onclick="HandleBrandClickAsync">
+	<NavLink class="brand__link" href="@_targetUrl" Match="NavLinkMatch.All">
+		<h2 class="brand__name">
+			@_displayText<span class="brand__name brand__name--highlighted">@_highlightedDisplayText</span>
+		</h2>
+	</NavLink>
+</div>
+
+@code {
+	[Parameter, EditorRequired] public BrandInfo BrandInfo { get; set; } = BrandInfo.Default;
+	[Parameter] public EventCallback OnBrandClick { get; set; }
+
+	private string _displayText => BrandInfo.BrandDisplayName;
+	private string _highlightedDisplayText => BrandInfo.BrandHighlightedDisplayName ?? string.Empty;
+	private string _rawTargetUrl => BrandInfo.BrandRawTargetUrl ?? string.Empty;
+	private string _targetUrl => NavigationUrlFormatter.GetFormattedSanitizedTargetUrl(_rawTargetUrl,
+	TargetUrlFormat.Plain);
+
+	private async Task HandleBrandClickAsync()
+	{
+		if (OnBrandClick.HasDelegate)
+		{
+			await OnBrandClick.InvokeAsync();
+		}
+	}
+}

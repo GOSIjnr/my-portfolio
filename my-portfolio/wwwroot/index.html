@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>MyPortfolio</title>
+    <base href="/" />
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="icon" type="image/svg" href="images/icon.svg" />
+    <link href="MyPortfolio.styles.css" rel="stylesheet" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div id="app">
+        <div class="loading-progress">
+            <div class="loading-container">
+                <div class="spinner-border" role="status"></div>
+                <div class="loading-progress-text">Loading...</div>
+            </div>
+        </div>
+
+        <div id="blazor-error-ui">
+            An unhandled error has occurred.
+            <a class="blazor-error-ui-reload" href=".">Reload</a>
+            <span class="dismiss">🗙</span>
+        </div>
+    </div>
+
+    <!-- self made scripts, edit with care -->
+    <script src="js/resizeNotifier.js"></script>
+    <script src="js/fileAndTab.js"></script>
+    <script src="js/scrollLocker.js"></script>
+    <script src="js/imageLoader.js"></script>
+
+    <!-- important scripts do not touch -->
+    <script src="gh-pages.js"></script>
+    <script src="_framework/blazor.webassembly.js"></script>
+</body>
+
+</html>

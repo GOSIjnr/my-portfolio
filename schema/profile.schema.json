@@ -1,0 +1,526 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "UserProfileData",
+  "description": "Schema representing the full profile of a user, including branding, links, biography, projects, experience, education, and resume info.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "brand",
+    "profileImageUrl",
+    "socialLinks",
+    "services",
+    "contactLinks",
+    "projects",
+    "aboutMeInfo",
+    "experienceEvents",
+    "educationEvents",
+    "skills",
+    "stats",
+    "resumeDocID",
+    "homePageContent",
+    "resumeSectionIntro"
+  ],
+  "properties": {
+    "brand": {
+      "$ref": "#/definitions/BrandInfo",
+      "description": "Brand identity configuration for the profile."
+    },
+    "profileImageUrl": {
+      "type": "string",
+      "minLength": 1,
+      "format": "uri",
+      "description": "URL to the user's profile image."
+    },
+    "socialLinks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ExternalLinkInfo"
+      },
+      "description": "List of social media or external profile links."
+    },
+    "services": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ServiceInfo"
+      },
+      "description": "List of services offered by the user."
+    },
+    "contactLinks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ExternalLinkInfo"
+      },
+      "description": "Ways to contact the user (email, phone, etc.)."
+    },
+    "projects": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ProjectInfo"
+      },
+      "description": "Portfolio of projects the user has worked on."
+    },
+    "aboutMeInfo": {
+      "$ref": "#/definitions/AboutMeInfo",
+      "description": "Brief introduction and personal information."
+    },
+    "experienceEvents": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/definitions/DateEventInfo"
+          },
+          {
+            "$ref": "#/definitions/DateRangeEventInfo"
+          }
+        ]
+      },
+      "description": "Timeline of professional work experiences."
+    },
+    "educationEvents": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/definitions/DateEventInfo"
+          },
+          {
+            "$ref": "#/definitions/DateRangeEventInfo"
+          }
+        ]
+      },
+      "description": "Timeline of educational milestones."
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/SkillInfo"
+      },
+      "description": "Skills the user is proficient in."
+    },
+    "stats": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/StatInfo"
+      },
+      "description": "Key statistics or metrics relevant to the user."
+    },
+    "resumeDocID": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Document ID used to retrieve the user's resume."
+    },
+    "homePageContent": {
+      "$ref": "#/definitions/HomePageContentInfo",
+      "description": "Information displayed on the home page header."
+    },
+    "resumeSectionIntro": {
+      "$ref": "#/definitions/ResumeSectionIntro",
+      "description": "Introductory text for resume sections."
+    }
+  },
+  "definitions": {
+    "BrandInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "brandDisplayName"
+      ],
+      "properties": {
+        "brandDisplayName": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The main brand name to display."
+        },
+        "brandHighlightedDisplayName": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Part of the brand name to highlight."
+        },
+        "brandRawTargetUrl": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "format": "uri",
+          "description": "URL to which the brand links (e.g., home)."
+        }
+      },
+      "description": "Configuration for displaying brand-related information."
+    },
+    "ExternalLinkInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "linkUrl",
+        "externalLinkType"
+      ],
+      "properties": {
+        "iconUrl": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "format": "uri",
+          "description": "Optional icon for the link."
+        },
+        "title": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Short title for the link."
+        },
+        "detail": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Optional description or tooltip for the link."
+        },
+        "linkUrl": {
+          "type": "string",
+          "minLength": 1,
+          "format": "uri",
+          "description": "Target URL or URI (mailto:, tel:, etc.)."
+        },
+        "externalLinkType": {
+          "$ref": "#/definitions/ExternalLinkType"
+        }
+      },
+      "description": "A reusable structure for links with metadata."
+    },
+    "ExternalLinkType": {
+      "type": "integer",
+      "description": "The type of external link.\n  0 = Email\n  1 = Phone\n  2 = Link\n  3 = Text",
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "ServiceInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "description"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Name of the service offered."
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Description of the service provided."
+        }
+      },
+      "description": "Describes a service offered by the user."
+    },
+    "ProjectInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "description"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Project title."
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Short project description."
+        },
+        "technologies": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "description": "Technologies used in the project."
+        },
+        "imageUrl": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "format": "uri",
+          "description": "Image representing the project."
+        },
+        "liveLink": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/ExternalLinkInfo"
+            }
+          ],
+          "description": "Link to the live demo or deployed site."
+        },
+        "otherLinks": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/ExternalLinkInfo"
+          },
+          "description": "Additional links such as GitHub or case studies."
+        }
+      },
+      "description": "Represents a project entry in the user's portfolio."
+    },
+    "AboutMeInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "introduction"
+      ],
+      "properties": {
+        "introduction": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Brief personal introduction."
+        },
+        "personalDetails": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Dictionary of personal details (key-value pairs)."
+        }
+      },
+      "description": "Provides a personal overview of the user."
+    },
+    "SkillInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "iconUrl"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Skill name or label."
+        },
+        "iconUrl": {
+          "type": "string",
+          "minLength": 1,
+          "format": "uri",
+          "description": "URL to an icon representing the skill."
+        }
+      },
+      "description": "Represents a skill and its associated icon."
+    },
+    "StatInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "number",
+        "labelLine1"
+      ],
+      "properties": {
+        "number": {
+          "type": "number",
+          "description": "Statistical value (e.g., years, projects)."
+        },
+        "numberPrefix": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Optional prefix for the number (e.g., '+')."
+        },
+        "labelLine1": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Description of the statistic. (Line1)"
+        },
+        "labelLine2": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Description of the statistic.(Line2)"
+        }
+      },
+      "description": "Numerical metric or highlight with label."
+    },
+    "HomePageContentInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "role",
+        "greeting",
+        "description"
+      ],
+      "properties": {
+        "role": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Role or title to display (e.g., 'Frontend Developer')."
+        },
+        "greeting": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Greeting message (e.g., 'Hello, I'm John')."
+        },
+        "greetingHighlighted": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Highlighted part of the greeting."
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Short description or pitch."
+        }
+      },
+      "description": "Main content displayed on the home page hero section."
+    },
+    "ResumeSectionIntro": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "experience",
+        "education",
+        "skill"
+      ],
+      "properties": {
+        "experience": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Intro text for experience section."
+        },
+        "education": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Intro text for education section."
+        },
+        "skill": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Intro text for skills section."
+        }
+      },
+      "description": "Introduction strings for each section in the resume."
+    },
+    "DateFormatType": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "x-enumNames": [
+        "MonthYear",
+        "YearMonth",
+        "DayMonthYear",
+        "IsoDate",
+        "FullDateTime"
+      ],
+      "description": "Specifies how a date should be formatted visually.\n  0 = MonthYear\n  1 = YearMonth\n  2 = DayMonthYear\n  3 = IsoDate\n  4 = FullDateTime"
+    },
+    "DateEventInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "date",
+        "description",
+        "dateFormat"
+      ],
+      "properties": {
+        "type": {
+          "const": "date",
+          "description": "Event type identifier."
+        },
+        "date": {
+          "type": "string",
+          "format": "date-only",
+          "description": "The date when the event occurred."
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Description of the event."
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Optional additional note or comment."
+        },
+        "dateFormat": {
+          "$ref": "#/definitions/DateFormatType"
+        }
+      },
+      "description": "An event with a single date (e.g., certification)."
+    },
+    "DateRangeEventInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "startDate",
+        "endDate",
+        "description",
+        "startDateFormat",
+        "endDateFormat"
+      ],
+      "properties": {
+        "type": {
+          "const": "dateRange",
+          "description": "Event type identifier."
+        },
+        "startDate": {
+          "type": "string",
+          "format": "date-only",
+          "description": "Start date of the event."
+        },
+        "endDate": {
+          "type": "string",
+          "format": "date-only",
+          "description": "End date of the event."
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Description of the date range event."
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Optional note about this event."
+        },
+        "startDateFormat": {
+          "$ref": "#/definitions/DateFormatType"
+        },
+        "endDateFormat": {
+          "$ref": "#/definitions/DateFormatType"
+        }
+      },
+      "description": "An event spanning a date range (e.g., job role or education)."
+    }
+  }
+}

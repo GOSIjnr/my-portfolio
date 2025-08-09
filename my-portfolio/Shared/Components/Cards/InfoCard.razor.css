@@ -3,7 +3,6 @@
 	--header-color: var(--color-2-lighter);
 	--footer-color: var(--color-3-dark);
 	--side-bg: var(--color-2-lighter);
-	--side-shadow: inset 2px 0px 2px #1a0b0198;
 	--read-more-color: var(--color-3-lightest);
 	--read-more-font: var(--font-1);
 }
@@ -94,7 +93,6 @@
 	justify-content: center;
 	padding: 0.25rem;
 	background-color: var(--side-bg);
-	box-shadow: var(--side-shadow);
 }
 
 .info-card__read-more {

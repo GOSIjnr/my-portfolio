@@ -161,6 +161,8 @@ skills:
     iconUrl: "https://api.iconify.design/simple-icons/css.svg"
   - name: "MySQL"
     iconUrl: "https://api.iconify.design/simple-icons/mysql.svg"
+  - name: "Postgresql"
+    iconUrl: "https://api.iconify.design/simple-icons/postgresql.svg"
   - name: "Postman"
     iconUrl: "https://api.iconify.design/simple-icons/postman.svg"
   - name: "Github"

@@ -90,6 +90,9 @@ projects:
       - "ASP.NET Core"
       - "MySQL."
     imageUrl: "images/no-image.svg"
+    liveLink:
+      linkUrl: "https://comely-giraffe-kuj7x.apidocumentation.com/guide/getting-started"
+      externalLinkType: 2
     otherLinks:
       - linkUrl: "https://github.com/GOSIjnr/expense-tracker-api"
         externalLinkType: 2
@@ -107,8 +110,8 @@ aboutMeInfo:
 
 experienceEvents:
   - type: "dateRange"
-    startDate: "2023-08-01T00:00:00Z"
-    endDate: "2023-10-01T00:00:00Z"
+    startDate: "2023-08-01"
+    endDate: "2023-10-01"
     description: "Network Operating Centre (Intern)"
     note: "InterConnect Clearing House Nigeria Limited"
     startDateFormat: 0
@@ -116,21 +119,21 @@ experienceEvents:
 
 educationEvents:
   - type: "dateRange"
-    startDate: "2019-12-10T00:00:00Z"
-    endDate: "2024-10-10T00:00:00Z"
+    startDate: "2019-12-10"
+    endDate: "2024-10-10"
     description: "Bachelor of Engineering, Computer Engineering"
     note: "Enugu State University of Science and Technology"
     startDateFormat: 0
     endDateFormat: 0
 
   - type: "date"
-    date: "2025-02-17T00:00:00Z"
+    date: "2025-02-17"
     description: "Microsoft Power BI Data Analyst"
     note: "Microsoft Corporation"
     dateFormat: 0
 
   - type: "date"
-    date: "2025-04-25T00:00:00Z"
+    date: "2025-04-25"
     description: "UI / UX Design"
     note: "California Institute of the Art"
     dateFormat: 0
@@ -179,10 +182,9 @@ stats:
     labelLine1: "Techologies"
     labelLine2: "mastered"
 
-  - number: 70
-    numberPrefix: "+"
-    labelLine1: "Code"
-    labelLine2: "commits"
+  - number: 2
+    labelLine1: "Keyboards"
+    labelLine2: "smashed"
 
 resumeDocID: "1NdPAG_6jcNHaFta0fJK6lT5TlNLzEMgQ"
 

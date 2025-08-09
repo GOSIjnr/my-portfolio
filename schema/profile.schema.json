@@ -454,7 +454,7 @@
         },
         "date": {
           "type": "string",
-          "format": "date-time",
+          "format": "date-only",
           "description": "The date when the event occurred."
         },
         "description": {
@@ -493,12 +493,12 @@
         },
         "startDate": {
           "type": "string",
-          "format": "date-time",
+          "format": "date-only",
           "description": "Start date of the event."
         },
         "endDate": {
           "type": "string",
-          "format": "date-time",
+          "format": "date-only",
           "description": "End date of the event."
         },
         "description": {

@@ -6,8 +6,8 @@ namespace MyPortfolio.Models.InfoCard;
 
 public class DateRangeEventInfo : InfoEventBase
 {
-	[Required] public required DateTime StartDate { get; init; }
-	[Required] public required DateTime EndDate { get; init; }
+	[Required] public required DateOnly StartDate { get; init; }
+	[Required] public required DateOnly EndDate { get; init; }
 	[Required] public required string Description { get; init; }
 	public string? Note { get; init; }
 	[Required] public DateFormatType StartDateFormat { get; init; }
@@ -15,8 +15,8 @@ public class DateRangeEventInfo : InfoEventBase
 
 	public static readonly DateRangeEventInfo Default = new()
 	{
-		StartDate = DateTime.Now,
-		EndDate = DateTime.Now,
+		StartDate = DateOnly.MinValue,
+		EndDate = DateOnly.MaxValue,
 		Description = string.Empty,
 	};
 }

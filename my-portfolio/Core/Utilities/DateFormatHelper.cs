@@ -12,7 +12,7 @@ public static class DateFormatHelper
 			DateFormatType.YearMonth => "yyyy MMMM",
 			DateFormatType.DayMonthYear => "dd MMM yyyy",
 			DateFormatType.IsoDate => "yyyy-MM-dd",
-			DateFormatType.FullDateTime => "dddd, dd MMMM yyyy HH:mm:ss",
+			DateFormatType.FullDateTime => "dddd, dd MMMM yyyy",
 			_ => "yyyy-MM-dd"
 		};
 	}

@@ -69,23 +69,23 @@ aboutMeInfo:
 
 experienceEvents:
   - type: "dateRange"
-    startDate: "2022-01-01T00:00:00Z"
-    endDate: "2023-01-01T00:00:00Z"
+    startDate: "2022-01-01"
+    endDate: "2023-01-01"
     description: "Frontend Developer at ExampleCorp"
     note: "Worked with React and Next.js"
     startDateFormat: 0
     endDateFormat: 0
 
   - type: "date"
-    date: "2021-06-01T00:00:00Z"
+    date: "2021-06-01"
     description: "Started Freelancing"
     note: "Various small web projects"
     dateFormat: 0
 
 educationEvents:
   - type: "dateRange"
-    startDate: "2017-09-01T00:00:00Z"
-    endDate: "2021-06-01T00:00:00Z"
+    startDate: "2017-09-01"
+    endDate: "2021-06-01"
     description: "B.Sc. in Computer Science, Example University"
     note: "Graduated with honors"
     startDateFormat: 0

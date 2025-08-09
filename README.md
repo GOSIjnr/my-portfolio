@@ -48,7 +48,7 @@ A **personal portfolio website** to showcase your projects, skills, and experien
 1. Clone the repository:
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/GOSIjnr/my-portfolio.git
    ```
 
 2. Navigate to the project directory:

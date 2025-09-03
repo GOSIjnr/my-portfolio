@@ -7,8 +7,8 @@ profileImageUrl: "https://github.com/GOSIjnr.png"
 
 socialLinks:
   - iconUrl: "https://api.iconify.design/simple-icons/github.svg"
-    title: "Github"
-    detail: "GOSIjnr"
+    title: "GitHub"
+    detail: "@GOSIjnr"
     linkUrl: "https://github.com/GOSIjnr"
     externalLinkType: 2
 
@@ -19,12 +19,12 @@ socialLinks:
     externalLinkType: 2
 
   - iconUrl: "https://api.iconify.design/simple-icons/x.svg"
-    title: "X"
+    title: "X (Twitter)"
     detail: "@GOSIjnr"
     linkUrl: "https://twitter.com/GOSIjnr"
     externalLinkType: 2
 
-  - iconUrl: "https://api.iconify.design/cib/linkedin.svg"
+  - iconUrl: "https://api.iconify.design/simple-icons/linkedin.svg"
     title: "LinkedIn"
     detail: "Victor Awugosi"
     linkUrl: "https://www.linkedin.com/in/victor-awugosi/"
@@ -32,17 +32,17 @@ socialLinks:
 
 services:
   - name: "Full-Stack Web Development"
-    description: "I build scalable, performant web applications from front-end interfaces to back-end infrastructure using modern frameworks and tools."
+    description: "Building scalable, performant web applications from intuitive front-end interfaces to secure, efficient back-end infrastructure."
   - name: "Game Development"
-    description: "I design and develop engaging games using Godot, Unity and other engines, focusing on gameplay mechanics, UI, and cross-platform compatibility."
+    description: "Designing and developing engaging games with Godot and Unity, focusing on gameplay mechanics, UI, and cross-platform compatibility."
   - name: "Data Analysis & Visualization"
-    description: "I analyze datasets to uncover insights, trends, and patterns, presenting them through clear visualizations and reports to support data-driven decisions."
+    description: "Transforming datasets into insights through clear visualizations and reports to support data-driven decisions."
   - name: "Front-End Development"
-    description: "I create responsive, accessible, and user-focused interfaces using HTML, CSS, JavaScript, and modern front-end frameworks like Blazor"
+    description: "Creating responsive, accessible, and user-focused interfaces using React, TypeScript, and modern frameworks."
   - name: "Back-End Development"
-    description: "I develop secure, efficient APIs and server-side logic using technologies such as C# and databases like MySQL."
+    description: "Developing APIs and server-side logic with C#, ASP.NET Core, and relational databases like MySQL and PostgreSQL."
   - name: "Graphic Design & Digital Art"
-    description: "I create digital illustrations, brand assets, and visual content for web, games, and print."
+    description: "Designing brand assets, illustrations, and digital content for web, games, and print."
 
 contactLinks:
   - iconUrl: "https://api.iconify.design/solar/letter-bold.svg"
@@ -52,14 +52,14 @@ contactLinks:
     externalLinkType: 0
 
   - iconUrl: "https://api.iconify.design/solar/letter-bold.svg"
-    title: "Email (secondary)"
+    title: "Email (Secondary)"
     detail: "gosijnr7@gmail.com"
     linkUrl: "gosijnr7@gmail.com"
     externalLinkType: 0
 
 projects:
-  - title: Esut Brain Train App
-    description: "A mobile app with logic, math, memory, and vocabulary games to boost cognitive skills. Built as a final-year project at ESUT."
+  - title: "Esut Brain Train App"
+    description: "A mobile app featuring logic, math, memory, and vocabulary games designed to boost cognitive skills. Developed as a final-year project at ESUT."
     technologies:
       - "Godot"
       - "GDScript"
@@ -70,36 +70,27 @@ projects:
     otherLinks:
       - linkUrl: "https://github.com/GOSIjnr/esut-brain-trainer"
         externalLinkType: 2
-        title: Github
+        title: "GitHub"
 
-  - title: "User Management API"
-    description: "A RESTful API for managing user data with CRUD operations, built using ASP.NET Core and clean architecture principles."
+  - title: "Expense Tracker App"
+    description: "A full-stack expense tracking application with a React frontend and an ASP.NET Core backend. Features include category management, transaction tracking, and spending reports."
     technologies:
       - "C#"
       - "ASP.NET Core"
+      - "PostgreSQL"
+      - "React"
+      - "TypeScript"
     imageUrl: "images/no-image.svg"
     otherLinks:
-      - linkUrl: "https://github.com/GOSIjnr/user-management-api"
+      - linkUrl: "https://comely-giraffe-kuj7x.apidocumentation.com/guide/getting-started"
         externalLinkType: 2
-        title: Github
-
-  - title: "Expense Tracker API"
-    description: "An ASP.NET Core API for tracking expenses, with support for categories, transactions, and spending reports."
-    technologies:
-      - "C#"
-      - "ASP.NET Core"
-      - "MySQL."
-    imageUrl: "images/no-image.svg"
-    liveLink:
-      linkUrl: "https://comely-giraffe-kuj7x.apidocumentation.com/guide/getting-started"
-      externalLinkType: 2
-    otherLinks:
-      - linkUrl: "https://github.com/GOSIjnr/expense-tracker-api"
+        title: "API Documentation"
+      - linkUrl: "https://github.com/Phusse/ExpenseTrackerAPI"
         externalLinkType: 2
-        title: Github
+        title: "GitHub"
 
 aboutMeInfo:
-  introduction: Hi, I'm Chinedu Victor Awugosi, a developer who enjoys building smooth, intuitive digital experiences and solving technical challenges. I work across the stack, explore new tech, and occasionally dive into game engines for fun.
+  introduction: "Hi, I'm Chinedu Victor Awugosi, a developer who enjoys building smooth, intuitive digital experiences and solving technical challenges. I work across the stack, explore new tech, and occasionally dive into game engines for fun."
   personalDetails:
     Name: "Awugosi Victor"
     Experience: "2 years"
@@ -134,13 +125,17 @@ educationEvents:
 
   - type: "date"
     date: "2025-04-25"
-    description: "UI / UX Design"
-    note: "California Institute of the Art"
+    description: "UI/UX Design"
+    note: "California Institute of the Arts"
     dateFormat: 0
 
 skills:
   - name: "Blazor"
     iconUrl: "https://api.iconify.design/simple-icons/blazor.svg"
+  - name: "Angular"
+    iconUrl: "https://api.iconify.design/simple-icons/angular.svg"
+  - name: "React"
+    iconUrl: "https://api.iconify.design/simple-icons/react.svg"
   - name: ".NET"
     iconUrl: "https://api.iconify.design/simple-icons/dotnet.svg"
   - name: "Entity Framework"
@@ -155,20 +150,24 @@ skills:
     iconUrl: "https://api.iconify.design/simple-icons/python.svg"
   - name: "JavaScript"
     iconUrl: "https://api.iconify.design/simple-icons/javascript.svg"
+  - name: "TypeScript"
+    iconUrl: "https://api.iconify.design/simple-icons/typescript.svg"
   - name: "HTML5"
     iconUrl: "https://api.iconify.design/simple-icons/html5.svg"
   - name: "CSS"
     iconUrl: "https://api.iconify.design/simple-icons/css.svg"
   - name: "MySQL"
     iconUrl: "https://api.iconify.design/simple-icons/mysql.svg"
-  - name: "Postgresql"
+  - name: "PostgreSQL"
     iconUrl: "https://api.iconify.design/simple-icons/postgresql.svg"
   - name: "Postman"
     iconUrl: "https://api.iconify.design/simple-icons/postman.svg"
-  - name: "Github"
+  - name: "GitHub"
     iconUrl: "https://api.iconify.design/simple-icons/github.svg"
   - name: "Figma"
-    iconUrl: "https://api.iconify.design/solar/figma-bold-duotone.svg"
+    iconUrl: "https://api.iconify.design/simple-icons/figma.svg"
+  - name: "Penpot"
+    iconUrl: "https://api.iconify.design/simple-icons/penpot.svg"
 
 stats:
   - number: 2
@@ -177,26 +176,27 @@ stats:
 
   - number: 4
     labelLine1: "Projects"
-    labelLine2: "completed"
+    labelLine2: "Completed"
 
-  - number: 10
+  - number: 15
     numberPrefix: "+"
-    labelLine1: "Techologies"
-    labelLine2: "mastered"
+    labelLine1: "Skills &"
+    labelLine2: "Tools"
 
-  - number: 2
-    labelLine1: "Keyboards"
-    labelLine2: "smashed"
+  - number: 150
+    numberPrefix: "+"
+    labelLine1: "Commits"
+    labelLine2: "Pushed"
 
 resumeDocID: "1NdPAG_6jcNHaFta0fJK6lT5TlNLzEMgQ"
 
 homePageContent:
-  role: "Full-Stack / Game Developer"
+  role: "Full-Stack Developer / Game Developer"
   greeting: "Hello I'm"
   greetingHighlighted: "Victor Awugosi"
   description: "I turn caffeine into code, pixels into purpose, and bugs into... features (sometimes). Code builds it, curiosity drives it."
 
 resumeSectionIntro:
   experience: "My journey has been shaped by a variety of experiences—some planned, some unexpected—all of which have helped me grow into who I am today. Each role has left its mark, teaching me something new about myself and the world around me."
-  education: "Education has been the foundation of my growth, providing me with the tools to think critically, solve problems, and explore new ideas. Every step along the way has opened new doors, fueling my curiosity and shaping the way I approach the world."
-  skill: "The skills I've developed reflect both my passions and my commitment to continuous learning. Each one represents countless hours of curiosity, experimentation, and practice—tools that help me bring ideas to life and tackle challenges with confidence."
+  education: "Education has been the foundation of my growth, equipping me with tools to think critically, solve problems, and explore new ideas. Every step has opened doors, fueling my curiosity and shaping my approach to challenges."
+  skill: "My skills reflect both passion and commitment to continuous learning. Each one represents countless hours of curiosity, experimentation, and practice—tools that help me bring ideas to life and solve problems with confidence."

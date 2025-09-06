@@ -24,12 +24,6 @@ socialLinks:
     linkUrl: "https://twitter.com/GOSIjnr"
     externalLinkType: 2
 
-  - iconUrl: "https://api.iconify.design/simple-icons/linkedin.svg"
-    title: "LinkedIn"
-    detail: "Victor Awugosi"
-    linkUrl: "https://www.linkedin.com/in/victor-awugosi/"
-    externalLinkType: 2
-
 services:
   - name: "Full-Stack Web Development"
     description: "Building scalable, performant web applications from intuitive front-end interfaces to secure, efficient back-end infrastructure."

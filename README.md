@@ -1,7 +1,7 @@
 # 🚀 My Portfolio
 
-![.NET 9.0](https://img.shields.io/badge/.NET-9.0-purple)
-![License](https://img.shields.io/badge/license-CC-blue)
+![.NET 10.0](https://img.shields.io/badge/.NET-10.0-purple)
+![License](https://img.shields.io/badge/license-MIT-blue)
 ![GitHub Pages](https://img.shields.io/badge/deploy-GitHub%20Pages-lightgrey)
 
 A **personal portfolio website** to showcase your projects, skills, and experience — built with ❤️ using **Blazor**.
@@ -41,7 +41,7 @@ A **personal portfolio website** to showcase your projects, skills, and experien
 
 📚 **New to Blazor?** Start here: [Introduction to Blazor](https://dotnet.microsoft.com/en-us/learn/aspnet/blazor-tutorial/intro)
 
-* [.NET 9 SDK or later](https://dotnet.microsoft.com/download)
+* [.NET 10 SDK or later](https://dotnet.microsoft.com/download)
 
 ### ▶️ Run Locally
 
@@ -97,8 +97,6 @@ socialLinks:
     linkUrl: "https://github.com/johndoe"
     externalLinkType: 2
 ```
-
-> 📁 YAML files live under `wwwroot/data/` and can be updated without recompiling the app.
 
 ### ✨ YAML Tooling Support
 
@@ -236,17 +234,6 @@ wwwroot/    → Static files (CSS, images, etc.)
 
 Contributions are welcome!
 For major changes, please open an issue first to discuss your ideas.
-
----
-
-## 📿 License
-
-Licensed under the [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) license.
-
-You may use and modify this project for **personal or non-commercial** use with proper attribution.
-
-**Commercial use is not allowed** without prior permission.
-📧 Contact: **[gosijnr7@yahoo.com](mailto:gosijnr7@yahoo.com)**
 
 ---
 

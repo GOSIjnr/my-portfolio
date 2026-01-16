@@ -1,0 +1,133 @@
+brand:
+  brandDisplayName: "John"
+  brandHighlightedDisplayName: "Doe."
+  brandRawTargetUrl: "/"
+
+profileImageUrl: "/images/no-image.svg"
+
+socialLinks:
+  - iconUrl: "https://api.iconify.design/simple-icons/github.svg"
+    title: "GitHub"
+    detail: "johndoe"
+    linkUrl: "https://github.com/johndoe"
+    externalLinkType: 2
+
+  - iconUrl: "https://api.iconify.design/cib/linkedin.svg"
+    title: "LinkedIn"
+    detail: "John Doe"
+    linkUrl: "https://linkedin.com/in/johndoe"
+    externalLinkType: 2
+
+services:
+  - name: "Web Development"
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+
+  - name: "UI/UX Design"
+    description: "Proin ac turpis facilisis, efficitur lorem in, tincidunt justo."
+
+contactLinks:
+  - iconUrl: "https://api.iconify.design/solar/letter-bold.svg"
+    title: "Email"
+    detail: "john@example.com"
+    linkUrl: "mailto:john@example.com"
+    externalLinkType: 0
+
+  - iconUrl: "https://api.iconify.design/solar/phone-bold.svg"
+    title: "Phone"
+    detail: "+1234567890"
+    linkUrl: "tel:+1234567890"
+    externalLinkType: 1
+
+projects:
+  - title: "Sample Portfolio Website"
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    technologies:
+      - "HTML"
+      - "CSS"
+      - "JavaScript"
+    imageUrl: "images/no-image.svg"
+    liveLink:
+      iconUrl: "https://example.com/icons/external.svg"
+      title: "Live Demo"
+      detail: null
+      linkUrl: "https://johndoe.dev"
+      externalLinkType: 2
+    otherLinks:
+      - iconUrl: "https://example.com/icons/github.svg"
+        title: "GitHub"
+        detail: null
+        linkUrl: "https://github.com/johndoe/portfolio"
+        externalLinkType: 2
+
+aboutMeInfo:
+  introduction: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac dui nec risus placerat sollicitudin."
+  personalDetails:
+    Experience: "5+ years"
+    Location: "San Francisco, USA"
+    Hobbies: "Coding, Design, Reading"
+    Language: "English, Spanish"
+
+experienceEvents:
+  - type: "dateRange"
+    startDate: "2022-01-01"
+    endDate: "2023-01-01"
+    description: "Frontend Developer at ExampleCorp"
+    note: "Worked with React and Next.js"
+    startDateFormat: 0
+    endDateFormat: 0
+
+  - type: "date"
+    date: "2021-06-01"
+    description: "Started Freelancing"
+    note: "Various small web projects"
+    dateFormat: 0
+
+educationEvents:
+  - type: "dateRange"
+    startDate: "2017-09-01"
+    endDate: "2021-06-01"
+    description: "B.Sc. in Computer Science, Example University"
+    note: "Graduated with honors"
+    startDateFormat: 0
+    endDateFormat: 0
+
+skills:
+  - name: "JavaScript"
+    iconUrl: "https://api.iconify.design/simple-icons/javascript.svg"
+
+  - name: "React"
+    iconUrl: "https://api.iconify.design/simple-icons/react.svg"
+
+stats:
+  - number: 15
+    numberPrefix: "+"
+    labelLine1: "Projects"
+    labelLine2: "Completed"
+
+  - number: 4
+    numberPrefix: null
+    labelLine1: "Years of"
+    labelLine2: "Experience"
+
+  - number: 40
+    numberPrefix: "+"
+    labelLine1: "Satisfied"
+    labelLine2: "Clients"
+
+  - number: 10
+    numberPrefix: null
+    labelLine1: "Skills"
+    labelLine2: "Mastered"
+
+resumeDocID: "resume-johndoe-sample"
+
+homePageContent:
+  role: "Frontend Engineer"
+  greeting: "Hi, I'm"
+  greetingHighlighted: "John Doe"
+  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac dui nec risus placerat sollicitudin."
+
+resumeSectionIntro:
+  experience: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac dui nec risus placerat sollicitudin."
+  education: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac dui nec risus placerat sollicitudin."
+  skill: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac dui nec risus placerat sollicitudin."

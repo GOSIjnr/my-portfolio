@@ -1,0 +1,21 @@
+<div class="service-radio__card @_serviceCardStyle" tabindex="0" role="radio" aria-checked="@Selected"
+	@onclick="HandleClick">
+	<input type="radio" hidden name="service" value="@Service" checked="@Selected" />
+	<small class="service-radio__card-name">@Service</small>
+</div>
+
+@code {
+	[Parameter, EditorRequired] public string Service { get; set; } = string.Empty;
+	[Parameter] public bool Selected { get; set; } = false;
+	[Parameter] public EventCallback<string> OnSelect { get; set; }
+
+	private string _serviceCardStyle => Selected ? "service-radio__card--selected" : string.Empty;
+
+	private async Task HandleClick()
+	{
+		if (OnSelect.HasDelegate)
+		{
+			await OnSelect.InvokeAsync(Service);
+		}
+	}
+}

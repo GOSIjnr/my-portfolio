@@ -1,0 +1,198 @@
+:root {
+    --font-1: "JetBrains Mono", Consolas, "Liberation Mono", Menlo, monospace;
+    --font-2: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+
+    --color-1: #141416;
+    --color-1-light: #2a2b2e;
+    --color-1-lighter: #3f4044;
+    --color-1-lightest: #5a5b5f;
+    --color-1-dark: #0f0f10;
+    --color-1-darker: #0a0a0b;
+    --color-1-darkest: #060607;
+
+    --color-2: #2563eb;
+    --color-2-light: #3b82f6;
+    --color-2-lighter: #60a5fa;
+    --color-2-lightest: #93c5fd;
+    --color-2-dark: #1d4ed8;
+    --color-2-darker: #1e40af;
+    --color-2-darkest: #1e3a8a;
+
+    --color-3: #bfbfbf;
+    --color-3-light: #d9d9d9;
+    --color-3-lighter: #f0f0f0;
+    --color-3-lightest: #ffffff;
+    --color-3-dark: #8c8c8c;
+    --color-3-darker: #595959;
+    --color-3-darkest: #262626;
+}
+
+html,
+body {
+    font-size: clamp(0.875rem, 1.5vw, 1rem);
+    font-family: var(--font-1);
+    color: var(--color-3-lighter);
+    background-color: var(--color-1);
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overscroll-behavior: none;
+}
+
+h1 {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+}
+
+h2 {
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
+}
+
+h3 {
+    font-size: clamp(1.125rem, 1.5vw, 1.5rem);
+}
+
+h4,
+h5,
+h6 {
+    font-size: clamp(1rem, 1.25vw, 1.25rem);
+}
+
+p,
+label {
+    font-size: clamp(0.75rem, 0.25vw, 0.875rem);
+    margin-bottom: 1rem;
+    font-weight: 300;
+}
+
+small {
+    font-size: clamp(0.65rem, 0.75vw, 0.875rem);
+}
+
+b,
+strong {
+    font-weight: bold;
+}
+
+em,
+i {
+    font-style: italic;
+}
+
+a {
+    background-color: transparent;
+    color: var(--color-2-dark);
+    transition: color 0.3s ease-in;
+}
+
+a:focus,
+a:hover,
+a:active {
+    color: var(--color-2-light);
+}
+
+code,
+kbd,
+samp,
+pre {
+    font-family: var(--font-2);
+    font-size: 1em;
+}
+
+code {
+    color: #c02d76;
+}
+
+img {
+    border-style: none;
+    max-width: 100%;
+    height: auto;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    color: var(--color-3-lightest);
+    font-family: var(--font-2);
+    font-size: clamp(0.875rem, 1vw, 1rem);
+    line-height: 1.15;
+    margin: 0;
+}
+
+.form-floating>.form-control-plaintext::placeholder,
+.form-floating>.form-control::placeholder {
+    color: var(--bs-secondary-color);
+    text-align: end;
+}
+
+.form-floating>.form-control-plaintext:focus::placeholder,
+.form-floating>.form-control:focus::placeholder {
+    text-align: start;
+}
+
+.scroll-locked {
+    overflow: hidden;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+}
+
+.wrong-route-error-boundary,
+.blazor-error-boundary,
+.loading-progress {
+    height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem;
+}
+
+.blazor-error-boundary::after {
+    content: "An error has occurred!!!";
+}
+
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.loading-progress-text {
+    text-align: center;
+    font-weight: bold;
+    font-size: clamp(1rem, 1.25vw, 1.125rem);
+}
+
+.loading-progress-text::after {
+    content: var(--blazor-load-percentage-text, "0%");
+}
+
+#blazor-error-ui {
+    background: bisque;
+    color: var(--color-1);
+    box-sizing: border-box;
+    display: none;
+    padding: 0.6rem 1.25rem 0.7rem;
+    position: fixed;
+    bottom: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    top: 0.5rem;
+    right: 0.75rem;
+}
+
+.blazor-error-ui-reload {
+    color: #b32121;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s ease-in;
+}

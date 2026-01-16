@@ -1,0 +1,60 @@
+.experience-section {
+	--description-font-color: var(--color-3-dark);
+	--scrollbar-slider-color: var(--color-2-lighter);
+}
+
+.experience-section__heading,
+.experience-section__description {
+	text-align: center;
+}
+
+.experience-section__heading {
+	font-weight: 700;
+	margin-bottom: 1.5rem;
+}
+
+.experience-section__description {
+	margin-top: 1.5rem;
+	color: var(--description-font-color);
+	margin-bottom: 2rem;
+}
+
+.experience-section__grid {
+	display: grid;
+	gap: 1rem;
+}
+
+@media (min-width: 768px) {
+
+	.experience-section__heading,
+	.experience-section__description {
+		text-align: left;
+	}
+
+	.experience-section__grid {
+		padding-right: 0.3rem;
+		max-height: 320px;
+		overflow: auto;
+		scrollbar-width: thin;
+		scrollbar-color: var(--scrollbar-slider-color) transparent;
+	}
+
+	.experience-section__grid::-webkit-scrollbar {
+		width: 6px;
+	}
+
+	.experience-section__grid::-webkit-scrollbar-track {
+		background: transparent;
+	}
+
+	.experience-section__grid::-webkit-scrollbar-thumb {
+		background-color: var(--scrollbar-slider-color);
+		border-radius: 3px;
+	}
+}
+
+@media (min-width: 992px) {
+	.experience-section__grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}

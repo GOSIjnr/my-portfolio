@@ -177,10 +177,10 @@ stats:
     labelLine1: "Skills &"
     labelLine2: "Tools"
 
-  - number: 150
+  - number: 10
     numberPrefix: "+"
-    labelLine1: "Commits"
-    labelLine2: "Pushed"
+    labelLine1: "Hours Spent"
+    labelLine2: "Naming Things"
 
 resumeDocID: "1NdPAG_6jcNHaFta0fJK6lT5TlNLzEMgQ"
 

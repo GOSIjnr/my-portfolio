@@ -74,11 +74,12 @@ projects:
       - "PostgreSQL"
       - "React"
       - "TypeScript"
+      - "Tailwind"
     imageUrl: "images/no-image.svg"
+    liveLink:
+      linkUrl: "https://expensify-zeta-two.vercel.app"
+      externalLinkType: 2
     otherLinks:
-      - linkUrl: "https://comely-giraffe-kuj7x.apidocumentation.com/guide/getting-started"
-        externalLinkType: 2
-        title: "API Documentation"
       - linkUrl: "https://github.com/Phusse/ExpenseTrackerAPI"
         externalLinkType: 2
         title: "GitHub"

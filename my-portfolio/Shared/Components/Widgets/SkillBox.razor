@@ -1,0 +1,29 @@
+<div class="skill-box" title="@_skillName">
+	<div class="skill-box__icon" id="@_elementId" />
+</div>
+
+@code {
+	[Inject] private ImageLoaderService ImageLoader { get; set; } = null!;
+
+	[Parameter, EditorRequired] public SkillInfo SkillInfo { get; set; } = SkillInfo.Default;
+
+	private string _skillName => SkillInfo.Name;
+	private string _skillImageUrl => SkillInfo.IconUrl;
+	private const string _fallbackUrl = "images/web.svg";
+	private readonly string _elementId = $"skill_{Guid.NewGuid():N}";
+
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		if (firstRender)
+		{
+			await ImageLoader.ApplyCssImageWithFallbackAsync(new ImageLoaderOptions
+			{
+				ElementId = _elementId,
+				CssProperty = "--skill-icon-image",
+				ImageUrl = _skillImageUrl,
+				FallbackUrl = _fallbackUrl,
+				UseVariable = true
+			});
+		}
+	}
+}

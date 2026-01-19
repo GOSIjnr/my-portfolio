@@ -1,0 +1,90 @@
+<div class="project-card">
+    <div class="project-card__info">
+        <h1 class="project-card__number">@((ProjectNo + 1).ToString("D2"))</h1>
+
+        <h1 class="project-card__title">@_title</h1>
+        <p class="project-card__description">@_description</p>
+        <small class="project-card__tech">@string.Join(", ", _technologies)</small>
+
+        <div class="project-card__buttons">
+            @if (_liveLink is not null)
+            {
+                <a class="project-card__button project-card__button--launch" href="@_liveLink.LinkUrl" target="_blank"
+                    rel="noopener noreferrer">
+                    Launch
+                </a>
+            }
+
+            @foreach (ExternalLinkInfo link in _otherLinks)
+            {
+                <a class="project-card__button" href="@link.LinkUrl" target="_blank" rel="noopener noreferrer">
+                    @link.Title
+                </a>
+            }
+        </div>
+    </div>
+
+    <div class="project-card__media">
+        <img class="project-card__image" id="@_projectImageId" alt="@_title" />
+
+        <div class="project-card__nav">
+            <button @onclick="ShowPreviousCard" disabled="@IsFirst" class="project-card__nav-button">
+                <div class="project-card__nav-button-icon project-card__nav-button-icon--left" />
+            </button>
+            <button @onclick="ShowNextCard" disabled="@IsLast" class="project-card__nav-button">
+                <div class="project-card__nav-button-icon project-card__nav-button-icon--right"></div>
+            </button>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Inject] private ImageLoaderService ImageLoader { get; set; } = null!;
+
+    [Parameter, EditorRequired] public ProjectInfo ProjectInfo { get; set; } = ProjectInfo.Default;
+    [Parameter] public int ProjectNo { get; set; }
+    [Parameter] public int TotalProjects { get; set; }
+    [Parameter] public EventCallback<int> ProjectNoChanged { get; set; }
+
+    private readonly string _projectImageId = $"project-card__image--{Guid.NewGuid():N}";
+    private string? _lastImageUrl;
+    private string _title => ProjectInfo.Title;
+    private string _description => ProjectInfo.Description;
+    private List<string> _technologies => ProjectInfo.Technologies ?? [];
+    private string _imageUrl => ProjectInfo.ImageUrl ?? string.Empty;
+    private ExternalLinkInfo? _liveLink => ProjectInfo.LiveLink;
+    private List<ExternalLinkInfo> _otherLinks => ProjectInfo.OtherLinks ?? [];
+    private bool IsFirst => ProjectNo == 0;
+    private bool IsLast => ProjectNo == TotalProjects - 1;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (_imageUrl != _lastImageUrl)
+        {
+            _lastImageUrl = _imageUrl;
+            await ImageLoader.ApplyImgSrcWithFallbackAsync(new ImageLoaderOptions
+            {
+                ElementId = _projectImageId,
+                ImageUrl = _imageUrl,
+                FallbackUrl = "images/no-image.svg",
+                UseVariable = false
+            });
+        }
+    }
+
+    private async Task ShowPreviousCard()
+    {
+        if (!IsFirst)
+        {
+            await ProjectNoChanged.InvokeAsync(ProjectNo - 1);
+        }
+    }
+
+    private async Task ShowNextCard()
+    {
+        if (!IsLast)
+        {
+            await ProjectNoChanged.InvokeAsync(ProjectNo + 1);
+        }
+    }
+}

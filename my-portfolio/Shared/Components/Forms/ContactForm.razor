@@ -1,0 +1,168 @@
+@using MyPortfolio.Contracts.Filtering
+@using MyPortfolio.Models.DTOs
+@implements IDisposable
+
+<div class="contact-form">
+	<Toast Message="@_statusMessage" Level="@_toastLevel" OnDismissed="ClearToast" />
+
+	<EditForm EditContext="_editContext" OnValidSubmit="HandleSubmission">
+		<DataAnnotationsValidator />
+
+		<h3 class="contact-form__title">@ContactFormLayout.Heading</h3>
+		<p class="contact-form__subtitle">@ContactFormLayout.SubHeading</p>
+
+		<div class="contact-form__fields">
+			<div class="contact-form__group">
+				<InputText class="contact-form__input" placeholder="First name" @bind-Value="_formModel.FirstName" />
+			</div>
+
+			<div style="display:none;">
+				<InputText @bind-Value="_honeypot" placeholder="Middle name" />
+			</div>
+
+			<div class="contact-form__group">
+				<InputText class="contact-form__input" placeholder="Last name" @bind-Value="_formModel.LastName" />
+			</div>
+
+			<div class="contact-form__group">
+				<InputText class="contact-form__input" placeholder="Email address" @bind-Value="_formModel.Email" />
+			</div>
+
+			<div class="contact-form__group contact-form__group--full contact-form__service-group">
+				<label class="contact-form__service-label">Select a service</label>
+
+				<div class="contact-form__service-search-wrapper">
+					<SearchInput @bind-Search="_serviceSearch" DelayInMilliSeconds="400"
+						Placeholder="Search services..." />
+				</div>
+
+				<div class="contact-form__radio-group" role="radiogroup" aria-label="Services">
+					@foreach (string service in FilteredServices)
+					{
+						<ServiceRadioCard Service="@service" Selected="(_formModel.Service == service)"
+							OnSelect="OnServiceSelected" />
+					}
+				</div>
+			</div>
+
+			<div class="contact-form__textarea-wrapper contact-form__group contact-form__group--full">
+				<div class="contact-form__group contact-form__group--full">
+					<InputText class="contact-form__input"
+						placeholder="Reason for contact (e.g., hiring, question, feedback)"
+						@bind-Value="_formModel.Reason" />
+				</div>
+
+				<div class="contact-form__group contact-form__group--full">
+					<InputTextArea class="contact-form__textarea" placeholder="Type your message here."
+						@bind-Value="_formModel.Message" />
+				</div>
+			</div>
+		</div>
+
+		<div class="contact-form__error-wrapper">
+			<ValidationSummary class="contact-form__error" />
+		</div>
+
+		<div class="contact-form__submit-wrapper">
+			<button type="submit" class="contact-form__submit"
+				disabled="@(_isSubmitting || CooldownService.IsCoolingDown)">
+				@if (CooldownService.IsCoolingDown)
+				{
+					<p class="cooldown-text">Please wait: @(_cooldownRemaining)s</p>
+				}
+				else if (_isSubmitting)
+				{
+					<p>Sending...</p>
+				}
+				else
+				{
+					<p>Send Message</p>
+				}
+			</button>
+		</div>
+	</EditForm>
+</div>
+
+@code {
+	[Inject] private EmailSubmitHandler EmailFormHandler { get; set; } = null!;
+	[Inject] private CooldownService CooldownService { get; set; } = null!;
+
+	[Parameter, EditorRequired] public ContactFormInfo ContactFormLayout { get; set; } = ContactFormInfo.Default;
+	[Parameter, EditorRequired] public ISearchFilter ServiceFilter { get; set; } = new FuzzySearchFilter();
+	[Parameter] public List<string> ServicesNames { get; set; } = [];
+	[Parameter] public string? SelectedService { get; set; }
+
+	private ContactFormModel _formModel = new();
+	private string? _honeypot;
+	private string? _serviceSearch;
+	private bool _isSubmitting;
+	private string? _statusMessage;
+	private ToastLevel _toastLevel = ToastLevel.Primary;
+	private int _cooldownRemaining => CooldownService.RemainingSeconds;
+	private EditContext? _editContext;
+	private FieldIdentifier _editField;
+	private IEnumerable<string> FilteredServices => ServiceFilter.Filter(ServicesNames, _serviceSearch);
+
+	protected override void OnInitialized()
+	{
+		_editContext = new EditContext(_formModel);
+		_editField = new FieldIdentifier(_formModel, nameof(_formModel.Service));
+
+		if (!string.IsNullOrWhiteSpace(SelectedService))
+		{
+			_formModel.Service = SelectedService;
+		}
+
+		CooldownService.OnTick += UpdateCooldownUI;
+		UpdateCooldownUI();
+	}
+
+	private void UpdateCooldownUI()
+	{
+		InvokeAsync(StateHasChanged);
+	}
+
+	public void Dispose()
+	{
+		CooldownService.OnTick -= UpdateCooldownUI;
+	}
+
+	private void OnServiceSelected(string selectedService)
+	{
+		_formModel.Service = selectedService;
+		_editContext?.NotifyFieldChanged(_editField);
+	}
+
+	private async Task HandleSubmission()
+	{
+		_isSubmitting = true;
+
+		EmailSubmissionResponse<object> result = await EmailFormHandler.SubmitAsync(_formModel, _honeypot);
+
+		ShowToast(result.Response.Message, result.ToastLevel);
+
+		if (result.Response.Success)
+		{
+			_formModel = new();
+		}
+
+		_honeypot = null;
+		_isSubmitting = false;
+	}
+
+	private void ShowToast(string message, ToastLevel level)
+	{
+		_statusMessage = message;
+		_toastLevel = level;
+
+		StateHasChanged();
+
+		_ = Task.Delay(5000).ContinueWith(_ => ClearToast());
+	}
+
+	private Task ClearToast()
+	{
+		_statusMessage = null;
+		return InvokeAsync(StateHasChanged);
+	}
+}

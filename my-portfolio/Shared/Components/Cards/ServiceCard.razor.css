@@ -1,0 +1,104 @@
+.service-card {
+	--border-color: var(--color-1-light);
+	--main-color: var(--color-3-lightest);
+	--hover-color: var(--color-2-lighter);
+	--text-color: var(--color-3-dark);
+	--arrow-color: var(--color-1);
+	--arrow-hover-color: var(--color-3-lightest);
+	--button-hover-bg: var(--color-2-lightest);
+	--button-hover-arrow: var(--arrow-color);
+	--arrow-icon: url("images/arrow-right-linear.svg");
+
+	--padding: 1rem;
+	--button-size: 2.25rem;
+	--arrow-size: 1.15rem;
+	--number-size: 2rem;
+
+	--current-color: var(--main-color);
+}
+
+.service-card {
+	border-bottom: 2px solid var(--border-color);
+	color: var(--hover-color);
+	padding: var(--padding);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: auto;
+	box-sizing: border-box;
+}
+
+.service-card:hover {
+	--current-color: var(--hover-color);
+	--button-hover-arrow: var(--arrow-hover-color);
+}
+
+.service-card__header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 0.5rem;
+	flex-direction: row;
+}
+
+.service-card__number {
+	font-size: var(--number-size);
+	font-weight: bolder;
+	color: transparent;
+	-webkit-text-stroke-color: var(--current-color);
+	-webkit-text-stroke-width: 1px;
+	margin: 0;
+}
+
+.service-card__button {
+	background-color: var(--current-color);
+	border-radius: 50vw;
+	width: var(--button-size);
+	height: var(--button-size);
+	border: none;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: all 0.3s ease;
+}
+
+.service-card__button:hover,
+.service-card__button:focus {
+	background-color: var(--button-hover-bg);
+}
+
+.service-card__arrow {
+	width: var(--arrow-size);
+	height: var(--arrow-size);
+	background-color: var(--button-hover-arrow);
+	-webkit-mask: var(--arrow-icon) no-repeat center / contain;
+	mask: var(--arrow-icon) no-repeat center / contain;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transform: rotate(45deg);
+	transition: transform 0.3s ease-out;
+}
+
+.service-card__button:hover .service-card__arrow {
+	background-color: var(--color-3-lighter);
+	transform: rotate(0deg);
+}
+
+.service-card__title {
+	color: var(--current-color);
+	font-weight: bolder;
+	text-align: left;
+	white-space: normal;
+	word-break: break-word;
+	margin: 0.25rem 0;
+}
+
+.service-card__description {
+	line-height: 1.5;
+	color: var(--text-color);
+	text-align: left;
+	word-break: break-word;
+	flex-grow: 1;
+}

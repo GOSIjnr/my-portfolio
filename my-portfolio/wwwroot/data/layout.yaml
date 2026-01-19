@@ -1,0 +1,64 @@
+navigationLinks:
+  - displayText: "Home"
+    rawTargetUrl: "/"
+    cssClassType: 0
+    cssActiveClassType: 1
+
+  - displayText: "Services"
+    rawTargetUrl: "services"
+    cssClassType: 0
+    cssActiveClassType: 1
+
+  - displayText: "Resume"
+    rawTargetUrl: "resume"
+    cssClassType: 0
+    cssActiveClassType: 1
+
+  - displayText: "Projects"
+    rawTargetUrl: "projects"
+    cssClassType: 0
+    cssActiveClassType: 1
+
+  - displayText: "Contact"
+    rawTargetUrl: "contact"
+    cssClassType: 0
+    cssActiveClassType: 1
+
+contactMeLink:
+  displayText: "Let's Connect"
+  rawTargetUrl: "contact"
+  cssClassType: 1
+  cssActiveClassType: 0
+
+downloadCVLink:
+  displayText: "Download CV"
+  rawTargetUrl: "/"
+  cssClassType: 2
+  cssActiveClassType: 0
+
+projectsLink:
+  displayText: "Check My Projects"
+  rawTargetUrl: "/projects"
+  cssClassType: 1
+  cssActiveClassType: 0
+
+contactForm:
+  heading: "Let's Collaborate"
+  subHeading: "I'm excited to hear about your project and how we can create something amazing together. Whether you have questions, ideas, or just want to say hello, feel free to reach out!"
+
+resumeHeader:
+  title: "Why hire me?"
+  subtitle: "Browse through the areas below to learn more about my skills and experience."
+
+resumeTabs:
+  - key: "aboutMe"
+    label: "About Me"
+
+  - key: "experience"
+    label: "Experience"
+
+  - key: "education"
+    label: "Education"
+
+  - key: "skills"
+    label: "Skills"

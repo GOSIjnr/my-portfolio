@@ -1,0 +1,50 @@
+@if (IsButton)
+{
+	<div class="nav-item" @onclick="HandleNavItemClickAsync">
+		<button class="nav-item__link nav-item__link--button">
+			<p class="nav-item__label @_cssModifier">@_displayText</p>
+		</button>
+	</div>
+}
+else
+{
+	<div class="nav-item" @onclick="HandleNavItemClickAsync">
+		<NavLink class="nav-item__link" ActiveClass="@_cssActiveModifier" href="@_targetUrl" Match="NavLinkMatch.All">
+			<p class="nav-item__label @_cssModifier">@_displayText</p>
+		</NavLink>
+	</div>
+}
+
+@code {
+	[Parameter, EditorRequired] public NavigationLinkInfo NavigationLinkInfo { get; set; } = NavigationLinkInfo.Default;
+	[Parameter] public TargetUrlFormat ExternalLinkType { get; set; } = TargetUrlFormat.HashPrefix;
+	[Parameter] public EventCallback OnNavItemClick { get; set; }
+	[Parameter] public bool IsButton { get; set; } = false;
+
+	private string _displayText => NavigationLinkInfo.DisplayText;
+	private string _rawTargetUrl => NavigationLinkInfo.RawTargetUrl;
+	private string _targetUrl => NavigationUrlFormatter.GetFormattedSanitizedTargetUrl(_rawTargetUrl, ExternalLinkType);
+
+	private string _cssModifier => NavigationLinkInfo.CssClassType switch
+	{
+		NavigationItemCssType.Normal => string.Empty,
+		NavigationItemCssType.Rounded => "nav-item__label--button",
+		NavigationItemCssType.RoundedInverted => "nav-item__label--button-accent",
+		_ => string.Empty,
+	};
+
+	private string _cssActiveModifier => NavigationLinkInfo.CssActiveClassType switch
+	{
+		NavigationItemCssActiveType.Normal => string.Empty,
+		NavigationItemCssActiveType.UnderLine => "nav-item__link--underline",
+		_ => string.Empty,
+	};
+
+	private async Task HandleNavItemClickAsync(MouseEventArgs mouseEventArgs)
+	{
+		if (OnNavItemClick.HasDelegate)
+		{
+			await OnNavItemClick.InvokeAsync();
+		}
+	}
+}

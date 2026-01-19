@@ -1,0 +1,25 @@
+.unknown-section {
+	--text-color: var(--color-3-dark);
+}
+
+.unknown-section__title,
+.unknown-section__message {
+	margin-bottom: 1.5rem;
+	text-align: center;
+}
+
+.unknown-section__title {
+	font-weight: 700;
+}
+
+.unknown-section__message {
+	color: var(--text-color);
+}
+
+@media (min-width: 768px) {
+
+	.unknown-section__title,
+	.unknown-section__message {
+		text-align: left;
+	}
+}

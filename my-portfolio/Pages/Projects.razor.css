@@ -1,0 +1,22 @@
+.projects {
+	--page-padding: 1rem;
+	--no-content-color: var(--color-3-dark);
+}
+
+.projects {
+	padding: var(--page-padding);
+	margin-bottom: 4rem;
+}
+
+.projects__no-content {
+	margin-top: 50px;
+	font-size: 0.875rem;
+	text-align: center;
+	color: var(--no-content-color);
+}
+
+@media (min-width: 768px) {
+	.projects {
+		--page-padding: 2rem 1rem;
+	}
+}

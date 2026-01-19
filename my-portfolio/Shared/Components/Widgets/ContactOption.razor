@@ -1,0 +1,54 @@
+<div class="contact-option">
+	<div class="contact-option__icon-holder">
+		<div class="contact-option__icon" id="@_contactIconId" />
+	</div>
+
+	<div class="contact-option__text">
+		<small class="contact-option__title">@_contactTitle</small>
+
+		<p class="contact-option__detail">
+			@switch (ContactInfo.ExternalLinkType)
+			{
+				case ExternalLinkType.Email:
+					<a href="mailto:@ContactInfo.LinkUrl">@ContactInfo.Detail</a>
+					break;
+				case ExternalLinkType.Phone:
+					<a href="tel:@ContactInfo.LinkUrl">@ContactInfo.Detail</a>
+					break;
+				case ExternalLinkType.Link:
+					<a href="@ContactInfo.LinkUrl" target="_blank" rel="noopener noreferrer">@ContactInfo.Detail</a>
+					break;
+				default:
+					@ContactInfo.Detail
+					break;
+			}
+		</p>
+	</div>
+</div>
+
+@code {
+	[Inject] private ImageLoaderService ImageLoader { get; set; } = null!;
+
+	[Parameter, EditorRequired] public ExternalLinkInfo ContactInfo { get; set; } = ExternalLinkInfo.Default;
+
+	private readonly string _contactIconId = $"contact-option__icon--{Guid.NewGuid():N}";
+	private const string FallbackIcon = "images/web.svg";
+	private string _contactIconUrl => ContactInfo.IconUrl ?? string.Empty;
+	private string _contactTitle => ContactInfo.Title ?? string.Empty;
+	private string _contactDetail => ContactInfo.Detail ?? string.Empty;
+
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		if (firstRender)
+		{
+			await ImageLoader.ApplyCssImageWithFallbackAsync(new ImageLoaderOptions
+			{
+				ElementId = _contactIconId,
+				CssProperty = "--icon-image",
+				ImageUrl = _contactIconUrl,
+				FallbackUrl = FallbackIcon,
+				UseVariable = true
+			});
+		}
+	}
+}

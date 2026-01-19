@@ -1,0 +1,197 @@
+brand:
+  brandDisplayName: "Vic"
+  brandHighlightedDisplayName: "tor."
+  brandRawTargetUrl: "/"
+
+profileImageUrl: "https://github.com/GOSIjnr.png"
+
+socialLinks:
+  - iconUrl: "https://api.iconify.design/simple-icons/github.svg"
+    title: "GitHub"
+    detail: "@GOSIjnr"
+    linkUrl: "https://github.com/GOSIjnr"
+    externalLinkType: 2
+
+  - iconUrl: "https://api.iconify.design/simple-icons/discord.svg"
+    title: "Discord"
+    detail: "GOSIjnr"
+    linkUrl: "https://discord.com/users/GOSIjnr"
+    externalLinkType: 2
+
+  - iconUrl: "https://api.iconify.design/simple-icons/x.svg"
+    title: "X (Twitter)"
+    detail: "@GOSIjnr"
+    linkUrl: "https://twitter.com/GOSIjnr"
+    externalLinkType: 2
+
+services:
+  - name: "Full-Stack Web Development"
+    description: "Building scalable, performant web applications from intuitive front-end interfaces to secure, efficient back-end infrastructure."
+  - name: "Game Development"
+    description: "Designing and developing engaging games with Godot and Unity, focusing on gameplay mechanics, UI, and cross-platform compatibility."
+  - name: "Data Analysis & Visualization"
+    description: "Transforming datasets into insights through clear visualizations and reports to support data-driven decisions."
+  - name: "Front-End Development"
+    description: "Creating responsive, accessible, and user-focused interfaces using React, TypeScript, and modern frameworks."
+  - name: "Back-End Development"
+    description: "Developing APIs and server-side logic with C#, ASP.NET Core, and relational databases like MySQL and PostgreSQL."
+  - name: "Graphic Design & Digital Art"
+    description: "Designing brand assets, illustrations, and digital content for web, games, and print."
+
+contactLinks:
+  - iconUrl: "https://api.iconify.design/solar/letter-bold.svg"
+    title: "Email"
+    detail: "gosijnr7@yahoo.com"
+    linkUrl: "gosijnr7@yahoo.com"
+    externalLinkType: 0
+
+  - iconUrl: "https://api.iconify.design/solar/letter-bold.svg"
+    title: "Email (Secondary)"
+    detail: "gosijnr7@gmail.com"
+    linkUrl: "gosijnr7@gmail.com"
+    externalLinkType: 0
+
+projects:
+  - title: "Esut Brain Train App"
+    description: "A mobile app featuring logic, math, memory, and vocabulary games designed to boost cognitive skills. Developed as a final-year project at ESUT."
+    technologies:
+      - "Godot"
+      - "GDScript"
+    imageUrl: "images/esut-brain-trainer.png"
+    liveLink:
+      linkUrl: "https://github.com/GOSIjnr/esut-brain-trainer/releases"
+      externalLinkType: 2
+    otherLinks:
+      - linkUrl: "https://github.com/GOSIjnr/esut-brain-trainer"
+        externalLinkType: 2
+        title: "GitHub"
+
+  - title: "Expense Tracker App"
+    description: "A full-stack expense tracking application with a React frontend and an ASP.NET Core backend. Features include category management, transaction tracking, and spending reports."
+    technologies:
+      - "C#"
+      - "ASP.NET Core"
+      - "PostgreSQL"
+      - "React"
+      - "TypeScript"
+      - "Tailwind"
+    imageUrl: "images/no-image.svg"
+    liveLink:
+      linkUrl: "https://expensify-zeta-two.vercel.app"
+      externalLinkType: 2
+    otherLinks:
+      - linkUrl: "https://github.com/Phusse/ExpenseTrackerAPI"
+        externalLinkType: 2
+        title: "GitHub"
+
+aboutMeInfo:
+  introduction: "Hi, I'm Chinedu Victor Awugosi, a developer who enjoys building smooth, intuitive digital experiences and solving technical challenges. I work across the stack, explore new tech, and occasionally dive into game engines for fun."
+  personalDetails:
+    Name: "Awugosi Victor"
+    Experience: "2 years"
+    Nationality: "Nigerian"
+    Email: "gosijnr7@yahoo.com"
+    Language: "English"
+    Hobbies: "Coding, gaming, and watching anime"
+
+experienceEvents:
+  - type: "dateRange"
+    startDate: "2023-08-01"
+    endDate: "2023-10-01"
+    description: "Network Operating Centre (Intern)"
+    note: "InterConnect Clearing House Nigeria Limited"
+    startDateFormat: 0
+    endDateFormat: 0
+
+educationEvents:
+  - type: "dateRange"
+    startDate: "2019-12-10"
+    endDate: "2024-10-10"
+    description: "Bachelor of Engineering, Computer Engineering"
+    note: "Enugu State University of Science and Technology"
+    startDateFormat: 0
+    endDateFormat: 0
+
+  - type: "date"
+    date: "2025-02-17"
+    description: "Microsoft Power BI Data Analyst"
+    note: "Microsoft Corporation"
+    dateFormat: 0
+
+  - type: "date"
+    date: "2025-04-25"
+    description: "UI/UX Design"
+    note: "California Institute of the Arts"
+    dateFormat: 0
+
+skills:
+  - name: "Blazor"
+    iconUrl: "https://api.iconify.design/simple-icons/blazor.svg"
+  - name: "Angular"
+    iconUrl: "https://api.iconify.design/simple-icons/angular.svg"
+  - name: "React"
+    iconUrl: "https://api.iconify.design/simple-icons/react.svg"
+  - name: ".NET"
+    iconUrl: "https://api.iconify.design/simple-icons/dotnet.svg"
+  - name: "Entity Framework"
+    iconUrl: "https://api.iconify.design/devicon-plain/entityframeworkcore.svg"
+  - name: "Unity"
+    iconUrl: "https://api.iconify.design/simple-icons/unity.svg"
+  - name: "Godot"
+    iconUrl: "https://api.iconify.design/simple-icons/godotengine.svg"
+  - name: "C#"
+    iconUrl: "https://api.iconify.design/mdi/language-csharp.svg"
+  - name: "Python"
+    iconUrl: "https://api.iconify.design/simple-icons/python.svg"
+  - name: "JavaScript"
+    iconUrl: "https://api.iconify.design/simple-icons/javascript.svg"
+  - name: "TypeScript"
+    iconUrl: "https://api.iconify.design/simple-icons/typescript.svg"
+  - name: "HTML5"
+    iconUrl: "https://api.iconify.design/simple-icons/html5.svg"
+  - name: "CSS"
+    iconUrl: "https://api.iconify.design/simple-icons/css.svg"
+  - name: "MySQL"
+    iconUrl: "https://api.iconify.design/simple-icons/mysql.svg"
+  - name: "PostgreSQL"
+    iconUrl: "https://api.iconify.design/simple-icons/postgresql.svg"
+  - name: "Postman"
+    iconUrl: "https://api.iconify.design/simple-icons/postman.svg"
+  - name: "GitHub"
+    iconUrl: "https://api.iconify.design/simple-icons/github.svg"
+  - name: "Figma"
+    iconUrl: "https://api.iconify.design/simple-icons/figma.svg"
+  - name: "Penpot"
+    iconUrl: "https://api.iconify.design/simple-icons/penpot.svg"
+
+stats:
+  - number: 2
+    labelLine1: "Years of"
+    labelLine2: "Experience"
+
+  - number: 4
+    labelLine1: "Projects"
+    labelLine2: "Completed"
+
+  - number: 15
+    numberPrefix: "+"
+    labelLine1: "Skills &"
+    labelLine2: "Tools"
+
+  - number: 10
+    numberPrefix: "+"
+    labelLine1: "Hours Spent"
+    labelLine2: "Naming Things"
+
+resumeDocID: "1NdPAG_6jcNHaFta0fJK6lT5TlNLzEMgQ"
+
+homePageContent:
+  role: "Full-Stack Developer / Game Developer"
+  greeting: "Hello I'm"
+  greetingHighlighted: "Victor Awugosi"
+  description: "I turn caffeine into code, pixels into purpose, and bugs into... features (sometimes). Code builds it, curiosity drives it."
+
+resumeSectionIntro:
+  experience: "My journey has been shaped by a variety of experiences—some planned, some unexpected—all of which have helped me grow into who I am today. Each role has left its mark, teaching me something new about myself and the world around me."
+  education: "Education has been the foundation of my growth, equipping me with tools to think critically, solve problems, and explore new ideas. Every step has opened doors, fueling my curiosity and shaping my approach to challenges."
+  skill: "My skills reflect both passion and commitment to continuous learning. Each one represents countless hours of curiosity, experimentation, and practice—tools that help me bring ideas to life and solve problems with confidence."

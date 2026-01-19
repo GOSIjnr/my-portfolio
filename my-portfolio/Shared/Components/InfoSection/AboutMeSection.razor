@@ -1,0 +1,20 @@
+<div class="about-me">
+	<h2 class="about-me__title">About Me</h2>
+	<p class="about-me__subtitle">@_introduction</p>
+
+	<div class="about-me__items">
+		@foreach (var (info, detail) in _personalDetails)
+		{
+			<p class="about-me__item">@info:
+				<span class="about-me__item-value">@detail</span>
+			</p>
+		}
+	</div>
+</div>
+
+@code {
+	[Inject] private PortfolioData AppContent { get; set; } = null!;
+
+	private string _introduction => AppContent.User.AboutMeInfo.Introduction;
+	private Dictionary<string, string> _personalDetails => AppContent.User.AboutMeInfo.PersonalDetails ?? [];
+}

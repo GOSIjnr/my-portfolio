@@ -1,0 +1,120 @@
+.resume {
+	--section-padding: 1rem;
+	--section-gap: 2rem;
+
+	--title-weight: 700;
+	--subtitle-weight: 300;
+
+	--nav-button-padding: 0.65rem 1rem;
+	--nav-button-font-size: 0.7rem;
+	--nav-button-font-weight: 200;
+
+	--color-bg: var(--color-1-light);
+	--color-hover: var(--color-1-lighter);
+	--color-active: var(--color-2-lighter);
+	--color-text: var(--color-3-lightest);
+	--color-subtext: var(--color-3-dark);
+
+	--color-subtitle: var(--color-subtext);
+}
+
+.resume {
+	display: flex;
+	flex-direction: column;
+	padding: var(--section-padding);
+	gap: var(--section-gap);
+	margin-bottom: 4rem;
+}
+
+.resume__title {
+	margin-bottom: 1.5rem;
+	font-weight: var(--title-weight);
+	text-align: center;
+	padding: 0 0.45rem;
+}
+
+.resume__subtitle {
+	color: var(--color-subtitle);
+	font-weight: var(--subtitle-weight);
+	margin-bottom: 2rem;
+	text-align: center;
+	padding: 0 0.45rem;
+}
+
+.resume__nav-button-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+	margin-bottom: 2rem;
+	max-height: 250px;
+	overflow: auto;
+	padding: 0 0.45rem;
+	scrollbar-width: thin;
+	scrollbar-color: var(--color-active) transparent;
+}
+
+.resume__nav-button-wrapper::-webkit-scrollbar {
+	width: 6px;
+}
+
+.resume__nav-button-wrapper::-webkit-scrollbar-track {
+	background: transparent;
+	border-radius: 4px;
+}
+
+.resume__nav-button-wrapper::-webkit-scrollbar-thumb {
+	background-color: var(--color-active);
+	border-radius: 4px;
+}
+
+.resume__nav-button-wrapper::-webkit-scrollbar-thumb:hover {
+	background-color: var(--color-hover);
+}
+
+.resume__nav-button {
+	font-family: var(--font-family);
+	padding: var(--nav-button-padding);
+	border: none;
+	font-weight: var(--nav-button-font-weight);
+	font-size: var(--nav-button-font-size);
+	background-color: var(--color-bg);
+	color: var(--color-text);
+	cursor: pointer;
+	transition: background-color 0.2s ease-out;
+	border-radius: 50vw;
+}
+
+.resume__nav-button:hover {
+	background-color: var(--color-hover);
+}
+
+.resume__nav-button--active {
+	background-color: var(--color-active);
+	color: var(--color-text);
+	font-weight: 700;
+}
+
+.resume__nav-button--active:hover {
+	background-color: var(--color-active);
+}
+
+.resume__content {
+	width: 100%;
+}
+
+@media (min-width: 768px) {
+	.resume {
+		flex-direction: row;
+		padding: 2rem 1rem;
+	}
+
+	.resume__nav {
+		width: 30%;
+		flex-shrink: 0;
+	}
+
+	.resume__title,
+	.resume__subtitle {
+		text-align: left;
+	}
+}

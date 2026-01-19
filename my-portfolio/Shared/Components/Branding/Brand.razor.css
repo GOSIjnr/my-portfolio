@@ -1,0 +1,37 @@
+.brand {
+	--highlight-color: var(--color-2-lighter);
+	--highlight-hover-color: var(--color-2-light);
+}
+
+.brand {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.2s ease-out;
+}
+
+.brand:hover {
+	--highlight-color: var(--highlight-hover-color);
+}
+
+::deep .brand__link {
+	width: inherit;
+	height: inherit;
+	text-decoration: none;
+	color: inherit;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.brand__name {
+	display: flex;
+	flex: 1;
+	margin: 0;
+	font-weight: bolder;
+
+}
+
+.brand__name--highlighted {
+	color: var(--highlight-color);
+}

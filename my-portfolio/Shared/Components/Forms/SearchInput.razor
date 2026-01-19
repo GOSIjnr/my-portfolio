@@ -1,0 +1,67 @@
+@implements IDisposable
+
+<div class="search-input">
+	<input class="search-input__field" type="text" value="@_inputValue" placeholder="@Placeholder"
+		@oninput="HandleInput" />
+
+	@if (!string.IsNullOrWhiteSpace(_inputValue))
+	{
+		<button class="search-input__clear-button" type="button" @onclick="ClearInput" aria-label="Clear search" />
+	}
+</div>
+
+@code {
+	[Parameter, EditorRequired] public string Placeholder { get; set; } = string.Empty;
+	[Parameter] public string? Search { get; set; }
+	[Parameter] public int DelayInMilliSeconds { get; set; } = 400;
+	[Parameter] public EventCallback<string> SearchChanged { get; set; }
+
+	private string? _inputValue;
+	private CancellationTokenSource? _debounceCts;
+
+	protected override void OnParametersSet()
+	{
+		_inputValue = Search;
+	}
+
+	private async void HandleInput(ChangeEventArgs e)
+	{
+		_inputValue = e.Value?.ToString() ?? string.Empty;
+
+		_debounceCts?.Cancel();
+		_debounceCts = new CancellationTokenSource();
+		CancellationToken token = _debounceCts.Token;
+
+		try
+		{
+			await Task.Delay(DelayInMilliSeconds, token);
+
+			if (!token.IsCancellationRequested)
+			{
+				await CallSearchChanged();
+			}
+		}
+		catch (TaskCanceledException) { }
+	}
+
+	private async Task CallSearchChanged()
+	{
+		if (SearchChanged.HasDelegate)
+		{
+			await SearchChanged.InvokeAsync(_inputValue);
+		}
+	}
+
+	public void Dispose()
+	{
+		_debounceCts?.Dispose();
+	}
+
+    private async void ClearInput()
+    {
+		_debounceCts?.Cancel();
+
+		_inputValue = null;
+		await CallSearchChanged();
+	}
+}

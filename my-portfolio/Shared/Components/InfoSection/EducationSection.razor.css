@@ -1,0 +1,60 @@
+.education-section {
+	--description-font-color: var(--color-3-dark);
+	--scrollbar-slider-color: var(--color-2-lighter);
+}
+
+.education-section__heading,
+.education-section__description {
+	text-align: center;
+}
+
+.education-section__heading {
+	font-weight: 700;
+	margin-bottom: 1.5rem;
+}
+
+.education-section__description {
+	margin-top: 1.5rem;
+	color: var(--description-font-color);
+	margin-bottom: 2rem;
+}
+
+.education-section__grid {
+	display: grid;
+	gap: 1rem;
+}
+
+@media (min-width: 768px) {
+
+	.education-section__heading,
+	.education-section__description {
+		text-align: left;
+	}
+
+	.education-section__grid {
+		padding-right: 0.3rem;
+		max-height: 320px;
+		overflow: auto;
+		scrollbar-width: thin;
+		scrollbar-color: var(--scrollbar-slider-color) transparent;
+	}
+
+	.education-section__grid::-webkit-scrollbar {
+		width: 6px;
+	}
+
+	.education-section__grid::-webkit-scrollbar-track {
+		background: transparent;
+	}
+
+	.education-section__grid::-webkit-scrollbar-thumb {
+		background-color: var(--scrollbar-slider-color);
+		border-radius: 3px;
+	}
+}
+
+@media (min-width: 992px) {
+	.education-section__grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}

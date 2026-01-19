@@ -1,0 +1,43 @@
+@using MyPortfolio.Adapters.InfoCard
+
+<div class="experience-section">
+    <h2 class="experience-section__heading">My Experience</h2>
+    <p class="experience-section__description">@_introduction</p>
+
+    <div class="experience-section__grid">
+        @foreach (InfoCardViewModel? cardData in _adaptedExperienceCards)
+        {
+            if (cardData is null) continue;
+            <InfoCard InfoCardData="@cardData" OnReadMoreClicked="@(() => ShowModal(cardData))" />
+        }
+    </div>
+</div>
+
+<Modal IsVisible="@_showModal" IsVisibleChanged="@(value => _showModal = value)">
+    @if (_selectedCard is not null)
+    {
+        <InfoCard InfoCardData="@_selectedCard" ForceExpanded="true" />
+    }
+</Modal>
+
+@code {
+    [Inject] private PortfolioData AppContent { get; set; } = null!;
+
+    private List<InfoCardViewModel> _adaptedExperienceCards = [];
+    private InfoCardViewModel? _selectedCard = null;
+    private bool _showModal = false;
+
+    private string _introduction => AppContent.User.ResumeSectionIntro.Experience;
+    private List<InfoEventBase> _experienceCards => AppContent.User.ExperienceEvents;
+
+    protected override void OnParametersSet()
+    {
+        _adaptedExperienceCards = InfoCardAdapterResolver.AdaptList(_experienceCards);
+    }
+
+    private void ShowModal(InfoCardViewModel card)
+    {
+        _selectedCard = card;
+        _showModal = true;
+    }
+}

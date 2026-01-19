@@ -1,0 +1,58 @@
+@page "/resume"
+
+<div class="resume">
+    <div class="resume__nav">
+        <h2 class="resume__title">@_resumeHeader.Title</h2>
+        <p class="resume__subtitle">@_resumeHeader.Subtitle</p>
+
+        <div class="resume__nav-button-wrapper">
+            @for (int i = 0; i < _resumeSections.Count; i++)
+            {
+                TabButtonInfo section = _resumeSections[i];
+
+                <button class="resume__nav-button @(_currentSection == section.Key ? "resume__nav-button--active" : string.Empty)"
+                    @onclick="@(() => SelectSection(section.Key))">
+                    @(section.Label)
+                </button>
+            }
+        </div>
+    </div>
+
+    <div class="resume__content">
+        @RenderActiveSection()
+    </div>
+</div>
+
+@code {
+    [Inject] private PortfolioData AppContent { get; set; } = null!;
+
+    private ResumeHeaderInfo _resumeHeader => AppContent.Layout.ResumeHeader;
+    private List<TabButtonInfo> _resumeSections => AppContent.Layout.ResumeTabs;
+    private string _currentSection = string.Empty;
+
+    private static readonly Dictionary<string, RenderFragment> _sectionMap = new()
+    {
+        ["aboutMe"] = @<AboutMeSection />,
+        ["education"] = @<EducationSection />,
+        ["experience"] = @<ExperienceSection />,
+        ["skills"] = @<SkillSection />,
+    };
+
+    protected override void OnInitialized()
+    {
+        _currentSection = _resumeSections.FirstOrDefault()?.Key ?? string.Empty;
+    }
+
+    private void SelectSection(string section)
+    {
+        _currentSection = section;
+    }
+
+    private RenderFragment RenderActiveSection()
+    {
+        return _sectionMap.TryGetValue(_currentSection, out RenderFragment? section)
+        ? section
+        : @<UnknownSection />;
+    }
+
+}

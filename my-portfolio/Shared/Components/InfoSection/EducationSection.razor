@@ -1,0 +1,42 @@
+@using MyPortfolio.Adapters.InfoCard
+
+<div class="education-section">
+    <h2 class="education-section__heading">My Education</h2>
+    <p class="education-section__description">@_description</p>
+
+    <div class="education-section__grid">
+        @foreach (InfoCardViewModel cardData in _adaptedEducationCards)
+        {
+            <InfoCard InfoCardData="@cardData" OnReadMoreClicked="@(() => ShowModal(cardData))" />
+        }
+    </div>
+</div>
+
+<Modal IsVisible="@showModal" IsVisibleChanged="@(value => showModal = value)">
+    @if (selectedCard is not null)
+    {
+        <InfoCard InfoCardData="@selectedCard" ForceExpanded="true" />
+    }
+</Modal>
+
+@code {
+    [Inject] private PortfolioData AppContent { get; set; } = null!;
+
+    private List<InfoCardViewModel> _adaptedEducationCards = [];
+    private InfoCardViewModel? selectedCard = null;
+    private bool showModal = false;
+
+    private string _description => AppContent.User.ResumeSectionIntro.Education;
+    private List<InfoEventBase> _educationCards => AppContent.User.EducationEvents;
+
+    protected override void OnParametersSet()
+    {
+        _adaptedEducationCards = InfoCardAdapterResolver.AdaptList(_educationCards);
+    }
+
+    private void ShowModal(InfoCardViewModel card)
+    {
+        selectedCard = card;
+        showModal = true;
+    }
+}

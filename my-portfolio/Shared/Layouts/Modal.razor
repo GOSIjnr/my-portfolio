@@ -1,0 +1,54 @@
+@if (IsVisible)
+{
+	<div class="modal" @onclick="Close">
+		<div class="modal__backdrop"></div>
+
+		<div class="modal__container" @onclick:stopPropagation="true">
+			<div class="modal__header">
+				<h3 class="modal__title">@(ModalTitle ?? string.Empty)</h3>
+				<button class="modal__close-btn" @onclick="Close" />
+			</div>
+
+			<div class="modal__body">
+				@ChildContent
+			</div>
+		</div>
+	</div>
+}
+
+@code {
+	[Inject] private ScrollLockService ScrollLock { get; set; } = null!;
+
+	[Parameter] public bool IsVisible { get; set; }
+	[Parameter] public string? ModalTitle { get; set; }
+	[Parameter] public RenderFragment? ChildContent { get; set; }
+	[Parameter] public EventCallback<bool> IsVisibleChanged { get; set; }
+
+	private bool _wasVisible;
+
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		if (_wasVisible != IsVisible)
+		{
+			_wasVisible = IsVisible;
+
+			if (IsVisible)
+			{
+				await ScrollLock.LockScrollAsync();
+			}
+			else
+			{
+				await ScrollLock.UnlockScrollAsync();
+			}
+		}
+	}
+
+	private async Task Close()
+	{
+		if (IsVisible)
+		{
+			IsVisible = false;
+			await IsVisibleChanged.InvokeAsync(IsVisible);
+		}
+	}
+}

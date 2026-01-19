@@ -1,0 +1,40 @@
+.contact {
+	--page-padding: 1rem;
+}
+
+.contact {
+	padding: var(--page-padding);
+	overflow: hidden;
+	margin-bottom: 4rem;
+}
+
+.contact__grid {
+	display: flex;
+	flex-direction: column;
+	gap: 5rem;
+}
+
+.contact__info-grid {
+	display: grid;
+	gap: 1.5rem;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+@media (min-width: 768px) {
+	.contact {
+		--page-padding: 2rem 1rem;
+	}
+}
+
+@media (min-width: 992px) {
+	.contact__grid {
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		gap: 7rem;
+	}
+
+	.contact__info-grid {
+		margin-bottom: 0;
+	}
+}

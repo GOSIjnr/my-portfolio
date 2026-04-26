@@ -1,0 +1,62 @@
+<div class="side-bar">
+    <div class="side-bar__slider @(IsOpened ? "side-bar__slider--open" : string.Empty)">
+        <button class="side-bar__close-btn side-bar__close-btn--mask" type="button" title="Close menu"
+            @onclick="CloseMenu" />
+
+        <div class="side-bar__content">
+            <div class="side-bar__links">
+                <div class="side-bar__logo">
+                    <Brand BrandInfo="_brand" OnBrandClick="CloseMenu" />
+                </div>
+
+                @foreach (NavigationLinkInfo item in _navigationItems)
+                {
+                    <div class="side-bar__link">
+                        <NavLinkItem NavigationLinkInfo="item" ExternalLinkType="@TargetUrlFormat.Plain"
+                            OnNavItemClick="CloseMenu" />
+                    </div>
+                }
+            </div>
+
+            <div class="side-bar__contact-link">
+                <NavLinkItem NavigationLinkInfo="@_contactMeLink" ExternalLinkType="TargetUrlFormat.Plain"
+                    OnNavItemClick="HandleContactMeClick" IsButton="true" />
+            </div>
+        </div>
+    </div>
+
+    @if (IsOpened)
+    {
+        <div class="side-bar__backdrop" @onclick="CloseMenu"></div>
+    }
+</div>
+
+@code {
+    [Inject] private PortfolioData AppContent { get; set; } = null!;
+
+    [Parameter, EditorRequired] public bool IsOpened { get; set; } = false;
+    [Parameter] public EventCallback OnClose { get; set; }
+    [Parameter] public EventCallback OnContactMeClick { get; set; }
+
+    private BrandInfo _brand => AppContent.User.Brand;
+    private List<NavigationLinkInfo> _navigationItems => AppContent?.Layout?.NavigationLinks ?? [];
+    private NavigationLinkInfo _contactMeLink => AppContent.Layout.ContactMeLink;
+
+    private async Task HandleContactMeClick()
+    {
+        await CloseMenu();
+
+        if (OnContactMeClick.HasDelegate)
+        {
+            await OnContactMeClick.InvokeAsync();
+        }
+    }
+
+    private async Task CloseMenu()
+    {
+        if (OnClose.HasDelegate)
+        {
+            await OnClose.InvokeAsync();
+        }
+    }
+}

@@ -1,0 +1,18 @@
+<div class="skill-section">
+	<h2 class="skill-section__heading">My Skills</h2>
+	<p class="skill-section__description">@_introduction</p>
+
+	<div class="skill-section__grid">
+		@foreach (SkillInfo skill in _skills)
+		{
+			<SkillBox SkillInfo="@skill" />
+		}
+	</div>
+</div>
+
+@code {
+	[Inject] private PortfolioData AppContent { get; set; } = null!;
+
+	private string _introduction => AppContent.User.ResumeSectionIntro.Skill;
+	private List<SkillInfo> _skills => AppContent.User.Skills;
+}

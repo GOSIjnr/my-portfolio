@@ -1,0 +1,160 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AppLayoutData",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "navigationLinks",
+    "contactMeLink",
+    "downloadCVLink",
+    "projectsLink",
+    "contactForm",
+    "resumeHeader",
+    "resumeTabs"
+  ],
+  "properties": {
+    "navigationLinks": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 5,
+      "items": {
+        "$ref": "#/definitions/NavigationLinkInfo"
+      },
+      "description": "Top navigation links for the site (1-5 items)."
+    },
+    "contactMeLink": {
+      "$ref": "#/definitions/NavigationLinkInfo",
+      "description": "A link to the contact section or page."
+    },
+    "downloadCVLink": {
+      "$ref": "#/definitions/NavigationLinkInfo",
+      "description": "A link for downloading the user's CV."
+    },
+    "projectsLink": {
+      "$ref": "#/definitions/NavigationLinkInfo",
+      "description": "A link to the projects section or page."
+    },
+    "contactForm": {
+      "$ref": "#/definitions/ContactFormInfo"
+    },
+    "resumeHeader": {
+      "$ref": "#/definitions/ResumeHeaderInfo"
+    },
+    "resumeTabs": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4,
+      "items": {
+        "$ref": "#/definitions/TabButtonInfo"
+      },
+      "description": "Tabs for switching between resume sections (1-4 items)."
+    }
+  },
+  "definitions": {
+    "NavigationLinkInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "displayText",
+        "rawTargetUrl",
+        "cssClassType",
+        "cssActiveClassType"
+      ],
+      "properties": {
+        "displayText": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Text displayed for the navigation link."
+        },
+        "rawTargetUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URL or anchor target this link points to."
+        },
+        "cssClassType": {
+          "$ref": "#/definitions/NavigationItemCssType"
+        },
+        "cssActiveClassType": {
+          "$ref": "#/definitions/NavigationItemCssActiveType"
+        }
+      }
+    },
+    "NavigationItemCssType": {
+      "type": "integer",
+      "description": "Style class for navigation item appearance.\n  0 = Normal\n  1 = Rounded\n  2 = RoundedInverted",
+      "enum": [
+        0,
+        1,
+        2
+      ]
+    },
+    "NavigationItemCssActiveType": {
+      "type": "integer",
+      "description": "Style class applied when the nav item is active.\n  0 = Normal\n  1 = UnderLine",
+      "enum": [
+        0,
+        1
+      ]
+    },
+    "ContactFormInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "heading",
+        "subHeading"
+      ],
+      "properties": {
+        "heading": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Main heading of the contact form section."
+        },
+        "subHeading": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Subheading text beneath the contact form title."
+        }
+      }
+    },
+    "ResumeHeaderInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "subtitle"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Main title of the resume section."
+        },
+        "subtitle": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Subtitle beneath the resume title."
+        }
+      }
+    },
+    "TabButtonInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "key",
+        "label"
+      ],
+      "properties": {
+        "key": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Unique key used to identify the tab programmatically."
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Label displayed on the tab button."
+        }
+      }
+    }
+  }
+}
